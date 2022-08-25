@@ -1,0 +1,400 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.7.27)  25 AUG 2022 11:25
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**c:/Users/Emilio/Desktop/LATEX/TESIS/main.tex
+(c:/Users/Emilio/Desktop/LATEX/TESIS/main.tex
+LaTeX2e <2021-06-01> patch level 1
+L3 programming layer <2021-07-12> (./mitthesis.cls
+Document Class: mitthesis 1999/10/20
+\vithesis=\count182
+(c:/texlive/2021/texmf-dist/tex/latex/base/report.cls
+Document Class: report 2021/02/12 v1.4n Standard LaTeX document class
+(c:/texlive/2021/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2021/02/12 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count183
+\c@chapter=\count184
+\c@section=\count185
+\c@subsection=\count186
+\c@subsubsection=\count187
+\c@paragraph=\count188
+\c@subparagraph=\count189
+\c@figure=\count190
+\c@table=\count191
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+) (c:/texlive/2021/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+Thesis document copyright MIT unless otherwise (manually) specified
+\@titlesupervisor=\box50
+\@abstractsupervisor=\box51
+\c@savepage=\count192
+) (./lgrind.sty
+Package: lgrind 1997/01/30 v3.4 LGrind environment and supporting stuff
+\lc@unt=\count193
+\ln@xt=\count194
+\LGnuminterval=\count195
+\LGindent=\skip49
+\LGsloppy=\skip50
+\procbox=\box52
+\ls@far=\box53
+\tb@x=\box54
+\TBw@d=\dimen139
+\@ts=\dimen140
+) (c:/texlive/2021/texmf-dist/tex/latex/cmap/cmap.sty
+Package: cmap 2021/02/06 v1.0j CMap support: searchable PDF
+) (c:/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+<<t1.cmap>>) (c:/texlive/2021/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2021/07/22 3.63 The Babel package
+ (c:/texlive/2021/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2021/07/22 3.63 Babel common definitions
+\babel@savecnt=\count196
+\U@D=\dimen141
+\l@unhyphenated=\language87
+ (c:/texlive/2021/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+)
+\bbl@dirlevel=\count197
+ (c:/texlive/2021/texmf-dist/tex/generic/babel-spanish/spanish.ldf
+Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
+\es@quottoks=\toks16
+\es@quotdepth=\count198
+Package babel Info: Making " an active character on input line 570.
+Package babel Info: Making . an active character on input line 675.
+Package babel Info: Making < an active character on input line 722.
+Package babel Info: Making > an active character on input line 722.
+)) (c:/texlive/2021/texmf-dist/tex/latex/pythontex/pythontex.sty
+Package: pythontex 2021/06/06 v0.18 execute and typeset Python code and other languages
+ (c:/texlive/2021/texmf-dist/tex/latex/fvextra/fvextra.sty
+Package: fvextra 2019/02/04 v1.4 fvextra - extensions and patches for fancyvrb
+ (c:/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2020/11/24 v1.1c Standard LaTeX ifthen package (DPC)
+) (c:/texlive/2021/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count199
+) (c:/texlive/2021/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2021/01/20 v3.7 verbatim text (tvz,hv)
+ (c:/texlive/2021/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+\FV@CodeLineNo=\count266
+\FV@InFile=\read3
+\FV@TabBox=\box55
+\c@FancyVerbLine=\count267
+\FV@StepNumber=\count268
+\FV@OutFile=\write3
+) (c:/texlive/2021/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbatim
+ (c:/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+)) (c:/texlive/2021/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+\linenopenalty=\count269
+\output=\toks18
+\linenoprevgraf=\count270
+\linenumbersep=\dimen142
+\linenumberwidth=\dimen143
+\c@linenumber=\count271
+\c@pagewiselinenumber=\count272
+\c@LN@truepage=\count273
+\c@internallinenumber=\count274
+\c@internallinenumbers=\count275
+\quotelinenumbersep=\dimen144
+\bframerule=\dimen145
+\bframesep=\dimen146
+\bframebox=\box56
+LaTeX Info: Redefining \\ on input line 3056.
+)
+\c@FV@TrueTabGroupLevel=\count276
+\c@FV@TrueTabCounter=\count277
+\FV@TabBox@Group=\box57
+\FV@TmpLength=\skip51
+\c@FV@HighlightLinesStart=\count278
+\c@FV@HighlightLinesStop=\count279
+\FV@LoopCount=\count280
+\FV@NCharsBox=\box58
+\FV@BreakIndent=\dimen147
+\FV@BreakIndentNChars=\count281
+\FV@BreakSymbolSepLeft=\dimen148
+\FV@BreakSymbolSepLeftNChars=\count282
+\FV@BreakSymbolSepRight=\dimen149
+\FV@BreakSymbolSepRightNChars=\count283
+\FV@BreakSymbolIndentLeft=\dimen150
+\FV@BreakSymbolIndentLeftNChars=\count284
+\FV@BreakSymbolIndentRight=\dimen151
+\FV@BreakSymbolIndentRightNChars=\count285
+\c@FancyVerbLineBreakLast=\count286
+\FV@LineBox=\box59
+\FV@LineIndentBox=\box60
+\FV@LineWidth=\dimen152
+) (c:/texlive/2021/texmf-dist/tex/generic/xstring/xstring.sty (c:/texlive/2021/texmf-dist/tex/generic/xstring/xstring.tex
+\integerpart=\count287
+\decimalpart=\count288
+)
+Package: xstring 2021/07/21 v1.84 String manipulations (CT)
+) (c:/texlive/2021/texmf-dist/tex/latex/pgfopts/pgfopts.sty
+Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
+ (c:/texlive/2021/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (c:/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks19
+\pgfkeys@temptoks=\toks20
+ (c:/texlive/2021/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks21
+)))
+\pgfopts@list@add@a@toks=\toks22
+\pgfopts@list@add@b@toks=\toks23
+) (c:/texlive/2021/texmf-dist/tex/latex/newfloat/newfloat.sty
+Package: newfloat 2019/09/02 v1.1l Defining new floating environments (AR)
+Package newfloat Info: Document class `report' detected.
+) (c:/texlive/2021/texmf-dist/tex/latex/currfile/currfile.sty
+Package: currfile 2020/09/29 v0.7d Provides the file path elements of the current input file
+ (c:/texlive/2021/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+ (c:/texlive/2021/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+) (c:/texlive/2021/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)) (c:/texlive/2021/texmf-dist/tex/latex/filehook/filehook.sty
+Package: filehook 2020/09/29 v0.8a Hooks for input files
+ (c:/texlive/2021/texmf-dist/tex/latex/filehook/filehook-2020.sty
+Package: filehook-2020 2020/09/29 v0.8a Hooks for input files
+))
+\c@currfiledepth=\count289
+)
+\pytx@codefile=\write4
+\openout4 = `main.pytxcode'.
+
+\c@pytx@FancyVerbLineTemp=\count290
+\c@pytx@py@default@default=\count291
+\c@pytx@pycon@default@default=\count292
+\c@pytx@sympy@default@default=\count293
+\c@pytx@sympycon@default@default=\count294
+\c@pytx@pylab@default@default=\count295
+\c@pytx@pylabcon@default@default=\count296
+) (c:/texlive/2021/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2020/12/05 v1.2c Enhanced LaTeX Graphics (DPC,SPQR)
+ (c:/texlive/2021/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+ (c:/texlive/2021/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+) (c:/texlive/2021/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+ (c:/texlive/2021/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen153
+\Gin@req@width=\dimen154
+) (c:/texlive/2021/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+ (c:/texlive/2021/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+) (c:/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2021-07-12 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count297
+\l__pdf_internal_box=\box61
+) (build/main.aux (build/cover.aux)
+LaTeX Info: Redefining \. on input line 9.
+LaTeX Info: Redefining \% on input line 9.
+ (build/contents.aux) (build/chap1.aux) (build/2.aux) (build/3.aux) (build/4.aux) (build/appa.aux) (build/appb.aux) (build/biblio.aux))
+\openout1 = `main.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Info: Redefining \. on input line 15.
+LaTeX Info: Redefining \% on input line 15.
+
+No file pythontex-files-main/main.pytxmcr.
+Run PythonTeX to create it.
+Package newfloat Info: New float `listing' with options `fileext=lopytx' on input line 15.
+\c@listing=\count298
+\newfloat@ftype=\count299
+Package newfloat Info: float type `listing'=8 on input line 15.
+(c:/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count300
+\scratchdimen=\dimen155
+\scratchbox=\box62
+\nofMPsegments=\count301
+\nofMParguments=\count302
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count303
+\MPscratchDim=\dimen156
+\MPnumerator=\count304
+\makeMPintoPDFobject=\count305
+\everyMPtoPDFconversion=\toks25
+) (c:/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (c:/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+\openout2 = `cover.aux'.
+
+ (./cover.tex [1
+
+
+
+{c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
+
+] (./abstract.tex) [3
+
+] [4
+
+]) [5]
+\openout2 = `contents.aux'.
+
+ (./contents.tex [6
+
+
+
+
+] (build/main.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
+\tf@toc=\write5
+\openout5 = `main.toc'.
+
+ [7] [8
+
+] (build/main.lof
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
+\tf@lof=\write6
+\openout6 = `main.lof'.
+
+ [9] [10
+
+] (build/main.lot
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+)
+\tf@lot=\write7
+\openout7 = `main.lot'.
+
+) [11]
+\openout2 = `chap1.aux'.
+
+ (./chap1.tex [12
+
+
+
+
+]
+Cap\'{\i }tulo 1.
+) [13]
+\openout2 = `2.aux'.
+
+ (./2.tex [14
+
+
+
+
+]
+Cap\'{\i }tulo 2.
+) [15]
+\openout2 = `3.aux'.
+
+ (./3.tex [16
+
+
+
+
+]
+Cap\'{\i }tulo 3.
+) [17]
+\openout2 = `4.aux'.
+
+ (./4.tex [18
+
+
+
+
+]
+Cap\'{\i }tulo 4.
+) [19]
+\openout2 = `appa.aux'.
+
+ (./appa.tex [20
+
+
+
+
+]
+Ap\'{e}ndice A.
+[21])
+\openout2 = `appb.aux'.
+
+ (./appb.tex [22
+
+
+
+
+
+]
+Ap\'{e}ndice B.
+[23])
+\openout2 = `biblio.aux'.
+
+ (./biblio.tex (build/main.bbl [24
+
+
+
+
+
+]
+
+LaTeX Warning: Empty `thebibliography' environment on input line 5.
+
+)) [25] (build/main.aux (build/cover.aux)
+LaTeX Info: Redefining \. on input line 9.
+LaTeX Info: Redefining \% on input line 9.
+ (build/contents.aux) (build/chap1.aux) (build/2.aux) (build/3.aux) (build/4.aux) (build/appa.aux) (build/appb.aux) (build/biblio.aux)) )
+(\end occurred when \ifx on line 13 was incomplete) 
+Here is how much of TeX's memory you used:
+ 7295 strings out of 478542
+ 124298 string characters out of 5854396
+ 472651 words of memory out of 5000000
+ 25057 multiletter control sequences out of 15000+600000
+ 411012 words of font info for 38 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 76i,5n,88p,385b,361s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
+Output written on build/main.pdf (25 pages, 119284 bytes).
+PDF statistics:
+ 119 PDF objects out of 1000 (max. 8388607)
+ 82 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 5 words of extra memory for PDF output out of 10000 (max. 10000000)
+

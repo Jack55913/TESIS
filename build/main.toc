@@ -1,0 +1,7 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{\numberline {1}Introducción}{13}{}%
+\contentsline {chapter}{\numberline {2}Objetivos}{15}{}%
+\contentsline {chapter}{\numberline {3}Tesis}{17}{}%
+\contentsline {chapter}{\numberline {4}Conclusiones y Recomendaciones}{19}{}%
+\contentsline {chapter}{\numberline {A}Tablas}{21}{}%
+\contentsline {chapter}{\numberline {B}Figuras}{23}{}%
