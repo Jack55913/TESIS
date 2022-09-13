@@ -297,7 +297,7 @@ en la
 \@copyrightnotice
 \par
 \vskip 3\baselineskip
-\signature{Autor}{\@department \\ \@thesisdate}
+\signature{Departamentos}{\@department \\ \@thesisdate}
 \par
 \vfill
 \unvbox\@titlesupervisor

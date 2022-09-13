@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.7.27)  25 AUG 2022 11:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.7.27)  13 SEP 2022 10:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -213,7 +213,7 @@ File: l3backend-pdftex.def 2021-07-12 L3 backend support: PDF output (pdfTeX)
 ) (build/main.aux (build/cover.aux)
 LaTeX Info: Redefining \. on input line 9.
 LaTeX Info: Redefining \% on input line 9.
- (build/contents.aux) (build/chap1.aux) (build/2.aux) (build/3.aux) (build/4.aux) (build/appa.aux) (build/appb.aux) (build/biblio.aux))
+ (build/contents.aux) (build/1.aux) (build/2.aux) (build/3.aux) (build/4.aux) (build/appa.aux) (build/appb.aux) (build/biblio.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
@@ -304,9 +304,9 @@ LaTeX Info: Redefining \% on input line 1.
 \openout7 = `main.lot'.
 
 ) [11]
-\openout2 = `chap1.aux'.
+\openout2 = `1.aux'.
 
- (./chap1.tex [12
+ (./1.tex [12
 
 
 
@@ -373,28 +373,24 @@ Ap\'{e}ndice B.
 
 
 
-]
-
-LaTeX Warning: Empty `thebibliography' environment on input line 5.
-
-)) [25] (build/main.aux (build/cover.aux)
+])) [25] (build/main.aux (build/cover.aux)
 LaTeX Info: Redefining \. on input line 9.
 LaTeX Info: Redefining \% on input line 9.
- (build/contents.aux) (build/chap1.aux) (build/2.aux) (build/3.aux) (build/4.aux) (build/appa.aux) (build/appb.aux) (build/biblio.aux)) )
+ (build/contents.aux) (build/1.aux) (build/2.aux) (build/3.aux) (build/4.aux) (build/appa.aux) (build/appb.aux) (build/biblio.aux)) )
 (\end occurred when \ifx on line 13 was incomplete) 
 Here is how much of TeX's memory you used:
- 7295 strings out of 478542
- 124298 string characters out of 5854396
- 472651 words of memory out of 5000000
- 25057 multiletter control sequences out of 15000+600000
- 411012 words of font info for 38 fonts, out of 8000000 for 9000
+ 7303 strings out of 478542
+ 124365 string characters out of 5854396
+ 472663 words of memory out of 5000000
+ 25063 multiletter control sequences out of 15000+600000
+ 411696 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  76i,5n,88p,385b,361s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
-Output written on build/main.pdf (25 pages, 119284 bytes).
+{c:/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
+Output written on build/main.pdf (25 pages, 144783 bytes).
 PDF statistics:
- 119 PDF objects out of 1000 (max. 8388607)
- 82 compressed objects within 1 object stream
+ 123 PDF objects out of 1000 (max. 8388607)
+ 85 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  5 words of extra memory for PDF output out of 10000 (max. 10000000)
 
