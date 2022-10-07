@@ -1,28 +1,29 @@
-\documentclass[12pt,twoside]{mitthesis}
-\usepackage{lgrind}
-\usepackage{cmap}
-\usepackage[T1]{fontenc}
-\usepackage[spanish]{babel}
-\usepackage{pythontex}
-\usepackage{graphicx}
-\graphicspath{{assets/}}
-
-\pagestyle{plain}
-
-\def\all{all}
-\ifx\files\all \typeout{Including all files.} \else %\typeout{Including only \files.} \includeonly{\files} \fi
-
+\input{TOOLS/packages.tex}
 \begin{document}
-\include{cover}
+\include{src/INTRO/cover}
 \pagestyle{plain}
-\include{contents}
-\include{1.tex}
-\include{2.tex}
-\include{3.tex}
-\include{4.tex}
-\appendix
-\include{appa}
-\include{appb}
-\include{biblio}
-\end{document}
 
+%%%%%%%%%%%%%%%%%% TABLA DE CONTENIDOS %%%%%%%%%%%%%%%%%% 
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+\listoftables
+%%%%%%%%%%%%%%%%%% CAPÍTULOS %%%%%%%%%%%%%%%%%% 
+
+\input{src/CHAPTERS/1}
+\input{src/CHAPTERS/2}
+\input{src/CHAPTERS/3}
+\input{src/CHAPTERS/4}
+
+%%%%%%%%%%%%%%%%%% CUADROS Y FIGURAS %%%%%%%%%%%%%%%%%% 
+
+\appendix
+\input{src/INTRO/appa}
+\input{src/INTRO/appb}
+
+%%%%%%%%%%%%%%%%%% BIBLIOGRAFÍA %%%%%%%%%%%%%%%%%% 
+\chapter*{Bibliografía}
+\nocite{*}
+\printbibliography
+\end{document}

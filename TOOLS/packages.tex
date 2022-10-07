@@ -1,0 +1,20 @@
+\documentclass[12pt,twoside]{TOOLS/mitthesis}
+\usepackage{TOOLS/lgrind}
+\usepackage{cmap}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{pythontex}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\graphicspath{{assets/}}
+\usepackage{csquotes} % Use curly quotes for quotes in titles
+\usepackage[style=apa,citestyle=numeric,sorting=nyt,sortcites=true,autopunct=true,autolang=hyphen,hyperref=true,abbreviate=false,backref=true,backend=biber,defernumbers=true]{biblatex}
+\DeclareLanguageMapping{spanish}{spanish-apa}
+\addbibresource{main.bib} % BibTeX bibliography file
+\defbibheading{bibempty}{} % Empty string for bibliography heading
+%% 
+
+\pagestyle{plain}
+
+\def\all{all}
+\ifx\files\all \typeout{Including all files.} \else %\typeout{Including only \files.} \includeonly{\files} \fi

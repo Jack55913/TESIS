@@ -1,7 +1,22 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {spanish}{}\relax 
-\contentsline {chapter}{\numberline {1}Introducción}{13}{}%
-\contentsline {chapter}{\numberline {2}Objetivos}{15}{}%
-\contentsline {chapter}{\numberline {3}Tesis}{17}{}%
-\contentsline {chapter}{\numberline {4}Conclusiones y Recomendaciones}{19}{}%
-\contentsline {chapter}{\numberline {A}Tablas}{21}{}%
-\contentsline {chapter}{\numberline {B}Figuras}{23}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Introducción}{13}{chapter.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Objetivos}{15}{chapter.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Objetivo General}{15}{section.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Objetivos Particulares}{15}{section.2.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Hipótesis}{17}{chapter.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Justificación}{19}{chapter.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}Revisión de Literatura}{21}{chapter.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Materiales y Métodos}{23}{chapter.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Tablas}{25}{appendix.Alph1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {B}Figuras}{27}{appendix.Alph2}%
