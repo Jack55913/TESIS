@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{mitthesis}[1999/10/20]
+\ProvidesClass{TOOLS/mitthesis}[1999/10/20]
 
 \def\mystretch{1.5}		% Double spacing hack
 \DeclareOption{doublespace}{}	% This is default
