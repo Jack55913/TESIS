@@ -907,7 +907,7 @@
 	\thispagestyle{empty}
  	{\centering \vbox_to_ht:nn { \vsize }% to prevent signature block from breaking across page
         {
-            \setlength{\parskip}{7.5pt plus 1pt minus 1pt}% edited all vertical space on this page 2023/10/25
+            \setlength{\parskip}{0pt plus 1pt minus 1pt}% edited all vertical space on this page 2023/10/25
             \setlength{\parindent}{0pt}
             {\Large\textbf{\g_mitthesis_title_tl}\phantomsection\addcontentsline{toc}{chapter}{Title\ page}\par} % revise for tagging in future
 			\__titlepage_blockskip:nn {12}{1.5}% new idea

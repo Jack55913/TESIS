@@ -1,0 +1,261 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{ladyzhenskaya1969mathematical}{article}{}
+      \name{author}{1}{}{%
+        {{hash=39e6deaeb3433efdb17592b9e0496084}{%
+           family={Ladyzhenskaya},
+           familyi={L\bibinitperiod},
+           given={Olga\bibnamedelima Aleksandrovna},
+           giveni={O\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{39e6deaeb3433efdb17592b9e0496084}
+      \strng{fullhash}{39e6deaeb3433efdb17592b9e0496084}
+      \strng{bibnamehash}{39e6deaeb3433efdb17592b9e0496084}
+      \strng{authorbibnamehash}{39e6deaeb3433efdb17592b9e0496084}
+      \strng{authornamehash}{39e6deaeb3433efdb17592b9e0496084}
+      \strng{authorfullhash}{39e6deaeb3433efdb17592b9e0496084}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Gordon \& Breach}
+      \field{title}{The mathematical theory of viscous incompressible flow}
+      \field{year}{1969}
+    \endentry
+    \entry{majda2002vorticity}{article}{}
+      \name{author}{3}{}{%
+        {{hash=d73b96d3d8325526fa32cd9f738a940e}{%
+           family={Majda},
+           familyi={M\bibinitperiod},
+           given={Andrew\bibnamedelima J},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=401b6f15b3d34e4f5dbabbaf4e460eb0}{%
+           family={Bertozzi},
+           familyi={B\bibinitperiod},
+           given={Andrea\bibnamedelima L},
+           giveni={A\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=1e6348a64736ed242a25c5c4aeb05a56}{%
+           family={Ogawa},
+           familyi={O\bibinitperiod},
+           given={A},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{ec0a044aafa913cea56fffdb7d649e4a}
+      \strng{fullhash}{ec0a044aafa913cea56fffdb7d649e4a}
+      \strng{bibnamehash}{ec0a044aafa913cea56fffdb7d649e4a}
+      \strng{authorbibnamehash}{ec0a044aafa913cea56fffdb7d649e4a}
+      \strng{authornamehash}{ec0a044aafa913cea56fffdb7d649e4a}
+      \strng{authorfullhash}{ec0a044aafa913cea56fffdb7d649e4a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Appl. Mech. Rev.}
+      \field{number}{4}
+      \field{title}{Vorticity and incompressible flow. Cambridge texts in applied mathematics}
+      \field{volume}{55}
+      \field{year}{2002}
+      \field{pages}{B77\bibrangedash B78}
+      \range{pages}{-1}
+    \endentry
+    \entry{leray1934mouvement}{article}{}
+      \name{author}{1}{}{%
+        {{hash=d1c85ad391835096e0ab05bb90e4a799}{%
+           family={Leray},
+           familyi={L\bibinitperiod},
+           given={Jean},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{d1c85ad391835096e0ab05bb90e4a799}
+      \strng{fullhash}{d1c85ad391835096e0ab05bb90e4a799}
+      \strng{bibnamehash}{d1c85ad391835096e0ab05bb90e4a799}
+      \strng{authorbibnamehash}{d1c85ad391835096e0ab05bb90e4a799}
+      \strng{authornamehash}{d1c85ad391835096e0ab05bb90e4a799}
+      \strng{authorfullhash}{d1c85ad391835096e0ab05bb90e4a799}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Acta mathematica}
+      \field{title}{Sur le mouvement d'un liquide visqueux emplissant l'espace}
+      \field{volume}{63}
+      \field{year}{1934}
+      \field{pages}{193\bibrangedash 248}
+      \range{pages}{56}
+    \endentry
+    \entry{scheffer1993inviscid}{article}{}
+      \name{author}{1}{}{%
+        {{hash=1440757e0181fbad943d46dc401afdbf}{%
+           family={Scheffer},
+           familyi={S\bibinitperiod},
+           given={Vladimir},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{1440757e0181fbad943d46dc401afdbf}
+      \strng{fullhash}{1440757e0181fbad943d46dc401afdbf}
+      \strng{bibnamehash}{1440757e0181fbad943d46dc401afdbf}
+      \strng{authorbibnamehash}{1440757e0181fbad943d46dc401afdbf}
+      \strng{authornamehash}{1440757e0181fbad943d46dc401afdbf}
+      \strng{authorfullhash}{1440757e0181fbad943d46dc401afdbf}
+      \field{extraname}{1}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of geometric analysis}
+      \field{number}{4}
+      \field{title}{An inviscid flow with compact support in space-time.}
+      \field{volume}{3}
+      \field{year}{1993}
+    \endentry
+    \entry{shnirelman1997nonuniqueness}{article}{}
+      \name{author}{1}{}{%
+        {{hash=b7a89f7caec39eedfefd3da9d5556731}{%
+           family={Shnirelman},
+           familyi={S\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{b7a89f7caec39eedfefd3da9d5556731}
+      \strng{fullhash}{b7a89f7caec39eedfefd3da9d5556731}
+      \strng{bibnamehash}{b7a89f7caec39eedfefd3da9d5556731}
+      \strng{authorbibnamehash}{b7a89f7caec39eedfefd3da9d5556731}
+      \strng{authornamehash}{b7a89f7caec39eedfefd3da9d5556731}
+      \strng{authorfullhash}{b7a89f7caec39eedfefd3da9d5556731}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Communications on Pure and Applied Mathematics: A Journal Issued by the Courant Institute of Mathematical Sciences}
+      \field{number}{12}
+      \field{title}{On the nonuniqueness of weak solution of the Euler equation}
+      \field{volume}{50}
+      \field{year}{1997}
+      \field{pages}{1261\bibrangedash 1286}
+      \range{pages}{26}
+    \endentry
+    \entry{scheffer2006turbulence}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=1440757e0181fbad943d46dc401afdbf}{%
+           family={Scheffer},
+           familyi={S\bibinitperiod},
+           given={Vladimir},
+           giveni={V\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{1440757e0181fbad943d46dc401afdbf}
+      \strng{fullhash}{1440757e0181fbad943d46dc401afdbf}
+      \strng{bibnamehash}{1440757e0181fbad943d46dc401afdbf}
+      \strng{authorbibnamehash}{1440757e0181fbad943d46dc401afdbf}
+      \strng{authornamehash}{1440757e0181fbad943d46dc401afdbf}
+      \strng{authorfullhash}{1440757e0181fbad943d46dc401afdbf}
+      \field{extraname}{2}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Turbulence and Navier Stokes Equations: Proceedings of the Conference Held at the University of Paris-Sud Orsay June 10--13 1975}
+      \field{title}{Turbulence and Hausdorff dimension}
+      \field{year}{2006}
+      \field{pages}{174\bibrangedash 183}
+      \range{pages}{10}
+    \endentry
+    \entry{caffarelli1982partial}{article}{}
+      \name{author}{3}{}{%
+        {{hash=3991522afc177c36148555b3758df0e0}{%
+           family={Caffarelli},
+           familyi={C\bibinitperiod},
+           given={Luis},
+           giveni={L\bibinitperiod}}}%
+        {{hash=eb1882a0a114f6c1c7967db0eb33d20d}{%
+           family={Kohn},
+           familyi={K\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+        {{hash=eab0d0f737d44d10af4203211c6c6225}{%
+           family={Nirenberg},
+           familyi={N\bibinitperiod},
+           given={Louis},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{dc1d5b4bb040d996b5b880d5a6d2fdd6}
+      \strng{fullhash}{dc1d5b4bb040d996b5b880d5a6d2fdd6}
+      \strng{bibnamehash}{dc1d5b4bb040d996b5b880d5a6d2fdd6}
+      \strng{authorbibnamehash}{dc1d5b4bb040d996b5b880d5a6d2fdd6}
+      \strng{authornamehash}{dc1d5b4bb040d996b5b880d5a6d2fdd6}
+      \strng{authorfullhash}{dc1d5b4bb040d996b5b880d5a6d2fdd6}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Communications on pure and applied mathematics}
+      \field{number}{6}
+      \field{title}{Partial regularity of suitable weak solutions of the Navier-Stokes equations}
+      \field{volume}{35}
+      \field{year}{1982}
+      \field{pages}{771\bibrangedash 831}
+      \range{pages}{61}
+    \endentry
+    \entry{lin1998new}{article}{}
+      \name{author}{1}{}{%
+        {{hash=ae2b6f372ecad23e45ca853ec851bf8b}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={Fanghua},
+           giveni={F\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{ae2b6f372ecad23e45ca853ec851bf8b}
+      \strng{fullhash}{ae2b6f372ecad23e45ca853ec851bf8b}
+      \strng{bibnamehash}{ae2b6f372ecad23e45ca853ec851bf8b}
+      \strng{authorbibnamehash}{ae2b6f372ecad23e45ca853ec851bf8b}
+      \strng{authornamehash}{ae2b6f372ecad23e45ca853ec851bf8b}
+      \strng{authorfullhash}{ae2b6f372ecad23e45ca853ec851bf8b}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Communications on Pure and Applied Mathematics: A Journal Issued by the Courant Institute of Mathematical Sciences}
+      \field{number}{3}
+      \field{title}{A new proof of the Caffarelli-Kohn-Nirenberg theorem}
+      \field{volume}{51}
+      \field{year}{1998}
+      \field{pages}{241\bibrangedash 257}
+      \range{pages}{17}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

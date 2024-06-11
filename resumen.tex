@@ -7,6 +7,8 @@
 %
 % Approximately 500 words or less; try not to use formulas or special characters
 % If you don't want an initial indentation, do \noindent at the start of the abstract
+\begin{abstract}
+% use \input rather than \include because we're inside an environment
 
 La evapotranspiración es uno de los principales componentes del ciclo
 hidrológico y de vital importancia en la planeación y operación de zonas de riego,
@@ -16,31 +18,20 @@ aplicada, sin embargo su estudio resulta complicado pues la medición depende
 de dos procesos separados, evaporación y transpiración los cuales varían
 espacial y temporalmente, por lo que existen métodos para la estimación de ésta
 con ayuda de información meteorológica.
-Con el objetivo de determinar la evapotranspiración de referencia (ETo) con
-Machine Learning en la estación meteorológica Chapingo, México, se presentan
-cuatro modelos para la predicción de la ETo, mediante machine learning usando
-redes neuronales artificiales para el proceso de entrenamiento. Para entrenar el
-modelo, se utilizaron 5119 datos diarios de la estación meteorológica automática
-Chapingo, con los que se calcularon la ETo usando el método de FAO PenmanMonteith.
-Se realizó un diagrama de correlaciones con el que se identificaron las variables
-con mayor impacto en el cálculo de la ETo, sobresaliendo la radiación solar,
-posteriormente la temperatura máxima, la humedad relativa, así como la
-humedad relativa mínima y máxima. Con esta información se eligieron la
-combinación de variables que sirvieron como datos de entrada a cada uno de los
-modelos a entrenar.
-En cada uno de los modelos se encontraron los parámetros de la red neuronal
-que optimizaron el cálculo, tales como arquitectura de la red, capas ocultas y
-número de neuronas en cada capa, así como el número de iteraciones, learning
-rate y funciones de activación.
-En el modelo 4, usando únicamente la radiación solar, se obtuvo un muy buen
-ajuste del modelo con una R2 de 0.92, y un RSME de 0.0119, en los modelos 1 y
-2, usando también la temperatura máxima, además la humedad relativa máxima
-y mínima se mejoró en poca medida el ajuste del modelo, obteniendo una R2 de
-0.93 en ambos casos y un RSME de 0.0082 y 0.0074 respectivamente.
-Finalmente, el modelo 3, que no consideró la radiación solar no se ajustó
-correctamente obteniendo una R2 de 0.66 y un RSME de 0.1946.
-Palabras clave: Inteligencia Artificial, FAO Penman-Monteith, Redes Neuronales
+
+\textbf{Palabras-Clave:} Ecuaciones de Navier-Stokes en R3, Inteligencia Artificial, Hidropónia, Aeropónia, Agricultura Vertical
+\end{abstract}
+
+\renewcommand\abstractname{ABSTRACT}
+\begin{abstract}
+	La evapotranspiración es uno de los principales componentes del ciclo
+hidrológico y de vital importancia en la planeación y operación de zonas de riego,
+pues de ella dependen en gran medida los cálculos para conocer las necesidades
+hídricas de los cultivos para evitar la sub o sobreestimación de la lámina de riego
+aplicada, sin embargo su estudio resulta complicado pues la medición depende
+de dos procesos separados, evaporación y transpiración los cuales varían
+espacial y temporalmente, por lo que existen métodos para la estimación de ésta
+con ayuda de información meteorológica.
 Artificiales, Modelación, Agrometeorología. \footnote{Text from Holman (1876): \doi{10.2307/25138434}.}  
-
-
-\textbf{Palabras clave:} Ecuaciones de Navier-Stokes en R3, Inteligencia Artificial, Hidropónia, Aeropónia, Agricultura Vertical
+\textbf{Key-Words:} Ecuaciones de Navier-Stokes en R3, Inteligencia Artificial, Hidropónia, Aeropónia, Agricultura Vertical
+\end{abstract}
