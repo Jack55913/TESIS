@@ -6,19 +6,308 @@
 
 \chapter{REVISIÓN DE LITERATURA}
 % s antecedentes relevantes al estudio en orden histórico
-\section{Ecuación de Nevier-Stokes 2d, Ladyzhenskaya}
-Hay dos direcciones principales en la vida científica del prof. Ladyzhenskaya. La primera: la existencia, unicidad y regularidad de las soluciones de las ecuaciones de Navier-Stokes. La segunda: teoría de la regularidad para ecuaciones elípticas y parabólicas no lineales.
+% \section{Conceptos básicos}
+% Las ecuaciones de Naver-Stokes pretenden modelar la evolución de estas cantidades a partir de:
+% \begin{itemize}
+%     \item La segunda Ley de Newton
+%     \item Ley de conservación de la masa y energía
+% \end{itemize}
+% \subsection{Fuerzas}
+% Se consideran fuerzas en fluidos:
+% \begin{itemize}
+%     \item Variaciones espaciales de presión
+%     \item Fuerzas de rozamiento entre moléculas
+%     \item Viscosidad
+%     \item Fuerza de gravedad
+%     \item Fuerzas externas
+% \end{itemize}
 
-En 1951, Olga A. Ladyzhenskaya demostró la segunda desigualdad fundamental para operadores elípticos L de segundo orden con coeficientes suaves y para cualquier condición de frontera homogénea clásica.
-\begin{equation}
-    \left\lVert u \right\rVert W_2^2 (\Omega)\leq c_{\Omega} \left( \left\lVert Lu\right\rVert_{L_2(\Omega)} +\left\lVert u\right\rVert_{L_2(\Omega)} \right)
-\end{equation}
-que es válido para cualquier $u\in W_2^2(\Omega)$.
+% \subsection{Fluido}
+% \begin{definition}[Fluido]
+%     Es una sustancia que puede ser líquido o gas.
+% \end{definition}
+% Se caracteriza un fluido por las siguientes funciones:
+% \begin{enumerate}
+%     \item \textbf{Campo de velocidades} $u(x,t) = \left(u_1(x,t),u_2(x,t),u_3(x,t)\right)$ que determina la velocidad que tiene una partícula en cada punto $x\in\Omega$ del dominio y en cada tiempo $t\in \mathbb{R}$
+%     \item \textbf{Presión}, $p=p(x,t)$, en el seno del fluido
+%     \item \textbf{Densidad}, $\rho= \rho(x,t)$ del fluido
+% \end{enumerate}
 
-En cuanto a la primera dirección, en 1958 en [3] Olga A. Ladyzhenskaya demostró la desigualdad multiplicativa
+% \section{Enfoques}
+% \subsection{Enfoque Euleriano}
+% En el presente estudio se usará éste enfoque,
+% \begin{equation}
+%     u(x,t) = \left(u_1(x,t),u_2(x,t),u_3(x,t)\right)
+% \end{equation}
+% La conservación de momento, está dada por:
+% \begin{equation}
+%     \rho \left(u_t + (u \cdot \nabla)u\right) = -\nabla_{p} + \mu \Delta u + f_e
+% \end{equation}
+% Esta ecuación se resuelve con la ecuación de continuidad, \textbf{Conservación de masa}
+% \begin{equation}
+% \rho_t + u\cdot \nabla_{\rho} = 0
+% \end{equation}
+% \begin{equation}
+%     \text{Incompresibilidad}\quad \nabla \cdot u = 0
+% \end{equation}
+
+
+% \subsection{Enfoque Lagrangiano}
+% \begin{equation}
+%     x = x(a,t)
+% \end{equation}
+% Es la trayectoria de la partícula que está en la posición del tiempo $t=0$
+
+% Si se analiza el cambio una función $q$ según la trayectora, se calcula con la derivada material:
+% \begin{equation}
+%     D_tq = q_t + u \cdot \nabla_q
+% \end{equation}
+% Por la segunda ley de Newton, $D_t(\rho u)=$Fuerza, aunado a la conservación de masa y la incompresibilidad:
+% \begin{equation}
+%     D_t(\rho) = 0
+% \end{equation}
+
+
+\section{Ecuación de Nevier-Stokes en 2D}
+En 1958\cite{ladyzhenskaya1969mathematical}, Olga A. Ladyzhenskaya demostró la desigualdad multiplicativa
 \begin{equation}
     \left\lVert u \right\rVert_{L_4(\Omega)}^4\leq c \left\lVert u\right\rVert_{L_2(\Omega)}^2\left\lVert \nabla u\right\rVert_{L_2(\Omega)}^2  
 \end{equation}
-que es válido para cualquier $u\in W_2^1(\Omega),\, \Omega\in \mathbb{R}^2$.
+Que es válido para cualquier $u\in W_2^1(\Omega),\, \Omega\in \mathbb{R}^2$. Esta desigualdad dió la posibilidad de demostrar la existencia de una solución única global del sistema bidimensional Navier-Stokes
+%% file:///C:/Users/Emilio/Desktop/Olga_Alexandrovna_Ladyzhenskaya.pdf
+\subsection{Demostración de Olga A. Ladyzhenskaya}
+Del artículo de Ladyzhenskaya: Solución ``en grande'' del problema de valores en la frontera no estacionarios para el sistema Navier-Stokes con dos variables espaciales; traducido del ruso se describe a continuación la demostración original:
 
-Esta desigualdad dio la posibilidad de demostrar la existencia de una solución única global. del sistema bidimensional Navier-Stokes
+Consideremos en la región $\Omega$ de cambios $x = (x_1, x_2)$ el sistema de ecuaciones de Navier-Stokes
+\begin{align}
+    \begin{split}
+    &v_t -\nu \Delta v + \sum_{k = 1}^{2} \upsilon_k \cdot v_{x_k} = - grad\: p + f(x,t)\\
+    &\text{div}\, v = 0
+    \label{eql1}
+    \end{split}
+\end{align}
+para funciones $v = \left(\upsilon_1(x, t), \upsilon_2(x, t)  \right)$ y $p(x, t)$ bajo condiciones iniciales y de frontera
+\begin{align}
+    v\mid_s = 0,&&v\mid_{t = 0} = a(x)\left(div\, a = 0 \right)
+    \label{eql2}
+\end{align}
+\begin{theorem}
+    El problema (\ref{eql1})-(\ref{eql2}) tiene solución única ``en general'' (es decir, para cualquier $t\geq 0$ para cualquier valor del número de Reynolds en el momento inicial y para $f$ arbitraria), si solo las integrales son finitas
+    \begin{align*}
+        \int_{\Omega} a^2\,dx,&&\int_{\Omega}\left(v_t(x,0)\right)^2\,dx, &&\int_0^t\int_{\Omega} f^2 + f_t^2\,dx\,dt
+    \end{align*}
+\end{theorem}
+De los resultados obtenidos en el trabajo (a), se deduce que toda la cuestión de la existencia ``en general'' se reduce ahora a obtener una estimación a priori de la integral
+\begin{equation}
+    \int_0^t\int_{\Omega} v_t^2\,dx\,dt + \int_{\Omega} \sum_{k = 1}^2 \upsilon_k^4(x,t)\,dx
+    \label{eql3}
+\end{equation}
+O $\max \left\lvert v \right\rvert $. En vista de esto, aquí hablaremos sólo de estimaciones a priori de las soluciones a los problemas (\ref{eql1}) a (\ref{eql2}). Se sabe que para soluciones del problema (\ref{eql1}) - (\ref{eql2}) la desigualdad se cumple
+\begin{align}
+    \begin{split}
+        &\int_{\Omega}v^2(x,t)\,dx + 2\nu \int_0^t\int_{\Omega}\sum_{k =1}^2 \left(v_{x_k}\right)^2\,dx\,dt\leq\\
+        &\leq \int_{\Omega}a^2\,dx + 2\left(\int_{\Omega}a^2\,dx\right)^{\frac{1}{2}}\left(\int_{\Omega} d^2\,dx\right)^{\frac{1}{2}}\,dt + 2\left[\int_0^t\left(\int f^2\,dx\right)^{\frac{1}{2}}\,dt\right]^2
+        \label{eql4}
+    \end{split}
+\end{align}
+Denotemos $\int_{\Omega}\sum_{k=1}^2\left[v_{x_k}(x,t)\right]^2\,dx=\varphi^2(t)$ De (\ref{eql4}) se deduce que conocemos la estimación de la integral $\int_0^t \varphi^2(t)\,dt $. Sea $\int_0^t\int_{\Omega} \left(f_t\right)^2\,dx\,dt<\infty$. vamos a diferenciar
+
+(\ref{eql1}) por t, multiplicar el resultado escalarmente por (vt) e integrar
+Después de transformaciones simples llegamos a la desigualdad.
+
+\begin{align}
+    \begin{split}
+        &\frac{1}{2} \int_{\Omega}\left[v_t(x,t)\right]^2\,dx\mid_{t = 0}^{t = t} + \nu\int_0^t\int_{\Omega}\sum_{k = 1}^2\left(v_{tx_p}\right)^2\,dx\,dt + \int_0^t\int_{\Omega}\sum_{k = 1}^2 \upsilon_{xt} v_{x_k}v_t\,dx\,dt\\
+        &= \int_0^t\int_{\Omega}f_tv_t\,dx\,dt
+        \label{e}
+    \end{split}
+\end{align}
+De donde se despeja:
+\begin{equation}
+    \phi^2(t)\mid_{t = 0}^{t = t} + 2\nu\int_0^t F^2(t)\,dt\leq c\int_0^t\phi(t)\left[\int_{\Omega}\sum_{k = 1}^2v^4_{kt}\,dx \right]^{\frac{1}{2}}\,dt +\int_0^t\phi(t)b(t)\,dt
+    \label{eql6}
+\end{equation}
+Dónde
+\begin{align*}
+    \phi^2(t) = \int_{\Omega}\left[v_t(x,t)\right]^2\,dx&&F^2(t) = \int_{\Omega}\sum_{k = 1}^2\left[v_{tx_k}(x,t)\right]^2\,dx&& b^2(t) = 2\int_{\Omega} f^2_t(x,t)\,dx
+\end{align*}
+y $c$ aquí (y más) significa las constantes que conocemos.
+
+Verifiquemos ahora que para cualquier función continuamente diferenciable soportada de forma compacta $u(x_1,x_2)$ dos variables espaciales se cumple la siguiente desigualdad:
+\begin{equation}
+    \iint u^4\left(x_1,x_2\right)\,dx_1\,dx_2\leq 2\iint u^2\left(x_1,x_2\right)\,dx_1\,dx_2\iint \left(u^{2}_{x_1} + u^{2}_{x_1} \right)\,dx_1\,dx_2
+    \label{eql7}
+\end{equation}
+En el que la integración se realiza en todo el espacio $x_1, x_2$.Es obvio que.
+\begin{equation*}
+    u^2\left(x_1,x_2\right) = 2 \int_{ - \infty}^{x_k} uu_{x_k}\,dx_k,\quad k = 1,2
+\end{equation*}
+y por lo tanto
+\begin{equation*}
+    \max_{x_k}u^2 \left(x_1,x_2\right) \leq 2\int_{ - \infty}^{\infty}\left\lvert uu_{x_k}\right\rvert \,dx_k,\quad k = 1,2
+\end{equation*}
+Es por eso
+\begin{align*}
+    &\iint_{ -\infty}^{\infty}u^4\,dx_1dx_2 \leq \int_{ -\infty}^{\infty}dx_2\left(\max_{x_1}u^2\cdot\int_{ -\infty}^{\infty}u^2\,dx_1  \right)\leq  \\
+    &\leq 2\int_{ -\infty }^{\infty}dx_2\left(\int_{ -\infty}^{\infty}\left\lvert uu_{x_1}\right\rvert \,dx_1 \max_{x_3}\int_{-\infty}^{\infty}u^2\,dx_1\right)\leq 4\int_{ -\infty}^{\infty}\left\lvert uu_{x_1} \right\rvert\,dx_1 \,dx_2\cdot \iint_{ -\infty}^{\infty}\left\lvert uu_{x_2}\right\rvert\,dx_1\,dx_2
+\end{align*}
+y esto implica desigualdad (\ref{eql7}).
+
+Usemos la desigualdad (\ref{eql7}) Para estimaciones $\int_0^t\int_{\Omega}\sum_{k = 1}^2 \upsilon_{kt}\,dx$ a la (\ref{eql6}). Porque $v_{kt}$ son iguales a cero en la frontera $S$, entonces para ellos, en virtud de (\ref{eql7}), tenemos
+\begin{equation*}
+    \left(\int_{\infty} \upsilon_{kt}^4\,dx \right)^{\frac{1}{2}} \leq \sqrt{2}\phi(t)F(t)
+\end{equation*}
+y por lo tanto de (\ref{eql6}) se sigue
+\begin{equation*}
+    \phi^2(t)\mid_{t = 0}^{t = t} + 2 \nu\int_0^t F^2(t)\,dt \leq C_1\int_0^t \varphi(t) \phi(t) F(t)\,dt + \int_0^i \phi(t)b(t)\,dt
+\end{equation*}
+De aquí, a su vez, concluimos consistentemente sobre la validez de las desigualdades.
+\begin{equation*}
+    \phi^2(t)\mid_{t = 0}^{t = t} + 2 \nu\int_0^t F^2(t)\,dt \leq \nu\int_0^t F^2(t)\,dt + \frac{c_1}{2\nu}\int_0^t \varphi^2\phi^2\,dt + \int_0^t\phi b\,dt
+\end{equation*}
+\begin{equation}
+    \phi^2(t)\leq c_2\int_0^t \left(\phi^2 + b^2\right)\phi^2\,dt + c_3,
+    \label{eql8}
+\end{equation}
+\begin{equation}
+    \nu \int_0^tF^2(t)\,ft\leq c_2\int_0^t\left(\phi^2 + b^2\right)\phi^2\,dt + c_3
+    \label{eql9}
+\end{equation}
+Dado que la función $\phi^2(t) + b^2(t)$ es sumable en $[0, t]$, se deduce de (\ref{eql8}) que $\phi^2(t)\leq c_4$ y de (\ref{eql9}) $\int_0^t F^2(t)\,dt\leq c_5$
+
+Estas desigualdades nos dan una estimación a priori de las soluciones, incluso más fuerte que (\ref{eql3}). De la prueba anterior se desprende claramente que el tamaño de la región, así como la suavidad de su límite, no afectan los valores de las constantes ck. Estos últimos dependen únicamente de las integrales especificadas en el teorema.
+Tenga en cuenta que para cualquier función no negativa soportada de forma compacta $u(x_1,x_2)$ de dos variables, junto con (\ref{eql7}), la desigualdad también es cierta
+\begin{equation}
+    \iint u^3\,dx_1\,dx_2 \leq \frac{9}{8} \iint u\,dx_1\,dx_2 \iint \left(u_{x_1}^2 + u_{x_2}^2 \right)\,dx_1\,dx_2
+    \label{eql10}
+\end{equation}
+La prueba de desigualdad (\ref{eql7}) dada anteriormente es similar a la prueba de desigualdad (\ref{eql10}) de A. O. Gelfond.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Ecuaciones de Saint Venant}
+El sistema de ecuaciones de Saint-Venant está compuesto por dos conjuntos de ecuaciones: las ecuaciones de continuidad y las ecuaciones de cantidad de movimiento o momentum
+
+\subsection{Ecuación de continuidad} % (fold)
+La ecuación de continuidad tiene en cuenta un balance de masa sobre un volumen de control. En forma conservativa puede escribirse en términos del caudal $Q$ y del área $A$ de la siguiente manera:
+\begin{equation}
+    \frac{\partial Q}{\partial x} + \frac{\partial A}{\partial t} = 0
+\end{equation}
+De manera no conservativa en términos de la velocidad media longitudinal $V$ y la profundidad ($y$) así:
+\begin{equation}
+    V \frac{\partial y}{\partial x} + y \frac{\partial V}{\partial x} + \frac{\partial y}{\partial t} = 0
+\end{equation}
+
+\subsection{Ecuaciones de cantidad de movimiento}
+
+La ecuación de momentum surge al igualar las fuerzas externas aplicadas al
+volumen de control como la gravedad, la presión, la fricción, el viento entre
+otras. En forma conservativa puede escribirse esta ecuación en términos del
+caudal (Q) , área (A), profundidad (A), pendiente del canal ($S_0$),
+pendiente de fricción ($S_f$)  y de la gravedad ($g$) de la siguiente manera:
+
+\begin{equation}
+    \frac{1}{A} \frac{\partial Q}{\partial t} + \frac{1}{A} \frac{\partial }{\partial x} \left(\frac{Q^2}{A}\right) + g \frac{\partial y}{\partial x} - g\left(S_0 - S_f \right) = 0
+\end{equation}
+O de manera no conservativa en términos de la velocidad media longitudinal ($V$):
+
+\begin{equation}
+    \frac{\partial V}{\partial t} + V \frac{\partial V}{\partial x} + g \frac{\partial y}{\partial x} - g \frac{\partial y}{\partial x} - g\left(S_0 - S_f \right) = 0
+\end{equation}
+
+La forma final de continuidad y momento es:
+\begin{equation}
+    \frac{\partial }{\partial t} \left(\frac{A}{Q}  \right) + \frac{\partial }{\partial x} 
+\end{equation}
+% https://www.mathnet.ru/links/e51b7b04594d18eae89a4ecb64309f08/dan42515.pdf
+
+
+% 2. Análisis del Movimiento de Nutrientes en Sistemas Hidropónicos Mediante Ecuaciones de Navier-Stokes
+
+% Objetivo: Investigar cómo las ecuaciones de Navier-Stokes pueden mejorar la distribución de nutrientes en sistemas hidropónicos.
+% Metodología: Modelado matemático y simulaciones para optimizar el diseño del sistema de riego.
+% Impacto: Aumentar la eficiencia del uso de nutrientes y agua, promoviendo un crecimiento vegetal uniforme.
+
+
+% 4. Estudio del Efecto de Diferentes Configuraciones de Riego en la Agricultura Vertical Mediante Navier-Stokes
+% Objetivo: Analizar cómo distintas configuraciones de riego afectan la distribución de agua y nutrientes.
+% Metodología: Simulaciones basadas en las ecuaciones de Navier-Stokes para evaluar la eficiencia de diferentes sistemas.
+% Impacto: Optimización del riego, reducción del desperdicio de agua y mejora del crecimiento de las plantas.
+
+%  8.Desarrollo de Algoritmos para el Control Automático del Riego en Agricultura Vertical Basados en Modelos CFD
+% Objetivo: Crear algoritmos que automaticen el riego basándose en datos de simulaciones de flujo de fluidos.
+% Metodología: Integración de modelos CFD con sistemas de control automático.
+% Impacto: Incrementar la precisión del riego, optimizando el uso de agua y nutrientes.
+
+
+
+
+
+% \section{Ecuaciones de Navier-Stokes promediadas por Reynolds}
+
+
+%  RANS/URANS
+% Galerkin
+% Pressure Poisson equations
+% Existence and Smoothness
+% discretized
+% Impact of Japanese "" A Case Study
+
+
+
+% Implementación de Métodos de Machine Learning para la Solución de las Ecuaciones de Navier-Stokes
+
+
+
+% \section{Vorticidad}
+
+% \section{TEORÍA DE KOLMOGOROV CASCADA}
+
+
+%  dinámica de fluidos computacional

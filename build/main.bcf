@@ -159,7 +159,7 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortlocale</bcf:key>
-      <bcf:value>english</bcf:value>
+      <bcf:value>spanish</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>sortingtemplatename</bcf:key>
@@ -2362,6 +2362,7 @@
     <bcf:citekey order="12">lin1998new</bcf:citekey>
     <bcf:citekey order="13">caffarelli1982partial</bcf:citekey>
     <bcf:citekey order="14">lin1998new</bcf:citekey>
+    <bcf:citekey order="15">ladyzhenskaya1969mathematical</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">
