@@ -2,144 +2,79 @@
 \chapter{INTRODUCCIÓN}
 \pagenumbering{arabic}
 \setcounter{page}{1}
-%TODO: problema que se pretende resolver, justificación, hipótesis, objetivos, límites y alcances del trabajo.
+%TODO: SE HACE AL FINAL problema que se pretende resolver, justificación, hipótesis, objetivos, .
+
+
+% Contexto 
 \section{Planteamiento del problema}
-Las ecuaciones de Euler y Navier-Stokes describen el movimiento de un fluido en $\mathbb{R}^n$ tal que $(n=2\text{ o }3)$. Estas ecuaciones se resuelven por un vector desconocido de velocidad $u(x,t)= \left(u_i(x,t)\right)_{1\leq i \leq n}\in \mathbb{R}^n$ y presión $p(x,t)\in \mathbb{R}$, definido por la posición $x\in \mathbb{R}^n$ y tiempo $t\geq 0$. Se restringe a fluidos incompresibles que están en $\mathbb{R}^n$, dichas ecuaciones son:
-\begin{align}
-    &\frac{\partial}{\partial t} u_i + \sum_{j = 1}^n u_j \frac{\partial u_i}{\partial x_j} = \nu \Delta u_i - \frac{\partial p}{\partial x_i} + f_i(x,t)&& \left(x\in \mathbb{R}^n, t\geq 0\right),\label{eq1}\\
-    &\text{div}\, u = \sum_{j = 1}^n \frac{\partial u_i}{\partial x_j} && \left(x\in \mathbb{R}^n, t\geq 0\right),\label{eq2}\\
-    &\text{Condiciones iniciales:}\quad u(x,0) = u^{\circ}(x) && \left(x\in \mathbb{R}^n\right)\label{eq3}
-\end{align}
-\begin{notation}
-De las ecuaciones (\ref{eq1}), (\ref{eq2}) y (\ref{eq3}) con $\nu=0$:
-    \begin{itemize}
-        \item $u^{\circ}(x)$ está dado
-        \item $C^{\infty}$  es un campo vectorial libre de divergencia en $\mathbb{R}^n$,
-        \item $f_i(x,t)$ son los componentes de una fuerza externa aplicada (ej. gravedad),
-        \item La viscosidad $\nu$, es un coeficiente positivo
-        \item $\Delta = \sum_{i=1}^n \frac{\partial^2}{\partial x_i^2}$ es el Laplaciano en espacios variables.
-    \end{itemize}    
-\end{notation}
-\subsection{Descripción de las ecuaciones de Navier-Stokes}
-La ecuación (\ref{eq1}), se basa en la Segunda Ley de Newton $f=m\cdot a$ para un fluido sujeto a una fuerza externa $f= \left(f_i(x,t)\right)_{1\leq i\leq n}$ y a las fuerzas que surgen de la presión y la fricción.
+% 2. Análisis del Movimiento de Nutrientes en Sistemas Hidropónicos Mediante Ecuaciones de Navier-Stokes
 
-La ecuación (\ref{eq2}), define que el fluido es incompresible.  $u(x, t)$ no debe crecer a medida que $\left\lvert x\right\rvert \to \infty$. Por lo tanto, se restringirá la atención en las fuerzas $f$ y las condiciones iniciales $u^{\circ}$ que satisfacen las ecuaciones (\ref{eq4}) y (\ref{eq5})
-\begin{align}
-    &\left\lvert \partial_x^{\alpha}u^{\circ}(x) \right\rvert\leq C_{\alpha K}\left(1 + \left\lvert x \right\rvert  \right)^{-K}\in \mathbb{R}^n&& \forall\, \alpha\land K\label{eq4}\\
-    &\left\lvert \partial_x^{\alpha}\partial_t^{m} f(x,t) \right\rvert\leq C_{\alpha m K}\left(1 + \left\lvert x \right\rvert + t \right)^{-K}\in \mathbb{R}^n\times \left[ 0,\infty \right)&& \forall\, \alpha, m \land K \label{eq5}
-\end{align}
-Se acepta una solución de (\ref{eq1}), (\ref{eq2}), (\ref{eq3}) como físicamente razonable sólo si satisfacen las ecuaciones (\ref{eq6}) y (\ref{eq7})
-\begin{align}
-    &p,u\in C^{\infty}\left( \mathbb{R}^n \times \left[ 0, \infty\right) \right)\label{eq6}\\
-    & \int_{\mathbb{R}^n} \left\lvert u(x,t)\right\rvert^2\, dx < C\quad \forall t\geq 0\label{eq7}  
-\end{align}
-Alternativamente, para descartar problemas en el infinito, se buscan espacios espacialmente soluciones periódicas de (\ref{eq1}), (\ref{eq2}), (\ref{eq3}). Por lo tanto, asumimos que $u^{\circ}(x), f(x,t)$ satisfacen
-\begin{align}
-    u^{\circ}(x + e_j) = u^{\circ}(x),\quad f(x + e_j,t) = f(x,t),\quad p(x + e_j,t) = p(x,t) && \forall\, 1\leq j\leq n\label{eq8}
-\end{align}
-\begin{notation} De la ecuación (\ref{eq8})
-    \begin{itemize}
-        \item $e_j = j^{th}$
-    \end{itemize}
-\end{notation}
-En lugar de (\ref{eq4}) y (\ref{eq5}), se supone que $u^{\circ}$ es suave y que se cumple la ecuación (\ref{eq9})
-\begin{align}
-    &\left\lvert \partial_x^{\alpha}\partial_t^{m} f(x,t) \right\rvert\leq C_{\alpha m K}\left(1 + \left\lvert t \right\rvert \right)^{-K}\in \mathbb{R}^3\times \left[ 0,\infty \right)&& \forall\, \alpha, m \land K 
-    \label{eq9}
-\end{align}
-Se acepta una solución de (\ref{eq1}), (\ref{eq2}), (\ref{eq3}), físicamente satisfacen las ecuaciones (\ref{eq10}) y (\ref{eq11})
-\begin{align}
-    &u(x + t) = u(x + e_j,t)\in \mathbb{R}^3 \times  \left[0,\infty \right)&& \forall\, 1\leq j\leq n\label{eq10}\\
-    & p,u\in C^{\infty}\left(\mathbb{R}^n \times \left[0,\infty \right) \right)
-    \label{eq11}
-\end{align}
-Desarrollando la ecuación (\ref{eq10}), se tiene:
-\begin{align*}
-&- \iint_{\mathbb{R}^n \times \mathbb{R}} u \cdot \Delta \frac{\partial \theta}{\partial t} \, dx\, dt - \sum_{ij} \iint_{\mathbb{R}^n \times \mathbb{R}} u_i u_j \frac{\partial \theta_i}{\partial x_j}\,dx\,dt\\
-&= \nu \iint_{\mathbb{R}^n \times \mathbb{R}} u \cdot  \Delta \theta\, dx\,dt + \iint_{\mathbb{R}^n \times \mathbb{R}} f \cdot \theta \, dx\, dt + \iint_{\mathbb{R}^n \times \mathbb{R}} p \cdot (\text{div}\theta)\,dx\,dt
-\end{align*}
-\subsection{Demostraciones sin resolver}
-Se solicita una demostración de una de las siguientes cuatro afirmaciones.
-\begin{enumerate}
-    \item \textbf{Existencia y suavidad de las soluciones de Navier-Stokes en $\mathbb{R}^3$.}
-    \begin{enumerate}
-        \item Con $\nu>0$ y $n=3$, sea $u^{\circ}(x)$ cualquier campo vectorial suave y libre de divergencias que satisfaga la ecuación (\ref{eq4})
-        \item Se toma $f(x,t)=0$, entonces existe una función suave $p(x,t),u_i(x,t)$ en $\mathbb{R}^3\times [0,\infty)$ que satisfagan las ecuaciones (\ref{eq1}),(\ref{eq2}),(\ref{eq3}),(\ref{eq6}),(\ref{eq7})
-    \end{enumerate}
-    \item \textbf{Existencia y fluidez de soluciones Navier-Stokes en $\mathbb{R}^3/\mathbb{Z}^3$} \begin{enumerate}
-        \item Con $\nu > 0$ y $n = 3$. Sea $u^{\circ}(x)$ cualquier campo vectorial suave y libre de divergencia que satisfaga (\ref{eq8});
-        \item Se toma $f(x, t)=0$. Entonces existen funciones suaves $p(x, t)$, $u_i(x, t)$ en $R^3\times [0,\infty)$ que satisfacen (\ref{eq1}),(\ref{eq2}),(\ref{eq3}),(\ref{eq10}),(\ref{eq11})
-    \end{enumerate}
-    \item \textbf{Desglose de las soluciones Navier-Stokes en $\mathbb{R}^3$} \begin{enumerate}
-        \item  Con $\nu > 0$ y $n = 3$. Entonces existe un campo vectorial suave y libre de divergencia $u^{\circ}(x)$ en $\mathbb{R}^3$
-        \item y existe un $f(x, t)$ suave en $\mathbb{R}^3 \times [0,\infty)$, que satisface (\ref{eq4}), (\ref{eq5}), para el cual no existen soluciones $(p, u)$ de (\ref{eq1}),(\ref{eq2}),(\ref{eq3}),(\ref{eq6}),(\ref{eq7}) en $\mathbb{R}^3\times [0,\infty)$
-    \end{enumerate}
-    \item \textbf{Desglose de las soluciones Navier-Stokes en $\mathbb{R}^3/\mathbb{Z}^3$.} \begin{enumerate}
-        \item Con $\nu > 0$ y $n = 3$. Entonces existe un campo vectorial suave y libre de divergencia $u^{\circ}(x)$ en $\mathbb{R}^3$
-        \item y existe un $f(x, t)$ suave en $\mathbb{R}^3 \times [0,\infty)$, que satisface (\ref{eq8}), (\ref{eq9}), para el cual no existen soluciones $(p, u)$ de (\ref{eq1}),(\ref{eq2}),(\ref{eq3}),(\ref{eq10}),(\ref{eq11}) en $\mathbb{R}^3 \times [0,\infty)$.
-    \end{enumerate}
-\end{enumerate}
-\subsection{Resultados parciales conocidos sobre Euler y Navier- Stokes}
-\subsubsection{Dos dimensiones}
-\textbf{Resuelto.} En el capítulo (???) se demuestra para los análogos de las afirmaciones (1) y (2) son conocidos (Ladyzhenskaya \cite{ladyzhenskaya1969mathematical}), también para el caso más difícil de las ecuaciones de Euler. 
-\subsubsection{Tres dimensiones}
-\textbf{Sin resolver.} En tres dimensiones, se sabe que (1) y (2) se mantienen siempre que la velocidad inicial $u^{\circ}$ satisfaga una condición de pequeñez. Para los datos iniciales $u^{\circ}(x)$ que no se supone que sean pequeños, se sabe que (1) y (2) se cumplen (también para $\nu=0$) si el intervalo de tiempo $[0,\infty)$ se reemplaza por un intervalo de tiempo pequeño $\left[0, T\right)$, dependiendo $T$ de los datos iniciales.
+% Objetivo: Investigar cómo las ecuaciones de Navier-Stokes pueden mejorar la distribución de nutrientes en sistemas hidropónicos.
+% Metodología: Modelado matemático y simulaciones para optimizar el diseño del sistema de riego.
+% Impacto: Aumentar la eficiencia del uso de nutrientes y agua, promoviendo un crecimiento vegetal uniforme.
 
-Para un $u^{\circ}(x)$ inicial dado, el $T$ máximo permitido se denomina ``tiempo de explosión''. (1) y (2) se cumplen, o bien hay un $u^{\circ}(x)$ suave y sin divergencia para el cual (\ref{eq1}), (\ref{eq2}), (\ref{eq3}) tienen una solución con un tiempo de explosión finito. Para las ecuaciones de Navier-Stokes $(\nu > 0)$, si hay una solución con un tiempo de explosión finito $T$, entonces la velocidad $\left(u_i(x,t)\right)_{1\leq i \leq n}\in \mathbb{R}^n$ se vuelve ilimitado cerca del momento de la explosión.
 
-Se sabe que suceden otras cosas desagradables en el momento de explosión $T$, si $T < \infty$. Para las ecuaciones de Euler ($\nu = 0$), si hay una solución (con $f \equiv  0$) con un tiempo de explosión finito $T$, entonces la vorticidad $\omega(x, t) = curl_x u(x, t)$ satisface
-\begin{align}
-    &\text{Baele-Katp-Majda}&&\int_0^T \left\{ \sup_{x\in \mathbb{R}^3}\left\lvert \omega(x,t)\right\rvert\right\}\, dt = \infty
-\end{align}
-para que la vorticidad explote rápidamente.
+% 4. Estudio del Efecto de Diferentes Configuraciones de Riego en la Agricultura Vertical Mediante Navier-Stokes
+% Objetivo: Analizar cómo distintas configuraciones de riego afectan la distribución de agua y nutrientes.
+% Metodología: Simulaciones basadas en las ecuaciones de Navier-Stokes para evaluar la eficiencia de diferentes sistemas.
+% Impacto: Optimización del riego, reducción del desperdicio de agua y mejora del crecimiento de las plantas.
 
-Muchos cálculos numéricos parecen mostrar una explosión en las soluciones de las ecuaciones de Euler, pero la extrema inestabilidad numérica de las ecuaciones hace que sea muy difícil sacar conclusiones confiables.
+%  8.Desarrollo de Algoritmos para el Control Automático del Riego en Agricultura Vertical Basados en Modelos CFD
+% Objetivo: Crear algoritmos que automaticen el riego basándose en datos de simulaciones de flujo de fluidos.
+% Metodología: Integración de modelos CFD con sistemas de control automático.
+% Impacto: Incrementar la precisión del riego, optimizando el uso de agua y nutrientes.
 
-Los resultados anteriores están muy bien tratados en el libro de Bertozzi y Majda \cite{majda2002vorticity}. A partir de Leray \cite{leray1934mouvement}, se han logrado importantes avances en la comprensión de las soluciones débiles de las ecuaciones de Navier-Stokes. Para llegar a la idea de una \texttt{solución débil} de las ecuaciones de Navier-Stokes.
+\section{Contexto Histórico}
 
-Para llegar a la idea de una solución débil en una Ecuación Diferencial Parcial (EDP), se integra la ecuación con una función de prueba y luego se integra por partes (formalmente) para hacer que las derivadas caigan en la función de prueba. Por ejemplo, si (\ref{eq1}) y (\ref{eq2}) se cumplen, entonces, para cualquier campo vectorial suave $\theta(x, t) = \left(\theta_i(x, t)\right)_{1\leq i\leq n}$ soportado de forma compacta en $\mathbb{R}^3 \times (0,\infty)$ , una integración formal por partes produce
-\begin{equation}
-\begin{split}
-    &\iint_{\mathbb{R}^3\times \mathbb{R}}u \frac{\partial \theta}{\partial t}\,dx\,dt - \sum_{ij} \iint_{\mathbb{R}^r\times \mathbb{R}}u_i u_j \frac{\partial \theta_i}{\partial x_j} \,dx\,dt\\
-    &=\nu \iint_{\mathbb{R}^r\times \mathbb{R}} u \cdot \Delta \theta\,dx\,dt + \iint_{\mathbb{R}^3\times \mathbb{R}} f \cdot \theta \,dx\,dt - \iint_{R^3\times \mathbb{R}}p \cdot \left(div\theta\right)\,dx\,dt
-    \label{eq12}
-\end{split}
-\end{equation}
-La ecuación (12) tiene sentido para $u\in L^2, f\in L^1, p\in L^1$, mientras que (\ref{eq1}) tiene sentido sólo si $u(x, t)$ es dos veces diferenciable en x. De manera similar, si $\varphi (x, t)$ es una función suave, soportada de manera compacta en $\mathbb{R}^3 \times (0,\infty)$, entonces una integración formal por partes y (\ref{eq2}) implica:
-\begin{equation}
-    \iint_{\mathbb{R}^3\times \mathbb{R}} u \cdot \nabla_x \varphi \,dx\,dt = 0
-    \label{eq13}
-\end{equation}
-Una solución de (\ref{eq12}), (\ref{eq13}) se llama solución débil de las ecuaciones de Navier Stokes.
 
-Una idea establecida desde hace mucho tiempo en el análisis es demostrar la existencia y regularidad de las soluciones de una EDP construyendo primero una solución débil y luego demostrando que cualquier solución débil es suave. Este programa se ha probado para Navier-Stokes con éxito parcial.
+\begin{itemize}
+    \item 1687: Isaac Newton - Publica la ley de la viscosidad en su obra Principia Mathematica, sentando las bases de la mecánica de fluidos.
+    \item 1822: Claude-Louis Navier - Introduce las primeras ecuaciones que incorporan la viscosidad en la dinámica de fluidos.
+    \item 1845: George Gabriel Stokes - Refina y formaliza las ecuaciones de Navier, produciendo las ecuaciones de Navier-Stokes tal como se conocen hoy.
+    \item 1934: Jean Leray - Introduce el concepto de soluciones débiles y demuestra la existencia global de estas soluciones en tres dimensiones.
+    \item 1950s-1960s: Olga Ladyzhenskaya - Realiza avances significativos en la teoría de existencia y unicidad de soluciones para las ecuaciones de Navier-Stokes.
+    \item 1967: Lars Onsager - Propone teorías sobre la turbulencia y la energía en sistemas de fluidos.
+    \item 1970s-1980s: Tosio Kato - Contribuye al estudio de la regularidad y la teoría de semigrupos aplicados a las ecuaciones de Navier-Stokes.
+    \item 1970s: John von Neumann - Desarrolla métodos numéricos y computacionales para resolver las ecuaciones de Navier-Stokes.
+    \item 1980s-1990s: Peter Constantin - Hace importantes contribuciones a la teoría de la turbulencia y el análisis de los flujos de fluidos.
+    \item 1980s-1990s: Ronald Coifman - Trabaja en el análisis armónico y su aplicación a la dinámica de fluidos.
+    % \item 2000: Problema del Milenio del Instituto Clay - Se plantea la pregunta sobre la existencia y regularidad de soluciones suaves para las ecuaciones de Navier-Stokes en tres dimensiones.
+    \item 2000s-2010s: Cédric Villani - Trabaja en la teoría cinética de los gases y las ecuaciones de Boltzmann, relacionadas con las ecuaciones de Navier-Stokes.
+    \item 2000s-2010s: Weinan E - Realiza avances en la teoría de la turbulencia y el análisis numérico de las ecuaciones de Navier-Stokes.
+    \item 2010s: Terence Tao - Explora la regularidad y la estabilidad de las soluciones de las ecuaciones de Navier-Stokes.
+    \item 2010s: Charles Fefferman - Trabaja en la teoría de la regularidad de las ecuaciones de Navier-Stokes.
+    \item 2010s: Pierre-Louis Lions - Hace importantes contribuciones al estudio de las ecuaciones en derivadas parciales, incluidas las ecuaciones de Navier-Stokes.
+    \item 2010s: Beatrice Riviere - Desarrolla métodos numéricos para resolver las ecuaciones de Navier-Stokes, aplicándolos a problemas prácticos.
+    \item 2010s: Charles Peskin - Desarrolla el método del punto inmerso, una técnica numérica para simular fluidos y estructuras elásticas que interactúan.
+    \item 2010s: Cédric Villani - Continuó trabajando en la teoría cinética de los gases y sus aplicaciones a las ecuaciones de Navier-Stokes. Recibió la Medalla Fields en 2010 por sus contribuciones a la teoría del transporte óptimo y sus aplicaciones a las ecuaciones en derivadas parciales.
+    \item 2010s: Peter Constantin - Continuó sus investigaciones en turbulencia, estabilidad y métodos numéricos para fluidos, haciendo contribuciones significativas a la comprensión matemática de la dinámica de fluidos.
+    \item 2014: Terence Tao - Publicó trabajos sobre problemas relacionados con la regularidad de las soluciones de las ecuaciones de Navier-Stokes, explorando métodos innovadores para abordar estos problemas.
+    \item 2020: Yann Brenier - Avanzó en la comprensión de las ecuaciones de Navier-Stokes a través del estudio de flujos óptimos y transporte en fluidos, desarrollando nuevas técnicas en análisis y geometría para abordar estos problemas.
+    \item 2020s: Edriss Titi - Realizó investigaciones sobre la regularidad y la estabilidad de las soluciones de las ecuaciones de Navier-Stokes, con aplicaciones a la modelización de fenómenos atmosféricos y oceánicos.
+    \item 2020s: Alexei Borodin - Aplicó métodos probabilísticos y de teoría de matrices aleatorias al estudio de la dinámica de fluidos, proporcionando nuevas perspectivas sobre el comportamiento de las soluciones de las ecuaciones de Navier-Stokes.
+    \item 2021: Carlos Kenig - Recibió el Premio Abel por sus contribuciones al estudio de ecuaciones en derivadas parciales, incluyendo resultados importantes sobre la regularidad y la dispersión de soluciones de las ecuaciones de Navier-Stokes.
+    \item 2020s: Advances in Computational Fluid Dynamics (CFD) - Se realizaron avances significativos en la simulación numérica de fluidos mediante el uso de supercomputadoras y técnicas de aprendizaje automático, permitiendo simulaciones más precisas y detalladas de problemas complejos en dinámica de fluidos.
+\end{itemize}
 
-Leray en \cite{leray1934mouvement} demostró que las ecuaciones de Navier-Stokes (\ref{eq1}), (\ref{eq2}), (\ref{eq3}) en tres dimensiones espaciales siempre tienen una solución débil $(p, u)$ con propiedades de crecimiento adecuadas. Se desconoce la unicidad de las soluciones débiles de la ecuación de Navier-Stokes. Para la ecuación de Euler, la unicidad de las soluciones débiles es sorprendentemente falsa. Scheffer \cite{scheffer1993inviscid} y, más tarde, Schnirelman \cite{shnirelman1997nonuniqueness} exhibieron soluciones débiles de las ecuaciones de Euler en $\mathbb{R}^2 \times \mathbb{R}$ con soporte compacto en el espacio-tiempo. Esto corresponde a un fluido que parte del reposo en el instante $t = 0$, comienza a moverse en el instante $t = 1$ sin estímulo externo y vuelve al reposo en el instante $t = 2$, con su movimiento siempre confinado a una bola $B \subset  \mathbb{R}^3$.
+\section{Justificación}
 
-Scheffer \cite{scheffer2006turbulence} aplicó ideas de la teoría de la medida geométrica para demostrar un teorema de regularidad parcial para soluciones débiles adecuadas de las ecuaciones de Navier-Stokes.
+\section{Hipótesis}
 
-Caffarelli-Kohn-Nirenberg \cite{caffarelli1982partial} mejoraron los resultados de Scheffer y F.-H. Lin \cite{lin1998new} simplificó las pruebas de los resultados en Caffarelli-Kohn-Nirenberg \cite{caffarelli1982partial}. El teorema de regularidad parcial de \cite{caffarelli1982partial}, \cite{lin1998new} se refiere a un análogo parabólico de la dimensión de Hausdorff del conjunto singular de una solución débil adecuada de Navier-Stokes. Aquí, el conjunto singular de una solución débil u consta de todos los puntos $(x^{\circ}, t^{\circ}) \in \mathbb{R}^3 \times \mathbb{R}$ tales que $u$ es ilimitado en todas las vecindades de $(x^{\circ}, t^{\circ})$. (Si la fuerza $f$ es suave, y si $(x^{\circ}, t^{\circ})$ no pertenece al conjunto singular, entonces no es difícil demostrar que u puede corregirse en un conjunto de medida cero para volverse suave en una vecindad de $(x^{\circ}, t^{\circ})$.)
 
-Para definir el análogo parabólico de la dimensión de Hausdorff, utilizamos cilindros parabólicos $Q_r = B_r \times I_r \subset \mathbb{R}^3 \times \mathbb{R}$, donde $B_r \subset \mathbb{R}^3$ es una bola de radio $r$, e $I_r \subset \mathbb{R}$ es un intervalo de longitud $r^2$. Dado $E \subset \mathbb{R} \times \mathbb{R}$ y $\delta  > 0$, establecemos
-\begin{equation*}
-    \mathcal{P}_{K,\delta}(E) = inf \left\{ \sum_{i = 1}^{\infty} r_{i}^{K}:Q_{r1},Q_{r2},\dots\text{Cubre }E, \text{ y cada }r_i<\delta \right\} 
-\end{equation*}
-y luego definir
-\begin{equation*}
-    \mathcal{P}_K(E) = \lim_{\delta \to 0+} \mathcal{P}_{K,\delta}(E)
-\end{equation*}
-Los principales resultados de \cite{caffarelli1982partial}, \cite{lin1998new} pueden expresarse aproximadamente de la siguiente manera:
-\begin{theorem}
-    Regularidad Parcial de Caffarelli-Kohn-Nirenberg y F.-H. Lin
-    \begin{enumerate}
-        \item (A) Sea u una solución débil de las ecuaciones de Navier-Stokes, que satisfaga condiciones de crecimiento adecuadas. Sea $E$ el conjunto singular de $u$. Entonces $\mathcal{P}_1(E)=0$.
-        \item (B) Dado un campo vectorial libre de divergencia $u^{\circ}(x)$ y una fuerza $f(x, t)$ que satisface (\ref{eq4}) y (\ref{eq5}), existe una solución débil de Navier-Stokes (\ref{eq1}), (\ref{eq2}), (\ref{eq3}) que satisfacen las condiciones de crecimiento en (A).
-    \end{enumerate}
-\end{theorem}
-En particular, el conjunto singular de $u$ no puede contener una curva espacio-temporal de la forma ${(x, t) \in \mathbb{R}^3 \times \mathbb{R}: x = \phi (t)}$. Este es el mejor teorema de regularidad parcial conocido hasta ahora para la ecuación de Navier-Stokes.
+\section{Contribuciones de este trabajo}
+% COLOCAR QUÉ APORTÓ LA CHAMBA AL MUNDO límites y alcances
 
-\section{Estado del arte}
-\subsection{Una formulación cuantitativa del problema de regularidad global para el periódico Sistema Navier-Stokes, Terence Tao}
+
+\section{Esquema de la tesis}
+Este trabajo está estructurado como sigue. La introducción va seguida de X capítulos independientes que se han ordenado de forma coherente con el proceso de desarrollo de las ecuaciones de Navier-Stokes. En gran medida, la notación es consistente a lo largo de esta tesis y cada excepción está claramente resaltada. Para facilitar la navegación, se incluyen apéndices al final de sus respectivos capítulos, mientras que la bibliografía acumulativa se adjunta al final de este documento. Los capítulos siguientes se resumen brevemente a continuación.
+\begin{itemize}
+    \item \textbf{Capítulo 1} Consiste en...
+    \item \textbf{Capítulo 2} Consiste en...
+    \item \textbf{Capítulo 3} Consiste en...
+    \item \textbf{Capítulo 4} Consiste en...
+    \item \textbf{Capítulo 5} Consiste en...
+    \item \textbf{Capítulo 6} Consiste en...
+\end{itemize}
 
 
 
@@ -153,23 +88,21 @@ En particular, el conjunto singular de $u$ no puede contener una curva espacio-t
 
 
 
+% \section{Estado del arte}
+% \subsection{Una formulación canónica hamiltoniana del problema de Navier-Stokes}
+% En marzo de 2024, un grupo de matemáticos de Carolina del Sur, propusieron una formulación canónica hamiltoniana \cite{sanders2024canonical}, a continuación se muestra la ecuación:
+% \begin{equation}
+%     \int\,dx_2\left[\frac{1}{2} \frac{1}{\rho^2} \frac{\delta S^*}{\delta u_1}\frac{\delta S^*}{\delta u_1} - \frac{1}{\rho}\left(p_{,1} - \mu u_{1,22} \frac{\delta S^*}{\delta u_1} \right) \right] + \frac{\delta S^*}{\delta \partial t} = 0
+% \label{eqea1}
+% \end{equation}
+% con $\delta S^*/Sp=0$. La solución a la ecuación (\ref{eqea1}) proporcionaría una transformación canónica a una nueva conjunto de coordenadas, dando expresiones analíticas para $(u_1,p)$
+
+% EXPLOSIÓN EN TIEMPO FINITO PARA UNA ECUACIÓN TRIDIMENSIONAL PROMEDIO DE NAVIER-STOKES 2015
+
+% \subsection{Una formulación cuantitativa del problema de regularidad global para el periódico Sistema Navier-Stokes, Terence Tao}
+% 2007
 
 
-
-
-
-
-% \subsection{Línea del tiempo}
-% \begin{enumerate}
-%     \item Navier-Stokes propone la ecuación en 1888
-%     \item Leray resuelve la regularidad global de las ecuaciones en dos dimensiones en 1933
-%     \item Kolmogorov
-%     \item Leray: Soluciones débiles
-%     \item Ladyzhenskaya: Soluciones en 2d
-%     \item Sobolev: Espacios de sobolev
-%     \item Shwartz
-%     \item Terence Tao (ya)
-% \end{enumerate}
 
 % La gran incógnita es la turbulencia. Para escalas finas en tres dimensiones es mucho más no lineal.
 % NO EXISTE UNA EXPLICACIÓN MATEMÁTICA FORMAL DE CÓMO SE PASA DE UN FLUJO REGULAR A UN FLUJO TURBULENTO
@@ -178,21 +111,4 @@ En particular, el conjunto singular de $u$ no puede contener una curva espacio-t
 
 % EL TRABAJO MÁS NUEVO. PUEDE SER EL DE LARENCE TAO
 
-
-\section{Contribuciones de este trabajo}
-% COLOCAR QUÉ APORTÓ LA CHAMBA AL MUNDO
-
-
-\section{Esquema de la tesis}
-% EXPLICAR CÓMO SE LEE LA TESIS
-% X = NÚMERO DE CAPITULOS DE LA TESIS
-Este trabajo está estructurado como sigue. La introducción va seguida de X capítulos independientes que se han ordenado de forma coherente con el proceso de desarrollo de las ecuaciones de Navier-Stokes. En gran medida, la notación es consistente a lo largo de esta tesis y cada excepción está claramente resaltada. Para facilitar la navegación, se incluyen apéndices al final de sus respectivos capítulos, mientras que la bibliografía acumulativa se adjunta al final de este documento. Los capítulos siguientes se resumen brevemente a continuación.
-
-\textbf{Capítulo 2} Consiste en...
-
-
-\textbf{Capítulo 3} Consiste en...
-
-
-\textbf{Capítulo 4} Consiste en...
 

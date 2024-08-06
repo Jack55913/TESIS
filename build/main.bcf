@@ -2348,21 +2348,23 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">bibliography.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">ladyzhenskaya1969mathematical</bcf:citekey>
-    <bcf:citekey order="2">majda2002vorticity</bcf:citekey>
-    <bcf:citekey order="3">leray1934mouvement</bcf:citekey>
+    <bcf:citekey order="1">sterner2011conservation</bcf:citekey>
+    <bcf:citekey order="2">ladyzhenskaya1969mathematical</bcf:citekey>
+    <bcf:citekey order="3">majda2002vorticity</bcf:citekey>
     <bcf:citekey order="4">leray1934mouvement</bcf:citekey>
-    <bcf:citekey order="5">scheffer1993inviscid</bcf:citekey>
-    <bcf:citekey order="6">shnirelman1997nonuniqueness</bcf:citekey>
-    <bcf:citekey order="7">scheffer2006turbulence</bcf:citekey>
-    <bcf:citekey order="8">caffarelli1982partial</bcf:citekey>
-    <bcf:citekey order="9">lin1998new</bcf:citekey>
-    <bcf:citekey order="10">caffarelli1982partial</bcf:citekey>
+    <bcf:citekey order="5">leray1934mouvement</bcf:citekey>
+    <bcf:citekey order="6">scheffer1993inviscid</bcf:citekey>
+    <bcf:citekey order="7">shnirelman1997nonuniqueness</bcf:citekey>
+    <bcf:citekey order="8">scheffer2006turbulence</bcf:citekey>
+    <bcf:citekey order="9">caffarelli1982partial</bcf:citekey>
+    <bcf:citekey order="10">lin1998new</bcf:citekey>
     <bcf:citekey order="11">caffarelli1982partial</bcf:citekey>
-    <bcf:citekey order="12">lin1998new</bcf:citekey>
-    <bcf:citekey order="13">caffarelli1982partial</bcf:citekey>
-    <bcf:citekey order="14">lin1998new</bcf:citekey>
-    <bcf:citekey order="15">ladyzhenskaya1969mathematical</bcf:citekey>
+    <bcf:citekey order="12">caffarelli1982partial</bcf:citekey>
+    <bcf:citekey order="13">lin1998new</bcf:citekey>
+    <bcf:citekey order="14">caffarelli1982partial</bcf:citekey>
+    <bcf:citekey order="15">lin1998new</bcf:citekey>
+    <bcf:citekey order="16">leray1934mouvement</bcf:citekey>
+    <bcf:citekey order="17">ladyzhenskaya1969mathematical</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

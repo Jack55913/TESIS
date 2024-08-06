@@ -19,6 +19,42 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global}
+    \entry{sterner2011conservation}{article}{}
+      \name{author}{3}{}{%
+        {{hash=888cb0715eb85685b377abb07bb32bf2}{%
+           family={Sterner},
+           familyi={S\bibinitperiod},
+           given={Robert\bibnamedelima W},
+           giveni={R\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=059d88b0860ac1df848e3424e135d32f}{%
+           family={Small},
+           familyi={S\bibinitperiod},
+           given={Gaston\bibnamedelima E},
+           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=9ea7ea072b413469eb490910b4944d5e}{%
+           family={Hood},
+           familyi={H\bibinitperiod},
+           given={James\bibnamedelima M},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{4fe301640625ad067f85a518616109dd}
+      \strng{fullhash}{4fe301640625ad067f85a518616109dd}
+      \strng{bibnamehash}{4fe301640625ad067f85a518616109dd}
+      \strng{authorbibnamehash}{4fe301640625ad067f85a518616109dd}
+      \strng{authornamehash}{4fe301640625ad067f85a518616109dd}
+      \strng{authorfullhash}{4fe301640625ad067f85a518616109dd}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nature Education Knowledge}
+      \field{number}{10}
+      \field{title}{The conservation of mass}
+      \field{volume}{3}
+      \field{year}{2011}
+      \field{pages}{20}
+      \range{pages}{1}
+    \endentry
     \entry{ladyzhenskaya1969mathematical}{article}{}
       \name{author}{1}{}{%
         {{hash=39e6deaeb3433efdb17592b9e0496084}{%
@@ -33,8 +69,8 @@
       \strng{authorbibnamehash}{39e6deaeb3433efdb17592b9e0496084}
       \strng{authornamehash}{39e6deaeb3433efdb17592b9e0496084}
       \strng{authorfullhash}{39e6deaeb3433efdb17592b9e0496084}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Gordon \& Breach}
@@ -65,8 +101,8 @@
       \strng{authorbibnamehash}{ec0a044aafa913cea56fffdb7d649e4a}
       \strng{authornamehash}{ec0a044aafa913cea56fffdb7d649e4a}
       \strng{authorfullhash}{ec0a044aafa913cea56fffdb7d649e4a}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Appl. Mech. Rev.}
@@ -94,8 +130,8 @@
       \strng{authorbibnamehash}{d1c85ad391835096e0ab05bb90e4a799}
       \strng{authornamehash}{d1c85ad391835096e0ab05bb90e4a799}
       \strng{authorfullhash}{d1c85ad391835096e0ab05bb90e4a799}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Acta mathematica}
@@ -120,8 +156,8 @@
       \strng{authornamehash}{1440757e0181fbad943d46dc401afdbf}
       \strng{authorfullhash}{1440757e0181fbad943d46dc401afdbf}
       \field{extraname}{1}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Journal of geometric analysis}
@@ -147,8 +183,8 @@
       \strng{authorbibnamehash}{b7a89f7caec39eedfefd3da9d5556731}
       \strng{authornamehash}{b7a89f7caec39eedfefd3da9d5556731}
       \strng{authorfullhash}{b7a89f7caec39eedfefd3da9d5556731}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Communications on Pure and Applied Mathematics: A Journal Issued by the Courant Institute of Mathematical Sciences}
@@ -177,8 +213,8 @@
       \strng{authornamehash}{1440757e0181fbad943d46dc401afdbf}
       \strng{authorfullhash}{1440757e0181fbad943d46dc401afdbf}
       \field{extraname}{2}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Turbulence and Navier Stokes Equations: Proceedings of the Conference Held at the University of Paris-Sud Orsay June 10--13 1975}
@@ -214,8 +250,8 @@
       \strng{authorbibnamehash}{dc1d5b4bb040d996b5b880d5a6d2fdd6}
       \strng{authornamehash}{dc1d5b4bb040d996b5b880d5a6d2fdd6}
       \strng{authorfullhash}{dc1d5b4bb040d996b5b880d5a6d2fdd6}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Communications on pure and applied mathematics}
@@ -243,8 +279,8 @@
       \strng{authorbibnamehash}{ae2b6f372ecad23e45ca853ec851bf8b}
       \strng{authornamehash}{ae2b6f372ecad23e45ca853ec851bf8b}
       \strng{authorfullhash}{ae2b6f372ecad23e45ca853ec851bf8b}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Communications on Pure and Applied Mathematics: A Journal Issued by the Courant Institute of Mathematical Sciences}
