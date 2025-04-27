@@ -18,278 +18,209 @@
 
 
 \refsection{0}
-  \datalist[entry]{none/global//global/global}
-    \entry{sterner2011conservation}{article}{}
-      \name{author}{3}{}{%
-        {{hash=888cb0715eb85685b377abb07bb32bf2}{%
-           family={Sterner},
-           familyi={S\bibinitperiod},
-           given={Robert\bibnamedelima W},
-           giveni={R\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
-        {{hash=059d88b0860ac1df848e3424e135d32f}{%
-           family={Small},
-           familyi={S\bibinitperiod},
-           given={Gaston\bibnamedelima E},
-           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
-        {{hash=9ea7ea072b413469eb490910b4944d5e}{%
-           family={Hood},
-           familyi={H\bibinitperiod},
-           given={James\bibnamedelima M},
-           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+  \datalist[entry]{nyt/global//global/global}
+    \entry{inegi_texcoco}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=19a3c43378a42f984504fb3a67c1e490}{%
+           family={Estadística\bibnamedelimb y\bibnamedelimb Geografía\bibnamedelima (INEGI)},
+           familyi={E\bibinitperiod\bibinitdelim y\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim (\bibinitperiod},
+           given={Instituto\bibnamedelima Nacional},
+           giveni={I\bibinitperiod\bibinitdelim N\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
       }
-      \strng{namehash}{4fe301640625ad067f85a518616109dd}
-      \strng{fullhash}{4fe301640625ad067f85a518616109dd}
-      \strng{bibnamehash}{4fe301640625ad067f85a518616109dd}
-      \strng{authorbibnamehash}{4fe301640625ad067f85a518616109dd}
-      \strng{authornamehash}{4fe301640625ad067f85a518616109dd}
-      \strng{authorfullhash}{4fe301640625ad067f85a518616109dd}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \strng{namehash}{19a3c43378a42f984504fb3a67c1e490}
+      \strng{fullhash}{19a3c43378a42f984504fb3a67c1e490}
+      \strng{bibnamehash}{19a3c43378a42f984504fb3a67c1e490}
+      \strng{authorbibnamehash}{19a3c43378a42f984504fb3a67c1e490}
+      \strng{authornamehash}{19a3c43378a42f984504fb3a67c1e490}
+      \strng{authorfullhash}{19a3c43378a42f984504fb3a67c1e490}
+      \field{sortinit}{d}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Nature Education Knowledge}
-      \field{number}{10}
-      \field{title}{The conservation of mass}
-      \field{volume}{3}
+      \field{howpublished}{Prontuario de información geográfica municipal de los Estados Unidos Mexicanos}
+      \field{note}{Archivado desde el original el 28 de mayo de 2016. Consultado el 16 de octubre de 2016. Se observa que el Tláloc está incorrectamente citado como "Cerro El Mirador", el cual es un pico secundario del macizo del Tláloc.}
+      \field{title}{Texcoco, México}
+      \field{year}{2009}
+      \verb{urlraw}
+      \verb https://www.inegi.org.mx/app/areasgeograficas/?ag=15092
+      \endverb
+      \verb{url}
+      \verb https://www.inegi.org.mx/app/areasgeograficas/?ag=15092
+      \endverb
+    \endentry
+    \entry{csic_ciencia_ciudadana}{book}{}
+      \name{author}{1}{}{%
+        {{hash=5c3918e80ee63da0c15017db97db229d}{%
+           family={Investigaciones\bibnamedelimb Científicas\bibnamedelima (CSIC)},
+           familyi={I\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim (\bibinitperiod},
+           given={Consejo\bibnamedelima Superior},
+           giveni={C\bibinitperiod\bibinitdelim S\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {CSIC}%
+      }
+      \strng{namehash}{5c3918e80ee63da0c15017db97db229d}
+      \strng{fullhash}{5c3918e80ee63da0c15017db97db229d}
+      \strng{bibnamehash}{5c3918e80ee63da0c15017db97db229d}
+      \strng{authorbibnamehash}{5c3918e80ee63da0c15017db97db229d}
+      \strng{authornamehash}{5c3918e80ee63da0c15017db97db229d}
+      \strng{authorfullhash}{5c3918e80ee63da0c15017db97db229d}
+      \field{sortinit}{d}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Guía breve sobre Ciencia Ciudadana}
+      \field{year}{2022}
+      \verb{urlraw}
+      \verb https://www.csic.es/sites/default/files/2023-06/guia_ciencia_ciudadana_csic_2022.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.csic.es/sites/default/files/2023-06/guia_ciencia_ciudadana_csic_2022.pdf
+      \endverb
+    \endentry
+    \entry{ciga_monitoreo}{book}{}
+      \name{author}{1}{}{%
+        {{hash=c666d9e27623c3329053c7d760beefa5}{%
+           family={Investigaciones\bibnamedelimb en\bibnamedelimb Geografía\bibnamedelimb Ambiental\bibnamedelima (CIGA-UNAM)},
+           familyi={I\bibinitperiod\bibinitdelim e\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim (\bibinithyphendelim U\bibinitperiod},
+           given={Centro},
+           giveni={C\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Universidad Nacional Autónoma de México}%
+      }
+      \strng{namehash}{c666d9e27623c3329053c7d760beefa5}
+      \strng{fullhash}{c666d9e27623c3329053c7d760beefa5}
+      \strng{bibnamehash}{c666d9e27623c3329053c7d760beefa5}
+      \strng{authorbibnamehash}{c666d9e27623c3329053c7d760beefa5}
+      \strng{authornamehash}{c666d9e27623c3329053c7d760beefa5}
+      \strng{authorfullhash}{c666d9e27623c3329053c7d760beefa5}
+      \field{sortinit}{d}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Manual para la implementación de programas de monitoreo}
+      \field{year}{2014}
+      \verb{urlraw}
+      \verb https://publicaciones.ciga.unam.mx/index.php/ec/catalog/book/68
+      \endverb
+      \verb{url}
+      \verb https://publicaciones.ciga.unam.mx/index.php/ec/catalog/book/68
+      \endverb
+    \endentry
+    \entry{semarnat_pluviometro}{book}{}
+      \name{author}{1}{}{%
+        {{hash=087284f02246eab81ed4a448dfbfec70}{%
+           family={Medio\bibnamedelimb Ambiente\bibnamedelimb y\bibnamedelimb Recursos\bibnamedelimb Naturales\bibnamedelima (SEMARNAT)},
+           familyi={M\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim y\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim N\bibinitperiod\bibinitdelim (\bibinitperiod},
+           given={Secretaría},
+           giveni={S\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Gobierno de México}%
+      }
+      \strng{namehash}{087284f02246eab81ed4a448dfbfec70}
+      \strng{fullhash}{087284f02246eab81ed4a448dfbfec70}
+      \strng{bibnamehash}{087284f02246eab81ed4a448dfbfec70}
+      \strng{authorbibnamehash}{087284f02246eab81ed4a448dfbfec70}
+      \strng{authornamehash}{087284f02246eab81ed4a448dfbfec70}
+      \strng{authorfullhash}{087284f02246eab81ed4a448dfbfec70}
+      \field{sortinit}{d}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Manual teórico práctico del observador meteorológico de superficie}
       \field{year}{2011}
-      \field{pages}{20}
-      \range{pages}{1}
+      \verb{urlraw}
+      \verb https://biblioteca.semarnat.gob.mx/janium/Documentos/Ciga/Libros2011/CD001679.pdf
+      \endverb
+      \verb{url}
+      \verb https://biblioteca.semarnat.gob.mx/janium/Documentos/Ciga/Libros2011/CD001679.pdf
+      \endverb
     \endentry
-    \entry{ladyzhenskaya1969mathematical}{article}{}
+    \entry{se2013}{misc}{}
       \name{author}{1}{}{%
-        {{hash=39e6deaeb3433efdb17592b9e0496084}{%
-           family={Ladyzhenskaya},
-           familyi={L\bibinitperiod},
-           given={Olga\bibnamedelima Aleksandrovna},
-           giveni={O\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=69e37aad3e41f4810712252aa73dc8a4}{%
+           family={{Secretaría de Economía (SE)}},
+           familyi={S\bibinitperiod}}}%
       }
-      \strng{namehash}{39e6deaeb3433efdb17592b9e0496084}
-      \strng{fullhash}{39e6deaeb3433efdb17592b9e0496084}
-      \strng{bibnamehash}{39e6deaeb3433efdb17592b9e0496084}
-      \strng{authorbibnamehash}{39e6deaeb3433efdb17592b9e0496084}
-      \strng{authornamehash}{39e6deaeb3433efdb17592b9e0496084}
-      \strng{authorfullhash}{39e6deaeb3433efdb17592b9e0496084}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \strng{namehash}{69e37aad3e41f4810712252aa73dc8a4}
+      \strng{fullhash}{69e37aad3e41f4810712252aa73dc8a4}
+      \strng{bibnamehash}{69e37aad3e41f4810712252aa73dc8a4}
+      \strng{authorbibnamehash}{69e37aad3e41f4810712252aa73dc8a4}
+      \strng{authornamehash}{69e37aad3e41f4810712252aa73dc8a4}
+      \strng{authorfullhash}{69e37aad3e41f4810712252aa73dc8a4}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Gordon \& Breach}
-      \field{title}{The mathematical theory of viscous incompressible flow}
-      \field{year}{1969}
+      \field{howpublished}{Secretaría de Economía, México}
+      \field{note}{Consultado en abril de 2025}
+      \field{title}{Norma Mexicana NMX-AA-166/1-SCFI-2013. Estaciones meteorológicas, climatológicas e hidrológicas. Parte 1: especificaciones técnicas que deben cumplir los materiales e instrumentos de medición de las estaciones meteorológicas automáticas y convencionales}
+      \field{year}{2013}
+      \verb{urlraw}
+      \verb https://www.gob.mx/cms/uploads/attachment/file/166835/nmx-aa-166-1-scfi-2013_1_.pdf
+      \endverb
+      \verb{url}
+      \verb https://www.gob.mx/cms/uploads/attachment/file/166835/nmx-aa-166-1-scfi-2013_1_.pdf
+      \endverb
     \endentry
-    \entry{majda2002vorticity}{article}{}
-      \name{author}{3}{}{%
-        {{hash=d73b96d3d8325526fa32cd9f738a940e}{%
-           family={Majda},
-           familyi={M\bibinitperiod},
-           given={Andrew\bibnamedelima J},
-           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
-        {{hash=401b6f15b3d34e4f5dbabbaf4e460eb0}{%
-           family={Bertozzi},
-           familyi={B\bibinitperiod},
-           given={Andrea\bibnamedelima L},
-           giveni={A\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
-        {{hash=1e6348a64736ed242a25c5c4aeb05a56}{%
-           family={Ogawa},
-           familyi={O\bibinitperiod},
-           given={A},
-           giveni={A\bibinitperiod}}}%
-      }
-      \strng{namehash}{ec0a044aafa913cea56fffdb7d649e4a}
-      \strng{fullhash}{ec0a044aafa913cea56fffdb7d649e4a}
-      \strng{bibnamehash}{ec0a044aafa913cea56fffdb7d649e4a}
-      \strng{authorbibnamehash}{ec0a044aafa913cea56fffdb7d649e4a}
-      \strng{authornamehash}{ec0a044aafa913cea56fffdb7d649e4a}
-      \strng{authorfullhash}{ec0a044aafa913cea56fffdb7d649e4a}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Appl. Mech. Rev.}
-      \field{number}{4}
-      \field{title}{Vorticity and incompressible flow. Cambridge texts in applied mathematics}
-      \field{volume}{55}
-      \field{year}{2002}
-      \field{pages}{B77\bibrangedash B78}
-      \range{pages}{-1}
-    \endentry
-    \entry{leray1934mouvement}{article}{}
+    \entry{flutter_multiplataforma}{book}{}
       \name{author}{1}{}{%
-        {{hash=d1c85ad391835096e0ab05bb90e4a799}{%
-           family={Leray},
-           familyi={L\bibinitperiod},
-           given={Jean},
-           giveni={J\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Springer}%
-      }
-      \strng{namehash}{d1c85ad391835096e0ab05bb90e4a799}
-      \strng{fullhash}{d1c85ad391835096e0ab05bb90e4a799}
-      \strng{bibnamehash}{d1c85ad391835096e0ab05bb90e4a799}
-      \strng{authorbibnamehash}{d1c85ad391835096e0ab05bb90e4a799}
-      \strng{authornamehash}{d1c85ad391835096e0ab05bb90e4a799}
-      \strng{authorfullhash}{d1c85ad391835096e0ab05bb90e4a799}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Acta mathematica}
-      \field{title}{Sur le mouvement d'un liquide visqueux emplissant l'espace}
-      \field{volume}{63}
-      \field{year}{1934}
-      \field{pages}{193\bibrangedash 248}
-      \range{pages}{56}
-    \endentry
-    \entry{scheffer1993inviscid}{article}{}
-      \name{author}{1}{}{%
-        {{hash=1440757e0181fbad943d46dc401afdbf}{%
-           family={Scheffer},
+        {{hash=ca5bc79cc7ff37f87829a66ed680e0f2}{%
+           family={Stormacq},
            familyi={S\bibinitperiod},
-           given={Vladimir},
-           giveni={V\bibinitperiod}}}%
-      }
-      \strng{namehash}{1440757e0181fbad943d46dc401afdbf}
-      \strng{fullhash}{1440757e0181fbad943d46dc401afdbf}
-      \strng{bibnamehash}{1440757e0181fbad943d46dc401afdbf}
-      \strng{authorbibnamehash}{1440757e0181fbad943d46dc401afdbf}
-      \strng{authornamehash}{1440757e0181fbad943d46dc401afdbf}
-      \strng{authorfullhash}{1440757e0181fbad943d46dc401afdbf}
-      \field{extraname}{1}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Journal of geometric analysis}
-      \field{number}{4}
-      \field{title}{An inviscid flow with compact support in space-time.}
-      \field{volume}{3}
-      \field{year}{1993}
-    \endentry
-    \entry{shnirelman1997nonuniqueness}{article}{}
-      \name{author}{1}{}{%
-        {{hash=b7a89f7caec39eedfefd3da9d5556731}{%
-           family={Shnirelman},
-           familyi={S\bibinitperiod},
-           given={Alexander},
-           giveni={A\bibinitperiod}}}%
+           given={Sébastien},
+           giveni={S\bibinitperiod}}}%
       }
       \list{publisher}{1}{%
-        {Wiley Online Library}%
+        {ENI Editions}%
       }
-      \strng{namehash}{b7a89f7caec39eedfefd3da9d5556731}
-      \strng{fullhash}{b7a89f7caec39eedfefd3da9d5556731}
-      \strng{bibnamehash}{b7a89f7caec39eedfefd3da9d5556731}
-      \strng{authorbibnamehash}{b7a89f7caec39eedfefd3da9d5556731}
-      \strng{authornamehash}{b7a89f7caec39eedfefd3da9d5556731}
-      \strng{authorfullhash}{b7a89f7caec39eedfefd3da9d5556731}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \strng{namehash}{ca5bc79cc7ff37f87829a66ed680e0f2}
+      \strng{fullhash}{ca5bc79cc7ff37f87829a66ed680e0f2}
+      \strng{bibnamehash}{ca5bc79cc7ff37f87829a66ed680e0f2}
+      \strng{authorbibnamehash}{ca5bc79cc7ff37f87829a66ed680e0f2}
+      \strng{authornamehash}{ca5bc79cc7ff37f87829a66ed680e0f2}
+      \strng{authorfullhash}{ca5bc79cc7ff37f87829a66ed680e0f2}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Communications on Pure and Applied Mathematics: A Journal Issued by the Courant Institute of Mathematical Sciences}
-      \field{number}{12}
-      \field{title}{On the nonuniqueness of weak solution of the Euler equation}
-      \field{volume}{50}
-      \field{year}{1997}
-      \field{pages}{1261\bibrangedash 1286}
-      \range{pages}{26}
-    \endentry
-    \entry{scheffer2006turbulence}{inproceedings}{}
-      \name{author}{1}{}{%
-        {{hash=1440757e0181fbad943d46dc401afdbf}{%
-           family={Scheffer},
-           familyi={S\bibinitperiod},
-           given={Vladimir},
-           giveni={V\bibinitperiod}}}%
-      }
-      \list{organization}{1}{%
-        {Springer}%
-      }
-      \strng{namehash}{1440757e0181fbad943d46dc401afdbf}
-      \strng{fullhash}{1440757e0181fbad943d46dc401afdbf}
-      \strng{bibnamehash}{1440757e0181fbad943d46dc401afdbf}
-      \strng{authorbibnamehash}{1440757e0181fbad943d46dc401afdbf}
-      \strng{authornamehash}{1440757e0181fbad943d46dc401afdbf}
-      \strng{authorfullhash}{1440757e0181fbad943d46dc401afdbf}
-      \field{extraname}{2}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Turbulence and Navier Stokes Equations: Proceedings of the Conference Held at the University of Paris-Sud Orsay June 10--13 1975}
-      \field{title}{Turbulence and Hausdorff dimension}
-      \field{year}{2006}
-      \field{pages}{174\bibrangedash 183}
-      \range{pages}{10}
-    \endentry
-    \entry{caffarelli1982partial}{article}{}
-      \name{author}{3}{}{%
-        {{hash=3991522afc177c36148555b3758df0e0}{%
-           family={Caffarelli},
-           familyi={C\bibinitperiod},
-           given={Luis},
-           giveni={L\bibinitperiod}}}%
-        {{hash=eb1882a0a114f6c1c7967db0eb33d20d}{%
-           family={Kohn},
-           familyi={K\bibinitperiod},
-           given={Robert},
-           giveni={R\bibinitperiod}}}%
-        {{hash=eab0d0f737d44d10af4203211c6c6225}{%
-           family={Nirenberg},
-           familyi={N\bibinitperiod},
-           given={Louis},
-           giveni={L\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Wiley Online Library}%
-      }
-      \strng{namehash}{dc1d5b4bb040d996b5b880d5a6d2fdd6}
-      \strng{fullhash}{dc1d5b4bb040d996b5b880d5a6d2fdd6}
-      \strng{bibnamehash}{dc1d5b4bb040d996b5b880d5a6d2fdd6}
-      \strng{authorbibnamehash}{dc1d5b4bb040d996b5b880d5a6d2fdd6}
-      \strng{authornamehash}{dc1d5b4bb040d996b5b880d5a6d2fdd6}
-      \strng{authorfullhash}{dc1d5b4bb040d996b5b880d5a6d2fdd6}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Communications on pure and applied mathematics}
-      \field{number}{6}
-      \field{title}{Partial regularity of suitable weak solutions of the Navier-Stokes equations}
-      \field{volume}{35}
-      \field{year}{1982}
-      \field{pages}{771\bibrangedash 831}
-      \range{pages}{61}
-    \endentry
-    \entry{lin1998new}{article}{}
-      \name{author}{1}{}{%
-        {{hash=ae2b6f372ecad23e45ca853ec851bf8b}{%
-           family={Lin},
-           familyi={L\bibinitperiod},
-           given={Fanghua},
-           giveni={F\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Wiley Online Library}%
-      }
-      \strng{namehash}{ae2b6f372ecad23e45ca853ec851bf8b}
-      \strng{fullhash}{ae2b6f372ecad23e45ca853ec851bf8b}
-      \strng{bibnamehash}{ae2b6f372ecad23e45ca853ec851bf8b}
-      \strng{authorbibnamehash}{ae2b6f372ecad23e45ca853ec851bf8b}
-      \strng{authornamehash}{ae2b6f372ecad23e45ca853ec851bf8b}
-      \strng{authorfullhash}{ae2b6f372ecad23e45ca853ec851bf8b}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Communications on Pure and Applied Mathematics: A Journal Issued by the Courant Institute of Mathematical Sciences}
-      \field{number}{3}
-      \field{title}{A new proof of the Caffarelli-Kohn-Nirenberg theorem}
-      \field{volume}{51}
-      \field{year}{1998}
-      \field{pages}{241\bibrangedash 257}
-      \range{pages}{17}
+      \field{isbn}{9782409032571}
+      \field{title}{Flutter: Desarrolle sus aplicaciones móviles multiplataforma con Dart}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://www.amazon.com/-/es/Flutter-Desarrolle-aplicaciones-m%C3%B3viles-multiplataforma/dp/2409032575
+      \endverb
+      \verb{url}
+      \verb https://www.amazon.com/-/es/Flutter-Desarrolle-aplicaciones-m%C3%B3viles-multiplataforma/dp/2409032575
+      \endverb
     \endentry
   \enddatalist
 \endrefsection

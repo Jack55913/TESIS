@@ -1,88 +1,88 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {spanish}{}\relax 
 \defcounter {refsection}{0}\relax 
+\contentsline {chapter}{AGRADECIMIENTOS}{\es@scroman {i}}{chapter*.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{LISTA DE CUADROS}{\es@scroman {v}}{chapter*.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{LISTA DE FIGURAS}{\es@scroman {vii}}{chapter*.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{RESUMEN}{\es@scroman {viii}}{section*.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{ABSTRACT}{\es@scroman {ix}}{section*.6}%
+\defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {1}INTRODUCCIÓN}{1}{chapter.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.1}Planteamiento del problema}{1}{section.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.2}Contexto Histórico}{1}{section.1.2}%
+\contentsline {section}{\numberline {1.2}Contexto geográfico del Monte Tláloc}{1}{section.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.3}Justificación}{3}{section.1.3}%
+\contentsline {section}{\numberline {1.3}Justificación}{2}{section.1.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.4}Hipótesis}{3}{section.1.4}%
+\contentsline {section}{\numberline {1.4}Hipótesis}{2}{section.1.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.5}Contribuciones de este trabajo}{3}{section.1.5}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {1.6}Esquema de la tesis}{3}{section.1.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}OBJETIVOS}{4}{chapter.2}%
+\contentsline {section}{\numberline {1.7}Alcance y limitaciones del estudio}{4}{section.1.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Objetivo General}{4}{section.2.1}%
+\contentsline {chapter}{\numberline {2}OBJETIVOS}{5}{chapter.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Objetivos Específicos}{4}{section.2.2}%
+\contentsline {section}{\numberline {2.1}Objetivo General}{5}{section.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}REVISIÓN DE LITERATURA}{5}{chapter.3}%
+\contentsline {section}{\numberline {2.2}Objetivos Específicos}{5}{section.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Definición de términos clave}{5}{section.3.1}%
+\contentsline {chapter}{\numberline {3}REVISIÓN DE LITERATURA}{6}{chapter.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Ecuaciones de Navier-Stokes}{6}{section.3.2}%
+\contentsline {section}{\numberline {3.1}Definición de términos clave}{6}{section.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2.1}Descripción de las ecuaciones de Navier-Stokes}{6}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.2}Acceso a datos meteorológicos de zonas de montaña en México}{8}{section.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2.2}Demostraciones a resolver}{8}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Revisión de estudios previos sobre monitoreo ciudadano meteorológico}{8}{section.3.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2.3}Resultados parciales conocidos}{8}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.4}Tecnologías actuales en monitoreo climático}{8}{section.3.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Dos dimensiones}{8}{subsubsection*.2}%
+\contentsline {section}{\numberline {3.5}Aportes del monitoreo ciudadano a la ciencia climática}{8}{section.3.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{Tres dimensiones}{8}{subsubsection*.3}%
+\contentsline {chapter}{\numberline {4}MATERIALES Y MÉTODOS}{9}{chapter.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Las soluciones débiles}{11}{section.3.3}%
+\contentsline {section}{\numberline {4.1}Materiales}{9}{section.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.1}Existencia global de estas soluciones en tres dimensiones}{11}{subsection.3.3.1}%
+\contentsline {section}{\numberline {4.2}Métodos}{9}{section.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Ecuación de Nevier-Stokes en 2D}{11}{section.3.4}%
+\contentsline {subsection}{\numberline {4.2.1}Protocolo de monitoreo participativo:}{9}{subsection.4.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.4.1}Demostración de Olga A. Ladyzhenskaya}{11}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {4.2.2}Desarrollo del código}{9}{subsection.4.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.5}Ecuaciones de Saint Venant}{14}{section.3.5}%
+\contentsline {subsection}{\numberline {4.2.3}Evaluación del nivel de maduración tecnológica}{9}{subsection.4.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.5.1}Ecuación de continuidad}{14}{subsection.3.5.1}%
+\contentsline {chapter}{\numberline {5}RESULTADOS}{10}{chapter.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.5.2}Ecuaciones de cantidad de movimiento}{14}{subsection.3.5.2}%
+\contentsline {section}{\numberline {5.1}Protocolo de monitoreo participativo:}{10}{section.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.6}Vorticidad}{15}{section.3.6}%
+\contentsline {section}{\numberline {5.2}Desarrollo del código}{10}{section.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.7}Métodos Numéricos}{16}{section.3.7}%
+\contentsline {section}{\numberline {5.3}Evaluación del nivel de maduración tecnológica}{10}{section.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.7.1}Métodos de Elementos Finitos (FEM)}{16}{subsection.3.7.1}%
+\contentsline {chapter}{\numberline {6}CONCLUSIONES FINALES Y TRABAJO FUTURO}{11}{chapter.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.7.2}Métodos Espectrales}{16}{subsection.3.7.2}%
+\contentsline {section}{\numberline {6.1}Aportes de la tesis al monitoreo ambiental}{11}{section.6.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.7.3}Elementos finitos estabilizados}{16}{subsection.3.7.3}%
+\contentsline {section}{\numberline {6.2}Limitaciones encontradas}{11}{section.6.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.7.4}Métodos de Volumen Finito (FVM)}{16}{subsection.3.7.4}%
+\contentsline {section}{\numberline {6.3}Posibilidades de expansión a otras zonas}{11}{section.6.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.7.5}Métodos Lattice Boltzmann}{16}{subsection.3.7.5}%
+\contentsline {section}{\numberline {6.4}Trabajo futuro:}{11}{section.6.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.8}Simulación de Turbulencia}{16}{section.3.8}%
+\contentsline {subsection}{\numberline {6.4.1}App offline}{11}{subsection.6.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.8.1}Grandes Simulaciones de Turbulencia (LES)}{16}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {6.4.2}IA para detección de anomalías}{11}{subsection.6.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.8.2}Modelos de Turbulencia RANS (Reynolds-Averaged Navier-Stokes)}{16}{subsection.3.8.2}%
+\contentsline {subsection}{\numberline {6.4.3}Predicción climática}{11}{subsection.6.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.9}Agricultura Vertical}{16}{section.3.9}%
+\contentsline {subsection}{\numberline {6.4.4}Comunidad activa de usuarios:}{11}{subsection.6.4.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}MATERIALES Y MÉTODOS}{17}{chapter.4}%
+\contentsline {chapter}{\numberline {A}Código}{12}{appendix.Alph1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Materiales}{17}{section.4.1}%
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Método 1}{17}{section.4.2}%
-\defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2.1}Caso de estudio University of Arizona}{17}{subsection.4.2.1}%
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}RESULTADOS}{18}{chapter.5}%
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}CONCLUSIONES FINALES Y TRABAJO FUTURO}{19}{chapter.6}%
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{LITERATURA CONSULTADA}{20}{appendix*.4}%
+\contentsline {chapter}{LITERATURA CONSULTADA}{13}{appendix*.8}%

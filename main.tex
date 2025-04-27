@@ -1,124 +1,95 @@
 % !TEX encoding = UTF-8 Unicode
 % !BIB TS-program = biber 
-% !BIB program = biber    
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[twoside,fontset=newtx-sans-text]{mitthesis}
-%
-% option [twoside]		gives facing-page behavior for printing; omitting twoside will eliminate even-numbered blank pages.
-% option [lineno]	 	provides line numbers, as for editing
-% option [mydesign] 	loads packages for color, title and list formats, margins, or captions: edit mydesign.tex to change defaults.
-% option [fontset] is a keyvalue which can be:
-%					 	pdftex or unicode engines:  defaultfonts, libertine, lucida
-%					 	pdftex only: 				fira-newtxsf, newtx, newtx-sans-text
-%						unicode engines (luatex):	heros-stix2, stix2, termes, termes-stix2
-%					 	if no key value is given, fonts default to CMR (pdftex) or LMR (unicode), i.e., "the LaTeX font".
-%					 	You can edit the fontset files or you can write your own, myfonts.tex, and do [fontset=myfonts].
-%						If you are using multiple languages, load the babel package in your fontset file, before the fonts.
-%%%%%%%%% Packages used in sample chapters (not otherwise required) %%%%%%%
 
-%% Package for code listing in Appendix A.
-\usepackage{listings}%   documentation is here https://ctan.org/pkg/listings
 \usepackage[spanish]{babel}
-
 \usepackage{amsmath,amssymb,amsfonts}		
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{pdfpages}
+
 \newtheorem{notation}{Notación}[chapter]
 \newtheorem{theorem}{Teorema}[chapter]
 \newtheorem{definition}{Definición}[chapter]
 \newtheorem{lemma}{Lema}[chapter]
 %% Set chemical formulas nicely
 % \usepackage[version=4]{mhchem}%   documentation is here https://ctan.org/pkg/mhchem
-
-%%%%%%%%%  Graphics path (to figure files)  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% Can set graphicspath to point to specific directories containing figures (the current directory is searched automatically)
-%% For instance, to search a subdirectory of the current directory called "figures" and a parallel directory called "art", set:
-
 \graphicspath{{assets/}}
+\usepackage{csquotes} 
 
-%%%%%%%%%  Representative set-up for biblatex  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[
+    style=apa,
+    sortcites=true,
+    sorting=nyt,
+    backend=biber,
+    language=spanish,
+    hyperref=true,
+    backref=true,
+    uniquelist=false,
+    uniquename=false,
+]{biblatex}
 
-\usepackage[style=ieee,maxbibnames=10,sorting=none]{biblatex}% style=ext-numeric-comp,articlein=false,giveninits=true
-	\DefineBibliographyStrings{english}{url= \textsc{url} ,  }% replaces default "[Online]. Available" by "URL"
+\addbibresource{bibliography.bib}
 
-
-\addbibresource{bibliography.bib}%% <== change to YOUR bib file <= CHANGE
-
-%% to avoid split urls and stretched white space, you can set the bibliography ragged-right:
-%\appto{\bibsetup}{\raggedright}
-
-% biblatex is very powerful, and you can customize most aspects the reference list and citations to suit your needs.
-% documentation is here: https://ctan.org/pkg/biblatex
-
-
-%%%%%%%%%%  Table related packages  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage{booktabs}% better quality tables, https://ctan.org/pkg/booktabs
-\usepackage{array}%    additional options for table columns, https://ctan.org/pkg/array
-
-
-%%%%%%%%%%%  Metadata  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\hypersetup{%
-	pdfsubject={Ecaciones de Navier-Stokes},
-	% Change this to briefly state topic of your thesis 
-% 
-	pdfkeywords={Univerisdad Autónoma Chapingo, UACh},
-	% Add keywords that will help search engines and libraries to find your work.
-	% Includes the name[s] of the author[s] 
-	% (If you have used \DocumentMetadata, at line 15, you can just put "\CopyrightAuthor," for the names.)
-%
+\hypersetup{
+	pdfsubject={Ecuaciones de Navier-Stokes},
+	pdfkeywords={Universidad Autónoma Chapingo, UACh},
 	pdfurl={},
-	% If you have a url for the thesis, put it here. Otherwise delete this.
-	% (MIT Libraries will put your thesis in DSPACE with a persistent url after you submit it.)
-%	
 	pdfcontactemail={emilioah02@gmail.com},
-	% You can put a [permanent] email address into the metadata, if you like.
-	% Otherwise delete this.
-%
-	pdfauthortitle={Ing.},
-	% If you have a title, you can include it here.
+	pdfauthortitle={Ing.}
 }
 
-%%%%%%%%%%%%%%  End preamble %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{plain}
+
+\def\all{all}
+\ifx\files\all \typeout{Including all files.} \else %\typeout{Including only \files.} \includeonly{\files} \fi
+
+% Márgenes
+\geometry{left=4cm, right=2.5cm, top=5cm, bottom=2.5cm}
 
 \begin{document}
 
-\title{APLICACIONES DE LAS ECUACIONES DE NAVIER STOKES}
-\Author{LUIS EMILIO ÁLVAREZ HERRERA}{DEPARTAMENTO DE IRRIGACIÓN}
+\title{DESARROLLO DE UNA APLICACIÓN MULTIPLATAFORMA BASADA EN CIENCIA CIUDADANA PARA EL MONITOREO DE LLUVIA EN EL MONTE TLÁLOC}
+\Author{LUIS EMILIO ÁLVAREZ HERRERA}{Departamento de Irrigación}
 \Degree{INGENIERO EN IRRIGACIÓN}{DEPARTAMENTO DE IRRIGACIÓN}
-
-% If there is more than one supervisor, use the \Supervisor command for each.
 \Supervisor{Luis T. Castellanos Serano}{Profesor del DIMA}
 \Supervisor{Dr. Mauricio Carrillo García}{Profesor de Irrigación}
 \Supervisor{MAN. Eduardo Alvarado Trejo}{Profesor de Irrigación}
-
-% Professor who formally accepts theses for your department (e.g., the Graduate Officer, Professor Sméagol,...)
-% If more than one department, use more than once
-% **If you need to reduce vertical space, put the acceptor title in the second argument and leave the third blank {}.**
-% \Acceptor{Primus Castor}{Professor of Wetlands Engineering}{Undergraduate Officer, Department of Physics}
-% \Acceptor{Tertius Castor}{Professor of Log Dams}{Graduate Officer, Department of Research}
-% \Acceptor{Quarta Castor}{Professor of Lodge Building}{Graduate Officer, Department of Mechanical Engineering}
-
 \DegreeDate{June}{2025}
-
-% Date that final thesis is submitted to department
 \ThesisDate{June 15, 2025}
-
-%%%%%%  Choose whether to have a CREATIVE COMMONS License  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% If you are using a cc license, put details of your cc license here. 
-% Omit this command if you are not using a cc license.
-%
 \CClicense{CC BY-NC-ND 4.0}{https://creativecommons.org/licenses/by-nc-nd/4.0/}
-%
 
-\pagenumbering{roman}
-% TODO: Modificar el top o ver qué está pasando con los margenes TOP= 5 y si deben cambiarse los de la izquierda.
-\newgeometry{left=4cm, right=2.5cm, top=5cm, bottom=2.5cm, marginparwidth=0pt, headsep=0pt}
+%%%%%%% INICIA NÚMEROS ROMANOS %%%%%%%
 
-% TODO: Nomenclarura
-\input{thesis.tex}
-\end{document} 
+ 
+\includepdf[pages=1]{cover.pdf}
+\include{acknowledgments}
+
+ 
+%%%%%% CAMBIAR A NÚMEROS ARÁBIGOS DESPUÉS DE FRONTAL %%%%%%%
+
+\clearpage
+\pagenumbering{arabic}
+
+%%% Capitulos
+
+\include{chapters/1}
+\include{chapters/2}
+\include{chapters/3}
+\include{chapters/4}
+\include{chapters/5}
+\include{chapters/6}
+
+%%% Apéndices
+
+\appendix
+\include{appendixa}
+
+%%% Bibliografía
+
+\printbibliography[title={LITERATURA CONSULTADA},heading=bibintoc]
+
+\end{document}

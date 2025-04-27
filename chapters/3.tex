@@ -1,413 +1,110 @@
 \chapter{REVISIÓN DE LITERATURA}
 \section{Definición de términos clave}
-% \section{Ley de conservación de la masa}
-La ley de conservación de masa es definida tal que:``\textit{En un sistema aislado, durante toda reacción química ordinaria, la masa total en el sistema permanece constante, es decir, la masa consumida de los reactivos es igual a la masa de los productos obtenidos}'' (Antoine Lavoisier, 1785 \cite{sterner2011conservation}).
-\begin{definition}[Ley de conservación de la masa]
-    a
+
+\begin{definition}[Monitoreo]
+  El monitoreo es un proceso sistemático y continuo que permite observar, registrar y analizar parámetros específicos para evaluar el estado o cambios en un sistema o fenómeno determinado. Es fundamental para la toma de decisiones informadas en la gestión ambiental y otros campos. \cite{ciga_monitoreo}
 \end{definition}
-Se expresa esta ley mediante un sistema de ecuaciones diferenciales en derivadas parciales.
 
-Conservación de la cantidad de movimiento
-\begin{equation}
-    F = m \cdot a = \frac{d}{dt}(mu)
-\end{equation}
-\begin{definition}[Fluido]
-    Es una sustancia que puede ser líquido o gas.
+
+\begin{definition}[Ciencia Ciudadana]
+La ciencia ciudadana es una metodología científica que involucra activamente a la ciudadanía en la generación de conocimiento, permitiendo que personas sin formación científica formal participen en la recolección, análisis e interpretación de datos, contribuyendo así a proyectos de investigación y al fomento de la cultura científica.\cite{csic_ciencia_ciudadana}
 \end{definition}
-Se caracteriza un fluido por las siguientes funciones:
-\begin{enumerate}
-    \item \textbf{Campo de velocidades} $u(x,t) = \left(u_1(x,t),u_2(x,t),u_3(x,t)\right)$ que determina la velocidad que tiene una partícula en cada punto $x\in\Omega$ del dominio y en cada tiempo $t\in \mathbb{R}$
-    \item \textbf{Presión}, $p=p(x,t)$, en el seno del fluido
-    \item \textbf{Densidad}, $\rho= \rho(x,t)$ del fluido
-\end{enumerate}
-\begin{equation}
-    \underbrace{\frac{\partial}{\partial t} u_i}_{\text{Campo de velocidad}} + \underbrace{\sum_{j = 1}^n u_j \frac{\partial u_i}{\partial x_j}}_{\text{Momentum del flujo}} = \underbrace{\nu \Delta u_i}_{\text{Viscosidad}} - \underbrace{ \frac{\partial p}{\partial x_i}}_{\text{Campo de presión}}+ \underbrace{f_i(x,t)}_{\text{Fuerzas externas}} 
-\end{equation}
-\begin{equation}
-    \underbrace{\text{div}\, u}_{\text{Condición de incompresibilidad}} = \underbrace{\sum_{j = 1}^n \frac{\partial u_i}{\partial x_j}}_{parte\ 1} 
-\end{equation}
-\begin{equation}
-    \underbrace{u(x,0)}_{parte 1} = \underbrace{u^{\circ}(x)}_{parte\ 1} 
-\end{equation}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Revisión de literatura relevante
-\section{Ecuaciones de Navier-Stokes}
-Las ecuaciones de Euler y Navier-Stokes describen el movimiento de un fluido en $\mathbb{R}^n$ tal que $(n=2\text{ o }3)$. Estas ecuaciones se resuelven por un vector desconocido de velocidad $u(x,t)= \left(u_i(x,t)\right)_{1\leq i \leq n}\in \mathbb{R}^n$ y presión $p(x,t)\in \mathbb{R}$, definido por la posición $x\in \mathbb{R}^n$ y tiempo $t\geq 0$. Se restringe a fluidos incompresibles que están en $\mathbb{R}^n$, dichas ecuaciones son:
-\begin{align}
-    &\frac{\partial}{\partial t} u_i + \sum_{j = 1}^n u_j \frac{\partial u_i}{\partial x_j} = \nu \Delta u_i - \frac{\partial p}{\partial x_i} + f_i(x,t)&& \left(x\in \mathbb{R}^n, t\geq 0\right),\label{eq1}\\
-    &\text{div}\, u = \sum_{j = 1}^n \frac{\partial u_i}{\partial x_j} && \left(x\in \mathbb{R}^n, t\geq 0\right) =0\label{eq2}\\
-    &\text{Condiciones iniciales:}\quad u(x,0) = u^{\circ}(x) && \left(x\in \mathbb{R}^n\right)\label{eq3}
-\end{align}
-\begin{notation}
-De las ecuaciones (\ref{eq1}), (\ref{eq2}) y (\ref{eq3})
-    \begin{itemize}
-        \item $u^{\circ}(x)$ está dado
-        \item $C^{\infty}$  es un campo vectorial libre de divergencia en $\mathbb{R}^n$,
-        \item $f_i(x,t)$ son los componentes de una fuerza externa aplicada (ej. gravedad),
-        \item $\Delta = \sum_{i=1}^n \frac{\partial^2}{\partial x_i^2}$ es el Laplaciano en espacios variables.
-        \item La viscosidad $\nu$, es un coeficiente positivo\footnote{Las ecuaciones de Eulier son las mismas que (\ref{eq1}), (\ref{eq2}) y (\ref{eq3}), pero con viscosidad $\nu=0$}
-    \end{itemize}    
-\end{notation}
-\subsection{Descripción de las ecuaciones de Navier-Stokes}
+
+
+
+\begin{definition}[Flutter]
+
+Flutter es un framework de código abierto desarrollado por Google que permite crear aplicaciones nativas de alto rendimiento para múltiples plataformas (iOS, Android, web, escritorio) a partir de una única base de código, utilizando el lenguaje de programación Dart.\cite{flutter_multiplataforma}
+\end{definition}
+
+\begin{definition}[Dart]
+
+Dart es un lenguaje de programación desarrollado por Google, diseñado para crear aplicaciones frontend rápidas y optimizadas, especialmente utilizado en conjunto con Flutter.
+\end{definition}
+\begin{definition}[Firebase]
+
+Firebase es una plataforma de desarrollo de aplicaciones creada por Google que proporciona servicios como bases de datos en tiempo real, autenticación de usuarios, hosting de archivos y funciones de backend sin servidor, facilitando el desarrollo y escalamiento de aplicaciones móviles y web.
+\end{definition}
+
+
+\begin{definition}[Backend]
+El backend se refiere a la parte del desarrollo de software que gestiona la lógica de negocio, bases de datos, servidores y APIs, funcionando como la estructura interna que sostiene y conecta los servicios de una aplicación.
+\end{definition}
+
+
+
+
+
+
+\begin{definition}[Firebase Realtime Database]
+Es un servicio de base de datos en la nube que almacena y sincroniza datos entre usuarios en tiempo real, ideal para aplicaciones que requieren actualizaciones inmediatas.
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{definition}[Pluviómetro manual]
+
+El pluviómetro manual es un instrumento utilizado para medir la cantidad de precipitación líquida caída en un lugar específico durante un período determinado. Consiste en un recipiente cilíndrico que recoge el agua de lluvia, la cual se mide posteriormente con una probeta graduada. Este instrumento debe cumplir con las especificaciones establecidas en las normas mexicanas para garantizar la precisión y confiabilidad de los datos obtenidos.\cite{semarnat_pluviometro}
+\end{definition}
+
+Las especificaciones para construir un pluviómetro, ilustradas en la figura \ref{t1}, son:
 \begin{itemize}
-    \item La ecuación (\ref{eq1}), se basa en la Segunda Ley de Newton $f=m\cdot a$ para un fluido sujeto a una fuerza externa $f= \left(f_i(x,t)\right)_{1\leq i\leq n}$ y a las fuerzas que surgen de la presión y la fricción.
-    \item La ecuación (\ref{eq2}), define que el fluido es incompresible.  $u(x, t)$ no debe crecer a medida que $\left\lvert x\right\rvert \to \infty$. Por lo tanto, se restringirá la atención en las fuerzas $f$ y las condiciones iniciales $u^{\circ}$ que satisfacen las ecuaciones (\ref{eq4}) y (\ref{eq5})
-    \begin{align}
-        &\left\lvert \partial_x^{\alpha}u^{\circ}(x) \right\rvert\leq C_{\alpha K}\left(1 + \left\lvert x \right\rvert  \right)^{-K}\in \mathbb{R}^n&& \forall\, \alpha\land K\label{eq4}\\
-        &\left\lvert \partial_x^{\alpha}\partial_t^{m} f(x,t) \right\rvert\leq C_{\alpha m K}\left(1 + \left\lvert x \right\rvert + t \right)^{-K}\in \mathbb{R}^n\times \left[ 0,\infty \right)&& \forall\, \alpha, m \land K \label{eq5}
-    \end{align}
+    \item El depósito debe tener una entrada estrecha, suficientemente protegida de la radiación, para reducir al mínimo las pérdidas de agua por evaporación
+    \item Este instrumento debe colocarse en lugares abiertos y su área de captación debe permanecer horizontal y a 100 cm del suelo. \cite{se2013}
 \end{itemize}
-Se acepta una solución de (\ref{eq1}), (\ref{eq2}), (\ref{eq3}) como físicamente razonables sólo si satisfacen las ecuaciones (\ref{eq6}) y (\ref{eq7})
-\begin{align}
-    &p,u\in C^{\infty}\left( \mathbb{R}^n \times \left[ 0, \infty\right) \right)\label{eq6}\\
-    & \int_{\mathbb{R}^n} \left\lvert u(x,t)\right\rvert^2\, dx < C\quad \forall t\geq 0\label{eq7}  
-\end{align}
-Alternativamente, para descartar problemas en el infinito, se buscan espacios espacialmente soluciones periódicas de (\ref{eq1}), (\ref{eq2}), (\ref{eq3}). Por lo tanto, asumimos que $u^{\circ}(x), f(x,t)$ satisfacen
-\begin{align}
-    u^{\circ}(x + e_j) = u^{\circ}(x),\quad f(x + e_j,t) = f(x,t),\quad p(x + e_j,t) = p(x,t) && \forall\, 1\leq j\leq n\label{eq8}
-\end{align}
-\begin{notation} De la ecuación (\ref{eq8})
-    \begin{itemize}
-        \item $e_j = j^{th}$
-    \end{itemize}
-\end{notation}
-En lugar de (\ref{eq4}) y (\ref{eq5}), se supone que $u^{\circ}$ es suave y que se cumple la ecuación (\ref{eq9})
-\begin{align}
-    &\left\lvert \partial_x^{\alpha}\partial_t^{m} f(x,t) \right\rvert\leq C_{\alpha m K}\left(1 + \left\lvert t \right\rvert \right)^{-K}\in \mathbb{R}^3\times \left[ 0,\infty \right)&& \forall\, \alpha, m \land K 
-    \label{eq9}
-\end{align}
-Se acepta una solución de (\ref{eq1}), (\ref{eq2}), (\ref{eq3}), físicamente satisfacen las ecuaciones (\ref{eq10}) y (\ref{eq11})
-\begin{align}
-    &u(x + t) = u(x + e_j,t)\in \mathbb{R}^3 \times  \left[0,\infty \right)&& \forall\, 1\leq j\leq n\label{eq10}\\
-    & p,u\in C^{\infty}\left(\mathbb{R}^n \times \left[0,\infty \right) \right)
-    \label{eq11}
-\end{align}
-Desarrollando la ecuación (\ref{eq10}), se tiene:
-\begin{align*}
-&- \iint_{\mathbb{R}^n \times \mathbb{R}} u \cdot \Delta \frac{\partial \theta}{\partial t} \, dx\, dt - \sum_{ij} \iint_{\mathbb{R}^n \times \mathbb{R}} u_i u_j \frac{\partial \theta_i}{\partial x_j}\,dx\,dt\\
-&= \nu \iint_{\mathbb{R}^n \times \mathbb{R}} u \cdot  \Delta \theta\, dx\,dt + \iint_{\mathbb{R}^n \times \mathbb{R}} f \cdot \theta \, dx\, dt + \iint_{\mathbb{R}^n \times \mathbb{R}} p \cdot (\text{div}\theta)\,dx\,dt
-\end{align*}
-\subsection{Demostraciones a resolver}
-Se solicita una demostración de una de las siguientes cuatro afirmaciones.
-\begin{enumerate}
-    \item \textbf{Existencia y suavidad de las soluciones de Navier-Stokes en $\mathbb{R}^3$.}
-    \begin{enumerate}
-        \item Con $\nu>0$ y $n=3$, sea $u^{\circ}(x)$ cualquier campo vectorial suave y libre de divergencias que satisfaga la ecuación (\ref{eq4})
-        \item Se toma $f(x,t)=0$, entonces existe una función suave $p(x,t),u_i(x,t)$ en $\mathbb{R}^3\times [0,\infty)$ que satisfagan las ecuaciones (\ref{eq1}),(\ref{eq2}),(\ref{eq3}),(\ref{eq6}),(\ref{eq7})
-    \end{enumerate}
-    \item \textbf{Existencia y fluidez de soluciones Navier-Stokes en $\mathbb{R}^3/\mathbb{Z}^3$} \begin{enumerate}
-        \item Con $\nu > 0$ y $n = 3$. Sea $u^{\circ}(x)$ cualquier campo vectorial suave y libre de divergencia que satisfaga (\ref{eq8});
-        \item Se toma $f(x, t)=0$. Entonces existen funciones suaves $p(x, t)$, $u_i(x, t)$ en $R^3\times [0,\infty)$ que satisfacen (\ref{eq1}),(\ref{eq2}),(\ref{eq3}),(\ref{eq10}),(\ref{eq11})
-    \end{enumerate}
-    \item \textbf{Desglose de las soluciones Navier-Stokes en $\mathbb{R}^3$} \begin{enumerate}
-        \item  Con $\nu > 0$ y $n = 3$. Entonces existe un campo vectorial suave y libre de divergencia $u^{\circ}(x)$ en $\mathbb{R}^3$
-        \item y existe un $f(x, t)$ suave en $\mathbb{R}^3 \times [0,\infty)$, que satisface (\ref{eq4}), (\ref{eq5}), para el cual no existen soluciones $(p, u)$ de (\ref{eq1}),(\ref{eq2}),(\ref{eq3}),(\ref{eq6}),(\ref{eq7}) en $\mathbb{R}^3\times [0,\infty)$
-    \end{enumerate}
-    \item \textbf{Desglose de las soluciones Navier-Stokes en $\mathbb{R}^3/\mathbb{Z}^3$.} \begin{enumerate}
-        \item Con $\nu > 0$ y $n = 3$. Entonces existe un campo vectorial suave y libre de divergencia $u^{\circ}(x)$ en $\mathbb{R}^3$
-        \item y existe un $f(x, t)$ suave en $\mathbb{R}^3 \times [0,\infty)$, que satisface (\ref{eq8}), (\ref{eq9}), para el cual no existen soluciones $(p, u)$ de (\ref{eq1}),(\ref{eq2}),(\ref{eq3}),(\ref{eq10}),(\ref{eq11}) en $\mathbb{R}^3 \times [0,\infty)$.
-    \end{enumerate}
-\end{enumerate}
-\subsection{Resultados parciales conocidos}
-\subsubsection{Dos dimensiones}
-\textbf{Resuelto.} En la sección (\ref{sec321}), se demuestra para los análogos de las afirmaciones (1) y (2) por Ladyzhenskaya \cite{ladyzhenskaya1969mathematical}, también para el caso más difícil de las ecuaciones de Euler. 
-\subsubsection{Tres dimensiones}
-\textbf{Sin resolver.} En tres dimensiones, se sabe que (1) y (2) se mantienen siempre que la velocidad inicial $u^{\circ}$ satisfaga una condición de pequeñez. Para los datos iniciales $u^{\circ}(x)$ que no se supone que sean pequeños, se sabe que (1) y (2) se cumplen (también para $\nu=0$) si el intervalo de tiempo $[0,\infty)$ se reemplaza por un intervalo de tiempo pequeño $\left[0, T\right)$, dependiendo $T$ de los datos iniciales.
 
-Para un $u^{\circ}(x)$ inicial dado, el $T$ máximo permitido se denomina ``tiempo de explosión''. (1) y (2) se cumplen, o bien hay un $u^{\circ}(x)$ suave y sin divergencia para el cual (\ref{eq1}), (\ref{eq2}), (\ref{eq3}) tienen una solución con un tiempo de explosión finito. Para las ecuaciones de Navier-Stokes $(\nu > 0)$, si hay una solución con un tiempo de explosión finito $T$, entonces la velocidad $\left(u_i(x,t)\right)_{1\leq i \leq n}\in \mathbb{R}^n$ se vuelve ilimitado cerca del momento de la explosión.
-
-Se sabe que suceden otras cosas desagradables en el momento de explosión $T$, si $T < \infty$. Para las ecuaciones de Euler ($\nu = 0$), si hay una solución (con $f \equiv  0$) con un tiempo de explosión finito $T$, entonces la vorticidad $\omega(x, t) = curl_x u(x, t)$ satisface
-\begin{align}
-    &\text{Baele-Katp-Majda}&&\int_0^T \left\{ \sup_{x\in \mathbb{R}^3}\left\lvert \omega(x,t)\right\rvert\right\}\, dt = \infty
-\end{align}
-para que la vorticidad explote rápidamente.
-
-Muchos cálculos numéricos parecen mostrar una explosión en las soluciones de las ecuaciones de Euler, pero la extrema inestabilidad numérica de las ecuaciones hace que sea muy difícil sacar conclusiones confiables.
-
-Los resultados anteriores están muy bien tratados en el libro de Bertozzi y Majda \cite{majda2002vorticity}. A partir de Leray \cite{leray1934mouvement}, se han logrado importantes avances en la comprensión de las soluciones débiles de las ecuaciones de Navier-Stokes. Para llegar a la idea de una \texttt{solución débil} de las ecuaciones de Navier-Stokes.
-
-Para llegar a la idea de una solución débil en una Ecuación Diferencial Parcial (EDP), se integra la ecuación con una función de prueba y luego se integra por partes (formalmente) para hacer que las derivadas caigan en la función de prueba. Por ejemplo, si (\ref{eq1}) y (\ref{eq2}) se cumplen, entonces, para cualquier campo vectorial suave $\theta(x, t) = \left(\theta_i(x, t)\right)_{1\leq i\leq n}$ soportado de forma compacta en $\mathbb{R}^3 \times (0,\infty)$ , una integración formal por partes produce
-\begin{equation}
-\begin{split}
-    &\iint_{\mathbb{R}^3\times \mathbb{R}}u \frac{\partial \theta}{\partial t}\,dx\,dt - \sum_{ij} \iint_{\mathbb{R}^r\times \mathbb{R}}u_i u_j \frac{\partial \theta_i}{\partial x_j} \,dx\,dt\\
-    &=\nu \iint_{\mathbb{R}^r\times \mathbb{R}} u \cdot \Delta \theta\,dx\,dt + \iint_{\mathbb{R}^3\times \mathbb{R}} f \cdot \theta \,dx\,dt - \iint_{R^3\times \mathbb{R}}p \cdot \left(div\theta\right)\,dx\,dt
-    \label{eq12}
-\end{split}
-\end{equation}
-La ecuación (12) tiene sentido para $u\in L^2, f\in L^1, p\in L^1$, mientras que (\ref{eq1}) tiene sentido sólo si $u(x, t)$ es dos veces diferenciable en x. De manera similar, si $\varphi (x, t)$ es una función suave, soportada de manera compacta en $\mathbb{R}^3 \times (0,\infty)$, entonces una integración formal por partes y (\ref{eq2}) implica:
-\begin{equation}
-    \iint_{\mathbb{R}^3\times \mathbb{R}} u \cdot \nabla_x \varphi \,dx\,dt = 0
-    \label{eq13}
-\end{equation}
-Una solución de (\ref{eq12}), (\ref{eq13}) se llama solución débil de las ecuaciones de Navier Stokes.
-
-Una idea establecida desde hace mucho tiempo en el análisis es demostrar la existencia y regularidad de las soluciones de una EDP construyendo primero una solución débil y luego demostrando que cualquier solución débil es suave. Este programa se ha probado para Navier-Stokes con éxito parcial.
-
-Leray en \cite{leray1934mouvement} demostró que las ecuaciones de Navier-Stokes (\ref{eq1}), (\ref{eq2}), (\ref{eq3}) en tres dimensiones espaciales siempre tienen una solución débil $(p, u)$ con propiedades de crecimiento adecuadas. Se desconoce la unicidad de las soluciones débiles de la ecuación de Navier-Stokes. Para la ecuación de Euler, la unicidad de las soluciones débiles es sorprendentemente falsa. Scheffer \cite{scheffer1993inviscid} y, más tarde, Schnirelman \cite{shnirelman1997nonuniqueness} exhibieron soluciones débiles de las ecuaciones de Euler en $\mathbb{R}^2 \times \mathbb{R}$ con soporte compacto en el espacio-tiempo. Esto corresponde a un fluido que parte del reposo en el instante $t = 0$, comienza a moverse en el instante $t = 1$ sin estímulo externo y vuelve al reposo en el instante $t = 2$, con su movimiento siempre confinado a una bola $B \subset  \mathbb{R}^3$.
-
-Scheffer \cite{scheffer2006turbulence} aplicó ideas de la teoría de la medida geométrica para demostrar un teorema de regularidad parcial para soluciones débiles adecuadas de las ecuaciones de Navier-Stokes.
-
-Caffarelli-Kohn-Nirenberg \cite{caffarelli1982partial} mejoraron los resultados de Scheffer y F.-H. Lin \cite{lin1998new} simplificó las pruebas de los resultados en Caffarelli-Kohn-Nirenberg \cite{caffarelli1982partial}. El teorema de regularidad parcial de \cite{caffarelli1982partial}, \cite{lin1998new} se refiere a un análogo parabólico de la dimensión de Hausdorff del conjunto singular de una solución débil adecuada de Navier-Stokes. Aquí, el conjunto singular de una solución débil u consta de todos los puntos $(x^{\circ}, t^{\circ}) \in \mathbb{R}^3 \times \mathbb{R}$ tales que $u$ es ilimitado en todas las vecindades de $(x^{\circ}, t^{\circ})$. (Si la fuerza $f$ es suave, y si $(x^{\circ}, t^{\circ})$ no pertenece al conjunto singular, entonces no es difícil demostrar que u puede corregirse en un conjunto de medida cero para volverse suave en una vecindad de $(x^{\circ}, t^{\circ})$.)
-
-Para definir el análogo parabólico de la dimensión de Hausdorff, utilizamos cilindros parabólicos $Q_r = B_r \times I_r \subset \mathbb{R}^3 \times \mathbb{R}$, donde $B_r \subset \mathbb{R}^3$ es una bola de radio $r$, e $I_r \subset \mathbb{R}$ es un intervalo de longitud $r^2$. Dado $E \subset \mathbb{R} \times \mathbb{R}$ y $\delta  > 0$, establecemos
-\begin{equation*}
-    \mathcal{P}_{K,\delta}(E) = inf \left\{ \sum_{i = 1}^{\infty} r_{i}^{K}:Q_{r1},Q_{r2},\dots\text{Cubre }E, \text{ y cada }r_i<\delta \right\} 
-\end{equation*}
-y luego definir
-\begin{equation*}
-    \mathcal{P}_K(E) = \lim_{\delta \to 0+} \mathcal{P}_{K,\delta}(E)
-\end{equation*}
-Los principales resultados de \cite{caffarelli1982partial}, \cite{lin1998new} pueden expresarse aproximadamente de la siguiente manera:
-\begin{theorem}
-    Regularidad Parcial de Caffarelli-Kohn-Nirenberg y F.-H. Lin
-    \begin{enumerate}
-        \item (A) Sea u una solución débil de las ecuaciones de Navier-Stokes, que satisfaga condiciones de crecimiento adecuadas. Sea $E$ el conjunto singular de $u$. Entonces $\mathcal{P}_1(E)=0$.
-        \item (B) Dado un campo vectorial libre de divergencia $u^{\circ}(x)$ y una fuerza $f(x, t)$ que satisface (\ref{eq4}) y (\ref{eq5}), existe una solución débil de Navier-Stokes (\ref{eq1}), (\ref{eq2}), (\ref{eq3}) que satisfacen las condiciones de crecimiento en (A).
-    \end{enumerate}
-\end{theorem}
-En particular, el conjunto singular de $u$ no puede contener una curva espacio-temporal de la forma ${(x, t) \in \mathbb{R}^3 \times \mathbb{R}: x = \phi (t)}$. Este es el mejor teorema de regularidad parcial conocido hasta ahora para la ecuación de Navier-Stokes.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[ht]
+\centering
+  \includegraphics[width=0.5\textwidth]{t1.pdf}
+  \caption{Colectaros adecuados para los pluviómetros. (NORMA MEXICANA, 2013)}
+  \label{t1}
+\end{figure}
 
 
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Las soluciones débiles}
-En 1934, Leray introdujo el concepto de soluciones débiles en su libro ``Sobre el movimiento de un espacio de llenado de un líquido viscoso'' \cite{leray1934mouvement}. Este fue un avance significativo porque, aunque no siempre es posible encontrar soluciones clásicas (suaves) a las ecuaciones de Navier-Stokes, las soluciones débiles permiten un enfoque más general.
-
-\subsection{Existencia global de estas soluciones en tres dimensiones}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Ecuación de Nevier-Stokes en 2D}
-% ENCONTRAR FUENTE DE INFORMACIÓN Y CORREGIR EN CASO DE ERROR
-En 1958, Olga A. Ladyzhenskaya \cite{ladyzhenskaya1969mathematical} extendió estos conceptos al trabajar tanto con soluciones débiles como con soluciones fuertes (más regulares). Mientras que Leray se centró en la existencia de soluciones débiles, Ladyzhenskaya se ocupó también de la unicidad y regularidad de las soluciones, particularmente en dos dimensiones.
-
-La desigualdad multiplicativa:
-\begin{equation}
-    \left\lVert u \right\rVert_{L_4(\Omega)}^4\leq c \left\lVert u\right\rVert_{L_2(\Omega)}^2\left\lVert \nabla u\right\rVert_{L_2(\Omega)}^2  
-\end{equation}
-Que es válido para cualquier $u\in W_2^1(\Omega),\, \Omega\in \mathbb{R}^2$. Esta desigualdad dió la posibilidad de demostrar la existencia de una solución única global del sistema bidimensional Navier-Stokes
-\subsection{Demostración de Olga A. Ladyzhenskaya}
-\label{sec321}
-Del artículo de Ladyzhenskaya: Solución ``en grande'' del problema de valores en la frontera no estacionarios para el sistema Navier-Stokes con dos variables espaciales; traducido del ruso se describe a continuación la demostración original:
-
-Consideremos en la región $\Omega$ de cambios $x = (x_1, x_2)$ el sistema de ecuaciones de Navier-Stokes
-\begin{align}
-    \begin{split}
-    &v_t -\nu \Delta v + \sum_{k = 1}^{2} \upsilon_k \cdot v_{x_k} = - grad\: p + f(x,t)\\
-    &\text{div}\, v = 0
-    \label{eql1}
-    \end{split}
-\end{align}
-para funciones $v = \left(\upsilon_1(x, t), \upsilon_2(x, t)  \right)$ y $p(x, t)$ bajo condiciones iniciales y de frontera
-\begin{align}
-    v\mid_s = 0,&&v\mid_{t = 0} = a(x)\left(div\, a = 0 \right)
-    \label{eql2}
-\end{align}
-\begin{theorem}
-    El problema (\ref{eql1})-(\ref{eql2}) tiene solución única ``en general'' (es decir, para cualquier $t\geq 0$ para cualquier valor del número de Reynolds en el momento inicial y para $f$ arbitraria), si solo las integrales son finitas
-    \begin{align*}
-        \int_{\Omega} a^2\,dx,&&\int_{\Omega}\left(v_t(x,0)\right)^2\,dx, &&\int_0^t\int_{\Omega} f^2 + f_t^2\,dx\,dt
-    \end{align*}
-\end{theorem}
-De los resultados obtenidos en el trabajo (a), se deduce que toda la cuestión de la existencia ``en general'' se reduce ahora a obtener una estimación a priori de la integral
-\begin{equation}
-    \int_0^t\int_{\Omega} v_t^2\,dx\,dt + \int_{\Omega} \sum_{k = 1}^2 \upsilon_k^4(x,t)\,dx
-    \label{eql3}
-\end{equation}
-O $\max \left\lvert v \right\rvert $. En vista de esto, aquí hablaremos sólo de estimaciones a priori de las soluciones a los problemas (\ref{eql1}) a (\ref{eql2}). Se sabe que para soluciones del problema (\ref{eql1}) - (\ref{eql2}) la desigualdad se cumple
-\begin{align}
-    \begin{split}
-        &\int_{\Omega}v^2(x,t)\,dx + 2\nu \int_0^t\int_{\Omega}\sum_{k =1}^2 \left(v_{x_k}\right)^2\,dx\,dt\leq\\
-        &\leq \int_{\Omega}a^2\,dx + 2\left(\int_{\Omega}a^2\,dx\right)^{\frac{1}{2}}\left(\int_{\Omega} d^2\,dx\right)^{\frac{1}{2}}\,dt + 2\left[\int_0^t\left(\int f^2\,dx\right)^{\frac{1}{2}}\,dt\right]^2
-        \label{eql4}
-    \end{split}
-\end{align}
-Denotemos $\int_{\Omega}\sum_{k=1}^2\left[v_{x_k}(x,t)\right]^2\,dx=\varphi^2(t)$ De (\ref{eql4}) se deduce que conocemos la estimación de la integral $\int_0^t \varphi^2(t)\,dt $. Sea $\int_0^t\int_{\Omega} \left(f_t\right)^2\,dx\,dt<\infty$. vamos a diferenciar
-
-(\ref{eql1}) por t, multiplicar el resultado escalarmente por (vt) e integrar
-Después de transformaciones simples llegamos a la desigualdad.
-
-\begin{align}
-    \begin{split}
-        &\frac{1}{2} \int_{\Omega}\left[v_t(x,t)\right]^2\,dx\mid_{t = 0}^{t = t} + \nu\int_0^t\int_{\Omega}\sum_{k = 1}^2\left(v_{tx_p}\right)^2\,dx\,dt + \int_0^t\int_{\Omega}\sum_{k = 1}^2 \upsilon_{xt} v_{x_k}v_t\,dx\,dt\\
-        &= \int_0^t\int_{\Omega}f_tv_t\,dx\,dt
-        \label{e}
-    \end{split}
-\end{align}
-De donde se despeja:
-\begin{equation}
-    \phi^2(t)\mid_{t = 0}^{t = t} + 2\nu\int_0^t F^2(t)\,dt\leq c\int_0^t\phi(t)\left[\int_{\Omega}\sum_{k = 1}^2v^4_{kt}\,dx \right]^{\frac{1}{2}}\,dt +\int_0^t\phi(t)b(t)\,dt
-    \label{eql6}
-\end{equation}
-Dónde
-\begin{align*}
-    \phi^2(t) = \int_{\Omega}\left[v_t(x,t)\right]^2\,dx&&F^2(t) = \int_{\Omega}\sum_{k = 1}^2\left[v_{tx_k}(x,t)\right]^2\,dx&& b^2(t) = 2\int_{\Omega} f^2_t(x,t)\,dx
-\end{align*}
-y $c$ aquí (y más) significa las constantes que conocemos.
-
-Verifiquemos ahora que para cualquier función continuamente diferenciable soportada de forma compacta $u(x_1,x_2)$ dos variables espaciales se cumple la siguiente desigualdad:
-\begin{equation}
-    \iint u^4\left(x_1,x_2\right)\,dx_1\,dx_2\leq 2\iint u^2\left(x_1,x_2\right)\,dx_1\,dx_2\iint \left(u^{2}_{x_1} + u^{2}_{x_1} \right)\,dx_1\,dx_2
-    \label{eql7}
-\end{equation}
-En el que la integración se realiza en todo el espacio $x_1, x_2$.Es obvio que.
-\begin{equation*}
-    u^2\left(x_1,x_2\right) = 2 \int_{ - \infty}^{x_k} uu_{x_k}\,dx_k,\quad k = 1,2
-\end{equation*}
-y por lo tanto
-\begin{equation*}
-    \max_{x_k}u^2 \left(x_1,x_2\right) \leq 2\int_{ - \infty}^{\infty}\left\lvert uu_{x_k}\right\rvert \,dx_k,\quad k = 1,2
-\end{equation*}
-Es por eso
-\begin{align*}
-    &\iint_{ -\infty}^{\infty}u^4\,dx_1dx_2 \leq \int_{ -\infty}^{\infty}dx_2\left(\max_{x_1}u^2\cdot\int_{ -\infty}^{\infty}u^2\,dx_1  \right)\leq  \\
-    &\leq 2\int_{ -\infty }^{\infty}dx_2\left(\int_{ -\infty}^{\infty}\left\lvert uu_{x_1}\right\rvert \,dx_1 \max_{x_3}\int_{-\infty}^{\infty}u^2\,dx_1\right)\leq 4\int_{ -\infty}^{\infty}\left\lvert uu_{x_1} \right\rvert\,dx_1 \,dx_2\cdot \iint_{ -\infty}^{\infty}\left\lvert uu_{x_2}\right\rvert\,dx_1\,dx_2
-\end{align*}
-y esto implica desigualdad (\ref{eql7}).
-
-Usemos la desigualdad (\ref{eql7}) Para estimaciones $\int_0^t\int_{\Omega}\sum_{k = 1}^2 \upsilon_{kt}\,dx$ a la (\ref{eql6}). Porque $v_{kt}$ son iguales a cero en la frontera $S$, entonces para ellos, en virtud de (\ref{eql7}), tenemos
-\begin{equation*}
-    \left(\int_{\infty} \upsilon_{kt}^4\,dx \right)^{\frac{1}{2}} \leq \sqrt{2}\phi(t)F(t)
-\end{equation*}
-y por lo tanto de (\ref{eql6}) se sigue
-\begin{equation*}
-    \phi^2(t)\mid_{t = 0}^{t = t} + 2 \nu\int_0^t F^2(t)\,dt \leq C_1\int_0^t \varphi(t) \phi(t) F(t)\,dt + \int_0^i \phi(t)b(t)\,dt
-\end{equation*}
-De aquí, a su vez, concluimos consistentemente sobre la validez de las desigualdades.
-\begin{equation*}
-    \phi^2(t)\mid_{t = 0}^{t = t} + 2 \nu\int_0^t F^2(t)\,dt \leq \nu\int_0^t F^2(t)\,dt + \frac{c_1}{2\nu}\int_0^t \varphi^2\phi^2\,dt + \int_0^t\phi b\,dt
-\end{equation*}
-\begin{equation}
-    \phi^2(t)\leq c_2\int_0^t \left(\phi^2 + b^2\right)\phi^2\,dt + c_3,
-    \label{eql8}
-\end{equation}
-\begin{equation}
-    \nu \int_0^tF^2(t)\,ft\leq c_2\int_0^t\left(\phi^2 + b^2\right)\phi^2\,dt + c_3
-    \label{eql9}
-\end{equation}
-Dado que la función $\phi^2(t) + b^2(t)$ es sumable en $[0, t]$, se deduce de (\ref{eql8}) que $\phi^2(t)\leq c_4$ y de (\ref{eql9}) $\int_0^t F^2(t)\,dt\leq c_5$
-
-Estas desigualdades nos dan una estimación a priori de las soluciones, incluso más fuerte que (\ref{eql3}). De la prueba anterior se desprende claramente que el tamaño de la región, así como la suavidad de su límite, no afectan los valores de las constantes $c_k$. Estos últimos dependen únicamente de las integrales especificadas en el teorema.
-Tenga en cuenta que para cualquier función no negativa soportada de forma compacta $u(x_1,x_2)$ de dos variables, junto con (\ref{eql7}), la desigualdad también es cierta
-\begin{equation}
-    \iint u^3\,dx_1\,dx_2 \leq \frac{9}{8} \iint u\,dx_1\,dx_2 \iint \left(u_{x_1}^2 + u_{x_2}^2 \right)\,dx_1\,dx_2
-    \label{eql10}
-\end{equation}
-La prueba de desigualdad (\ref{eql7}) dada anteriormente es similar a la prueba de desigualdad (\ref{eql10}) de A. O. Gelfond.
-% https://www.mathnet.ru/links/e51b7b04594d18eae89a4ecb64309f08/dan42515.pdf
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Ecuaciones de Saint Venant}
-El sistema de ecuaciones de Saint-Venant está compuesto por dos conjuntos de ecuaciones: las ecuaciones de continuidad y las ecuaciones de cantidad de movimiento o momentum
-
-\subsection{Ecuación de continuidad} 
-La ecuación de continuidad tiene en cuenta un balance de masa sobre un volumen de control. En forma conservativa puede escribirse en términos del caudal $Q$ y del área $A$ de la siguiente manera:
-\begin{equation}
-    \frac{\partial Q}{\partial x} + \frac{\partial A}{\partial t} = 0
-\end{equation}
-De manera no conservativa en términos de la velocidad media longitudinal $V$ y la profundidad ($y$) así:
-\begin{equation}
-    V \frac{\partial y}{\partial x} + y \frac{\partial V}{\partial x} + \frac{\partial y}{\partial t} = 0
-\end{equation}
-
-\subsection{Ecuaciones de cantidad de movimiento}
-
-La ecuación de momentum surge al igualar las fuerzas externas aplicadas al
-volumen de control como la gravedad, la presión, la fricción, el viento entre
-otras. En forma conservativa puede escribirse esta ecuación en términos del
-caudal (Q) , área (A), profundidad (A), pendiente del canal ($S_0$),
-pendiente de fricción ($S_f$)  y de la gravedad ($g$) de la siguiente manera:
-
-\begin{equation}
-    \frac{1}{A} \frac{\partial Q}{\partial t} + \frac{1}{A} \frac{\partial }{\partial x} \left(\frac{Q^2}{A}\right) + g \frac{\partial y}{\partial x} - g\left(S_0 - S_f \right) = 0
-\end{equation}
-O de manera no conservativa en términos de la velocidad media longitudinal ($V$):
-
-\begin{equation}
-    \frac{\partial V}{\partial t} + V \frac{\partial V}{\partial x} + g \frac{\partial y}{\partial x} - g \frac{\partial y}{\partial x} - g\left(S_0 - S_f \right) = 0
-\end{equation}
-
-La forma final de continuidad y momento es:
-\begin{equation}
-    \frac{\partial }{\partial t} \left(\frac{A}{Q}  \right) + \frac{\partial }{\partial x} 
-\end{equation}
-
-
-\textbf{Campo de aceleraciones:}
-\begin{itemize}
-    \item Campo de presión: $P=P(x,y,z,t)$
-    \item Campo de velocidad: $\vec{V}= \vec{V}(x,y,z,t)$
-    \item Campo de aceleración: $\vec{a}= \vec{a}(x,y,z,t)$
-\end{itemize}
-$\vec{V}$ se puede desarrollar en las coordenadas cartesianas 
-\begin{equation}
-    \vec{V} = (u,v,w) = u(x,y,z,t)\vec{y} + v(x,y,z,t)\vec{j} + w(x,y,z,t)\vec{k}
-\end{equation}
-
-
-Aceleración de una partícula de fluido expresada como una variable de campo:
-\begin{equation}
-\vec{a}\left(x,y,z,t\right) = \frac{d\vec{V}}{dt} = \underbrace{\frac{\partial \vec{V}}{\partial t}}_{\text{Aceleración local}} + \underbrace{\left(\vec{V} \cdot \vec{\nabla}\right)\vec{V}}_{\text{Aceleración convectiva}}
-\end{equation}
-
-
-El operador gradiente u operador nabla, es un operador vectorial que se define en coordenadas cartesianas como:
-
-\begin{align}
-    \text{Gradiente}&& \vec{\nabla} = \left( \frac{\partial}{\partial x} \frac{\partial}{\partial y} \frac{\partial}{\partial z}    \right) = \vec{i} \frac{\partial }{\partial x} + \vec{j} \frac{\partial}{\partial y} + \vec{k} \frac{\partial}{\partial z} 
-\end{align}
-
-
-% \begin{align}
-%     \text{Derivada material}&& \frac{D}{DT} = \frac{d}{dt}= \frac{\partial}{\partial t} + \left(\vec{V} \cdot \vec{\nabla} \right)
-% \end{align}
-
-
-Ecuación para una línea de corriente:
-\begin{align}
-    \text{Línea de corriente}&& \frac{dr}{V} = \frac{dx}{u} = \frac{dy}{v} = \frac{dz}{w}
-\end{align}
-
-
-
-\section{Vorticidad}
-el vector de vorticidad se define matemáticamente como el rotacional del vector de velocidad V
-\begin{equation}
-    \vec{\zeta} = \vec{\nabla} \times  \vec{V} = rot(\vec{V})
-\end{equation}
-Resulta que el vector de razón de rotación es igual a la mitad del vector de vorticidad:
-\begin{equation}
-\vec{\omega} = \frac{1}{2}\vec{\nabla} \times \vec{V} = \frac{1}{2} rot(\vec{V}) = \frac{\vec{\zeta}}{2}
-\end{equation}
-Por lo tanto, la vorticidad es una medida de la rotación de una partícula de fluido.
-
-\section{Métodos Numéricos}
-% :
-\subsection{Métodos de Elementos Finitos (FEM)} 
-\subsection{Métodos Espectrales}
-\subsection{Elementos finitos estabilizados}
-\subsection{Métodos de Volumen Finito (FVM)}
-\subsection{Métodos Lattice Boltzmann}
-% \subsection{Ecaciones de presión de Poisson}
-% Galerkin
-
-\section{Simulación de Turbulencia}
-\subsection{Grandes Simulaciones de Turbulencia (LES)}
-\subsection{Modelos de Turbulencia RANS (Reynolds-Averaged Navier-Stokes)}
-%  RANS/URANS
 
 
 
 
-\section{Agricultura Vertical}
 
 
-% Teorías y modelos existentes
-% Estudios previos
+
+
+
+
+
+
+\section{Acceso a datos meteorológicos  de zonas de montaña en México}
+
+\section{Revisión de estudios previos sobre monitoreo ciudadano meteorológico}
+
+\section{Tecnologías actuales en monitoreo climático}
+
+IMPORTANCIA HIDROLÓGICA DE LAS ZONAS DE MONTAÑAS
+
+\section{Aportes del monitoreo ciudadano a la ciencia climática}
+
+
+
+
+
+
+
+
+
