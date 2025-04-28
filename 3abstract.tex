@@ -1,0 +1,27 @@
+% From mitthesis package
+% Version: 1.01, 2023/06/19
+% Documentation: https://ctan.org/pkg/mitthesis
+%
+% The abstract environment creates all the required headers and footnote. 
+% You only need to add the text of the abstract itself.
+%
+% Approximately 500 words or less; try not to use formulas or special characters
+% If you don't want an initial indentation, do \noindent at the start of the abstract
+\begin{abstract}
+% use \input rather than \include because we're inside an environment
+
+Recientes esfuerzos en ciencia ciudadana han demostrado el valor de las aplicaciones móviles para el monitoreo ambiental distribuido. En esta tesis, se presenta el desarrollo de Tláloc App, una aplicación multiplataforma basada en Flutter, diseñada para registrar y analizar datos de precipitación pluvial en el Monte Tláloc, utilizando la participación activa de los usuarios. La plataforma integra tecnologías como Firebase Realtime Database para almacenamiento en tiempo real, Google Play Console para su despliegue en Android, y algoritmos personalizados para el cálculo de mediciones reales basadas en el estado de vaciado de pluviómetros. El enfoque modular de desarrollo incluye una experiencia de usuario adaptable y escalable. Los resultados obtenidos demuestran que Tláloc App facilita la recolección sistemática de datos meteorológicos de forma económica y participativa, con posibilidades de expansión a otras regiones. Esta investigación propone un nuevo modelo de colaboración entre ciencia ciudadana y tecnología móvil en entornos de alta variabilidad climática.
+
+
+
+\textbf{Palabras-Clave:} Ciencia ciudadana, monitoreo de lluvia, Aplicaciones móviles.
+\end{abstract}
+
+\renewcommand\abstractname{ABSTRACT}
+\begin{abstract}
+	Recent efforts in citizen science have demonstrated the value of mobile applications for distributed environmental monitoring. This thesis presents the development of Tláloc App, a cross-platform application built with Flutter, designed to record and analyze rainfall data at Monte Tláloc through active user participation. The platform integrates technologies such as Firebase Realtime Database for real-time data storage, Google Play Console for Android deployment, and custom algorithms for calculating real measurements based on rain gauge statuses. The modular development approach includes a scalable and adaptable user experience. Results show that Tláloc App enables systematic, low-cost, and participatory meteorological data collection, with potential expansion to other regions. This research proposes a new model of collaboration between citizen science and mobile technology in areas with high climatic variability.
+
+
+	
+\textbf{Key-Words:} Citizen science, Rainfall monitoring, Mobile application
+\end{abstract}

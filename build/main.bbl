@@ -19,13 +19,111 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
+    \entry{aparicio1992}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d52e5931eb02f67ed7f1a33d26cfa964}{%
+           family={Aparicio\bibnamedelima Mijares},
+           familyi={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={F.\bibnamedelimi J.},
+           giveni={F\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {México, D.F.}%
+      }
+      \list{publisher}{1}{%
+        {Limusa}%
+      }
+      \strng{namehash}{d52e5931eb02f67ed7f1a33d26cfa964}
+      \strng{fullhash}{d52e5931eb02f67ed7f1a33d26cfa964}
+      \strng{bibnamehash}{d52e5931eb02f67ed7f1a33d26cfa964}
+      \strng{authorbibnamehash}{d52e5931eb02f67ed7f1a33d26cfa964}
+      \strng{authornamehash}{d52e5931eb02f67ed7f1a33d26cfa964}
+      \strng{authorfullhash}{d52e5931eb02f67ed7f1a33d26cfa964}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Fundamentos de hidrología de superficie}
+      \field{year}{1992}
+    \endentry
+    \entry{breña2013}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=efd0660ba93e36a521dea01ab136f769}{%
+           family={Breña},
+           familyi={B\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Universidad Autónoma Metropolitana}%
+      }
+      \strng{namehash}{efd0660ba93e36a521dea01ab136f769}
+      \strng{fullhash}{efd0660ba93e36a521dea01ab136f769}
+      \strng{bibnamehash}{efd0660ba93e36a521dea01ab136f769}
+      \strng{authorbibnamehash}{efd0660ba93e36a521dea01ab136f769}
+      \strng{authornamehash}{efd0660ba93e36a521dea01ab136f769}
+      \strng{authorfullhash}{efd0660ba93e36a521dea01ab136f769}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1.{ª}}
+      \field{title}{Principios y fundamentos de hidrología superficial}
+      \field{year}{2013}
+      \verb{urlraw}
+      \verb https://casadelibrosabiertos.uam.mx/gpd-principios-y-fundamentos-de-hidrologia-superficial.html
+      \endverb
+      \verb{url}
+      \verb https://casadelibrosabiertos.uam.mx/gpd-principios-y-fundamentos-de-hidrologia-superficial.html
+      \endverb
+    \endentry
+    \entry{coolr2021}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=3623a85ac53ac9a917e15bbadfb443c3}{%
+           family={Center},
+           familyi={C\bibinitperiod},
+           given={NASA\bibnamedelimb Goddard\bibnamedelimb Space\bibnamedelima Flight},
+           giveni={N\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim S\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3623a85ac53ac9a917e15bbadfb443c3}
+      \strng{fullhash}{3623a85ac53ac9a917e15bbadfb443c3}
+      \strng{bibnamehash}{3623a85ac53ac9a917e15bbadfb443c3}
+      \strng{authorbibnamehash}{3623a85ac53ac9a917e15bbadfb443c3}
+      \strng{authornamehash}{3623a85ac53ac9a917e15bbadfb443c3}
+      \strng{authorfullhash}{3623a85ac53ac9a917e15bbadfb443c3}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Cooperative Open Online Landslide Repository (COOLR)}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://gpm.nasa.gov/landslides/about.html
+      \endverb
+      \verb{url}
+      \verb https://gpm.nasa.gov/landslides/about.html
+      \endverb
+    \endentry
     \entry{inegi_texcoco}{misc}{}
       \name{author}{1}{}{%
-        {{hash=19a3c43378a42f984504fb3a67c1e490}{%
+        {{un=0,uniquepart=base,hash=19a3c43378a42f984504fb3a67c1e490}{%
            family={Estadística\bibnamedelimb y\bibnamedelimb Geografía\bibnamedelima (INEGI)},
            familyi={E\bibinitperiod\bibinitdelim y\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim (\bibinitperiod},
            given={Instituto\bibnamedelima Nacional},
            giveni={I\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0,
            prefix={de},
            prefixi={d\bibinitperiod}}}%
       }
@@ -55,11 +153,12 @@
     \endentry
     \entry{csic_ciencia_ciudadana}{book}{}
       \name{author}{1}{}{%
-        {{hash=5c3918e80ee63da0c15017db97db229d}{%
+        {{un=0,uniquepart=base,hash=5c3918e80ee63da0c15017db97db229d}{%
            family={Investigaciones\bibnamedelimb Científicas\bibnamedelima (CSIC)},
            familyi={I\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim (\bibinitperiod},
            given={Consejo\bibnamedelima Superior},
            giveni={C\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0,
            prefix={de},
            prefixi={d\bibinitperiod}}}%
       }
@@ -90,11 +189,12 @@
     \endentry
     \entry{ciga_monitoreo}{book}{}
       \name{author}{1}{}{%
-        {{hash=c666d9e27623c3329053c7d760beefa5}{%
+        {{un=0,uniquepart=base,hash=c666d9e27623c3329053c7d760beefa5}{%
            family={Investigaciones\bibnamedelimb en\bibnamedelimb Geografía\bibnamedelimb Ambiental\bibnamedelima (CIGA-UNAM)},
            familyi={I\bibinitperiod\bibinitdelim e\bibinitperiod\bibinitdelim G\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim (\bibinithyphendelim U\bibinitperiod},
            given={Centro},
            giveni={C\bibinitperiod},
+           givenun=0,
            prefix={de},
            prefixi={d\bibinitperiod}}}%
       }
@@ -125,11 +225,12 @@
     \endentry
     \entry{semarnat_pluviometro}{book}{}
       \name{author}{1}{}{%
-        {{hash=087284f02246eab81ed4a448dfbfec70}{%
+        {{un=0,uniquepart=base,hash=087284f02246eab81ed4a448dfbfec70}{%
            family={Medio\bibnamedelimb Ambiente\bibnamedelimb y\bibnamedelimb Recursos\bibnamedelimb Naturales\bibnamedelima (SEMARNAT)},
            familyi={M\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim y\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim N\bibinitperiod\bibinitdelim (\bibinitperiod},
            given={Secretaría},
            giveni={S\bibinitperiod},
+           givenun=0,
            prefix={de},
            prefixi={d\bibinitperiod}}}%
       }
@@ -158,9 +259,558 @@
       \verb https://biblioteca.semarnat.gob.mx/janium/Documentos/Ciga/Libros2011/CD001679.pdf
       \endverb
     \endentry
+    \entry{dennis2019groundwater}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=2dbdc923b790b69879dc46a9a7d13683}{%
+           family={Dennis},
+           familyi={D\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{2dbdc923b790b69879dc46a9a7d13683}
+      \strng{fullhash}{2dbdc923b790b69879dc46a9a7d13683}
+      \strng{bibnamehash}{2dbdc923b790b69879dc46a9a7d13683}
+      \strng{authorbibnamehash}{2dbdc923b790b69879dc46a9a7d13683}
+      \strng{authornamehash}{2dbdc923b790b69879dc46a9a7d13683}
+      \strng{authorfullhash}{2dbdc923b790b69879dc46a9a7d13683}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{WIT Transactions on Ecology and the Environment}
+      \field{title}{Groundwater Mobile App Development to Engage Citizen Science}
+      \field{volume}{239}
+      \field{year}{2019}
+      \field{pages}{103\bibrangedash 113}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.2495/WS190101
+      \endverb
+      \verb{urlraw}
+      \verb https://www.witpress.com/elibrary/wit-transactions-on-ecology-and-the-environment/239/37466
+      \endverb
+      \verb{url}
+      \verb https://www.witpress.com/elibrary/wit-transactions-on-ecology-and-the-environment/239/37466
+      \endverb
+    \endentry
+    \entry{backend}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=5a3089a19a6fe2740bde62328d352eec}{%
+           family={Education},
+           familyi={E\bibinitperiod},
+           given={IBM\bibnamedelima Cloud},
+           giveni={I\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5a3089a19a6fe2740bde62328d352eec}
+      \strng{fullhash}{5a3089a19a6fe2740bde62328d352eec}
+      \strng{bibnamehash}{5a3089a19a6fe2740bde62328d352eec}
+      \strng{authorbibnamehash}{5a3089a19a6fe2740bde62328d352eec}
+      \strng{authornamehash}{5a3089a19a6fe2740bde62328d352eec}
+      \strng{authorfullhash}{5a3089a19a6fe2740bde62328d352eec}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Consultado en abril de 2025}
+      \field{title}{What is Backend?}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://www.ibm.com/cloud/learn/backend
+      \endverb
+      \verb{url}
+      \verb https://www.ibm.com/cloud/learn/backend
+      \endverb
+    \endentry
+    \entry{elgar2021coastal}{article}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=603e0cdcae639d6f827c327363645fea}{%
+           family={Elgar},
+           familyi={E\bibinitperiod},
+           given={Steve},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5c5de6c62189866e4c67014908dea69d}{%
+           family={Raubenheimer},
+           familyi={R\bibinitperiod},
+           given={Britt},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bc0c89ec180f05275d908120423a73e9}{%
+           family={Dickhudt},
+           familyi={D\bibinitperiod},
+           given={Patrick\bibnamedelima J.},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c68d5a2034da064d2cc6bb2caa23b867}{%
+           family={McNinch},
+           familyi={M\bibinitperiod},
+           given={James\bibnamedelima E.},
+           giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9bc80e72ebfdfca014753aa58ba9201a}{%
+           family={Plant},
+           familyi={P\bibinitperiod},
+           given={Nicholas\bibnamedelima G.},
+           giveni={N\bibinitperiod\bibinitdelim G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1b1e5507c453df87988d497d5218271a}{%
+           family={List},
+           familyi={L\bibinitperiod},
+           given={John\bibnamedelima H.},
+           giveni={J\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ee6deacb9e88dc51b35bcee26f3a25f9}
+      \strng{fullhash}{68bd922a2fb0d0019914f619e7b9a050}
+      \strng{bibnamehash}{68bd922a2fb0d0019914f619e7b9a050}
+      \strng{authorbibnamehash}{68bd922a2fb0d0019914f619e7b9a050}
+      \strng{authornamehash}{ee6deacb9e88dc51b35bcee26f3a25f9}
+      \strng{authorfullhash}{68bd922a2fb0d0019914f619e7b9a050}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Hydrology}
+      \field{title}{Coastal Flooding Generated by Ocean Wave- and Surge-Driven Groundwater Fluctuations on a Sandy Barrier Island}
+      \field{volume}{603}
+      \field{year}{2021}
+      \field{pages}{126920}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.jhydrol.2021.126920
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/abs/pii/S0022169421009707
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/abs/pii/S0022169421009707
+      \endverb
+    \endentry
+    \entry{gonzalez2016}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=1c3b34051a99dd771310d0030b4339ed}{%
+           family={González},
+           familyi={G\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f9c32290373b033f8877dba5c27eaa0e}{%
+           family={Neilson},
+           familyi={N\bibinitperiod},
+           given={R.\bibnamedelimi P.},
+           giveni={R\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=96de3ffa1b94ccbcb54d8ed91b906579}{%
+           family={Lenihan},
+           familyi={L\bibinitperiod},
+           given={J.\bibnamedelimi M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{43a3c55e82c3618a0b677f3cf3223d6a}
+      \strng{fullhash}{f523ca678691032ac8838540c99dc0c7}
+      \strng{bibnamehash}{f523ca678691032ac8838540c99dc0c7}
+      \strng{authorbibnamehash}{f523ca678691032ac8838540c99dc0c7}
+      \strng{authornamehash}{43a3c55e82c3618a0b677f3cf3223d6a}
+      \strng{authorfullhash}{f523ca678691032ac8838540c99dc0c7}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nature}
+      \field{number}{6761}
+      \field{title}{Global patterns in biodiversity and climate change}
+      \field{volume}{402}
+      \field{year}{2016}
+      \field{pages}{335\bibrangedash 338}
+      \range{pages}{4}
+    \endentry
+    \entry{hill2021raintracker}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=2c79466de2532f3524da44e6a9131607}{%
+           family={Hill},
+           familyi={H\bibinitperiod},
+           given={Callum},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{2c79466de2532f3524da44e6a9131607}
+      \strng{fullhash}{2c79466de2532f3524da44e6a9131607}
+      \strng{bibnamehash}{2c79466de2532f3524da44e6a9131607}
+      \strng{authorbibnamehash}{2c79466de2532f3524da44e6a9131607}
+      \strng{authornamehash}{2c79466de2532f3524da44e6a9131607}
+      \strng{authorfullhash}{2c79466de2532f3524da44e6a9131607}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Aplicación disponible en Google Play Store}
+      \field{title}{Rain Tracker}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://play.google.com/store/apps/details?id=ccahill.com.au.raintracker
+      \endverb
+      \verb{url}
+      \verb https://play.google.com/store/apps/details?id=ccahill.com.au.raintracker
+      \endverb
+    \endentry
+    \entry{hubp1990}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=7cb8f6c17da0b194d3dd6e6c2104aa9a}{%
+           family={Hubp},
+           familyi={H\bibinitperiod},
+           given={J.\bibnamedelimi L.},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{7cb8f6c17da0b194d3dd6e6c2104aa9a}
+      \strng{fullhash}{7cb8f6c17da0b194d3dd6e6c2104aa9a}
+      \strng{bibnamehash}{7cb8f6c17da0b194d3dd6e6c2104aa9a}
+      \strng{authorbibnamehash}{7cb8f6c17da0b194d3dd6e6c2104aa9a}
+      \strng{authornamehash}{7cb8f6c17da0b194d3dd6e6c2104aa9a}
+      \strng{authorfullhash}{7cb8f6c17da0b194d3dd6e6c2104aa9a}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Revista Mexicana de Ciencias Geológicas}
+      \field{number}{1}
+      \field{title}{El relieve de la República Mexicana}
+      \field{volume}{9}
+      \field{year}{1990}
+      \field{pages}{82}
+      \range{pages}{1}
+    \endentry
+    \entry{illingworth2021ukprecipitation}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=9c7ce5d70c8b83ab8779dac15af16c22}{%
+           family={Illingworth},
+           familyi={I\bibinitperiod},
+           given={Samuel\bibnamedelima Michael},
+           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bf494d3bc5553d4c91726e5ebe1602d6}{%
+           family={coauthors},
+           familyi={c\bibinitperiod}}}%
+      }
+      \strng{namehash}{a358f939caf24e469f4cea7159e232be}
+      \strng{fullhash}{a358f939caf24e469f4cea7159e232be}
+      \strng{bibnamehash}{a358f939caf24e469f4cea7159e232be}
+      \strng{authorbibnamehash}{a358f939caf24e469f4cea7159e232be}
+      \strng{authornamehash}{a358f939caf24e469f4cea7159e232be}
+      \strng{authorfullhash}{a358f939caf24e469f4cea7159e232be}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Royal Meteorological Society}
+      \field{note}{Información adicional no disponible en los resultados de búsqueda.}
+      \field{title}{Red de ciudadanos sobre precipitaciones del Reino Unido: un estudio piloto}
+      \field{year}{2021}
+    \endentry
+    \entry{dart}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{1}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Consultado en abril de 2025}
+      \field{title}{Dart Programming Language}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://dart.dev/
+      \endverb
+      \verb{url}
+      \verb https://dart.dev/
+      \endverb
+    \endentry
+    \entry{firebase}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{2}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Consultado en abril de 2025}
+      \field{title}{Firebase}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://firebase.google.com/
+      \endverb
+      \verb{url}
+      \verb https://firebase.google.com/
+      \endverb
+    \endentry
+    \entry{firebaserealtime}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{3}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradate}{3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Consultado en abril de 2025}
+      \field{title}{Firebase Realtime Database}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://firebase.google.com/products/realtime-database
+      \endverb
+      \verb{url}
+      \verb https://firebase.google.com/products/realtime-database
+      \endverb
+    \endentry
+    \entry{googleplayconsole}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{4}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradate}{4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Consultado en abril de 2025}
+      \field{title}{Google Play Console}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://play.google.com/console/about/
+      \endverb
+      \verb{url}
+      \verb https://play.google.com/console/about/
+      \endverb
+    \endentry
+    \entry{lute2021enhancing}{article}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=3e56b8ed4c85d42966c2ec559438bd62}{%
+           family={Lute},
+           familyi={L\bibinitperiod},
+           given={A.\bibnamedelimi C.},
+           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6b975c30419e84e4cd0137df58ca60c5}{%
+           family={Mahoney},
+           familyi={M\bibinitperiod},
+           given={C.\bibnamedelimi A.},
+           giveni={C\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d866754d7be2be9a95f6d3a199b6dfa5}{%
+           family={Newman},
+           familyi={N\bibinitperiod},
+           given={A.\bibnamedelimi J.},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d6b7b13aab2d0d4b74cda796a32544d5}{%
+           family={Livneh},
+           familyi={L\bibinitperiod},
+           given={M.\bibnamedelimi A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f102344a00b7ce454b0e41e509b2a7e9}{%
+           family={Clow},
+           familyi={C\bibinitperiod},
+           given={D.\bibnamedelimi W.},
+           giveni={D\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=163daa84614f93542ee382800bca17b1}{%
+           family={Raleigh},
+           familyi={R\bibinitperiod},
+           given={M.\bibnamedelimi A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9c8abf85324d7d9b55935de0364f3c41}
+      \strng{fullhash}{9e8911ffc8c6432dffef52f9d337facb}
+      \strng{bibnamehash}{9e8911ffc8c6432dffef52f9d337facb}
+      \strng{authorbibnamehash}{9e8911ffc8c6432dffef52f9d337facb}
+      \strng{authornamehash}{9c8abf85324d7d9b55935de0364f3c41}
+      \strng{authorfullhash}{9e8911ffc8c6432dffef52f9d337facb}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Frontiers in Earth Science}
+      \field{title}{Enhancing Engagement of Citizen Scientists to Monitor Precipitation Phase}
+      \field{volume}{9}
+      \field{year}{2021}
+      \field{pages}{617594}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3389/feart.2021.617594
+      \endverb
+      \verb{urlraw}
+      \verb https://www.frontiersin.org/articles/10.3389/feart.2021.617594/full
+      \endverb
+      \verb{url}
+      \verb https://www.frontiersin.org/articles/10.3389/feart.2021.617594/full
+      \endverb
+    \endentry
+    \entry{mcginn2021using}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=c28dcc7ab61c18d4984ca1011d62cdf5}{%
+           family={McGinn},
+           familyi={M\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bf494d3bc5553d4c91726e5ebe1602d6}{%
+           family={coauthors},
+           familyi={c\bibinitperiod}}}%
+      }
+      \strng{namehash}{23904bf859e0e2c9154656a47fe14acb}
+      \strng{fullhash}{23904bf859e0e2c9154656a47fe14acb}
+      \strng{bibnamehash}{23904bf859e0e2c9154656a47fe14acb}
+      \strng{authorbibnamehash}{23904bf859e0e2c9154656a47fe14acb}
+      \strng{authornamehash}{23904bf859e0e2c9154656a47fe14acb}
+      \strng{authorfullhash}{23904bf859e0e2c9154656a47fe14acb}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Science of The Total Environment}
+      \field{title}{Using Citizen Science to Understand River Water Quality While Filling Data Gaps to Meet United Nations Sustainable Development Goal 6 Objectives}
+      \field{volume}{786}
+      \field{year}{2021}
+      \field{pages}{147466}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.scitotenv.2021.147466
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0048969721020234
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0048969721020234
+      \endverb
+    \endentry
+    \entry{frontend}{online}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=dbb094398e2de57acb05db8d569bafaf}{%
+           family={(MDN)},
+           familyi={(\bibinitperiod},
+           given={Mozilla\bibnamedelimb Developer\bibnamedelima Network},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{dbb094398e2de57acb05db8d569bafaf}
+      \strng{fullhash}{dbb094398e2de57acb05db8d569bafaf}
+      \strng{bibnamehash}{dbb094398e2de57acb05db8d569bafaf}
+      \strng{authorbibnamehash}{dbb094398e2de57acb05db8d569bafaf}
+      \strng{authornamehash}{dbb094398e2de57acb05db8d569bafaf}
+      \strng{authorfullhash}{dbb094398e2de57acb05db8d569bafaf}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Consultado en abril de 2025}
+      \field{title}{Front-end web developer}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://developer.mozilla.org/en-US/docs/Learn/Front-end_web_developer
+      \endverb
+      \verb{url}
+      \verb https://developer.mozilla.org/en-US/docs/Learn/Front-end_web_developer
+      \endverb
+    \endentry
     \entry{se2013}{misc}{}
       \name{author}{1}{}{%
-        {{hash=69e37aad3e41f4810712252aa73dc8a4}{%
+        {{un=0,uniquepart=base,hash=69e37aad3e41f4810712252aa73dc8a4}{%
            family={{Secretaría de Economía (SE)}},
            familyi={S\bibinitperiod}}}%
       }
@@ -190,11 +840,12 @@
     \endentry
     \entry{flutter_multiplataforma}{book}{}
       \name{author}{1}{}{%
-        {{hash=ca5bc79cc7ff37f87829a66ed680e0f2}{%
+        {{un=0,uniquepart=base,hash=ca5bc79cc7ff37f87829a66ed680e0f2}{%
            family={Stormacq},
            familyi={S\bibinitperiod},
            given={Sébastien},
-           giveni={S\bibinitperiod}}}%
+           giveni={S\bibinitperiod},
+           givenun=0}}%
       }
       \list{publisher}{1}{%
         {ENI Editions}%
@@ -220,6 +871,135 @@
       \endverb
       \verb{url}
       \verb https://www.amazon.com/-/es/Flutter-Desarrolle-aplicaciones-m%C3%B3viles-multiplataforma/dp/2409032575
+      \endverb
+    \endentry
+    \entry{tedla2022evaluation}{article}{}
+      \name{author}{6}{}{%
+        {{un=0,uniquepart=base,hash=68c33463c4f2a81d81ff57010bee8d60}{%
+           family={Tedla},
+           familyi={T\bibinitperiod},
+           given={Hailay\bibnamedelima Zeray},
+           giveni={H\bibinitperiod\bibinitdelim Z\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2bace2fe3675554b8fdec7e851ecba0b}{%
+           family={Haile},
+           familyi={H\bibinitperiod},
+           given={Alemseged\bibnamedelima Tamiru},
+           giveni={A\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=51cd2d8baecafadf3711ce7f4a6c5916}{%
+           family={Walker},
+           familyi={W\bibinitperiod},
+           given={David\bibnamedelima W.},
+           giveni={D\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b24c56f64a5536849b21236beb6eb769}{%
+           family={Gebreyesus},
+           familyi={G\bibinitperiod},
+           given={Wondimagegn},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f4987a021477988d500aac387ff3175e}{%
+           family={Alamirew},
+           familyi={A\bibinitperiod},
+           given={Tena},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=da187e6d305454b5cfc0ffab80df6291}{%
+           family={Dadi},
+           familyi={D\bibinitperiod},
+           given={Mulugeta},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{64c47b17ccafc2fd4e29f9fb85421e19}
+      \strng{fullhash}{e3bffd6ad18c8e39281aa13477069e7f}
+      \strng{bibnamehash}{e3bffd6ad18c8e39281aa13477069e7f}
+      \strng{authorbibnamehash}{e3bffd6ad18c8e39281aa13477069e7f}
+      \strng{authornamehash}{64c47b17ccafc2fd4e29f9fb85421e19}
+      \strng{authorfullhash}{e3bffd6ad18c8e39281aa13477069e7f}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Hydrology}
+      \field{title}{Evaluation of Factors Affecting the Quality of Citizen Science Rainfall Data in Akaki Catchment, Addis Ababa, Ethiopia}
+      \field{volume}{612}
+      \field{year}{2022}
+      \field{pages}{128284}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.jhydrol.2022.128284
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/abs/pii/S0022169422008563
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/abs/pii/S0022169422008563
+      \endverb
+    \endentry
+    \entry{van2017senseit}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=c1c541df6350eb8fa411498de9ba70a3}{%
+           family={Joolingen},
+           familyi={J\bibinitperiod},
+           given={Wouter},
+           giveni={W\bibinitperiod},
+           givenun=0,
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=946d2b4020c690902fbd98c8b122fa79}{%
+           family={Jong},
+           familyi={J\bibinitperiod},
+           given={Ton},
+           giveni={T\bibinitperiod},
+           givenun=0,
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=d91a5f3ed138cea3d3a07fe38f69483e}{%
+           family={Strijbos},
+           familyi={S\bibinitperiod},
+           given={Jan-Willem},
+           giveni={J\bibinithyphendelim W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d91a5f3ed138cea3d3a07fe38f69483e}{%
+           family={Strijbos},
+           familyi={S\bibinitperiod},
+           given={Jan-Willem},
+           giveni={J\bibinithyphendelim W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4a8bda0e47536d2298443441ac229718}
+      \strng{fullhash}{8c8dde22f88a032d623744e1064d4062}
+      \strng{bibnamehash}{8c8dde22f88a032d623744e1064d4062}
+      \strng{authorbibnamehash}{8c8dde22f88a032d623744e1064d4062}
+      \strng{authornamehash}{4a8bda0e47536d2298443441ac229718}
+      \strng{authorfullhash}{8c8dde22f88a032d623744e1064d4062}
+      \field{sortinit}{v}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Science Education}
+      \field{number}{17}
+      \field{title}{The Sense-it App: A Smartphone Sensor Toolkit for Citizen Inquiry Learning}
+      \field{volume}{39}
+      \field{year}{2017}
+      \field{pages}{2349\bibrangedash 2369}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1080/09500693.2017.1382522
+      \endverb
+      \verb{urlraw}
+      \verb https://www.researchgate.net/publication/314829291_The_Sense-it_App_A_Smartphone_Sensor_Toolkit_for_Citizen_Inquiry_Learning
+      \endverb
+      \verb{url}
+      \verb https://www.researchgate.net/publication/314829291_The_Sense-it_App_A_Smartphone_Sensor_Toolkit_for_Citizen_Inquiry_Learning
       \endverb
     \endentry
   \enddatalist

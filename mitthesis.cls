@@ -934,6 +934,7 @@
 
 %%%%%%%%%%  End title page module  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% TODO: ajustar abstract
 
 %%%%%%%%%%  Abstract page Module  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -944,19 +945,25 @@
 \RenewDocumentEnvironment{abstract}{+b}{
 	\newpage
     \begin{center}
-        {\large{\textbf{\g_mitthesis_title_tl}}\phantomsection\addcontentsline{toc}{chapter}{\abstractname}\par} % revise for tagging as LaTeX evolves further
-        \setlength{\parskip}{0.5\baselineskip plus 2pt minus 2pt}
-        \__author_abstractblock:
-        \par
-        \__degree_abstractblock:
+        {
+			
+		% \large{\textbf{\g_mitthesis_title_tl}}
+		
+		\phantomsection\addcontentsline{toc}{chapter}{\abstractname}\par
+		
+		} % revise for tagging as LaTeX evolves further
+        % \setlength{\parskip}{0.5\baselineskip plus 2pt minus 2pt}
+        % \__author_abstractblock:
+        % \par
+        % \__degree_abstractblock:
 	\end{center}
-    \skip_vertical:n {\baselineskip}
+    % \skip_vertical:n {\baselineskip}
 	\textbf{ \text_uppercase:n {\abstractname} }\par
 	\skip_vertical:n { 0.5em }
 	\tl_trim_spaces:n {#1}
 	\tl_if_blank:nT {#1} { MISSING\ ABSTRACT!  \msg_error:nn { \ClassName } { missing_abstract } }
 }{
-	\__supervisor_abstractblock:
+	% \__supervisor_abstractblock:
 	% \cleardoublepage
 }
 \msg_new:nnnn { \ClassName } { missing_abstract } {Missing\ Abstract!! } { No\ file\ was\ input\ for\ the\ abstract.\  You\ need\ to\ do\ \string\input{abstract.tex}.}

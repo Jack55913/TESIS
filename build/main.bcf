@@ -170,11 +170,11 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniquelist</bcf:key>
-      <bcf:value>false</bcf:value>
+      <bcf:value>minyear</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniquename</bcf:key>
-      <bcf:value>false</bcf:value>
+      <bcf:value>init</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniqueprimaryauthor</bcf:key>
@@ -399,11 +399,11 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniquelist</bcf:key>
-      <bcf:value>false</bcf:value>
+      <bcf:value>minyear</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniquename</bcf:key>
-      <bcf:value>false</bcf:value>
+      <bcf:value>init</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniqueprimaryauthor</bcf:key>
@@ -624,11 +624,11 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniquelist</bcf:key>
-      <bcf:value>false</bcf:value>
+      <bcf:value>minyear</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniquename</bcf:key>
-      <bcf:value>false</bcf:value>
+      <bcf:value>init</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>uniqueprimaryauthor</bcf:key>
@@ -2811,12 +2811,33 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">bibliography.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1">inegi_texcoco</bcf:citekey>
-    <bcf:citekey order="2">ciga_monitoreo</bcf:citekey>
-    <bcf:citekey order="3">csic_ciencia_ciudadana</bcf:citekey>
-    <bcf:citekey order="4">flutter_multiplataforma</bcf:citekey>
-    <bcf:citekey order="5">semarnat_pluviometro</bcf:citekey>
-    <bcf:citekey order="6">se2013</bcf:citekey>
+    <bcf:citekey order="2">aparicio1992</bcf:citekey>
+    <bcf:citekey order="3">gonzalez2016</bcf:citekey>
+    <bcf:citekey order="4">hubp1990</bcf:citekey>
+    <bcf:citekey order="5">inegi_texcoco</bcf:citekey>
+    <bcf:citekey order="6">breña2013</bcf:citekey>
+    <bcf:citekey order="7">ciga_monitoreo</bcf:citekey>
+    <bcf:citekey order="8">csic_ciencia_ciudadana</bcf:citekey>
+    <bcf:citekey order="9">flutter_multiplataforma</bcf:citekey>
+    <bcf:citekey order="10">dart</bcf:citekey>
+    <bcf:citekey order="11">firebase</bcf:citekey>
+    <bcf:citekey order="12">backend</bcf:citekey>
+    <bcf:citekey order="13">frontend</bcf:citekey>
+    <bcf:citekey order="14">googleplayconsole</bcf:citekey>
+    <bcf:citekey order="15">firebaserealtime</bcf:citekey>
+    <bcf:citekey order="16">semarnat_pluviometro</bcf:citekey>
+    <bcf:citekey order="17">se2013</bcf:citekey>
+    <bcf:citekey order="18">se2013</bcf:citekey>
+    <bcf:citekey order="19">se2013</bcf:citekey>
+    <bcf:citekey order="20">illingworth2021ukprecipitation</bcf:citekey>
+    <bcf:citekey order="21">lute2021enhancing</bcf:citekey>
+    <bcf:citekey order="22">tedla2022evaluation</bcf:citekey>
+    <bcf:citekey order="23">elgar2021coastal</bcf:citekey>
+    <bcf:citekey order="24">mcginn2021using</bcf:citekey>
+    <bcf:citekey order="25">dennis2019groundwater</bcf:citekey>
+    <bcf:citekey order="26">coolr2021</bcf:citekey>
+    <bcf:citekey order="27">van2017senseit</bcf:citekey>
+    <bcf:citekey order="28">hill2021raintracker</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

@@ -28,8 +28,6 @@
     language=spanish,
     hyperref=true,
     backref=true,
-    uniquelist=false,
-    uniquename=false,
 ]{biblatex}
 
 \addbibresource{bibliography.bib}
@@ -55,9 +53,11 @@
 \title{DESARROLLO DE UNA APLICACIÓN MULTIPLATAFORMA BASADA EN CIENCIA CIUDADANA PARA EL MONITOREO DE LLUVIA EN EL MONTE TLÁLOC}
 \Author{LUIS EMILIO ÁLVAREZ HERRERA}{Departamento de Irrigación}
 \Degree{INGENIERO EN IRRIGACIÓN}{DEPARTAMENTO DE IRRIGACIÓN}
-\Supervisor{Luis T. Castellanos Serano}{Profesor del DIMA}
-\Supervisor{Dr. Mauricio Carrillo García}{Profesor de Irrigación}
-\Supervisor{MAN. Eduardo Alvarado Trejo}{Profesor de Irrigación}
+\Supervisor{Dra. Teresa Margarita Gonzalez Martínez}{Profesora del COLPOS}
+\Supervisor{Luis Tonatiuh Castellanos Serrano}{Profesor del DIMA}
+\Supervisor{Francisco García Herrera}{Profesor de Irrigación}
+\Supervisor{Ramón Arteaga Ramírez}{Profesor de Irrigación}
+\Supervisor{Bernardino Cruz}{Profesor de Irrigación}
 \DegreeDate{June}{2025}
 \ThesisDate{June 15, 2025}
 \CClicense{CC BY-NC-ND 4.0}{https://creativecommons.org/licenses/by-nc-nd/4.0/}
@@ -65,8 +65,24 @@
 %%%%%%% INICIA NÚMEROS ROMANOS %%%%%%%
 
  
-\includepdf[pages=1]{cover.pdf}
-\include{acknowledgments}
+\includepdf[pages=1]{0cover.pdf}
+\includepdf[pages=1]{01sign.pdf}
+
+\pagenumbering{roman}
+\input{1acknowledgment.tex}
+\input{2biography.tex}
+
+\renewcommand{\contentsname}{CONTENIDO}
+\tableofcontents
+
+\renewcommand{\listtablename}{LISTA DE CUADROS}
+\listoftables
+
+\renewcommand{\listfigurename}{LISTA DE FIGURAS}
+\listoffigures
+
+\renewcommand{\abstractname}{RESUMEN}
+\input{3abstract.tex}
 
  
 %%%%%% CAMBIAR A NÚMEROS ARÁBIGOS DESPUÉS DE FRONTAL %%%%%%%
@@ -74,22 +90,20 @@
 \clearpage
 \pagenumbering{arabic}
 
-%%% Capitulos
-
-\include{chapters/1}
-\include{chapters/2}
-\include{chapters/3}
-\include{chapters/4}
-\include{chapters/5}
-\include{chapters/6}
+\include{docs/1}
+\include{docs/2}
+\include{docs/3}
+\include{docs/4}
+\include{docs/5}
+\include{docs/6}
 
 %%% Apéndices
-
-\appendix
-\include{appendixa}
 
 %%% Bibliografía
 
 \printbibliography[title={LITERATURA CONSULTADA},heading=bibintoc]
+
+\appendix
+\include{appendixa}
 
 \end{document}

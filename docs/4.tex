@@ -1,0 +1,171 @@
+\chapter{MATERIALES Y MÉTODOS}
+%  metodología estadística usada para probar las hipótesis
+% diseño experimental, modelo estadístico y procedimiento de análisis
+
+
+% IR ORDENANDO LOS MÉTODOS EN FUNCIÓN DE LOS OBJETIVOS. SIEMPRE LOS MÉTODOS SUELEN INICIAR CON LA DESCRIPCIÓN DEL SITIO O POBLACIÓN DE ESTUDIO. EL SITIO DE ESTUDIO ES EL MONTE TLÁLOC Y LA POBLACIÓN DE ESTUDIO SON  LAS PERSONAS QUÉ PARTICIPAN EN EL MONITOREO.
+
+% MÉTODOS PARA CUBRIR TODOS LOS OBJETIVOS
+% VER SI LA ENCUESTA ENTRA CÓMO OBJETIVO ADICIONAL O DENTRO DE EVALUACIÓN DEL NIVEL TEC.
+
+
+
+
+
+
+
+\section{Materiales}
+\subsection{Materiales físicos}
+\begin{itemize}
+    \item Se utilizaron pluviómetros calibrados con botellas graduadas de PET, instaladas en bases de metal y madera ubicadas en los sitios de monitoreo.
+
+    \item Se utilizaron dispositivos móviles con cualquier tipo de sistema operativo, para realizar pruebas de la aplicación Tláloc App.
+\end{itemize}
+
+\subsection{Infraestructura tecnológica virtual}
+
+\begin{itemize}
+    \item La aplicación se desarrolló utilizando el framework Flutter 3.0 (Dart SDK $\geq2.17$) con arquitectura multiplataforma, implementando Firebase como backend principal mediante los paquetes cloud\_firestore (almacenamiento en tiempo real), firebase\_auth (autenticación de usuarios) y firebase\_storage (gestión de archivos multimedia). 
+
+    \item Para la gestión de estado se empleó provider junto con flutter\_riverpod, asegurando reactividad en la visualización de datos pluviométricos. 
+    
+    \item La interfaz gráfica se enriqueció con syncfusion\_flutter\_charts (gráficos interactivos de precipitación), flutter\_map (georreferenciación con Leaflet.js), y lottie (animaciones en tiempo real). 
+    
+    \item La integración con hardware móvil se logró mediante mobile\_scanner (lectura de códigos QR en pluviómetros), location (geolocalización de reportes) y image\_picker (captura de evidencias fotográficas). 
+    
+    \item Se implementó persistencia local con shared\_preferences para configuración de usuario y connectivity\_plus para manejo de conexión offline y online. 
+    
+    \item La internacionalización se gestionó con intl y flutter\_localizations, soportando múltiples idiomas para la ciencia ciudadana global.
+\end{itemize}
+
+
+
+
+\section{Métodos}
+
+
+\subsection{Protocolo de monitoreo participativo:}
+
+Llevar a cabo un monitoreo de lluvia que involucró tres principales etapas esquematizadas en el sistema de la figura 4.
+
+
+1.1. Procesos Participativos con Ejidatarios 
+El primer paso consiste en establecer contacto con los miembros de la UEM para presentarles el proyecto y generar alianzas para su desarrollo. Posteriormente llevar  a cabo talleres participativos con cada Ejido para identificar a las personas que potencialmente podrían participar en el monitoreo y los lugares para instalar sitios de monitoreo. Luego de visitar los lugares propuestos por los ejidatarios, registrar datos como coordenadas, altitud, pendiente, tipo de vegetación, superficie desprovista de árboles y tamaño de los árboles circundantes. Esta información permite identificar los sitios más adecuados para instalar los sitios de monitoreo, siguiendo las recomendaciones de la Organización Meteorológica Mundial (OMM, 2014). En una etapa posterior se realiza un proceso de capacitación con los Ejidatarios y público en general para el monitoreo de la lluvia. Asimismo, crear un protocolo para facilitar a los Ejidatarios el uso de la información generada en sus actividades de manejo de los bosques.
+1.2. Diseño Técnico de Monitoreo
+Construir y calibrar pluviómetros con botellas de PET, siguiendo los lineamientos de la Norma Mexicana NMX-AA-166/1-SCFI-2013 (SE, 2013) y la Organización Meteorológica Mundial. La máxima capacidad de almacenamiento es de 153 mm y la escala tiene resolución de un mm, excepto por los primeros 5 mm que tienen resolución de 0.25 mm. Los pluviómetros se colocaron sobre bases de madera a un metro sobre el nivel del suelo. Para evitar pérdidas de agua por evaporación se utilizan 5 mm de aceite comestible vegetal por pluviómetro.
+
+Los pluviómetros se vacían y registran por el equipo técnico con una frecuencia de un mes (más menos dos días), a menos que sea necesario vaciar con mayor frecuencia. Los participantes envían sus registros sin una frecuencia específica, por lo que sus observaciones son adicionales a las que realiza el equipo técnico. Cada estación de monitoreo cuenta con letreros que poseen la información necesaria para que las personas puedan participar aunque no se les haya dado una capacitación personal. Se cuenta con siete estaciones de monitoreo en un gradiente altitudinal que va de 2683 a 3870 m. 
+1.3. Campaña de difusión con público en general
+Contar con una campaña permanente de difusión entre la gente que sube a la montaña. Generar material gráfico instalado en campo que invite a la población a participar, trípticos y carteles que se colocan en lugares estratégicos. Utilizar redes sociales para dar a conocer el proyecto y mecanismos para premiar a los participantes activos con regalos. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Desarrollo del código}
+
+
+\begin{itemize}
+    \item Definición de requerimientos funcionales y no funcionales
+    \item Análisis de usuario y contexto de uso
+    \item Diseño de arquitectura de la aplicación
+    \item Configuración inicial del proyecto Flutter
+    \item Estructuración modular del proyecto por capas
+    \item Implementación de navegación con GoRouter
+    \item Configuración de internacionalización (i18n) con Flutter Intl
+    \item Definición y aplicación de un sistema de theming personalizado
+    \item Modelado de datos y definición de entidades
+    \item Integración de Firebase Realtime Database
+    \item Implementación de servicios de autenticación (Firebase Auth)
+    \item Configuración de almacenamiento seguro local (Secure Storage)
+    \item Desarrollo de lógica de negocio en el gestor de estado (AppState)
+    \item Desarrollo de la UI responsiva basada en principios de Material 3
+    \item Implementación de componentes reutilizables (widgets personalizados)
+    \item Configuración de controladores de formularios y validaciones
+    \item Conexión de capa de presentación con capa de datos
+    \item Implementación de gráficos interactivos para estadísticas (bar charts)
+    \item Gestión de errores y manejo de excepciones
+    \item Pruebas unitarias y de widget
+    \item Optimización de rendimiento y buenas prácticas de renderizado
+    \item Implementación de control de versiones de la base de datos
+    \item Preparación de la aplicación para despliegue (build y signing)
+    \item Integración de anuncios mediante Google AdMob
+    \item Publicación de la aplicación en Google Play Console
+    \item Documentación técnica y guía de uso para usuarios
+\end{itemize}
+
+
+
+
+
+
+Programar una aplicación móvil y web denominada Tláloc App, disponible en https://tlaloc.web.app/ y en Play Store, con el fin de enviar las mediciones a una base de datos pública, que cuente con las siguientes características:
+Registro: Los usuarios podrán crear una cuenta y elegir mediante el escaneo de códigos Qr el paraje o sitio de monitoreo.
+Menú Principal: Disponer de tutoriales, información del proyecto, mapas de las rutas de acceso a los pluviómetros y datos de contacto.
+Envío: Campo para el registro de la precipitación, pluviómetro interactivo, booleano de vaciado, cambio de rol y paraje, fecha y hora de registro.
+Bitácora: Consulta, edita, comparte o elimina las mediciones.
+
+En el sistema de pluviómetros existen tres actores: Usuario, Pluviómetro, multiplataformas. El usuario es el actor principal que se interconecta en primera instancia con los códigos QR de cada paraje, de allí la comunicación entre una laptop, pc y el SmartPhone, el cual es seleccionada por el usuario y puede regirse bajo el sistema operativo android, ios, huawei, web y windows. El siguiente diagrama (Figura 5) describe la forma operativa del comportamiento del flujo de información del sistema.
+
+
+Figura 5. Diagrama de Flujo de Información del Sistema en Tláloc App. (Autoría Propia)
+
+
+
+% Método de validación
+%  pruebas de campo, validación cruzada de datos, retroalimentación de usuarios
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Evaluación del nivel de maduración tecnológica}
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
