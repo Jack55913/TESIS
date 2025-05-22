@@ -6,7 +6,101 @@
 \section{Protocolo de monitoreo participativo:}
 
 \section{Desarrollo del código}
- 
+
+
+\subsection{Función AppState}
+
+En el anexo \ref{anexo:alg1}, en laListado de Funcionalidades del Código
+\begin{enumerate}
+    \item Gestión de Usuario y Configuración
+    Autenticación con Google: Usa GoogleSignInProvider para manejar el inicio de sesión y obtiene el usuario actual (currentUser).
+    
+    Guardar Preferencias:
+    
+    changeParaje(): Cambia y guarda el paraje (ubicación) en SharedPreferences.
+    
+    changeRol(): Cambia y guarda el rol del usuario (ej: "Monitor") en SharedPreferences.
+    
+    Recupera datos guardados al inicializar (init()).
+    
+    \item Operaciones CRUD con Firebase Firestore
+    Crear Mediciones:
+    
+    addMeasurement(): Guarda una nueva medición en la colección measurements y calcula automáticamente el valor real (real\_measurements).
+    
+    addRealMeasurement(): Guarda una medición directamente en real\_measurements.
+    
+    Leer Datos:
+    
+    getMeasurements(), getRealMeasurements(): Obtienen listas de mediciones.
+    
+    Streams en tiempo real: getMeasurementsStream(), getRealMeasurementsStream(), y variantes por paraje.
+    
+    Actualizar Mediciones:
+    
+    updateMeasurement(): Actualiza una medición existente en measurements.
+    
+    updateRealMeasurement(): Actualiza una medición en real\_measurements.
+    
+    Eliminar Mediciones:
+    
+    deleteMeasurement(), deleteRealMeasurement(): Borran documentos de Firestore.
+    
+    \item Manejo de Imágenes con Firebase Storage
+    Sube imágenes a Storage desde la web o dispositivos móviles (en \_getMeasurementJson()).
+    
+    Convierte imágenes a URLs descargables o las guarda como base64 si no hay conexión.
+    
+    \item Lógica de Negocio
+    Cálculo de Precipitación Real: En addMeasurement(), determina si el pluviómetro fue vaciado y ajusta el valor de la precipitación.
+    
+    \item Gestión de Conexión
+    Verifica conectividad con Connectivity().checkConnectivity() para decidir cómo guardar imágenes.
+    
+\end{enumerate}
+
+Sobre los servicios de Firebase, fueron llamados en la tabla \ref{tabt2}
+
+
+\begin{table}[h!]
+    \centering
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{@{}ccc@{}}
+    \toprule
+    \textbf{Función}              & \textbf{Servicio de Firebase} & \textbf{Método/Acción}            \\ \midrule
+    Actualizar medición           & Firestore                     & update() en documentos            \\
+    Crear medición                & Firestore                     & add()                             \\
+    Eliminar medición             & Firestore                     & delete()                          \\
+    Subir imágenes                & Storage                       & putData(), putFile()              \\
+    Escuchar datos en tiempo real & Firestore                     & snapshots()                       \\
+    Autenticación                 & Auth                          & currentUser, uid, email, photoURL \\ \bottomrule
+    \end{tabular}%
+    }
+    \caption{Funciones Clave de Firebase en el Código}
+    \label{tabt2}
+    \end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \section{Evaluación del nivel de maduración tecnológica}
 

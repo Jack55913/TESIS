@@ -1,16 +1,49 @@
-% !TEX encoding = UTF-8 Unicode
-% !BIB TS-program = biber 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\documentclass[twoside,fontset=newtx-sans-text]{mitthesis}
-
+\documentclass[twoside]{mitthesis}
+% \usepackage{listings}
+\usepackage{xcolor} % Para colores
+\usepackage{minted}
+% \usepackage{hyperref}
 \usepackage[spanish]{babel}
 \usepackage{amsmath,amssymb,amsfonts}		
-\usepackage{listings}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{pdfpages}
+\usepackage{graphicx}
 
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+\tikzstyle{etapa} = [rectangle, rounded corners, minimum width=8cm, minimum height=1cm,text centered, draw=black, font=\small, text=black]
+\tikzstyle{orangebox} = [etapa, fill=orange!70]
+\tikzstyle{yellowbox} = [etapa, fill=yellow!70]
+\tikzstyle{cyanbox} = [etapa, fill=cyan!40]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+
+
+
+% \definecolor{dartkeyword}{rgb}{0.13,0.13,0.81}
+% \definecolor{dartcomment}{rgb}{0.56,0.35,0.01}
+
+% \lstdefinelanguage{dartstyle}{
+%     keywords={async, await, break, case, catch, class, const, continue, default, do, else, enum, export, extends, factory, false, final, finally, for, if, in, is, new, null, required, return, super, switch, this, throw, true, try, var, void, while, with},
+%     sensitive=true,
+%     comment=[l]{//},
+%     morecomment=[s]{/*}{*/},
+%     string=[b]",
+%     morestring=[b]',
+%     morestring=[b]'''
+% }
+
+
+\usemintedstyle{vs} 
+
+
+
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newtheorem{notation}{Notación}[chapter]
 \newtheorem{theorem}{Teorema}[chapter]
 \newtheorem{definition}{Definición}[chapter]
@@ -48,54 +81,11 @@
 % Márgenes
 \geometry{left=4cm, right=2.5cm, top=5cm, bottom=2.5cm}
 
+
 \begin{document}
+\input{content.tex}
+% \input{z.tex}
 
-\title{DESARROLLO DE UNA APLICACIÓN MULTIPLATAFORMA BASADA EN CIENCIA CIUDADANA PARA EL MONITOREO DE LLUVIA EN EL MONTE TLÁLOC}
-\Author{LUIS EMILIO ÁLVAREZ HERRERA}{Departamento de Irrigación}
-\Degree{INGENIERO EN IRRIGACIÓN}{DEPARTAMENTO DE IRRIGACIÓN}
-\Supervisor{Dra. Teresa Margarita Gonzalez Martínez}{Profesora del COLPOS}
-\Supervisor{Luis Tonatiuh Castellanos Serrano}{Profesor del DIMA}
-\Supervisor{Francisco García Herrera}{Profesor de Irrigación}
-\Supervisor{Ramón Arteaga Ramírez}{Profesor de Irrigación}
-\Supervisor{Bernardino Cruz}{Profesor de Irrigación}
-\DegreeDate{June}{2025}
-\ThesisDate{June 15, 2025}
-\CClicense{CC BY-NC-ND 4.0}{https://creativecommons.org/licenses/by-nc-nd/4.0/}
-
-%%%%%%% INICIA NÚMEROS ROMANOS %%%%%%%
-
- 
-\includepdf[pages=1]{0cover.pdf}
-\includepdf[pages=1]{01sign.pdf}
-
-\pagenumbering{roman}
-\input{1acknowledgment.tex}
-\input{2biography.tex}
-
-\renewcommand{\contentsname}{CONTENIDO}
-\tableofcontents
-
-\renewcommand{\listtablename}{LISTA DE CUADROS}
-\listoftables
-
-\renewcommand{\listfigurename}{LISTA DE FIGURAS}
-\listoffigures
-
-\renewcommand{\abstractname}{RESUMEN}
-\input{3abstract.tex}
-
- 
-%%%%%% CAMBIAR A NÚMEROS ARÁBIGOS DESPUÉS DE FRONTAL %%%%%%%
-
-\clearpage
-\pagenumbering{arabic}
-
-\include{docs/1}
-\include{docs/2}
-\include{docs/3}
-\include{docs/4}
-\include{docs/5}
-\include{docs/6}
 
 %%% Apéndices
 
@@ -105,5 +95,4 @@
 
 \appendix
 \include{appendixa}
-
 \end{document}
