@@ -174,7 +174,7 @@ Future<Map<String, dynamic>> _getMeasurementJson({
       pluviometer: pluviometer,
     );
 
-    // 1️⃣ Guarda la medición normal
+    // Guarda la medición normal
     await db
         .collection('roles')
         .doc(rol)
@@ -183,7 +183,7 @@ Future<Map<String, dynamic>> _getMeasurementJson({
         .collection('measurements')
         .add(data);
 
-    // 2️⃣ Obtener la última medición previa
+    // Obtener la última medición previa
     final lastSnapshot = await db
         .collection('roles')
         .doc(rol)
@@ -196,7 +196,7 @@ Future<Map<String, dynamic>> _getMeasurementJson({
 
     num realValue;
 
-    // 3️⃣ Lógica de realMeasure
+    //  Lógica de realMeasure
     if (lastSnapshot.docs.length < 2) {
       // Primera medición — se guarda tal cual
       realValue = precipitation;
@@ -215,7 +215,7 @@ Future<Map<String, dynamic>> _getMeasurementJson({
       }
     }
 
-    // 4️⃣ Guardar medición real
+    // Guardar medición real
     final realData = await _getMeasurementJson(
       uploader: uploader,
       precipitation: realValue,

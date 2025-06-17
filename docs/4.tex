@@ -9,16 +9,10 @@
 % MÉTODOS PARA CUBRIR TODOS LOS OBJETIVOS
 % VER SI LA ENCUESTA ENTRA CÓMO OBJETIVO ADICIONAL O DENTRO DE EVALUACIÓN DEL NIVEL TEC.
 
-
-
-
-
-
-
 \section{Materiales}
 \subsection{Instrumentación y equipos}
 \begin{itemize}
-    \item Se utilizaron pluviómetros calibrados con botellas graduadas de PET, instaladas en bases de metal y madera ubicadas en los sitios de monitoreo.
+    \item Se utilizaron pluviómetros calibrados con botellas graduadas hechas de PET, instaladas en bases de metal y madera ubicadas en los sitios de monitoreo.
 
     \item Se utilizaron dispositivos móviles con cualquier tipo de sistema operativo, para realizar pruebas de la aplicación Tláloc App.
 \end{itemize}
@@ -26,38 +20,30 @@
 \subsection{Infraestructura tecnológica virtual}
 
 \begin{itemize}
-    \item La aplicación se desarrolló utilizando el framework Flutter 3.0 (Dart SDK $\geq2.17$) con arquitectura multiplataforma, implementando Firebase como backend principal mediante los paquetes cloud\_firestore (almacenamiento en tiempo real), firebase\_auth (autenticación de usuarios) y firebase\_storage (gestión de archivos multimedia). 
+        \item \textbf{Instalaciones:} Se requiere descargar los siguientes programas en sus versiones actuales: \begin{enumerate}
+        \item \textbf{Kit de Desarrollo de Software}: Flutter
+        \item \textbf{Entorno de Desarrollo Integrado}: Visual Studio Code y Android Studio
+        \item \textbf{Herramientas de desarrollo}: Git y Visual Studio 2022  
+    \end{enumerate}
+    \item \textbf{Almacenamiento del código:} Se usarán los servicios de GitHub\footnote{plataforma propietaria para desarrolladores que permite crear, almacenar, administrar y compartir su código.}. Esta plataforma utiliza Git para proporcionar control de versiones distribuido y, a su vez, GitHub proporciona control de acceso, seguimiento de errores, solicitudes de funciones de software, gestión de tareas, integración continua a través del programa Visual Studio Code.
+    \item \textbf{Servicio de Base de datos:} Se creará un proyecto en Firebase para el Hosting en la web.
+    \item \textbf{Google Play Console:} Se usará para publicar el archivo .bundle a Google Play Store, para su accesibilidad de descarga en los dispositivos Android.
+\end{itemize}
 
-    \item Para la gestión de estado se empleó provider junto con flutter\_riverpod, asegurando reactividad en la visualización de datos pluviométricos. 
-    
-    \item La interfaz gráfica se enriqueció con syncfusion\_flutter\_charts (gráficos interactivos de precipitación), flutter\_map (georreferenciación con Leaflet.js), y lottie (animaciones en tiempo real). 
-    
-    \item La integración con hardware móvil se logró mediante mobile\_scanner (lectura de códigos QR en pluviómetros), location (geolocalización de reportes) y image\_picker (captura de evidencias fotográficas). 
-    
-    \item Se implementó persistencia local con shared\_preferences para configuración de usuario y connectivity\_plus para manejo de conexión offline y online. 
-    
-    \item La internacionalización se gestionó con intl y flutter\_localizations, soportando múltiples idiomas para la ciencia ciudadana global.
+\section{Método}
+La presente sección describe la los pasos empleados esquematizadas en la figura \ref{t2}, para abordar el problema central del proyecto, el cual se profundiza en el diseño y desarrollo de un algoritmo capaz de calcular valores de precipitación reales a partir de registros acumulados. Para ello, se parte de una lista de datos de entrada proporcionada por los usuarios, y se genera como salida una lista de valores corregidos que representan las mediciones reales, obtenidas mediante la resta entre cada nuevo dato y el inmediatamente anterior.
+
+Este proceso requiere, como paso previo, el diseño de un protocolo de monitoreo participativo que motive e instruya a los usuarios en el envío constante y preciso de datos. Posteriormente, se detalla el desarrollo del algoritmo dentro del entorno de la aplicación móvil, seguido de un análisis del estado actual del proyecto con base en el nivel de maduración tecnológica. En resumen, se elaborarán las siguientes actividades:
+\begin{itemize}
+  \item Protocolo de monitoreo participativo
+  \item Desarrollo de la aplicación móvil
+  \item Análisis del estado actual del proyecto
 \end{itemize}
 
 
 
 
-\section{Método}
 
-
-La presente sección describe la los pasos empleados para abordar el problema central del proyecto, el cual se profundiza en el diseño y desarrollo de un algoritmo capaz de calcular valores de precipitación reales a partir de registros acumulados. Para ello, se parte de una lista de datos de entrada proporcionada por los usuarios, y se genera como salida una lista de valores corregidos que representan las mediciones reales, obtenidas mediante la resta entre cada nuevo dato y el inmediatamente anterior.
-
-Este proceso requiere, como paso previo, el diseño de un protocolo de monitoreo participativo que motive e instruya a los usuarios en el envío constante y preciso de datos. Posteriormente, se detalla el desarrollo del algoritmo dentro del entorno de la aplicación móvil, seguido de un análisis del estado actual del proyecto con base en el nivel de maduración tecnológica.
-
-\subsection{Protocolo de monitoreo participativo:}
-
-El protocolo consiste en llevar a cabo un monitoreo de lluvia que involucró tres principales etapas esquematizadas en el sistema de la figura \ref{t2} las cuales son: 
-
-\begin{enumerate}
-  \item Proceso participativo de ejidatarios
-  \item Diseño técnico de monitoreo
-  \item Campaña de difusión con público en general
-\end{enumerate}
 
 \begin{figure}[h!]
     \centering
@@ -82,67 +68,58 @@ El protocolo consiste en llevar a cabo un monitoreo de lluvia que involucró tre
     \end{tikzpicture}
     \caption{Diagrama de flujo del Protocolo de monitoreo participativo. Autoría Propia, 2025.}
       \label{t2}
-    \end{figure}
+\end{figure}
 
-    
+\subsection{Protocolo de monitoreo participativo:}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsubsection{Descripción del sitio}
-Se define como los sitios de monitoreo dentro del Monte Tláloc señalizados por los carteles e identificados con el código QR.
-
-
-
-
-\subsubsection{Descripción de la población de estudio}
-
-La población de estudio para este trabajo, se define como toda persona que participe en el proceso del monitoreo; este se compone de los siguientes grupos identificados, con características muy contrastantes:
-
+El protocolo consiste en llevar a cabo un monitoreo de lluvia que involucró tres principales etapas las cuales son: 
 \begin{enumerate}
-    \item \textbf{Ejidatarios de la montaña (Unión de Ejidos de la Montaña) y sus cuadrillas de trabajo}: mayoritariamente hombres de entre 20 y 70 años, con nivel de estudios muy variado que llega hasta licenciatura, pero principalmente personas con educación básica a educación media. Son personas que suben a la montaña a hacer actividades de aprovechamiento forestal (aprovechan la madera y algunas otras cosas como musgo, perlilla y heno), y de mantenimiento del bosque (reforestación, chaponeo, podas, control de plagas, control de incendios, tendido de cercas, construcción de obras para control de erosión, remoción de suelo, mantenimiento de caminos, etc.). Algunos pertenecen a las localidades dueñas de los terrenos forestales, y otros son contratados de otros sitios, principalmente de Río Frío. En general suelen tener mucho trabajo, pero están dispuestos a colaborar y son los participantes del monitoreo con los que se ha tenido un contacto más estrecho. A este grupo se le va a dar una capacitación personalizada sobre el procedimiento para tomar las lecturas de los pluviómetros y se van a tener compromisos para la periodicidad de las mediciones, por lo que no es necesario convencerlos de participar.
-    \item \textbf{Visitantes externos}: son todas las personas que suben a la montaña pero que no provienen de los Ejidos de la Montaña. Principalmente adultos, con gusto por convivir en ambientes naturales y con las capacidades tecnológicas necesarias para participar (teléfono móvil, acceso a internet y facilidad para el manejo de aplicaciones). En este grupo se incluyen a personas que suben de manera frecuente y son una audiencia objetivo con mucho potencial de participación, como ciclistas, senderistas, campistas y guías de turistas de empresas privadas. Otros visitantes que suben cotidianamente, pero probablemente no estén interesados en participar, son grupos de personas con alto nivel socioeconómico que se dedican a subir en motocross, jeeps y racers, cuyo objetivo es la diversión sin considerar el bienestar de la naturaleza y el impacto que generan en la zona. Finalmente, también hay visitantes externos que suben muy esporádicamente o por ocasión única, algunos suben al evento de la montaña fantasma, otros vienen del interior de la república o simplemente no tienen la costumbre de subir continuamente. Estos tres subgrupos integran una audiencia que requiere más explicación sobre los objetivos del proyecto y de cómo pueden participar y beneficiarse.
-    \item \textbf{Visitantes internos}: son personas que forman parte de las localidades de los Ejidos de la Montaña pero que no trabajan con los ejidatarios, suben a realizar actividades como colecta de hongos o caminar. Es un grupo muy heterogéneo que incluye desde niños hasta adultos mayores, con mucho conocimiento sobre la zona de estudio (caminos y rutas, parajes, uso de los recursos naturales del bosque), pero probablemente no cuentan con las capacidades tecnológicas necesarias para participar (teléfono móvil, acceso a internet y facilidad para el manejo de aplicaciones).  Este grupo integra una audiencia que también requiere mucha explicación sobre los objetivos del proyecto y de cómo pueden participar y beneficiarse.
-    \item \textbf{Miembros de instituciones gubernamentales y técnicos forestales}: son profesionales encargados de supervisar las actividades de aprovechamiento y manejo forestal, de los recursos del agua y el estado del bosque. Incluye a empleados de Probosque (dependencia estatal), que supervisan constantemente los trabajos realizados en la zona y apoyan en las labores de combate de incendios. También incluye a empleados de otras entidades a nivel federal como (Comisión Nacional Forestal, Comisión Nacional de Áreas Naturales Protegidas, Secretaría de Recursos Naturales, Procuraduría Federal de Protección al Ambiente y Comisión Nacional del Agua). Es un grupo integrado por adultos de entre 30 y 50 años principalmente, con mucho conocimiento sobre la zona de estudio (caminos y rutas, parajes, uso de los recursos naturales del bosque), con las capacidades tecnológicas necesarias para participar (teléfono móvil, acceso a internet y facilidad para el manejo de aplicaciones).  Aunque algunos de ellos suben continuamente, no se sabe si van a tener la disponibilidad de participar aunque sea esporádicamente, ya que siempre tienen prisa.
-    \item \textbf{Miembros de la academia}: son estudiantes, profesores e investigadores que realizan actividades de investigación de muy distinta índole en la zona. Algunos suben de manera esporádica y otros suben frecuentemente. Es un grupo integrado por adultos de entre 25 y 60 años principalmente, con mucho conocimiento sobre la zona de estudio (caminos y rutas, parajes, conocimiento sobre el bosque), con las capacidades tecnológicas necesarias para participar (teléfono móvil, acceso a internet y facilidad para el manejo de aplicaciones). Algunas de las instituciones con mayor presencia en la zona son el Colegio de Postgraduados, Universidad Autónoma Chapingo, UNAM, UAM. Aunque algunos de ellos suben continuamente, no se sabe si van a tener la disponibilidad de participar aunque sea esporádicamente, ya que siempre tienen prisa.
+  \item Proceso participativo de ejidatarios
+  \item Diseño técnico de monitoreo
+  \item Campaña de difusión con público en general
 \end{enumerate}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \subsubsection{Procesos Participativos con Ejidatarios} 
-El primer paso consiste en establecer contacto con los miembros de la Unión Ejidal del Monte (UEM) para presentarles el proyecto y generar alianzas para su desarrollo. Posteriormente llevar a cabo talleres participativos con cada grupo ejidal (Nativitas, San Pablo Ixayoc, San Dieguito, Tequexquinahuac, Santa Catarina del Monte) para identificar a las personas que potencialmente podrían participar en el monitoreo y los lugares para instalar sitios de monitoreo. 
+El primer paso consiste en establecer contacto con los miembros de la Unión Ejidal del Monte (UEM) para presentarles el proyecto y generar alianzas para su desarrollo. Posteriormente llevar a cabo talleres participativos con cada grupo ejidal (Nativitas, San Pablo Ixayoc, San Dieguito, Tequexquinahuac, Santa Catarina del Monte) para identificar a las personas que potencialmente podrían participar en el monitoreo y los lugares para instalar sitios de monitoreo. Este paso se resume en estas dos actividades:
+\begin{itemize}
+  \item Contexto Geográfico
+  \item Descripción de la población de estudio
+\end{itemize}
 
+
+\subsubsection*{Criterio de selección de sitios de monitoreo}
 Luego de visitar los lugares propuestos por las autoridades, registrar los datos de coordenadas, altitud, pendiente, tipo de vegetación, superficie desprovista de árboles y tamaño de los árboles circundantes. Esta información permite identificar los sitios más adecuados para instalar los sitios de monitoreo, siguiendo las recomendaciones de la Organización Meteorológica Mundial (OMM, 2014). En una etapa posterior se realiza un proceso de capacitación con los Ejidatarios y público en general para el monitoreo de la lluvia. Asimismo, crear un protocolo para facilitar a los Ejidatarios el uso de la información generada en sus actividades de manejo de los bosques.
 
+
+% Los sitios de monitoreo se seleccionan a partir de las características siguientes:
+% \begin{itemize}
+%   \item Pendiente
+%   \item Distancia a obstáculos
+%   \item Homogeneidad de barrera
+%   \item Criterios de accesibilidad
+%   \item Altitud
+%   \item Tipo de vegetación
+% \end{itemize}
+
+\subsubsection*{Descripción de la población de estudio}
+
+Encuestar a la población que sube a la montaña en los sitios de monitoreo los parámetros descritos en la tabla \ref{tabt3}
+\begin{table}[h!]
+\centering
+\begin{tabular}{@{}cc@{}}
+\toprule
+Tipo de parámetro & Detalle                                           \\ \midrule
+Sociodemográfico      & Edad, sexo, nivel educativo, lugar de origen/localidad          \\
+Tecnológico       & Uso de celular, internet, manejo de apps          \\
+Actitudinal       & Disponibilidad, disposición a participar, interés \\
+Territorial/ecológico & Conocimiento del bosque, frecuencia de visita, actividades      \\
+Institucional/laboral & Tipo de relación con la zona (trabajo, recreación, supervisión) \\ \bottomrule
+\end{tabular}
+\caption{parámetros a identificar de la población}
+\label{tabt3}
+\end{table}
 
 \subsubsection{Diseño Técnico de Monitoreo}
 
@@ -153,7 +130,14 @@ Luego de visitar los lugares propuestos por las autoridades, registrar los datos
 \end{enumerate}
 
 
+% TODO: FALTA PONER MÁS ROLLO
 
+
+
+
+
+
+ 
 \subsubsection{Campaña de difusión con público en general}
 
 Este último paso, consiste en crear una campaña permanente de difusión entre la gente que sube a la montaña. Implica generar material gráfico instalado en campo que invite a la población a participar, trípticos y carteles que se colocan en lugares estratégicos;  utilizar las redes sociales para dar a conocer el proyecto y mecanismos para premiar a los participantes activos con regalos. 
@@ -283,6 +267,44 @@ Se plantea utilizar diversos medios y plataformas de divulgación enfocados en c
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \subsection{Desarrollo del código}
 
 En este sistema de monitoreo participan tres elementos principales: el usuario, el pluviómetro y la aplicación multiplataforma. El usuario es la persona encargada de registrar las mediciones realizadas por el pluviómetro artesanal, instalado en un paraje específico. Esta interacción ocurre a través de un código QR asignado a cada pluviómetro, el cual permite vincularlo con su ubicación y sus datos de monitoreo.
@@ -293,13 +315,23 @@ La Figura \ref{t3}, muestra el diagrama de flujo que representa el comportamient
 
 Finalmente, la metodología para el desarrollo del código, consiste en programar en lenguaje Dart, una aplicación multiplataforma, alojada en un sitio web y en Play Store, con el fin de enviar las mediciones a una base de datos pública, que con ayuda del diagrama \ref{t3}, cuente con las siguientes características:
 
-\begin{itemize}
+\begin{enumerate}
+  \item Backend \begin{enumerate}
+    \item Alojamiento del código en GitHub
+    \item Conexión de la base de datos y Hosting en la web en Firebase
+  \end{enumerate}
+  \item User Interface (UI) \begin{enumerate}
     \item \textbf{Registro de usuario}: Los usuarios podrán crear una cuenta y elegir el pluviómetro mediante el escaneo de códigos Qr del sitio de monitoreo 
     \item \textbf{Menú Principal}: Dispondrá de tutoriales, contador de mediciones, acerca de, tabulador de mediciones, mapas de las dos rutas, grupos para subir a la montaña y contacto
     \item \textbf{Envío de mediciones}: Campo de texto, pluviómetro interactivo, booleano de vaciado, cambio de paraje
     \item \textbf{Bitácora}: Disponibilidad de consulta, edición, difusión o eliminación de las mediciones propias y no de otros usuarios
     \item \textbf{Estadísticas}: Mostrará un gráfico interactivo en diferentes tiempo de interés, por ejemplo por semana, mes y año.
-\end{itemize}
+\end{enumerate}
+  \item User Experience (UX) \begin{enumerate}
+    \item Material Design
+    \item Tienda de aplicaciones
+  \end{enumerate}
+\end{enumerate}
 
 \begin{figure}[ht]
 \centering
@@ -308,69 +340,6 @@ Finalmente, la metodología para el desarrollo del código, consiste en programa
   \label{t3}
 \end{figure}
 
-\subsubsection{Requerimientos}
-Son necesarias las siguientes acciones para la programación en Flutter y su distribución:
-\begin{enumerate}
-    \item \textbf{Instalaciones:} Se requiere descargar los siguientes programas en sus versiones actuales: \begin{enumerate}
-        \item \textbf{Kit de Desarrollo de Software}: Flutter
-        \item \textbf{Entorno de Desarrollo Integrado}: Visual Studio Code y Android Studio
-        \item \textbf{Herramientas de desarrollo}: Git y Visual Studio 2022  
-    \end{enumerate}
-    \item \textbf{Almacenamiento del código:} Se usarán los servicios de GitHub\footnote{plataforma propietaria para desarrolladores que permite crear, almacenar, administrar y compartir su código.}. Esta plataforma utiliza Git para proporcionar control de versiones distribuido y, a su vez, GitHub proporciona control de acceso, seguimiento de errores, solicitudes de funciones de software, gestión de tareas, integración continua a través del programa Visual Studio Code.
-    \item \textbf{Servicio de Base de datos:} Se creará un proyecto en Firebase para el Hosting en la web.
-    \item \textbf{Google Play Console:} Se usará para publicar el archivo .bundle a Google Play Store, para su accesibilidad de descarga en los dispositivos Android.
-\end{enumerate}
-
-
-\subsubsection{Diseño de arquitectura de la aplicación}
-
-% DIAGRAMA QUE ANDO CHAMBEANDO EN FIGMA
-
-
-
-
-\subsubsection{Gestor de estado (AppState)}
-
-En Flutter, "AppState'' se refiere a la gestión del estado de la aplicación, específicamente al estado que no es efímero y que se mantiene a lo largo de toda la aplicación, o incluso entre sesiones. 
-
-Esto incluye información como las preferencias del usuario, el estado de autenticación o el carrito de compras en una aplicación de comercio electrónico. 
-
-
-Gestión del estado:
-
-En Flutter, el estado se refiere a la información que puede cambiar con el tiempo y afecta la interfaz de usuario. 
-
-
-AppState vs. estado efímero:
-El estado de la aplicación (AppState) es diferente del estado efímero, que es la información que se pierde cuando la aplicación se reinicia o se cierra. 
-
-
-Persistencia del estado:
-El estado de la aplicación a menudo se guarda en el disco para que pueda ser recuperado al reiniciarla, según la documentación de FlutterFlow.
-
-
-Herramientas para gestionar el estado:
-Flutter ofrece varias opciones para gestionar el estado, como los widgets StatefulWidget, Provider y otras bibliotecas de terceros. 
-
-
-Importancia:
-La gestión del estado correctamente es crucial para la funcionalidad y la experiencia del usuario en una aplicación Flutter, especialmente cuando la aplicación crece en complejidad. 
-
-
-
-\subsubsection{Configuración inicial del proyecto Flutter}
-
-
-\subsubsection{Implementación de servicios de autenticación (Firebase Auth)}
-
-
-\subsubsection{Desarrollo de la UI responsiva basada en principios de Material 3}
-\subsubsection{Implementación de componentes reutilizables (widgets personalizados)}
-
-\subsubsection{Implementación de gráficos interactivos para estadísticas (bar charts)}
-
-\subsubsection{Publicación de la aplicación en Google Play}y Console
-\subsubsection{Documentación técnica y guía de uso para usuarios}
 
 
 
@@ -386,39 +355,32 @@ La gestión del estado correctamente es crucial para la funcionalidad y la exper
 
 
 
-
-% Método de validación
-%  pruebas de campo, validación cruzada de datos, retroalimentación de usuarios
-
-
-
-
-
-
-
-
-
-
-
-\newpage
 \subsection{Evaluación del nivel de maduración tecnológica}
 
-a ver vamos a cambiarle cuánto tarda??
+El modelo del CONACyT, ahora SECIHTI, ha derivado la Norma Oficial Mexicana NMX-GT-004-IMNC-2012, identifica cada nivel de TRL por medio de una lista de verificación con preguntas dicotómicas con respuestas de ``si'' o ``no'', lo que permite que la herramienta sea eficiente.
 
 
+El Nivel de Madurez Tecnológica (NMT o Technology Readiness Level, TRL, en inglés) 
+Es una escala de medición usada para evaluar o medir el nivel de madurez de una
+tecnología particular. Cada proyecto es evaluado frente a los parámetros de cada
+nivel tecnológico y es asignado a una clasificación basada en el progreso del
+proyecto.
 
+Para la presente investigación, apoyándose de la figura \ref{m1} y \ref{m2}, se hará la evaluación del nivel de maduración tecnológica de Tlaloc App.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+\begin{figure}[ht]
+\centering
+  \includegraphics[width=1\textwidth]{m1.png}
+  \caption{Guía para el Diagnóstico del Nivel de Madurez Tecnológica (NMT o TRL, por sus siglas en inglés) Parte 1, Fuente: Secretaría de Ciencia, Humanidades, Tecnología e Innovación (Secihti),}
+  \label{m1}
+\end{figure}
+% TODO; CITA
+% https://secihti.mx/tecnologias-e-innovacion/convocatorias-desarrollo-tecnologico-vinculacion-e-innovacion/
+% https://secihti.mx/sistema-nacional-de-investigadores/marco-legal/
+\begin{figure}[ht]
+\centering
+  \includegraphics[width=1\textwidth]{m2.png}
+  \caption{Guía para el Diagnóstico del Nivel de Madurez Tecnológica (NMT o TRL, por sus siglas en inglés) Parte 2}
+  \label{m2}
+\end{figure}
 

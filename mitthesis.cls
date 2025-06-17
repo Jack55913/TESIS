@@ -200,7 +200,7 @@
 \else
 	\RequirePackage[hyperref,dvipsnames,svgnames,x11names]{xcolor}
 %
-	\RequirePackage{caption,subcaption}
+	% \RequirePackage{caption,subcaption}
 %
     \RequirePackage{titlesec}    
     % these titlesec commands just automate the bold math in some headings (rest follows default styles)
