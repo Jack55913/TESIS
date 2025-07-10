@@ -14,8 +14,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tlaloc/src/models/google_sign_in.dart';
 
-Uint8List? newWebImage; // Para imagenes web
-
 class Measurement {
   final String? uploader;
   final double? precipitation;
@@ -53,31 +51,69 @@ class Measurement {
 }
 
 class AppState extends ChangeNotifier {
+  Uint8List? _newWebImage;
+  Uint8List? get newWebImage => _newWebImage;
+  set newWebImage(Uint8List? value) {
+    _newWebImage = value;
+    notifyListeners(); // si quieres que se reconstruyan widgets
+  }
+
   final GoogleSignInProvider _authProvider;
+  final db = FirebaseFirestore.instance;
 
   AppState(this._authProvider) {
     init();
   }
 
-  User? get currentUser => _authProvider.currentUser;
-
   String rol = 'Monitor';
   String paraje = 'El Venturero';
   bool loading = true;
-  final db = FirebaseFirestore.instance;
+  List<String> adminUIDs = [];
+  bool isAdmin = false;
 
+  User? get currentUser => _authProvider.currentUser;
+  String? get currentUID => currentUser?.uid;
+
+  DocumentReference get _parajeRef =>
+      db.collection('roles').doc(rol).collection('parajes').doc(paraje);
+  CollectionReference get _measurementsRef =>
+      _parajeRef.collection('measurements');
+  CollectionReference get _realMeasurementsRef =>
+      _parajeRef.collection('real_measurements');
 
   Future<void> init() async {
     loading = true;
     notifyListeners();
+
     final prefs = await SharedPreferences.getInstance();
     rol = prefs.getString('rol') ?? 'Monitor';
     paraje = prefs.getString('paraje') ?? 'El Venturero';
+
+    await _loadAdminUIDs();
+    _checkAdminStatus();
+
     loading = false;
     notifyListeners();
   }
 
-  // Cambiar rol y paraje
+  Future<void> _loadAdminUIDs() async {
+    try {
+      final doc = await db.collection('admins').doc('adminUsers').get();
+      if (doc.exists) {
+        adminUIDs = List<String>.from(doc.data()?['uids'] ?? []);
+      }
+    } catch (e) {
+      debugPrint("Error cargando admins: $e");
+    }
+  }
+
+  void _checkAdminStatus() {
+    isAdmin = currentUID != null && adminUIDs.contains(currentUID);
+  }
+
+  bool canEditMeasurement(String? uploaderId) =>
+      currentUID == uploaderId || isAdmin;
+
   Future<void> changeParaje(String newParaje) async {
     paraje = newParaje;
     final prefs = await SharedPreferences.getInstance();
@@ -94,71 +130,100 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Datos de configuración del paraje
   Future<Map<String, dynamic>> getCurrentParajeData() async {
-    var snapshot = await db
-        .collection('roles')
-        .doc(rol)
-        .collection('parajes')
-        .doc(paraje)
-        .get();
-    return snapshot.data() ?? {};
+    var snapshot = await _parajeRef.get();
+    return (snapshot.data() as Map<String, dynamic>?) ?? {};
   }
 
-  // Construir JSON de medición
-Future<Map<String, dynamic>> _getMeasurementJson({
-  required num precipitation,
-  required DateTime time,
-  String? uploader,
-  File? image,
-  String? oldImage,
-  bool? pluviometer,
-}) async {
-  final auth = FirebaseAuth.instance;
-  String? fileUrl;
+  Future<String?> _uploadImage(
+    String fileNameBase, {
+    File? image,
+    String? oldImage,
+  }) async {
+    final storageRef = FirebaseStorage.instance.ref();
+    final connectivityResult = await Connectivity().checkConnectivity();
 
-  final storageRef = FirebaseStorage.instance.ref();
-  final fileNameBase =
-      '${time.toIso8601String()}_$precipitation${auth.currentUser?.email}';
-
-  final connectivityResult = await Connectivity().checkConnectivity();
-
-  if (kIsWeb && newWebImage != null) {
-    final imageRef = storageRef.child("measurements/$fileNameBase.png");
-    if (connectivityResult != ConnectivityResult.none) {
-      final metadata = SettableMetadata(contentType: 'image/png');
-      await imageRef.putData(newWebImage!, metadata);
-      fileUrl = await imageRef.getDownloadURL();
-    } else {
-      fileUrl = base64Encode(newWebImage!);
+    if (kIsWeb && newWebImage != null) {
+      if (connectivityResult != ConnectivityResult.none) {
+        final imageRef = storageRef.child("measurements/$fileNameBase.png");
+        final metadata = SettableMetadata(contentType: 'image/png');
+        await imageRef.putData(newWebImage!, metadata);
+        return await imageRef.getDownloadURL();
+      } else {
+        return base64Encode(newWebImage!);
+      }
+    } else if (image != null) {
+      if (connectivityResult != ConnectivityResult.none) {
+        final extension = image.path.split('.').last;
+        final imageRef = storageRef.child(
+          "measurements/$fileNameBase.$extension",
+        );
+        await imageRef.putFile(image);
+        return await imageRef.getDownloadURL();
+      } else {
+        return await image.readAsString();
+      }
     }
-  } else if (image != null) {
-    if (connectivityResult != ConnectivityResult.none) {
-      final fileExtension = image.path.split('.').last;
-      final imageRef =
-          storageRef.child("measurements/$fileNameBase.$fileExtension");
-      await imageRef.putFile(image);
-      fileUrl = await imageRef.getDownloadURL();
+
+    return oldImage;
+  }
+
+  Future<Map<String, dynamic>> _getMeasurementJson({
+    required num precipitation,
+    required DateTime time,
+    String? uploader,
+    File? image,
+    String? oldImage,
+    bool? pluviometer,
+  }) async {
+    final fileNameBase =
+        '${time.toIso8601String()}_$precipitation${currentUser?.email}';
+    final imageUrl = await _uploadImage(
+      fileNameBase,
+      image: image,
+      oldImage: oldImage,
+    );
+
+    return {
+      'uploader_id': currentUID,
+      'precipitation': precipitation,
+      'uploader_name': uploader,
+      'uploader_email': currentUser?.email,
+      'time': time,
+      'image': imageUrl,
+      'avatar_url': currentUser?.photoURL,
+      'pluviometer_state': pluviometer,
+    };
+  }
+
+  Future<void> _saveMeasurement(
+    String collectionName,
+    Map<String, dynamic> data,
+  ) async {
+    await _parajeRef.collection(collectionName).add(data);
+  }
+
+  Future<num> _calculateRealValue(num current, bool? wasEmptied) async {
+    final lastSnapshot =
+        await _measurementsRef.orderBy('time', descending: true).limit(2).get();
+
+    if (lastSnapshot.docs.length < 2 || wasEmptied == true) {
+      return current;
     } else {
-      fileUrl = await image.readAsString();
+      final prevData = lastSnapshot.docs[1].data() as Map<String, dynamic>;
+      final prevPrecip = prevData['precipitation'] as num? ?? 0;
+      return current - prevPrecip;
     }
   }
 
-  return {
-    'uploader_id': auth.currentUser?.uid,
-    'precipitation': precipitation,
-    'uploader_name': uploader,
-    'uploader_email': auth.currentUser?.email,
-    'time': time,
-    'image': fileUrl,
-    'avatar_url': auth.currentUser?.photoURL,
-    'pluviometer_state': pluviometer,
-  };
-}
+  Future<void> updateGlobalCounter(int delta) async {
+    final counterRef = db.collection('notifications').doc('globalCounter');
+    await counterRef.set({
+      'count': FieldValue.increment(delta),
+      'timestamp': FieldValue.serverTimestamp(),
+    }, SetOptions(merge: true));
+  }
 
-
-  
-  // Agregar medición
   Future<void> addMeasurement({
     required num precipitation,
     required DateTime time,
@@ -173,49 +238,9 @@ Future<Map<String, dynamic>> _getMeasurementJson({
       image: image,
       pluviometer: pluviometer,
     );
+    await _saveMeasurement('measurements', data);
 
-    // Guarda la medición normal
-    await db
-        .collection('roles')
-        .doc(rol)
-        .collection('parajes')
-        .doc(paraje)
-        .collection('measurements')
-        .add(data);
-
-    // Obtener la última medición previa
-    final lastSnapshot = await db
-        .collection('roles')
-        .doc(rol)
-        .collection('parajes')
-        .doc(paraje)
-        .collection('measurements')
-        .orderBy('time', descending: true)
-        .limit(2)
-        .get();
-
-    num realValue;
-
-    //  Lógica de realMeasure
-    if (lastSnapshot.docs.length < 2) {
-      // Primera medición — se guarda tal cual
-      realValue = precipitation;
-    } else {
-      final prevDoc = lastSnapshot.docs[1];
-      final prevData = prevDoc.data();
-      final prevPrecipitation = prevData['precipitation'] as num? ?? 0;
-      // final prevCleared = prevData['pluviometer_state'] as bool? ?? false;
-
-      if (pluviometer == true) {
-        // Si se vació el pluviómetro
-        realValue = precipitation;
-      } else {
-        // Si no se vació, resta la anterior
-        realValue = precipitation - prevPrecipitation;
-      }
-    }
-
-    // Guardar medición real
+    final realValue = await _calculateRealValue(precipitation, pluviometer);
     final realData = await _getMeasurementJson(
       uploader: uploader,
       precipitation: realValue,
@@ -223,17 +248,11 @@ Future<Map<String, dynamic>> _getMeasurementJson({
       image: image,
       pluviometer: pluviometer,
     );
+    await _saveMeasurement('real_measurements', realData);
 
-    await db
-        .collection('roles')
-        .doc(rol)
-        .collection('parajes')
-        .doc(paraje)
-        .collection('real_measurements')
-        .add(realData);
+    await updateGlobalCounter(1);
   }
 
-  // Agregar medición real
   Future<void> addRealMeasurement({
     required num precipitation,
     required DateTime time,
@@ -249,117 +268,67 @@ Future<Map<String, dynamic>> _getMeasurementJson({
       image: image,
       pluviometer: pluviometer,
     );
-
-    await db
-        .collection('roles')
-        .doc(rol)
-        .collection('parajes')
-        .doc(paraje)
-        .collection('real_measurements')
-        .add(data);
+    await _saveMeasurement('real_measurements', data);
   }
 
-  // Convertir snapshot a lista ordenada de mediciones
   List<Measurement> getMeasurementsFromDocs(
-      List<QueryDocumentSnapshot<Map<String, dynamic>>> docs) {
+    List<QueryDocumentSnapshot<Map<String, dynamic>>> docs,
+  ) {
     final measurements =
         docs.map((doc) => Measurement.fromJson(doc.data(), doc.id)).toList();
     measurements.sort((a, b) => b.dateTime!.compareTo(a.dateTime!));
     return measurements;
   }
 
-  // Obtener mediciones existentes
-  Future<List<Measurement>> getMeasurements() async {
-    final event = await db
-        .collection('roles')
-        .doc(rol)
-        .collection('parajes')
-        .doc(paraje)
-        .collection('measurements')
-        .get();
-    return getMeasurementsFromDocs(event.docs);
-  }
+  Future<List<Measurement>> getMeasurements() async => getMeasurementsFromDocs(
+    (await _measurementsRef.get() as QuerySnapshot<Map<String, dynamic>>).docs,
+  );
 
-  // Streams
-  Stream<QuerySnapshot<Map<String, dynamic>>> getMeasurementsStream() {
-    // Capturar valores actuales en variables locales
-    final currentRol = rol;
-    final currentParaje = paraje;
+  Future<List<Measurement>> getRealMeasurements() async =>
+      getMeasurementsFromDocs(
+        (await _realMeasurementsRef.get()
+                as QuerySnapshot<Map<String, dynamic>>)
+            .docs,
+      );
 
-    return FirebaseFirestore.instance
-        .collection('roles')
-        .doc(currentRol) // Usa versión congelada
-        .collection('parajes')
-        .doc(currentParaje) // Usa versión congelada
-        .collection('measurements')
-        .orderBy('time', descending: false)
-        .snapshots();
-  }
-
-  Future<List<Measurement>> getRealMeasurements() async {
-    final event = await db
-        .collection('roles')
-        .doc(rol)
-        .collection('parajes')
-        .doc(paraje)
-        .collection('real_measurements')
-        .get();
-    return getMeasurementsFromDocs(event.docs);
-  }
-
-  Stream<QuerySnapshot<Map<String, dynamic>>> getRealMeasurementsStream() {
-    return db
-        .collection('roles')
-        .doc(rol)
-        .collection('parajes')
-        .doc(paraje)
-        .collection('real_measurements')
-        .snapshots();
-  }
-
-  // Streams globales (por paraje fijo)
-  Stream<QuerySnapshot<Map<String, dynamic>>> getMeasurementsStreamForParaje(
-      String parajeName) {
-    return db
+  Stream<QuerySnapshot<Map<String, dynamic>>> _measurementStream(
+    String collection, {
+    String? parajeOverride,
+  }) {
+    final ref = db
         .collection('roles')
         .doc('Monitor')
         .collection('parajes')
-        .doc(parajeName)
-        .collection('measurements')
+        .doc(parajeOverride ?? paraje)
+        .collection(collection);
+    return ref.orderBy('time', descending: false).snapshots();
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getMeasurementsStream() =>
+      _measurementStream('measurements');
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getRealMeasurementsStream() =>
+      _measurementStream('real_measurements');
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getMeasurementsStreamForParaje(
+    String name,
+  ) => _measurementStream('measurements', parajeOverride: name);
+
+  Stream<QuerySnapshot<Map<String, dynamic>>>
+  getRealMeasurementsStreamForParaje(String name) =>
+      _measurementStream('real_measurements', parajeOverride: name);
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getAllUserMeasurementsStream() {
+    if (currentUID == null) return const Stream.empty();
+    return db
+        .collectionGroup('measurements')
+        .where('uploader_id', isEqualTo: currentUID)
         .snapshots();
   }
 
+  Stream<QuerySnapshot<Map<String, dynamic>>> getAllMeasurementsStream() =>
+      db.collectionGroup('measurements').snapshots();
 
-Stream<QuerySnapshot<Map<String, dynamic>>> getRealMeasurementsStreamForParaje(
-    String parajeName) {
-  return db
-      .collection('roles')
-      .doc('Monitor')
-      .collection('parajes')
-      .doc(parajeName)
-      .collection('real_measurements')
-      .orderBy('time', descending: false)
-      .snapshots();
-}
-
-
-  // Streams de usuario
-  Stream<QuerySnapshot<Map<String, dynamic>>> getAllUserMeasurementsStream() {
-    final userId = FirebaseAuth.instance.currentUser?.uid;
-  if (userId == null) return const Stream.empty();
-
-  return db
-      .collectionGroup('measurements')
-      .where('uploader_id', isEqualTo: userId)
-      .snapshots();
-  }
-
-  // Stream de todas las mediciones
-  Stream<QuerySnapshot<Map<String, dynamic>>> getAllMeasurementsStream() {
-    return db.collectionGroup('measurements').snapshots();
-  }
-
-  // Actualizar mediciones
   Future<void> updateMeasurement({
     required String id,
     required num precipitation,
@@ -368,7 +337,11 @@ Stream<QuerySnapshot<Map<String, dynamic>>> getRealMeasurementsStreamForParaje(
     File? image,
     bool? pluviometer,
     String? oldImage,
+    required String uploaderId,
   }) async {
+    if (!canEditMeasurement(uploaderId)) {
+      throw Exception("No tiene permisos para editar esta medición");
+    }
     final data = await _getMeasurementJson(
       uploader: uploader,
       precipitation: precipitation,
@@ -377,15 +350,7 @@ Stream<QuerySnapshot<Map<String, dynamic>>> getRealMeasurementsStreamForParaje(
       oldImage: oldImage,
       pluviometer: pluviometer,
     );
-
-    await db
-        .collection('roles')
-        .doc(rol)
-        .collection('parajes')
-        .doc(paraje)
-        .collection('measurements')
-        .doc(id)
-        .update(data);
+    await _measurementsRef.doc(id).update(data);
   }
 
   Future<void> updateRealMeasurement({
@@ -405,42 +370,1891 @@ Stream<QuerySnapshot<Map<String, dynamic>>> getRealMeasurementsStreamForParaje(
       oldImage: oldImage,
       pluviometer: pluviometer,
     );
-
-    await db
-        .collection('roles')
-        .doc(rol)
-        .collection('parajes')
-        .doc(paraje)
-        .collection('real_measurements')
-        .doc(id)
-        .update(data);
+    await _realMeasurementsRef.doc(id).update(data);
   }
 
-  // Eliminar mediciones
   Future<void> deleteMeasurement({required String id}) async {
-    await db
-        .collection('roles')
-        .doc(rol)
-        .collection('parajes')
-        .doc(paraje)
-        .collection('measurements')
-        .doc(id)
-        .delete();
+    try {
+      await _measurementsRef.doc(id).delete();
+      // await updateGlobalCounter(-1);
+    } catch (e) {
+      debugPrint("Error al borrar medición: $e");
+    }
   }
 
   Future<void> deleteRealMeasurement({required String id}) async {
-    await db
-        .collection('roles')
-        .doc(rol)
-        .collection('parajes')
-        .doc(paraje)
-        .collection('real_measurements')
-        .doc(id)
-        .delete();
+    try {
+      await _realMeasurementsRef.doc(id).delete();
+      // await updateGlobalCounter(-1);
+    } catch (e) {
+      debugPrint("Error al borrar medición real: $e");
+    }
+  }
+
+  Future<Map<String, dynamic>> getUserStats() async {
+    try {
+      if (currentUID == null) {
+        return {
+          'local': 0,
+          'global': 0,
+          'distinctParajes': 0,
+          'totalParajes': 0,
+        };
+      }
+
+      final localSnapshot = await _measurementsRef
+          .where('uploader_id', isEqualTo: currentUID)
+          .get(const GetOptions(source: Source.serverAndCache));
+
+      final globalSnapshot = await db
+          .collectionGroup('measurements')
+          .where('uploader_id', isEqualTo: currentUID)
+          .get(const GetOptions(source: Source.serverAndCache));
+
+      final parajesContribuidos = <String>{};
+      for (final doc in globalSnapshot.docs) {
+        final segments = doc.reference.path.split('/');
+        final parajeName =
+            segments.contains('parajes')
+                ? segments[segments.indexOf('parajes') + 1]
+                : null;
+        if (parajeName != null) parajesContribuidos.add(parajeName);
+      }
+
+      final totalParajesSnapshot = await db
+          .collection('roles')
+          .doc(rol)
+          .collection('parajes')
+          .get(const GetOptions(source: Source.serverAndCache));
+
+      return {
+        'local': localSnapshot.docs.length,
+        'global': globalSnapshot.docs.length,
+        'distinctParajes': parajesContribuidos.length,
+        'totalParajes': totalParajesSnapshot.docs.length,
+      };
+    } catch (e) {
+      debugPrint("Error en getUserStats: $e");
+      return {
+        'local': 0,
+        'global': 0,
+        'distinctParajes': 0,
+        'totalParajes': 0,
+        'error': e.toString(),
+      };
+    }
   }
 }
+
 
         \end{minted}
 
 
+\newpage
+\section{Reglas de CLoud FireStore}
+\label{anexo:alg2}
 
+\begin{minted}{javascript}
+
+service cloud.firestore {
+  
+  // Permite leer/escribir si el usuario tiene algún rol (Rowy general)
+  match /{allPaths=**} {
+    allow read, write: if request.auth.token.roles.size() > 0;
+  }
+
+  match /databases/{database}/documents {
+
+    // ----------------------------
+    // Rowy rules start (NO MODIFICAR)
+    // ----------------------------
+    match /{collectionId}/{docId} {
+      allow read, create, update, delete: if colRule(["roles"], ["ADMIN","EDITOR","VIEWER","OWNER"]);
+      
+      function colRule(collections, roles) {
+        return collectionId in collections && hasAnyRole(roles);
+      }
+    }
+    // ----------------------------
+    // Rowy rules end
+    // ----------------------------
+
+    // Permiso global a ADMIN y OWNER
+    match /{document=**} {
+      allow read, write: if hasAnyRole(["ADMIN", "OWNER"]);
+    }
+
+    // Configuración de Rowy (permitido a usuarios con rol)
+    match /_rowy_/{docId} {
+      allow read: if request.auth.token.roles.size() > 0;
+      allow write: if hasAnyRole(["ADMIN", "OWNER"]);
+
+      match /{document=**} {
+        allow read: if request.auth.token.roles.size() > 0;
+        allow write: if hasAnyRole(["ADMIN", "OWNER"]);
+      }
+
+      match /schema/{tableId} {
+        allow update: if canModify(tableId,'pc');
+        match /{document=**} {
+          allow read, write: if canModify(tableId,'pc');
+        }
+      }
+
+      match /groupSchema/{tableId} {
+        allow update: if canModify(tableId,'cg');
+        match /{document=**} {
+          allow read, write: if canModify(tableId,'cg');
+        }
+      }
+    }
+
+    // Rowy: user management
+    match /_rowy_/userManagement/users/{userId} {
+      allow get, update, delete: if isDocOwner(userId);
+      allow create: if request.auth.token.roles.size() > 0;
+    }
+
+    match /_rowy_/publicSettings {
+      allow get: if true;
+    }
+
+    //PERMISOS PERSONALIZADOS PARA TUS MEDICIONES
+
+    match /roles/{rol}/parajes/{paraje}/measurements/{docId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if 
+        hasAnyRole(["ADMIN", "OWNER"]) || 
+        request.auth.uid == resource.data.uploader_id;
+    }
+
+    match /roles/{rol}/parajes/{paraje}/real_measurements/{docId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if 
+        hasAnyRole(["ADMIN", "OWNER"]) || 
+        request.auth.uid == resource.data.uploader_id;
+    }
+
+    // Reglas por defecto: acceso propio
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth.uid == resource.data.userId;
+    }
+
+    // UTILIDADES
+    function isDocOwner(docId) {
+      return request.auth != null &&
+        (request.auth.uid == resource.id || request.auth.uid == docId);
+    }
+
+    function hasAnyRole(roles) {
+      return request.auth != null &&
+        request.auth.token.roles.hasAny(roles);
+    }
+
+    function canModify(tableId, tableType) {
+      return hasAnyRole(get(/databases/$(database)/documents/_rowy_/settings)
+        .data.tablesSettings[tableType][tableId].modifiableBy);
+    }
+  }
+}
+\end{minted}
+
+
+
+
+
+
+
+
+\newpage
+\section{Función main}
+\label{anexo:alg3}
+
+\begin{minted}{dart}
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:url_strategy/url_strategy.dart';
+import 'firebase_options.dart';
+import 'src/app.dart'; 
+
+void main() async {
+  
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Configurar estrategia de URL limpia (sin #)
+  setPathUrlStrategy();
+
+  // Inicializar Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // Configuración de Firestore: persistencia y caché ilimitado
+  FirebaseFirestore.instance.settings = const Settings(
+    persistenceEnabled: true,
+    cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED,
+  );
+
+  // Registrar licencias personalizadas (Google Fonts)
+  _registerLicenses();
+
+  // Iniciar la aplicación
+  runApp( const MyApp());
+}
+
+// Registrar licencias de fuentes y otros assets
+void _registerLicenses() {
+  LicenseRegistry.addLicense(() async* {
+    final license = await rootBundle.loadString('google_fonts/OFL.txt');
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+  });
+}
+\end{minted}
+
+
+\newpage
+
+
+\section{Algoritmo de MyApp}
+\label{anexo:alg4}
+
+\begin{minted}{dart}
+
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:tlaloc/src/core/app_router.dart';
+import 'package:tlaloc/src/core/providers/app_providers.dart';
+import 'package:tlaloc/src/models/constants.dart';  
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: appProviders,
+      child: Builder(
+        builder:
+            (context) => MaterialApp(
+              title: appName,
+              debugShowCheckedModeBanner: false,
+              theme: appLightTheme,
+              darkTheme: appDarkTheme,
+              themeMode: ThemeMode.system,
+              initialRoute: '/',
+              onGenerateRoute: generateRoute,
+              localizationsDelegates: const [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+            ),
+      ),
+    );
+  }
+}
+
+\end{minted}
+
+
+
+\newpage
+
+\section{Algoritmo de ConditionalOnboardingPage}
+\label{anexo:alg5}
+
+\begin{minted}{dart}
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tlaloc/src/models/google_sign_in.dart';
+import 'package:tlaloc/src/models/kernel.dart';
+import 'package:tlaloc/src/resources/onboarding/onbording.dart'; 
+import 'package:tlaloc/src/ui/widgets/backgrounds/empty_state.dart';
+import 'package:tlaloc/src/ui/widgets/backgrounds/splash.dart'; 
+
+class ConditionalOnboardingPage extends StatelessWidget {
+  const ConditionalOnboardingPage({super.key});
+
+  Future<Widget> _decideNextScreen(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+    final hasFinishedOnboarding = prefs.getBool('hasFinishedOnboarding') ?? false;
+
+    final authProvider = Provider.of<GoogleSignInProvider>(context, listen: false);
+    final isLoggedIn = authProvider.currentUser != null;
+
+    if (hasFinishedOnboarding && isLoggedIn) {
+      return const HomePage();
+    } else {
+      return Onboarding();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<Widget>(
+      future: _decideNextScreen(context),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return const _ErrorScreen();
+        } else if (snapshot.connectionState != ConnectionState.done) {
+          // Evita pantalla en blanco, mientras resuelve
+          return const SplashScreen(nextScreen: Scaffold());
+        } else {
+          return SplashScreen(nextScreen: snapshot.data!);
+        }
+      },
+    );
+  }
+}
+
+class _ErrorScreen extends StatelessWidget {
+  const _ErrorScreen();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Error de inicio')),
+      body: const EmptyState(
+        'No pudimos cargar la configuración inicial. '
+        'Por favor revisa tu conexión a internet o reinstala la aplicación.',
+      ),
+    );
+  }
+}
+\end{minted}
+
+
+
+
+
+
+\newpage
+\section{Pantalla Onboarding}
+\label{anexo:alg6}
+\begin{minted}{dart}
+import 'package:flutter/material.dart';
+import 'package:concentric_transition/concentric_transition.dart';
+import 'package:lottie/lottie.dart';
+import 'package:tlaloc/src/models/constants.dart';
+import 'package:tlaloc/src/ui/widgets/cards/onbording_cards.dart';
+import 'package:tlaloc/src/resources/onboarding/sign_in.dart';
+
+class Onboarding extends StatelessWidget {
+  Onboarding({super.key});
+
+  final List<CardPlanetData> data = [
+    CardPlanetData(
+      title: appName,
+      subtitle: "Ciencia para tí y para todos",
+      image: const AssetImage("assets/images/img-1.png"),
+      backgroundColor: AppColors.blue1,
+      titleColor: Colors.white,
+      subtitleColor: Colors.white,
+      background: LottieBuilder.asset("assets/animation/bg-1.json"),
+    ),
+    CardPlanetData(
+      title: "Te damos la bienvenida",
+      subtitle:
+          "Ya eres parte del proyecto ''Ciencia ciudadana para el monitoreo de la lluvia en el monte Tláloc'' ",
+      image: const AssetImage("assets/images/img-2.png"),
+      backgroundColor: Colors.white,
+      titleColor: AppColors.green1,
+      subtitleColor: const Color.fromRGBO(0, 10, 56, 1),
+      background: LottieBuilder.asset("assets/animation/bg-2.json"),
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ConcentricPageView(
+        direction: Axis.horizontal,
+        pageSnapping: true,
+
+        onFinish: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const SignUpWidget()),
+          );
+        },
+        colors: data.map((e) => e.backgroundColor).toList(),
+        itemCount: data.length,
+        itemBuilder: (int index) {
+          return CardPlanet(data: data[index]);
+        },
+      ),
+    );
+  }
+}
+
+\end{minted}
+
+
+
+
+
+
+\newpage
+\section{Pantalla HomePage}
+\label{anexo:alg7}
+\begin{minted}{dart}
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:tlaloc/src/models/constants.dart';
+import 'package:tlaloc/src/resources/statics/graphs/graph2.dart';
+import 'package:tlaloc/src/ui/screens/dir/add.dart';
+import 'package:tlaloc/src/ui/screens/dir/data.dart';
+import 'package:tlaloc/src/ui/screens/dir/home.dart';
+import 'package:tlaloc/src/ui/screens/home/profile_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart'; 
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+  final GlobalKey<CurvedNavigationBarState> _navKey = GlobalKey();
+
+  int globalNotificationCount = 0;
+  bool hasSeenNotifications = false;
+
+  late final List<Widget> _screens = const [
+    HomeScreen(),
+    AddScreen(),
+    DataScreen(),
+    BarGraph(),
+    ConfigureScreen(),
+  ];
+  @override
+  void initState() {
+    super.initState();
+
+    FirebaseFirestore.instance
+        .collection('notifications')
+        .doc('globalCounter')
+        .snapshots()
+        .listen((snapshot) {
+          if (snapshot.exists) {
+            setState(() {
+              globalNotificationCount = snapshot.data()?['count'] ?? 0;
+            });
+          }
+        });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      extendBody: true,
+      body: IndexedStack(index: _selectedIndex, children: _screens),
+      bottomNavigationBar: Theme(
+        data: Theme.of(context).copyWith(iconTheme: const IconThemeData()),
+        child: CurvedNavigationBar(
+          key: _navKey,
+          height: 60.0,
+          color: AppColors.blue1,
+          buttonBackgroundColor: AppColors.blue1,
+          backgroundColor: Colors.transparent,
+          animationCurve: Curves.easeInOut,
+          animationDuration: const Duration(milliseconds: 800),
+          items: _buildNavItems(),
+          index: _selectedIndex,
+          onTap: (index) {
+            setState(() {
+              _selectedIndex = index;
+              if (index == 2) hasSeenNotifications = true;
+            });
+          },
+        ),
+      ),
+    );
+  }
+
+  List<Widget> _buildNavItems() {
+    return [
+      const Icon(Icons.home, size: 30, color: Colors.white),
+      const Icon(Icons.add, size: 30, color: Colors.white), 
+      Stack(
+        children: [
+          const Icon(Icons.menu_book_rounded, size: 30, color: Colors.white),
+          if (globalNotificationCount > 0 && !hasSeenNotifications)
+            Positioned(
+              right: 0,
+              top: 0,
+              child: Container(
+                padding: const EdgeInsets.all(2),
+                decoration: const BoxDecoration(
+                  color: Colors.red,
+                  shape: BoxShape.circle,
+                ),
+                constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
+                child: Text(
+                  '$globalNotificationCount',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+        ],
+      ),
+
+      const Icon(Icons.line_axis, size: 30, color: Colors.white),
+      CircleAvatar(
+        foregroundImage:
+            FirebaseAuth.instance.currentUser?.photoURL != null
+                ? NetworkImage(FirebaseAuth.instance.currentUser!.photoURL!)
+                : const NetworkImage(
+                  'https://s1.elespanol.com/2019/11/01/elandroidelibre/el_androide_libre_441218515_179632866_1024x576.jpg',
+                ),
+      ),
+    ];
+  }
+}
+\end{minted}
+
+
+
+\newpage
+\section{Pantalla SignUpWidget}
+\label{anexo:alg8}
+
+\begin{minted}{dart}
+
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
+import 'package:tlaloc/src/models/constants.dart';
+import 'package:tlaloc/src/models/google_sign_in.dart';
+import 'package:tlaloc/src/resources/onboarding/common_select.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:ui';
+
+class SignUpWidget extends StatefulWidget {
+  const SignUpWidget({super.key});
+
+  @override
+  State<SignUpWidget> createState() => _SignUpWidgetState();
+}
+
+class _SignUpWidgetState extends State<SignUpWidget>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  bool _isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  Future<void> _handleGoogleSignIn(BuildContext context) async {
+    setState(() => _isLoading = true);
+    final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+
+    try {
+      await provider.googleLogin();
+      if (provider.currentUser != null) {
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            transitionDuration: const Duration(milliseconds: 1000),
+            pageBuilder: (_, __, ___) => const CommonSelectPage(),
+            transitionsBuilder:
+                (_, a, __, c) => FadeTransition(opacity: a, child: c),
+          ),
+        );
+      }
+    } catch (e) {
+      _showErrorDialog(context, e.toString());
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
+  void _showErrorDialog(BuildContext context, String error) {
+    showDialog(
+      context: context,
+      builder:
+          (context) => AlertDialog(
+            backgroundColor: AppColors.dark1.withOpacity(0.9),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            title: Row(
+              children: [
+                Lottie.asset('assets/animation/bg-3.json', width: 40),
+                const SizedBox(width: 10),
+                const Text('Error', style: TextStyle(color: Colors.white)),
+              ],
+            ),
+            content: Text(error, style: const TextStyle(color: Colors.white70)),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('OK', style: TextStyle(color: Colors.blue)),
+              ),
+            ],
+          ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
+    return Scaffold(
+      backgroundColor: AppColors.purple1,
+      body: Stack(
+        children: [
+          // Fondo animado
+          Positioned.fill(
+            child: Lottie.asset(
+              'assets/animation/bg-3.json',
+              fit: BoxFit.cover,
+            ),
+          ),
+
+          // Contenido principal
+          Center(
+            child: SafeArea(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  final isWide = constraints.maxWidth > 800;
+
+                  return SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child:
+                          isWide
+                              ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(20),
+                                      child: AnimatedBuilder(
+                                        animation: _controller,
+                                        builder:
+                                            (context, child) =>
+                                                Transform.translate(
+                                                  offset: Offset(
+                                                    0,
+                                                    10 * _controller.value,
+                                                  ),
+                                                  child: child,
+                                                ),
+                                        child: Image.asset(
+                                          'assets/images/img-1-4.png',
+                                          width: size.width * 0.3,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(child: _buildLoginCard(size)),
+                                ],
+                              )
+                              : Column(
+                                children: [
+                                  // Logo animado
+                                  AnimatedBuilder(
+                                    animation: _controller,
+                                    builder:
+                                        (context, child) => Transform.translate(
+                                          offset: Offset(
+                                            0,
+                                            10 * _controller.value,
+                                          ),
+                                          child: child,
+                                        ),
+                                    child: Image.asset(
+                                      'assets/images/img-1-4.png',
+                                      width: size.width * 0.8,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 40),
+                                  _buildLoginCard(size),
+                                ],
+                              ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLoginCard(Size size) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(30),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        child: Container(
+          padding: const EdgeInsets.all(30),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.1),
+            border: Border.all(color: Colors.white24),
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Iniciar sesión',
+                style: const TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontFamily: 'FredokaOne',
+                ),
+              ),
+              const SizedBox(height: 15),
+              const Text(
+                'Conéctate para contribuir a la ciencia ciudadana',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white70,
+                  fontFamily: 'Poppins',
+                ),
+              ),
+              const SizedBox(height: 30),
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                child:
+                    _isLoading
+                        ? const CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            Colors.white,
+                          ),
+                        )
+                        : ElevatedButton.icon(
+                          icon: FaIcon(
+                            FontAwesomeIcons.google,
+                            color: Colors.red[400],
+                          ),
+                          label: const Text(
+                            'Continuar con Google',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white.withOpacity(0.9),
+                            foregroundColor: Colors.black87,
+                            minimumSize: Size(size.width * 0.7, 55),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            elevation: 5,
+                            shadowColor: Colors.black26,
+                          ),
+                          onPressed: () => _handleGoogleSignIn(context),
+                        ),
+              ),
+              const SizedBox(height: 30),
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap:
+                      () => launchUrl(
+                        Uri.parse('https://tlaloc.web.app/privacy/'),
+                        mode: LaunchMode.inAppWebView,
+                      ),
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      style: const TextStyle(
+                        color: Colors.white70,
+                        fontSize: 13,
+                        height: 1.5,
+                      ),
+                      children: [
+                        const TextSpan(
+                          text: 'Al continuar, aceptas nuestros\n',
+                        ),
+                        TextSpan(
+                          text: 'Términos de servicio',
+                          style: TextStyle(
+                            color: Colors.blue[200],
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                        const TextSpan(text: ' y '),
+                        TextSpan(
+                          text: 'Política de privacidad',
+                          style: TextStyle(
+                            color: Colors.blue[200],
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+\end{minted}
+
+
+
+
+
+
+\newpage
+\section{Modelo GoogleSignInProvider}
+\label{anexo:alg9}
+\begin{minted}{dart}
+import 'package:flutter/foundation.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+class GoogleSignInProvider extends ChangeNotifier {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: ['email', 'profile'],
+    clientId: kIsWeb 
+        ? '228815382617-2rtslpepg048j80iuls7ilrc8ff9sn4l.apps.googleusercontent.com'
+        : null, // Para Android/iOS, Firebase maneja automáticamente el Client ID
+  );
+
+  User? get currentUser => _auth.currentUser;
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
+  Future<void> googleLogin() async {
+    try {
+      _isLoading = true;
+      notifyListeners();
+
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) return;
+
+      final GoogleSignInAuthentication googleAuth = 
+          await googleUser.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      await _auth.signInWithCredential(credential);
+      
+    } on FirebaseAuthException catch (e) {
+      _handleAuthError(e);
+    } catch (e) {
+      debugPrint('Error inesperado: $e');
+      rethrow;
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      await _googleSignIn.signOut(); // Mejor que disconnect()
+      await _auth.signOut();
+    } catch (e) {
+      debugPrint('Error al cerrar sesión: $e');
+      rethrow;
+    } finally {
+      notifyListeners();
+    }
+  }
+
+  void _handleAuthError(FirebaseAuthException e) {
+    debugPrint('Código de error: ${e.code}');
+    String message = 'Error de autenticación';
+
+    switch (e.code) {
+      case 'account-exists-with-different-credential':
+        message = 'Cuenta ya existe con otro método de autenticación';
+        break;
+      case 'invalid-credential':
+        message = 'Credenciales inválidas';
+        break;
+      case 'operation-not-allowed':
+        message = 'Método de autenticación no habilitado';
+        break;
+      case 'user-disabled':
+        message = 'Cuenta deshabilitada';
+        break;
+      case 'user-not-found':
+        message = 'Usuario no encontrado';
+        break;
+    }
+
+    throw AuthException(message);
+  }
+}
+
+class AuthException implements Exception {
+  final String message;
+  AuthException(this.message);
+  
+  @override
+  String toString() => message;
+}
+\end{minted}
+
+
+
+
+
+
+
+
+
+
+\section{Página de elección de paraje}
+\label{anexo:alg10}
+
+\begin{minted}{dart}
+  import 'package:flutter/material.dart';
+import 'package:tlaloc/src/models/constants.dart';
+import 'package:tlaloc/src/ui/widgets/cards/common_card.dart';
+import 'package:tlaloc/src/ui/widgets/cards/qr.dart';
+
+class CommonSelectPage extends StatelessWidget {
+  const CommonSelectPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.lightBlue,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Center(
+              child: Column(
+                children: [
+                  Text(
+                    '¿Qué pluviómetro estás observando?',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontFamily: 'FredokaOne',
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20),
+                  QrSelectWidget(),
+                  SizedBox(height: 20),
+                  Text(
+                    'Seleccionar manualmente',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontFamily: 'FredokaOne',
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20),
+                  CommonSelectWidget(),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+\end{minted}
+
+
+
+
+
+
+
+\section{Modelo QR}
+\label{anexo:alg11}
+\begin{minted}{dart}
+import 'dart:math';
+import 'package:flutter/material.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:provider/provider.dart';
+import 'package:tlaloc/src/models/app_state.dart';
+import 'package:tlaloc/src/models/constants.dart';
+import 'package:tlaloc/src/models/home_page.dart';
+
+class QrSelectWidget extends StatelessWidget {
+  const QrSelectWidget({super.key});
+
+  void _goHome(BuildContext context) {
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute<void>(builder: (context) => const HomePage()),
+      (route) => false,
+    );
+  }
+
+  Future<void> _handleQrResult(BuildContext context, String? qrResult) async {
+    if (qrResult == null) {
+      await _showErrorDialog(
+        context,
+        title: 'Escaneo fallido',
+        content: 'Intenta de nuevo o selecciona tu paraje manualmente',
+      );
+      return;
+    }
+
+    final paraje = _parseQrResult(qrResult);
+    if (!parajes.containsKey(paraje)) {
+      await _showErrorDialog(
+        context,
+        title: 'Código inválido',
+        content:
+            paraje.isEmpty
+                ? null
+                : 'Tlaloc App no está disponible en el paraje "$paraje"',
+      );
+      return;
+    }
+
+    _goHome(context);
+    Provider.of<AppState>(context, listen: false).changeParaje(paraje);
+  }
+
+  String _parseQrResult(String qrResult) {
+    if (!qrResult.contains('tlaloc.web.app')) return '';
+    return qrResult.split('/').last.replaceAll(RegExp(r'_|%20'), ' ').trim();
+  }
+
+  Future<void> _showErrorDialog(
+    BuildContext context, {
+    required String title,
+    String? content,
+  }) async {
+    await showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder:
+          (context) => AlertDialog(
+            icon: const Icon(Icons.error_outline_rounded),
+            iconColor: Theme.of(context).colorScheme.error,
+            title: Text(title),
+            content: content != null ? Text(content) : null,
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('ENTENDIDO'),
+              ),
+            ],
+          ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final screenWidth = constraints.maxWidth;
+        final isWide = screenWidth >= 600;
+
+        // Igual que en las tarjetas comunes
+        final cardWidth =
+            isWide
+                ? (screenWidth - 16 /* spacing */ - 32 /* padding */ ) / 2
+                : screenWidth - 32;
+
+        return ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: 400, // Máximo recomendado para móviles
+            minWidth: 280, // Mínimo para buena legibilidad
+          ),
+          child: Material(
+            color: AppColors.dark2,
+            borderRadius: BorderRadius.circular(
+              12,
+            ), // Reducido de 28 a 12 según MD
+            clipBehavior: Clip.antiAlias,
+            elevation: 1,
+            child: InkWell(
+              onTap: () async {
+                final qrResult = await showDialog<String>(
+                  context: context,
+                  builder: (context) => _QrScannerDialog(context),
+                );
+                await _handleQrResult(context, qrResult);
+              },
+              splashColor: colors.primary.withOpacity(0.1),
+              highlightColor: colors.primary.withOpacity(0.05),
+              child: Padding(
+                padding: const EdgeInsets.all(24), // Padding interno estándar
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.qr_code_scanner_rounded,
+                      size: 48, // Reducido de 64 para mejor proporción
+                      color: colors.primary,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      'ESCANEAR QR',
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: colors.onSurface,
+                        fontFamily: 'FredokaOne',
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Text(
+                        'Detecta tu pluviómetro automáticamente',
+                        textAlign: TextAlign.center,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: colors.onSurfaceVariant,
+                          fontFamily: 'Poppins',
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _QrScannerDialog extends StatelessWidget {
+  final BuildContext parentContext;
+
+  const _QrScannerDialog(this.parentContext);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = min(
+      MediaQuery.of(parentContext).size.width,
+      MediaQuery.of(parentContext).size.height,
+    );
+
+    return Dialog(
+      backgroundColor: Colors.black,
+      insetPadding: const EdgeInsets.all(24),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          AppBar(
+            title: const Text('Escanear código'),
+            backgroundColor: Colors.transparent,
+            automaticallyImplyLeading: false,
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.close),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          ),
+          ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: size, maxHeight: size),
+            child: MobileScanner(
+              controller: MobileScannerController(
+                detectionSpeed: DetectionSpeed.normal,
+                facing: CameraFacing.back,
+                torchEnabled: false,
+              ),
+              onDetect: (barcode) {
+                if (barcode.barcodes.isNotEmpty) {
+                  Navigator.pop(context, barcode.barcodes.first.rawValue ?? '');
+                }
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+\end{minted}
+
+
+
+
+
+
+
+
+
+\section{Pantalla de inicio}
+\label{anexo:alg12}
+\begin{minted}{dart}
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:tlaloc/src/models/constants.dart';
+import 'package:tlaloc/src/ui/widgets/appbar/infobutton2.dart';
+import 'package:tlaloc/src/ui/widgets/backgrounds/container.dart';
+import 'package:tlaloc/src/ui/widgets/buttons/fab.dart';
+import 'package:tlaloc/src/ui/widgets/buttons/notebook.dart';
+import 'package:tlaloc/src/ui/widgets/cards/communitybutton.dart';
+import 'package:tlaloc/src/ui/widgets/cards/forms.dart';
+import 'package:tlaloc/src/ui/widgets/cards/personal_measures.dart';
+import 'package:tlaloc/src/ui/widgets/cards/phrase.dart';
+import 'package:tlaloc/src/ui/widgets/cards/tlalocmap.dart';
+import 'package:tlaloc/src/ui/widgets/cards/tutorials.dart';
+import 'package:tlaloc/src/ui/widgets/info/info_page.dart';
+import 'package:tlaloc/src/ui/widgets/objects/quickadd.dart';
+import 'package:tlaloc/src/ui/widgets/pluviometer/forecast.dart';
+import 'package:tlaloc/src/ui/widgets/pluviometer/header.dart';
+import 'package:tlaloc/src/ui/widgets/social/social_media.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool isFabVisable = true;
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Row(
+            children: [
+              Image.asset('assets/images/tlaloc_logo.png', height: 32),
+              const SizedBox(width: 8),
+              AutoSizeText(
+                appName,
+                style: TextStyle(
+                  fontFamily: 'FredokaOne',
+                  fontSize: 24,
+                  letterSpacing: 2,
+                ),
+              ),
+            ],
+          ),
+          actions: const <Widget>[InfoButton2(), FluidDialogWidget()],
+        ),
+        // drawer: DrawerApp(),
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            final isWide = constraints.maxWidth > 800;
+
+            final content = [
+              OneTimeGoogleButton(message: "Llena el formulario (1 min)"),
+              const SizedBox(height: 5),
+              QuickAddWidget(),
+              const Divider(height: 5, thickness: 4, color: Colors.black),
+
+              const TodayWeatherStyleCard(),
+              const WeekRainMarker(),
+
+              GlassContainer(child: TutorialWidget()),
+              GlassContainer(
+                child: Column(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Tabla de mediciones',
+                        style: TextStyle(
+                          color: AppColors.blue1,
+                          fontFamily: 'FredokaOne',
+                          fontSize: 24,
+                          letterSpacing: 2,
+                        ),
+                      ),
+                    ),
+                    PersonalMeasures(),
+                    GeneralMeasures(),
+                  ],
+                ),
+              ),
+
+              GlassContainer(child: TlalocMapData()),
+              Column(
+                children: [
+                  Center(
+                    child: Row(
+                      children: const [
+                        PhraseCard(),
+                        Spacer(), // Espacio entre tarjetas
+                        TableButton(),
+                      ],
+                    ),
+                  ),
+                  const Divider(height: 20, thickness: 4, color: Colors.black),
+                  CommunityButton(),
+                  const Divider(height: 20, thickness: 4, color: Colors.black),
+                  SocialLinksWidget(),
+                  const Divider(height: 20, thickness: 4, color: Colors.black),
+                ],
+              ),
+            ];
+
+            return NotificationListener<UserScrollNotification>(
+              onNotification: (notification) {
+                if (notification.direction == ScrollDirection.forward) {
+                  if (!isFabVisable) setState(() => isFabVisable = true);
+                } else if (notification.direction == ScrollDirection.reverse) {
+                  if (isFabVisable) setState(() => isFabVisable = false);
+                }
+                return true;
+              },
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(16),
+                child: Wrap(
+                  runSpacing: 20,
+                  spacing: 20,
+                  alignment: WrapAlignment.center,
+                  children:
+                      content.map((widget) {
+                        return ConstrainedBox(
+                          constraints: BoxConstraints(
+                            maxWidth:
+                                isWide
+                                    ? (constraints.maxWidth / 2) - 30
+                                    : constraints.maxWidth,
+                          ),
+                          child: widget,
+                        );
+                      }).toList(),
+                ),
+              ),
+            );
+          },
+        ),
+
+        floatingActionButton: Visibility(visible: isFabVisable, child: Fab()),
+      ),
+    );
+  }
+}
+
+\end{minted}
+
+
+
+
+
+\section{Pantalla de envío de mediciones}
+\label{anexo:alg13}
+\begin{minted}{dart} 
+import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
+import 'package:tlaloc/src/models/constants.dart';
+import 'package:tlaloc/src/models/date.dart';
+import 'package:tlaloc/src/models/lluvia/send_rain.dart';
+import 'package:tlaloc/src/resources/onboarding/common_select.dart';
+import 'package:tlaloc/src/ui/screens/home/home_widget_classes.dart';
+import 'package:tlaloc/src/ui/widgets/measures/save_button.dart';
+import 'package:tlaloc/src/models/app_state.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:tlaloc/src/models/google_sign_in.dart';
+import 'package:tlaloc/src/models/home_page.dart';
+import 'package:tlaloc/src/ui/widgets/objects/text_field.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+
+class AddScreen extends StatefulWidget {
+  final Measurement? measurement;
+
+  const AddScreen({super.key, this.measurement});
+
+  @override
+  State<AddScreen> createState() => _AddScreenState();
+}
+
+class _AddScreenState extends State<AddScreen> {
+  late TextEditingController _precipitationController;
+  bool pluviometer = false;
+
+  File? newImage;
+  Uint8List? newWebImage; // Para imagenes web
+  final ImagePicker picker = ImagePicker();
+
+  DateTime dateTime = DateTime.now();
+  num precipitation = 0; // Variable no-nullable
+  String? uploader = FirebaseAuth.instance.currentUser?.displayName;
+  String path = 'sounds/correcto.mp3';
+  var player = AudioPlayer();
+
+  @override
+  void initState() {
+    super.initState();
+    _precipitationController = TextEditingController(
+      text: widget.measurement?.precipitation?.toStringAsFixed(1) ?? '0',
+    );
+
+    if (widget.measurement != null) {
+      precipitation =
+          widget.measurement!.precipitation ?? 0; // Conversión segura
+      uploader = widget.measurement!.uploader;
+      dateTime = widget.measurement!.dateTime!;
+    }
+  }
+
+  @override
+  void dispose() {
+    _precipitationController.dispose();
+    player.dispose();
+    super.dispose();
+  }
+
+  Future<void> pickImage() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      if (kIsWeb) {
+        final bytes = await pickedFile.readAsBytes();
+        setState(() {
+          Provider.of<AppState>(context, listen: false).newWebImage = bytes;
+          newImage = null;
+        });
+      } else {
+        setState(() {
+          newImage = File(pickedFile.path);
+          Provider.of<AppState>(context, listen: false).newWebImage = null;
+        });
+      }
+    }
+  }
+
+  Future<void> pickImageC() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      if (kIsWeb) {
+        final bytes = await pickedFile.readAsBytes();
+        setState(() {
+          Provider.of<AppState>(context, listen: false).newWebImage = bytes;
+          newImage = null;
+        });
+      } else {
+        setState(() {
+          newImage = File(pickedFile.path);
+          Provider.of<AppState>(context, listen: false).newWebImage = null;
+        });
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {  
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Consumer<GoogleSignInProvider>(
+            builder: (context, signIn, child) {
+              String place = Provider.of<AppState>(context).paraje;
+              return AutoSizeText(
+                place,
+                style: const TextStyle(fontSize: 24, fontFamily: 'FredokaOne'),
+              );
+            },
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ButtonWidget(
+                onClicked: () async {
+                  try {
+                    final state = Provider.of<AppState>(context, listen: false);
+                    if (widget.measurement == null) {
+                      state.addMeasurement(
+                        uploader: uploader!,
+                        precipitation: precipitation,
+                        time: dateTime,
+                        image: newImage,
+                        pluviometer: pluviometer,
+                      );
+                      // state.newWebImage = null;
+                      await player.play(AssetSource(path));
+                      Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute<void>(
+                          builder: (BuildContext context) {
+                            return const HomePage();
+                          },
+                        ),
+                        (Route<dynamic> route) => false,
+                      );
+                    } else {
+                      state.updateMeasurement(
+                        uploaderId: widget.measurement!.uploaderId!,
+                        id: widget.measurement!.id,
+                        uploader: uploader!,
+                        precipitation: precipitation,
+                        time: dateTime,
+                        image: newImage,
+                        oldImage: widget.measurement!.imageUrl,
+                        pluviometer: pluviometer,
+                      );
+                      await player.play(AssetSource(path));
+                      Navigator.pop(context);
+                    }
+                  } catch (e) {
+                    showDialog(
+                      context: context,
+                      builder:
+                          (context) => AlertDialog(
+                            title: const Text('¡Error al guardar la medición!'),
+                            content: Text('$e'),
+                          ),
+                    );
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Consumer<GoogleSignInProvider>(
+                  builder: (context, signIn, child) {
+                    final name =
+                        FirebaseAuth.instance.currentUser?.displayName ?? '';
+                    return MyTextFormField(
+                      initialValue: uploader ?? name,
+                      helperText: '1. Escriba nombre completo',
+                      hintText: 'Nombre',
+                      icon: const Icon(Icons.person, color: Colors.blueGrey),
+                      onChanged: (String value) {
+                        setState(() => uploader = value);
+                      },
+                      textInputType: TextInputType.name,
+                    );
+                  },
+                ),
+                const SizedBox(height: 20),
+
+                Container(
+                  decoration: BoxDecoration(
+                    color:
+                        Theme.of(context).brightness == Brightness.dark
+                            ? AppColors.dark3
+                            : Colors.transparent,
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.red[300],
+                      child: Icon(Icons.place, color: Colors.red[900]),
+                    ),
+                    title: Text(
+                      'Estás ubicado en: "${Provider.of<AppState>(context).paraje}"',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'FredokaOne',
+                      ),
+                    ),
+                    subtitle: const Text('2. Elige el paraje correctamente'),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CommonSelectPage(),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  decoration: BoxDecoration(
+                    color:
+                        Theme.of(context).brightness == Brightness.dark
+                            ? AppColors.dark3
+                            : Colors.transparent,
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: RainInputWidget(
+                      precipitation: precipitation,
+                      onChanged: (value) {
+                        setState(() {
+                          precipitation = value;
+                        });
+                      },
+                    ),
+                  ),
+                ), 
+                const SizedBox(height: 20),
+                Container(
+                  decoration: BoxDecoration(
+                    color:
+                        Theme.of(context).brightness == Brightness.dark
+                            ? AppColors.dark3
+                            : Colors.transparent,
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: Datetime(
+                    updateDateTime: (value) {
+                      dateTime = value;
+                    },
+                  ),
+                ),
+ 
+                const SizedBox(height: 20),
+                Container(
+                  decoration: BoxDecoration(
+                    color:
+                        Theme.of(context).brightness == Brightness.dark
+                            ? AppColors.dark3
+                            : Colors.transparent,
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: const ContactUsListTile(
+                    title: 'Mandar fotografía',
+                    title2:
+                        '5. Toma una foto del pluviómetro y mándala por WhatsApp',
+                    message:
+                        'https://api.whatsapp.com/send?phone=5630908507&text=%C2%A1Mira!%20en%20el%20paraje%20%22%20%22%20llovi%C3%B3%20%22%20%22mm,%20adjunto%20fotograf%C3%ADa%20del%20d%C3%ADa%20de%20hoy',
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  decoration: BoxDecoration(
+                    color:
+                        Theme.of(context).brightness == Brightness.dark
+                            ? AppColors.dark3
+                            : Colors.transparent,
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: SwitchListTile(
+                    title: const Text(
+                      'Reinicio de mediciones',
+                      style: TextStyle(fontSize: 18, fontFamily: 'FredokaOne'),
+                    ),
+                    value: pluviometer,
+                    secondary: CircleAvatar(
+                      backgroundColor: Colors.teal[300],
+                      child: Icon(Icons.output, color: Colors.teal[900]),
+                    ),
+                    subtitle: const Text(
+                      '6. Vaciar pluviómetro (sólo personal capacitado)',
+                    ),
+                    onChanged: (bool value) {
+                      setState(() => pluviometer = value);
+                    },
+                  ),
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+\end{minted}
+
+
+
+\section{Pantalla de Bitácora}
+\label{anexo:alg14}
+\begin{minted}{dart}
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tlaloc/src/models/app_state.dart';
+import 'package:tlaloc/src/models/constants.dart';
+import 'package:tlaloc/src/models/excel.dart';
+import 'package:tlaloc/src/ui/widgets/appbar/infobutton2.dart';
+import 'package:tlaloc/src/ui/widgets/data_screen_view.dart';
+import 'package:tlaloc/src/ui/widgets/data_widget.dart';
+import 'package:tlaloc/src/ui/widgets/info/info_page.dart';
+import 'package:tlaloc/src/ui/widgets/real_data_widget.dart';
+
+class DataScreen extends StatefulWidget {
+  const DataScreen({super.key});
+
+  @override
+  State<DataScreen> createState() => _DataScreenState();
+}
+
+class _DataScreenState extends State<DataScreen> with TickerProviderStateMixin {
+  late TabController _tabController;
+  final List<ScrollController> _scrollControllers = [
+    ScrollController(),
+    ScrollController(),
+  ];
+  bool isFabVisible = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+
+    // Escuchar cambios de pestaña
+    _tabController.addListener(_handleTabChange);
+  }
+
+  void _handleTabChange() {
+    // Hacer scroll al inicio cuando cambia la pestaña
+    _scrollToTop(_tabController.index);
+  }
+
+  void _scrollToTop(int index) {
+    final controller = _scrollControllers[index];
+    if (controller.hasClients) {
+      controller.animateTo(
+        0,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _tabController.removeListener(_handleTabChange);
+    _tabController.dispose();
+    for (var controller in _scrollControllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final appState = context.watch<AppState>();
+    bool isWideLayout = MediaQuery.of(context).size.width > 800;
+    return SafeArea(
+      child: NestedScrollView(
+        headerSliverBuilder: (context, value) {
+          return [
+            SliverAppBar(
+              title: Row(
+                children: [
+                  Image.asset('assets/images/tlaloc_logo.png', height: 32),
+                  const SizedBox(width: 8),
+                  const Text(
+                    'Bitácora',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      // color: AppColors.dark1,
+                      fontFamily: 'FredokaOne',
+                      fontSize: 24,
+                      letterSpacing: 2,
+                    ),
+                  ),
+                ],
+              ),
+              floating: true,
+              pinned: true,
+              snap: false,
+              expandedHeight: 150.0,
+              actions: <Widget>[
+                IconButton(
+                  icon: const Icon(Icons.file_download),
+                  onPressed: () async {
+                    try {
+                      await appState.exportMeasurements(context);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Exportación completada',
+                            style: TextStyle(color: Colors.green),
+                          ),
+                        ),
+                      );
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Error al exportar: $e')),
+                      );
+                    }
+                  },
+                ),
+                InfoButton2(),
+                FluidDialogWidget(),
+              ],
+              bottom: TabBar(
+                controller: _tabController,
+                onTap: (index) => _scrollToTop(index),
+                labelColor: AppColors.blue1,
+                unselectedLabelColor: Colors.grey,
+                indicatorColor: AppColors.blue1,
+                labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+                unselectedLabelStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+                tabs: const <Widget>[
+                  Tab(text: 'Acumulados', icon: Icon(Icons.cloud_outlined)),
+                  Tab(text: 'Reales', icon: Icon(Icons.cloud_done_outlined)),
+                ],
+              ),
+            ),
+          ];
+        },
+        body: TabBarView(
+          controller: _tabController, // Asigna el mismo controlador
+          children: <Widget>[
+            // Pasa el ScrollController a cada widget hijo
+            isWideLayout
+                ? MasterDetailScreen()
+                : MyDataWidget(scrollController: _scrollControllers[0]),
+            isWideLayout
+                ? MasterDetailRealScreen()
+                : MyRealDataWidget(scrollController: _scrollControllers[0]),
+          ],
+        ),
+      ),
+    );
+  }
+}
+\end{minted}

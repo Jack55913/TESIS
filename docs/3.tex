@@ -1,21 +1,12 @@
 \chapter{REVISIÓN DE LITERATURA}
 
-
-  % o	Ciencia ciudadana
-  % Es una forma de investigación colaborativa que involucra a todas las personas interesadas en participar, con la finalidad de aprender sobre un tema y solucionar problemas juntos.
-  % o	Precipitación
-  % Es la caída de agua procedente de las nubes en estado líquido (lluvia y llovizna),  sólido (granizo) y semisólido (nieve). Es una parte importante de ciclo hidrológico, ya que sin la precipitación no habría agua en los ecosistemas, ni en los lugares en donde vivimos.
-  % o	Monitoreo
-  % Consiste en la observación de un suceso o fenómeno para recolectar información bajo un método previamente establecido. En el caso del monitoreo de la precipitación, se refiere al registro de los niveles de agua almacenados en los pluviómetros.
-  % o	Pluviómetro
-  % Es un dispositivo diseñado para almacenar el agua procedente de la precipitación que cae en una superficie y tiempo determinado.
-
-
-
 \section{Definición de términos clave}
-En un sistemas meteorológico a pequeña escala, donde participa la formación de nubes del tipo cúmulus dependiendo la presencia de núcleos de condensación; Temperaturas cercanas a la del punto de rocío; Abasto continuo de vapor de agua; Incremento del tamaño de las gotas a través de colisiones; se pueden presentar diferentes fenómenos meteorológicos tales como la lluvia, el granizo, la nieve, las trombas, los tornados, los rayos y los truenos.
 \begin{definition}[Precipitación]
-  Es la caída de agua procedente de las nubes en estado líquido, sólido y semisólido (\cite{breña2013}).
+ Fenómeno meteorológico que ocurre en sistemas a pequeña escala, caracterizado por la formación de nubes del tipo cúmulus bajo condiciones específicas: presencia de núcleos de condensación, temperaturas cercanas al punto de rocío y un abasto continuo de vapor de agua. A medida que las gotas aumentan de tamaño mediante colisiones, pueden generarse diversas manifestaciones, como lluvia, granizo, nieve, trombas, tornados, rayos y truenos.
+\end{definition}
+
+\begin{definition}[Lluvia]
+    Es la caída de agua procedente de las nubes en estado líquido, sólido y semisólido (\cite{breña2013}).
 \end{definition}
 
 
@@ -55,7 +46,9 @@ El backend se refiere a la parte del desarrollo de software que gestiona la lóg
 \end{definition}
 
 
-
+\begin{definition}[GitHub]
+  plataforma propietaria para desarrolladores que permite crear, almacenar, administrar y compartir su código.
+\end{definition}
 
 \begin{definition}[Google Play Console]
   Google Play Console es la plataforma de gestión que permite a los desarrolladores publicar, actualizar, monitorear el rendimiento y administrar la distribución de sus aplicaciones Android en la tienda Google Play.(\cite{googleplayconsole})
@@ -67,20 +60,16 @@ El backend se refiere a la parte del desarrollo de software que gestiona la lóg
 Es un servicio de base de datos en la nube que almacena y sincroniza datos entre usuarios en tiempo real, ideal para aplicaciones que requieren actualizaciones inmediatas. (\cite{firebaserealtime})
 \end{definition}
 
+\begin{definition}[User Interface (UI)]
+  La interfaz de usuario (UI, por sus siglas en inglés) es la parte visual e interactiva de una aplicación que permite al usuario comunicarse con el sistema. En el desarrollo de software, la UI abarca todos los elementos gráficos con los que el usuario puede interactuar: botones, menús, formularios, gráficos, iconos y demás componentes visuales.   
+\end{definition}
 
 
+\begin{definition}[Material Design]
+Material Design es un sistema de diseño desarrollado y respaldado por diseñadores y desarrolladores de Google. Material.io incluye una guía detallada de UX e implementaciones de componentes de UI para Android, Flutter y la web.
 
-
-
-
-
-
-
-
-
-
-
-
+La última versión, Material 3, permite experiencias personales, adaptables y expresivas, desde colores dinámicos y accesibilidad mejorada hasta bases para diseños de pantalla grande y tokens de diseño. M3 Expressive va un paso más allá al añadir componentes más flexibles, estilos vibrantes y movimiento totalmente integrado.
+\end{definition}
 
 \begin{definition}[Pluviómetro manual]
 
@@ -93,7 +82,7 @@ Las especificaciones para construir un pluviómetro, ilustradas en la figura \re
     \item Este instrumento debe colocarse en lugares abiertos y su área de captación debe permanecer horizontal y a 100 cm del suelo. (\cite{se2013})
 \end{itemize}
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
   \includegraphics[width=0.5\textwidth]{t1.pdf}
   \caption{Colectaros adecuados para los pluviómetros según la norma NMX-AA-166/1-SCFI-2013 (\cite{se2013})}
@@ -118,7 +107,7 @@ Las especificaciones para construir un pluviómetro, ilustradas en la figura \re
 
 
 
-
+\newpage
 \section{Acceso a datos meteorológicos de zonas de montaña en México}
 % TODO
 
@@ -143,6 +132,8 @@ Esto indica que es muy escaza la información
 
 
 
+
+\newpage
 \section{Revisión de estudios previos sobre monitoreo ciudadano meteorológico}
 
 Un artículo publicado en RMetS por Samuel Michael Illingworth et al., titulado “Red de ciudadanos sobre precipitaciones del Reino Unido: un estudio piloto”, describe cómo se utilizó GoogleChart para llevar un registro colaborativo de las precipitaciones.(\cite{illingworth2021ukprecipitation}) 
@@ -176,6 +167,8 @@ véase la figura 2 para ubicar sus categorías.
 
 
 
+
+\newpage
 \section{Tecnologías actuales en monitoreo climático}
 La implementación de herramientas tecnológicas para el monitoreo de fenómenos climáticos ha demostrado ser una estrategia eficiente, especialmente cuando se combina con enfoques de ciencia ciudadana. Este estudio, al fomentar la colaboración comunitaria y el uso de tecnologías accesibles, tiene el potencial de generar información crítica para el manejo de los ecosistemas de montaña.
 
@@ -190,15 +183,6 @@ Datos satelitales y radar metereológico: No existe la validación ni calibraci�
 En un futuro estos sirva para mejorar las estimaciones satelitales
 
 Poner artículo donde pusieron en Canoas Altas, pero lo abandonaron, y no hay pase pública que hayan compartido
-
-
-
-
-
-
-
-
-
 
 
 \subsection{Aplicaciones móviles}
@@ -216,6 +200,16 @@ Aplicaciones similares encontradas en el mercado de aplicaciones a junio de 2025
 \subsection{Importancia hidrológica de las zonas de montaña}
 
 
+
+
+
+
+
+
+
+
+
+\newpage
 \section{Aportes del monitoreo ciudadano a la ciencia climática}
 
 
@@ -223,4 +217,17 @@ Aplicaciones similares encontradas en el mercado de aplicaciones a junio de 2025
 Aporta información para comprender diferentes aspectos: conocer la influencia que tiene la lluvia en los bosques, cultivos y ganado, para prevenir problemas de inundaciones y sequías, y para entender el efecto de procesos como el cambio de uso de suelo sobre el agua disponible. Todo esto es muy importante para los ecosistemas naturales y para las comunidades humanas.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 

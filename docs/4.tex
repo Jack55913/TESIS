@@ -12,9 +12,8 @@
 \section{Materiales}
 \subsection{Instrumentación y equipos}
 \begin{itemize}
-    \item Se utilizaron pluviómetros calibrados con botellas graduadas hechas de PET, instaladas en bases de metal y madera ubicadas en los sitios de monitoreo.
-
-    \item Se utilizaron dispositivos móviles con cualquier tipo de sistema operativo, para realizar pruebas de la aplicación Tláloc App.
+    \item Pluviómetros calibrados con botellas graduadas hechas de PET, instaladas en bases de metal cemento y madera ubicadas en los sitios de monitoreo.
+    \item Dispositivos móviles con cualquier tipo de sistema operativo, para realizar pruebas de la aplicación Tláloc App .
 \end{itemize}
 
 \subsection{Infraestructura tecnológica virtual}
@@ -25,20 +24,21 @@
         \item \textbf{Entorno de Desarrollo Integrado}: Visual Studio Code y Android Studio
         \item \textbf{Herramientas de desarrollo}: Git y Visual Studio 2022  
     \end{enumerate}
-    \item \textbf{Almacenamiento del código:} Se usarán los servicios de GitHub\footnote{plataforma propietaria para desarrolladores que permite crear, almacenar, administrar y compartir su código.}. Esta plataforma utiliza Git para proporcionar control de versiones distribuido y, a su vez, GitHub proporciona control de acceso, seguimiento de errores, solicitudes de funciones de software, gestión de tareas, integración continua a través del programa Visual Studio Code.
+    \item \textbf{Almacenamiento del código:} Se usarán los servicios de GitHub. Esta plataforma utiliza Git para proporcionar control de versiones distribuido y, a su vez, GitHub proporciona control de acceso, seguimiento de errores, solicitudes de funciones de software, gestión de tareas, integración continua a través del programa Visual Studio Code.
     \item \textbf{Servicio de Base de datos:} Se creará un proyecto en Firebase para el Hosting en la web.
     \item \textbf{Google Play Console:} Se usará para publicar el archivo .bundle a Google Play Store, para su accesibilidad de descarga en los dispositivos Android.
 \end{itemize}
 
 \section{Método}
-La presente sección describe la los pasos empleados esquematizadas en la figura \ref{t2}, para abordar el problema central del proyecto, el cual se profundiza en el diseño y desarrollo de un algoritmo capaz de calcular valores de precipitación reales a partir de registros acumulados. Para ello, se parte de una lista de datos de entrada proporcionada por los usuarios, y se genera como salida una lista de valores corregidos que representan las mediciones reales, obtenidas mediante la resta entre cada nuevo dato y el inmediatamente anterior.
+La presente sección describe los pasos empleados esquematizadas en la figura \ref{t2}, para abordar el problema central del proyecto, el cual se profundiza en el diseño y desarrollo de un algoritmo capaz de calcular valores de precipitación reales a partir de registros acumulados. Para ello, se parte de una lista de datos de entrada proporcionada por los usuarios, y se genera como salida una lista de valores corregidos que representan las mediciones reales, obtenidas mediante la resta entre cada nuevo dato y el inmediatamente anterior.
 
-Este proceso requiere, como paso previo, el diseño de un protocolo de monitoreo participativo que motive e instruya a los usuarios en el envío constante y preciso de datos. Posteriormente, se detalla el desarrollo del algoritmo dentro del entorno de la aplicación móvil, seguido de un análisis del estado actual del proyecto con base en el nivel de maduración tecnológica. En resumen, se elaborarán las siguientes actividades:
-\begin{itemize}
+Este proceso requiere, como paso previo, el diseño de un protocolo de monitoreo participativo que motive e instruya a los usuarios en el envío constante y preciso de datos. Posteriormente, se detalla el desarrollo del algoritmo dentro del entorno de la aplicación móvil, seguido de un análisis del estado actual del proyecto con base en el nivel de maduración tecnológica.
+
+\begin{enumerate}
   \item Protocolo de monitoreo participativo
   \item Desarrollo de la aplicación móvil
   \item Análisis del estado actual del proyecto
-\end{itemize}
+\end{enumerate}
 
 
 
@@ -81,7 +81,7 @@ El protocolo consiste en llevar a cabo un monitoreo de lluvia que involucró tre
 
 
 
-\subsubsection{Procesos Participativos con Ejidatarios} 
+\subsubsection{1. Procesos Participativos con Ejidatarios} 
 El primer paso consiste en establecer contacto con los miembros de la Unión Ejidal del Monte (UEM) para presentarles el proyecto y generar alianzas para su desarrollo. Posteriormente llevar a cabo talleres participativos con cada grupo ejidal (Nativitas, San Pablo Ixayoc, San Dieguito, Tequexquinahuac, Santa Catarina del Monte) para identificar a las personas que potencialmente podrían participar en el monitoreo y los lugares para instalar sitios de monitoreo. Este paso se resume en estas dos actividades:
 \begin{itemize}
   \item Contexto Geográfico
@@ -111,7 +111,7 @@ Encuestar a la población que sube a la montaña en los sitios de monitoreo los 
 \begin{tabular}{@{}cc@{}}
 \toprule
 Tipo de parámetro & Detalle                                           \\ \midrule
-Sociodemográfico      & Edad, sexo, nivel educativo, lugar de origen/localidad          \\
+Sociodemográfico      & Edad, género, nivel educativo, lugar de origen/localidad          \\
 Tecnológico       & Uso de celular, internet, manejo de apps          \\
 Actitudinal       & Disponibilidad, disposición a participar, interés \\
 Territorial/ecológico & Conocimiento del bosque, frecuencia de visita, actividades      \\
@@ -120,8 +120,8 @@ Institucional/laboral & Tipo de relación con la zona (trabajo, recreación, sup
 \caption{parámetros a identificar de la población}
 \label{tabt3}
 \end{table}
-
-\subsubsection{Diseño Técnico de Monitoreo}
+\newpage
+\subsubsection{2. Diseño Técnico de Monitoreo}
 
 \begin{enumerate}
     \item Construcción de los pluviómetros: con botellas de PET, y siguiendo los lineamientos de la Norma Mexicana NMX-AA-166/1-SCFI-2013 (\cite{se2013}) o de la Organización Meteorológica Mundial. La máxima capacidad de almacenamiento es de 153 mm y la escala tiene resolución de un milímetro, excepto por los primeros 5 mm que tienen resolución de 0.25 mm. Los pluviómetros se colocaron sobre bases de madera a un metro sobre el nivel del suelo cavando un hoyo de 50 centímetros de profundidad. Para evitar pérdidas de agua por evaporación se utilizan 5 mm de aceite comestible vegetal por pluviómetro.
@@ -137,8 +137,8 @@ Institucional/laboral & Tipo de relación con la zona (trabajo, recreación, sup
 
 
 
- 
-\subsubsection{Campaña de difusión con público en general}
+\newpage
+\subsubsection{3. Campaña de difusión con público en general}
 
 Este último paso, consiste en crear una campaña permanente de difusión entre la gente que sube a la montaña. Implica generar material gráfico instalado en campo que invite a la población a participar, trípticos y carteles que se colocan en lugares estratégicos;  utilizar las redes sociales para dar a conocer el proyecto y mecanismos para premiar a los participantes activos con regalos. 
 
@@ -307,33 +307,38 @@ Se plantea utilizar diversos medios y plataformas de divulgación enfocados en c
 
 \subsection{Desarrollo del código}
 
+
+
 En este sistema de monitoreo participan tres elementos principales: el usuario, el pluviómetro y la aplicación multiplataforma. El usuario es la persona encargada de registrar las mediciones realizadas por el pluviómetro artesanal, instalado en un paraje específico. Esta interacción ocurre a través de un código QR asignado a cada pluviómetro, el cual permite vincularlo con su ubicación y sus datos de monitoreo.
 
 La aplicación multiplataforma facilita esta interacción al estar disponible en diferentes dispositivos como teléfonos inteligentes, tabletas, laptops o computadoras de escritorio, y puede ejecutarse en sistemas operativos como Android, iOS, Huawei OS, Windows y navegadores web. De este modo, el usuario puede elegir el dispositivo de su preferencia para capturar y enviar los datos registrados por el pluviómetro al sistema.
 
 La Figura \ref{t3}, muestra el diagrama de flujo que representa el comportamiento operativo del sistema y cómo se realiza el intercambio de información entre estos tres actores.
 
-Finalmente, la metodología para el desarrollo del código, consiste en programar en lenguaje Dart, una aplicación multiplataforma, alojada en un sitio web y en Play Store, con el fin de enviar las mediciones a una base de datos pública, que con ayuda del diagrama \ref{t3}, cuente con las siguientes características:
+Finalmente, la metodología para el desarrollo del código, consiste en programar en lenguaje Dart, una aplicación multiplataforma, alojada en un sitio web y en Play Store, con el fin de enviar las mediciones a una base de datos pública.
 
 \begin{enumerate}
-  \item Backend \begin{enumerate}
+  \item \textbf{Backend}
+   \begin{enumerate}
     \item Alojamiento del código en GitHub
-    \item Conexión de la base de datos y Hosting en la web en Firebase
+    \item Base de datos
+    \item Hosting en la web en Firebase
   \end{enumerate}
-  \item User Interface (UI) \begin{enumerate}
-    \item \textbf{Registro de usuario}: Los usuarios podrán crear una cuenta y elegir el pluviómetro mediante el escaneo de códigos Qr del sitio de monitoreo 
+  \item \textbf{User Interface (UI)}: En Flutter, la UI se construye a partir de widgets, que son unidades reutilizables de interfaz. Estos widgets permiten definir pantallas de forma declarativa, promoviendo una organización jerárquica clara y facilitando el mantenimiento del código. Un diseño de UI eficiente no solo debe ser estéticamente agradable, sino también funcional, accesible y coherente con los principios de diseño establecidos (como Material Design).
+\begin{enumerate}
+    \item \textbf{Registro de usuario}: Los usuarios podrán crear una cuenta y elegir el pluviómetro mediante el escaneo de códigos Qr o manualmente del sitio de monitoreo 
     \item \textbf{Menú Principal}: Dispondrá de tutoriales, contador de mediciones, acerca de, tabulador de mediciones, mapas de las dos rutas, grupos para subir a la montaña y contacto
     \item \textbf{Envío de mediciones}: Campo de texto, pluviómetro interactivo, booleano de vaciado, cambio de paraje
-    \item \textbf{Bitácora}: Disponibilidad de consulta, edición, difusión o eliminación de las mediciones propias y no de otros usuarios
-    \item \textbf{Estadísticas}: Mostrará un gráfico interactivo en diferentes tiempo de interés, por ejemplo por semana, mes y año.
+    \item \textbf{Bitácora}: Disponibilidad de consulta, edición, difusión o eliminación de las mediciones propias y no de otros usuarios; y exportación en excel.
+    \item \textbf{Estadísticas}: Mostrará un gráfico interactivo en diferentes tiempo de interés, por ejemplo por semana, mes y año; entre volúmenes acumulados y reales.
 \end{enumerate}
-  \item User Experience (UX) \begin{enumerate}
+  \item \textbf{User Experience (UX)} \begin{enumerate}
     \item Material Design
-    \item Tienda de aplicaciones
+    \item Acceso en tienda de aplicaciones (PlayStore)
   \end{enumerate}
 \end{enumerate}
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
   \includegraphics[width=1\textwidth]{t3.pdf}
   \caption{Diagrama de flujo de trabajo del sistema de Pluviómetros con Tláloc App}
@@ -349,12 +354,202 @@ Finalmente, la metodología para el desarrollo del código, consiste en programa
 
 
 
+\newpage
+\subsubsection{1a. Configuración en GitHub}
+
+\subsubsection*{Control de versiones y almacenamiento en GitHub}
+
+El desarrollo de aplicaciones requiere no solo un diseño estructurado del código, sino también un control riguroso de versiones y respaldos. GitHub es una plataforma ampliamente usada en el ámbito académico y profesional para alojar proyectos de software, permitiendo la colaboración, el seguimiento de cambios y el resguardo del historial del código fuente. 
+
+Para este proyecto, el repositorio está disponible públicamente en:
+\begin{center}
+\url{https://github.com/Jack55913/TlalocApp.git}
+\end{center}
+
+\subsubsection*{Proceso para guardar código localmente en GitHub con Git}
+
+El flujo básico para controlar versiones de un proyecto usando \texttt{git} desde la computadora incluye los siguientes pasos:
+
+\begin{enumerate}
+    \item Inicializar el repositorio en la carpeta del proyecto (solo la primera vez):
+    \begin{minted}{bash}
+    git init
+    \end{minted}
+    
+    \item Configurar nombre y correo del autor (también solo una vez):
+    \begin{minted}{bash}
+    git config --global user.name "Luis Emilio Álvarez Herrera"
+    git config --global user.email "ejemplo@dominio.com"
+    \end{minted}
+    
+    \item Agregar el repositorio remoto de GitHub:
+    \begin{minted}{bash}
+    git remote add origin https://github.com/Jack55913/TlalocApp.git
+    \end{minted}
+    
+    \item Verificar el estado del repositorio y los archivos modificados:
+    \begin{minted}{bash}
+    git status
+    \end{minted}
+    
+    \item Añadir los archivos que se desean guardar (todos o algunos específicos):
+    \begin{minted}{bash}
+    git add .
+    \end{minted}
+    
+    \item Registrar los cambios con un mensaje claro:
+    \begin{minted}{bash}
+    git commit -m "Primera versión de Tláloc App"
+    \end{minted}
+    
+    \item Subir los cambios al repositorio remoto en GitHub:
+    \begin{minted}{bash}
+    git push -u origin main
+    \end{minted}
+\end{enumerate}
+
+Este flujo se puede repetir cada vez que se realicen avances importantes en el código. Gracias a Git, cada modificación queda registrada con fecha, autor y propósito, lo cual facilita el mantenimiento del software, el trabajo colaborativo y la trazabilidad científica del desarrollo.
+
+\subsubsection*{Clonar el repositorio desde GitHub}
+
+Si se desea obtener una copia exacta del proyecto alojado en GitHub en otra computadora, es posible usar el comando \texttt{git clone}. Este comando descarga todo el historial y los archivos del proyecto:
+
+\begin{minted}{bash}
+git clone https://github.com/Jack55913/TlalocApp.git
+\end{minted}
+
+Este comando crea automáticamente una carpeta llamada \texttt{TlalocApp} con todos los archivos y el historial del proyecto.
+
+\subsubsection*{Subir cambios al repositorio remoto: \texttt{git push}}
+
+Una vez realizados cambios en el código, es posible subirlos a GitHub con el siguiente flujo:
+
+\begin{enumerate}
+    \item Verificar el estado del repositorio local:
+    \begin{minted}{bash}
+    git status
+    \end{minted}
+    
+    \item Agregar los archivos modificados al área de preparación:
+    \begin{minted}{bash}
+    git add .
+    \end{minted}
+    
+    \item Registrar los cambios localmente con un mensaje:
+    \begin{minted}{bash}
+    git commit -m "Descripción clara del cambio realizado"
+    \end{minted}
+    
+    \item Subir los cambios al servidor de GitHub:
+    \begin{minted}{bash}
+    git push origin main
+    \end{minted}
+\end{enumerate}
+
+Este proceso permite mantener actualizado el repositorio en la nube, sirviendo como respaldo y facilitando el trabajo colaborativo.
+
+\subsubsection*{Obtener actualizaciones del repositorio remoto: \texttt{git pull}}
+
+Si se ha trabajado en el mismo repositorio desde otra computadora o por otros colaboradores, se deben sincronizar los cambios con:
+
+\begin{minted}{bash}
+git pull origin main
+\end{minted}
+
+Este comando fusiona los cambios realizados en GitHub con la copia local del proyecto. Es recomendable ejecutarlo antes de comenzar una nueva sesión de desarrollo para evitar conflictos.
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+\subsubsection{1b. Configuración en Firebase}
+
+Para establecer la conexión entre una aplicación desarrollada en Flutter y el servicio de base de datos en tiempo real Firestore, proporcionado por Firebase, es necesario seguir una serie de pasos que combinan configuraciones en la plataforma web de Firebase y ajustes específicos dentro del proyecto de Flutter. El proceso inicia accediendo al sitio oficial de Firebase en \url{https://console.firebase.google.com/}, donde se debe crear un nuevo proyecto. Para ello, el usuario debe seleccionar “Agregar proyecto”, asignarle un nombre distintivo, desactivar opcionalmente Google Analytics para el proyecto (según los requerimientos de privacidad) y confirmar la creación. Una vez creado el proyecto, es necesario agregar una nueva aplicación al proyecto Firebase, lo cual se realiza seleccionando el ícono correspondiente al sistema operativo de destino; en el caso de Flutter se deben agregar las variantes necesarias, como Android y Web.
+
+En el caso de Android, se solicita un nombre de paquete único (en este caso, \texttt{com.TlalocApps.tlaloc}), que debe coincidir exactamente con el definido en el archivo \texttt{android/app/build.gradle}. Posteriormente, Firebase genera un archivo \texttt{google-services.json} que debe descargarse y colocarse dentro del directorio \texttt{android/app/} del proyecto Flutter. Para plataformas web, es necesario registrar también un nombre de dominio o ID de aplicación, tras lo cual se generará un bloque de configuración en JavaScript, aunque en Flutter basta con copiar el contenido necesario en el archivo de inicialización.
+
+Luego, se deben realizar varias modificaciones al proyecto Flutter para habilitar Firebase. En primer lugar, se deben añadir las dependencias necesarias en el archivo \texttt{pubspec.yaml}, incluyendo paquetes como \texttt{firebase\_core}, \texttt{cloud\_firestore}, y otras según las funcionalidades deseadas (por ejemplo, \texttt{firebase\_auth}, \texttt{firebase\_storage}, etc.). Una vez agregadas, es necesario ejecutar el comando \texttt{flutter pub get} para instalar las dependencias. Posteriormente, en el archivo \texttt{main.dart}, se debe asegurar que la aplicación inicialice Firebase antes de ejecutarse, mediante una llamada asíncrona a \texttt{Firebase.initializeApp()} dentro de la función principal.
+
+Para dispositivos Android, es indispensable modificar el archivo \texttt{android/build.gradle} incluyendo el classpath de los servicios de Google en la sección \texttt{dependencies} (específicamente: \texttt{com.google.gms:google-services}), así como aplicar el plugin de Google Services al final del archivo \texttt{android/app/build.gradle} mediante la línea \texttt{apply plugin: 'com.google.gms.google-services'}. También es recomendable establecer la versión mínima de SDK en 21 o superior, y utilizar la versión de Kotlin y Gradle compatibles con Firebase.
+
+  En el caso de aplicaciones web, se debe inicializar Firebase con el bloque de configuración proporcionado por Firebase (que contiene el apiKey, projectId, messagingSenderId, etc.), y asegurarse de usar:
+  \begin{center}
+    \texttt{Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)}
+  \end{center}
+Utilizando el paquete adicional \texttt{firebase\_options.dart} generado automáticamente por el comando \texttt{flutterfire configure} (si se utiliza la herramienta oficial de CLI de Firebase para Flutter). Esta herramienta simplifica la configuración multiplataforma y garantiza que los datos de conexión estén correctamente definidos.
+
+\subsubsection{1c. Web Hosting}
+Además del almacenamiento de datos, se habilitó el servicio de \textbf{Firebase Hosting} para desplegar una versión web de la aplicación. Este entorno permite servir contenido estático y dinámico mediante HTTPS, ofreciendo una plataforma confiable y segura para la visualización pública de estadísticas y reportes.
+
+La implementación del hosting se realizó con los siguientes pasos:
+
+\begin{enumerate}
+    \item Instalación de las herramientas de línea de comandos de Firebase (\texttt{firebase-tools}).
+    \item Inicialización del proyecto con \texttt{firebase init} y selección de las funciones de Hosting.
+    \item Configuración del directorio de salida del proyecto web compilado con Flutter.
+    \item Despliegue del sitio mediante el comando \texttt{firebase deploy}.
+\end{enumerate}
+
+\subsubsection{2. User Interface}
+
+El desarrollo de una aplicación móvil requiere no solo la implementación funcional del código, sino también una organización arquitectónica sólida basada en principios de programación orientada a objetos (POO). Esta metodología permite estructurar el proyecto en módulos bien definidos, reutilizables y escalables, facilitando la colaboración, el mantenimiento y la evolución del software a largo plazo.
+
+En el contexto de Flutter, un framework multiplataforma basado en el lenguaje Dart, la programación orientada a objetos se refleja en la creación de clases, componentes y funciones que encapsulan el comportamiento y la lógica de la interfaz, el manejo de datos y la interacción con servicios externos. Cada parte de la aplicación se define como un widget o clase independiente, lo que promueve una arquitectura limpia y modular.
+
+Un proyecto de programación orientada a objetos bien estructurado debe cumplir con los siguientes principios fundamentales:
+
+\begin{enumerate}
+    \item \textbf{Encapsulamiento}: Separar la lógica interna de los objetos del acceso externo mediante funciones o métodos bien definidos.
+    \item \textbf{Abstracción}: Definir estructuras lógicas que representen entidades clave del sistema (usuarios, mediciones, parajes, etc.).
+    \item \textbf{Herencia}: Reutilizar comportamientos comunes a través de clases base o mixins cuando sea necesario.
+    \item \textbf{Polimorfismo}: Permitir la utilización de interfaces genéricas que se comportan de forma diferente según el contexto.
+\end{enumerate}
+
+
+
+\subsubsection{3. User Experience}
+
+Para diseñar una experiencia de usuario (UX) sólida y centrada en las necesidades reales de las personas usuarias, es fundamental comprender y aplicar la estructura (\cite{garrett2011elements}), quien descompone la experiencia del usuario en cinco planos jerárquicos e interdependientes. 
+
+Estos planos permiten están esquematizados en la figura \ref{m7}, y abordan el diseño desde la abstracción estratégica hasta su implementación visual concreta. 
+
+En primer lugar, el plano de la \textbf{estrategia} define los objetivos tanto del usuario como del negocio, estableciendo el ``por qué'' detrás del sistema. A continuación, el plano del \textbf{alcance} transforma estos objetivos en requerimientos funcionales (como las características del sistema) y requerimientos de contenido (como textos, imágenes o formularios).
+
+El tercer plano corresponde a la \textbf{estructura}, que se refiere a cómo se organizan las funciones y el contenido dentro del sistema, abarcando tanto la arquitectura de la información como el diseño de la interacción. Posteriormente, el plano del \textbf{esqueleto} define el diseño de la interfaz, la navegación y la disposición de los elementos para asegurar la usabilidad. Finalmente, el plano de la \textbf{superficie} es la capa visual con la que el usuario interactúa directamente, incluyendo la elección de colores, tipografía, iconografía y estilo gráfico. Este modelo secuencial permite una toma de decisiones coherente y una alineación efectiva entre las necesidades del usuario y los objetivos del proyecto. La aplicación rigurosa de esta metodología facilita la creación de interfaces intuitivas, funcionales y significativas (Garrett, 2011).
+
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.9\textwidth]{m7.jpg}
+  \caption{ El modelo delineado aquí no incluye consideraciones secundarias (como aquellas que surgen durante el desarrollo técnico y de contenido) que pueden influir en las decisiones durante el desarrollo de la experiencia de usuario. Además, este modelo no describe un modelo del proceso de desarrollo, ni define roles dentro del equipo de desarrollo de la experiencia de usuario. Lo que busca definir son las consideraciones clave que forman el desarrollo de la experiencia de usuario en el Web actualmente. \cite{garrett2011elements}}
+  \label{m7}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
 \subsection{Evaluación del nivel de maduración tecnológica}
 
 El modelo del CONACyT, ahora SECIHTI, ha derivado la Norma Oficial Mexicana NMX-GT-004-IMNC-2012, identifica cada nivel de TRL por medio de una lista de verificación con preguntas dicotómicas con respuestas de ``si'' o ``no'', lo que permite que la herramienta sea eficiente.
@@ -368,7 +563,7 @@ proyecto.
 
 Para la presente investigación, apoyándose de la figura \ref{m1} y \ref{m2}, se hará la evaluación del nivel de maduración tecnológica de Tlaloc App.
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
   \includegraphics[width=1\textwidth]{m1.png}
   \caption{Guía para el Diagnóstico del Nivel de Madurez Tecnológica (NMT o TRL, por sus siglas en inglés) Parte 1, Fuente: Secretaría de Ciencia, Humanidades, Tecnología e Innovación (Secihti),}
@@ -377,7 +572,7 @@ Para la presente investigación, apoyándose de la figura \ref{m1} y \ref{m2}, s
 % TODO; CITA
 % https://secihti.mx/tecnologias-e-innovacion/convocatorias-desarrollo-tecnologico-vinculacion-e-innovacion/
 % https://secihti.mx/sistema-nacional-de-investigadores/marco-legal/
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
   \includegraphics[width=1\textwidth]{m2.png}
   \caption{Guía para el Diagnóstico del Nivel de Madurez Tecnológica (NMT o TRL, por sus siglas en inglés) Parte 2}

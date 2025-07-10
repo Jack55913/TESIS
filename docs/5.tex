@@ -155,7 +155,7 @@ La población de estudio para este trabajo, se define como toda persona que part
 %     \item Los pluviómetros se vacían y registran por el equipo técnico con una frecuencia de un mes (más menos dos días), a menos que sea necesario vaciar con mayor frecuencia. Los participantes envían sus registros sin una frecuencia específica, por lo que sus observaciones son adicionales a las que realiza el equipo técnico. Cada estación de monitoreo cuenta con letreros que poseen la información necesaria para que las personas puedan participar aunque no se les haya dado una capacitación personal. Se cuenta con siete estaciones de monitoreo en un gradiente altitudinal que va de 2683 a 3870 m. 
 % \end{enumerate}
 
-En la figura \ref{publicidad2}, puede observarse la instalación de la base
+En la figura \ref{publicidad2}, puede observarse la instalación de la base.
 
 \begin{figure}[h!]
 	\centering
@@ -194,7 +194,7 @@ Como resultado, se diseñaron y publicaron los recursos ilustrados a continuaci�
 \subsubsection{Carteles}
 La última versión de publicidad, contiene elementos cuidadosamente ordenados, en la figura \ref{publicidad1}.
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
   \includegraphics[width=0.5\textwidth]{publicidad/1.jpg}
   \caption{Carteles de publicidad}
@@ -203,7 +203,7 @@ La última versión de publicidad, contiene elementos cuidadosamente ordenados, 
 
 \subsubsection{Lonas}
 Se elaboró el cartel de la figura \ref{publicidad7}
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
   \includegraphics[width=0.5\textwidth]{publicidad/8.pdf}
   \caption{Carteles de publicidad}
@@ -213,7 +213,7 @@ Se elaboró el cartel de la figura \ref{publicidad7}
 
 \subsubsection{Trípticos}
 Se elaboraron trípticos, mencionados en la figura \ref{publicidad9}
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
   \includegraphics[width=0.5\textwidth]{publicidad/9.pdf}
   \caption{Trípticos}
@@ -228,17 +228,41 @@ La única red oficial de divulgación, está contenida en la página llamada ``C
 A continuación, se adjuntan las evidencias fotográficas de pláticas informativas con los Ejidatarios:
 
 
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure} 
+		\centering
+		\includegraphics[width=0.5\linewidth]{ejidatarios/1.jpg}
+		\caption{Reunión con el ejido de San Dieguito}
+		\label{ejidatarios1}
+	\end{subfigure} 
+	\begin{subfigure} 
+		\centering
+		\includegraphics[width=0.5\linewidth]{ejidatarios/2.jpg}
+		\caption{Reunión con ejido de Santa Catarina del Monte.}
+		\label{ejidatarios2}
+	\end{subfigure}
+	\begin{subfigure} 
+		\centering
+		\includegraphics[width=0.5\linewidth]{ejidatarios/3.jpg}
+		\caption{Reunión con ejido de Nativitas.}
+		\label{ejidatarios3}
+	\end{subfigure}
+	\caption{Reuniones con ejidatarios}
+	\label{ejidatarios123}
+\end{figure}
 
 
+\subsubsection{Entrega de obsequios}
 
-\begin{itemize}
-  % \item Lonas
-  % \item Carteles
-  % \item Trípticos
-  % \item Facebook
-  % \item Pláticas informativas
-  \item Entrega de obsequios
-\end{itemize}
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.5\textwidth]{publicidad/6.jpg}
+  \caption{Cartel de publicidad de entrega de obsequios}
+  \label{publicidad6}
+\end{figure}
+
+
 
 % \begin{table}[h!]
 %     \centering
@@ -384,8 +408,87 @@ A continuación, se adjuntan las evidencias fotográficas de pláticas informati
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \newpage
 \section{Desarrollo del código}
+El proyecto fue organizado utilizando paquetes y carpetas temáticas dentro del directorio \texttt{lib/}, cada una con una responsabilidad específica. El estado global de la aplicación se gestionó mediante clases como \texttt{AppState}, que centraliza las operaciones CRUD con Firebase, la autenticación del usuario y el manejo de preferencias locales.
+
+La presente sección documenta los resultados obtenidos durante el desarrollo del sistema, detallando tanto la arquitectura del código como las funciones principales implementadas. A través de diagramas, tablas y fragmentos del código fuente, se presenta de manera estructurada cómo se integraron los principios de la POO con las herramientas de Flutter y Firebase para construir una aplicación funcional, robusta y mantenible.
+
+
+\subsection{Estructura documental del proyecto en Flutter}
+
+La estructura de archivos de un proyecto Flutter refleja la arquitectura y organización del desarrollo. A continuación se analiza la estructura general y luego se profundiza en la carpeta \texttt{lib/}, que contiene la lógica principal de la aplicación.
+
+\subsubsection{Estructura general del proyecto}
+
+La siguiente figura muestra la organización principal del proyecto:
+
+\begin{center}
+\begin{forest}
+for tree={
+    font=\ttfamily,
+    grow'=0,
+    child anchor=west,
+    parent anchor=south,
+    anchor=west,
+    calign=first,
+    edge path={
+        \noexpand\path [draw, \forestoption{edge}]
+        (!u.south west) ++(5pt,0) -- +(5pt,0) |- (.child anchor)\forestoption{edge label};
+    },
+    before typesetting nodes={
+        if n=1
+          {insert before={[,phantom]}}
+          {}
+    },
+    fit=band,
+    before computing xy={l=1.5em},
+}
+[TlalocApp
+  [android/ Código específico para Android]
+  [ios/ Código específico para iOS]
+  [lib/ Código fuente principal en Dart
+    [main.dart Punto de entrada de la app]
+  ]
+  [test/ Pruebas automatizadas]
+  [pubspec.yaml Configuración (dependencias assets fonts)]
+  [assets/ Recursos como imágenes e íconos]
+  [build/ Archivos generados automáticamente]
+]
+\end{forest}
+\end{center}
+
+\subsubsection{Estructura detallada en \texttt{lib/}}
+
+Dentro de \texttt{lib/}, se organiza el código fuente principal siguiendo un enfoque modular y funcional. Una estructura típica y aplicada en el proyecto es:
+
+\begin{itemize}
+  \item \texttt{main.dart}: punto de entrada de la aplicación.
+  \item \texttt{app.dart}: configuración global y navegación.
+  \item \texttt{models/}: definición de clases que representan los datos, así como la lógica de estado y control (ej. \texttt{AppState}). 
+  \item \texttt{screens/}: pantallas principales de la interfaz.
+  \item \texttt{widgets/}: componentes visuales reutilizables. 
+\end{itemize}
+
+
+
+
 
 
 % \begin{enumerate}
@@ -409,109 +512,19 @@ A continuación, se adjuntan las evidencias fotográficas de pláticas informati
 
 \subsection{Backend}
 
-\subsubsection{Control de versiones y almacenamiento en GitHub}
- 
-
-El desarrollo de aplicaciones científicas requiere no solo un diseño estructurado del código, sino también un control riguroso de versiones y respaldos. GitHub es una plataforma ampliamente usada en el ámbito académico y profesional para alojar proyectos de software, permitiendo la colaboración, el seguimiento de cambios y el resguardo del historial del código fuente. Para este proyecto, el repositorio está disponible públicamente en:
-
+\subsubsection{Conexión en GitHub}
+Para facilitar el acceso al código fuente y fomentar la colaboración, se creó un repositorio en GitHub. Este repositorio abierto al público, contiene todo el código de la aplicación, incluyendo la estructura del proyecto, los archivos de configuración y las dependencias necesarias para su funcionamiento. La vista del repositorio es mostrado en la figura \ref{m6} y enlazado para su descarga en el siguiente link:
+: 
 \begin{center}
-\url{https://github.com/Jack55913/TlalocApp.git}
+  \url{https://github.com/Jack55913/TlalocApp.git}
 \end{center}
 
-\subsubsection*{Proceso para guardar código localmente en GitHub con Git}
-
-El flujo básico para controlar versiones de un proyecto usando \texttt{git} desde la computadora incluye los siguientes pasos:
-
-\begin{enumerate}
-    \item Inicializar el repositorio en la carpeta del proyecto (solo la primera vez):
-    \begin{minted}{bash}
-    git init
-    \end{minted}
-    
-    \item Configurar nombre y correo del autor (también solo una vez):
-    \begin{minted}{bash}
-    git config --global user.name "Luis Emilio Álvarez Herrera"
-    git config --global user.email "ejemplo@dominio.com"
-    \end{minted}
-    
-    \item Agregar el repositorio remoto de GitHub:
-    \begin{minted}{bash}
-    git remote add origin https://github.com/Jack55913/TlalocApp.git
-    \end{minted}
-    
-    \item Verificar el estado del repositorio y los archivos modificados:
-    \begin{minted}{bash}
-    git status
-    \end{minted}
-    
-    \item Añadir los archivos que se desean guardar (todos o algunos específicos):
-    \begin{minted}{bash}
-    git add .
-    \end{minted}
-    
-    \item Registrar los cambios con un mensaje claro:
-    \begin{minted}{bash}
-    git commit -m "Primera versión funcional de Tláloc App"
-    \end{minted}
-    
-    \item Subir los cambios al repositorio remoto en GitHub:
-    \begin{minted}{bash}
-    git push -u origin main
-    \end{minted}
-\end{enumerate}
-
-Este flujo se puede repetir cada vez que se realicen avances importantes en el código. Gracias a Git, cada modificación queda registrada con fecha, autor y propósito, lo cual facilita el mantenimiento del software, el trabajo colaborativo y la trazabilidad científica del desarrollo.
-
-\subsubsection*{Clonar el repositorio desde GitHub}
-
-Si se desea obtener una copia exacta del proyecto alojado en GitHub en otra computadora, es posible usar el comando \texttt{git clone}. Este comando descarga todo el historial y los archivos del proyecto:
-
-\begin{minted}{bash}
-git clone https://github.com/Jack55913/TlalocApp.git
-\end{minted}
-
-Este comando crea automáticamente una carpeta llamada \texttt{TlalocApp} con todos los archivos y el historial del proyecto.
-
-\subsubsection*{Subir cambios al repositorio remoto: \texttt{git push}}
-
-Una vez realizados cambios en el código, es posible subirlos a GitHub con el siguiente flujo:
-
-\begin{enumerate}
-    \item Verificar el estado del repositorio local:
-    \begin{minted}{bash}
-    git status
-    \end{minted}
-    
-    \item Agregar los archivos modificados al área de preparación:
-    \begin{minted}{bash}
-    git add .
-    \end{minted}
-    
-    \item Registrar los cambios localmente con un mensaje:
-    \begin{minted}{bash}
-    git commit -m "Descripción clara del cambio realizado"
-    \end{minted}
-    
-    \item Subir los cambios al servidor de GitHub:
-    \begin{minted}{bash}
-    git push origin main
-    \end{minted}
-\end{enumerate}
-
-Este proceso permite mantener actualizado el repositorio en la nube, sirviendo como respaldo y facilitando el trabajo colaborativo.
-
-\subsubsection*{Obtener actualizaciones del repositorio remoto: \texttt{git pull}}
-
-Si se ha trabajado en el mismo repositorio desde otra computadora o por otros colaboradores, se deben sincronizar los cambios con:
-
-\begin{minted}{bash}
-git pull origin main
-\end{minted}
-
-Este comando fusiona los cambios realizados en GitHub con la copia local del proyecto. Es recomendable ejecutarlo antes de comenzar una nueva sesión de desarrollo para evitar conflictos.
-
-
-
+\begin{figure}[ht]
+\centering
+  \includegraphics[width=1\textwidth]{m6.png}
+  \caption{Repositorio del código en GitHub}
+  \label{m6}
+\end{figure}
 
 
 
@@ -522,53 +535,68 @@ Este comando fusiona los cambios realizados en GitHub con la copia local del pro
 
 \subsubsection*{Función AppState}
 
-En el anexo \ref{anexo:alg1}, el Listado de funcionalidades del código son:
+En el anexo \ref{anexo:alg1}, se adjunta el código completo de la función del estado de la aplicación, la explicación se detalla a continuación:
 \begin{enumerate}
-    \item Gestión de Usuario y Configuración
+    \item \textbf{Gestión de Usuario y Configuración}
     Autenticación con Google: Usa GoogleSignInProvider para manejar el inicio de sesión y obtiene el usuario actual (currentUser).
     
-    Guardar Preferencias:
+    \begin{enumerate}
+      \item Guardar Preferencias:
     
-    changeParaje(): Cambia y guarda el paraje (ubicación) en SharedPreferences.
+    \begin{enumerate}
+      \item changeParaje(): Cambia y guarda el paraje (ubicación) en SharedPreferences.
     
-    changeRol(): Cambia y guarda el rol del usuario (ej: "Monitor") en SharedPreferences.
+    \item changeRol(): Cambia y guarda el rol del usuario (ej: "Monitor") en SharedPreferences.
     
-    Recupera datos guardados al inicializar (init()).
+   \item Recupera datos guardados al inicializar (init()).
+    \end{enumerate}
+    \end{enumerate}
     
-    \item Operaciones CRUD con Firebase Firestore
-    Crear Mediciones:
+    \item \textbf{Operaciones CRUD con Firebase Firestore}
+    \begin{enumerate}
+      \item Crear Mediciones:
     
-    addMeasurement(): Guarda una nueva medición en la colección measurements y calcula automáticamente el valor real (real\_measurements).
+    \begin{enumerate}
+      \item addMeasurement(): Guarda una nueva medición en la colección measurements y calcula automáticamente el valor real (real\_measurements).
     
-    addRealMeasurement(): Guarda una medición directamente en real\_measurements.
+    \item addRealMeasurement(): 
     
-    Leer Datos:
+    Guarda una medición directamente en real\_measurements.
+    \end{enumerate}
     
-    getMeasurements(), getRealMeasurements(): Obtienen listas de mediciones.
+    \item Leer Datos:
     
-    Streams en tiempo real: getMeasurementsStream(), getRealMeasurementsStream(), y variantes por paraje.
+    \begin{enumerate}
+    \item getMeasurements(), getRealMeasurements(): Obtienen listas de mediciones.
     
-    Actualizar Mediciones:
+    \item Streams en tiempo real: getMeasurementsStream(), getRealMeasurementsStream(), y variantes por paraje.
+    \end{enumerate}
     
-    updateMeasurement(): Actualiza una medición existente en measurements.
+    \item Actualizar Mediciones:
     
-    updateRealMeasurement(): Actualiza una medición en real\_measurements.
+    \begin{enumerate}
+      \item updateMeasurement(): Actualiza una medición existente en measurements.
     
-    Eliminar Mediciones:
+    \item updateRealMeasurement(): Actualiza una medición en real\_measurements.
+    \end{enumerate}
+    
+    \item Eliminar Mediciones:
     
     deleteMeasurement(), deleteRealMeasurement(): Borran documentos de Firestore.
+    \end{enumerate}
     
-    \item Manejo de Imágenes con Firebase Storage
-    Sube imágenes a Storage desde la web o dispositivos móviles (en \_getMeasurementJson()).
+    \item \textbf{Manejo de Imágenes con Firebase Storage}
+    \begin{enumerate}
+    \item Sube imágenes a Storage desde la web o dispositivos móviles (en \_getMeasurementJson()).
     
-    Convierte imágenes a URLs descargables o las guarda como base64 si no hay conexión.
+    \item Convierte imágenes a URLs descargables o las guarda como base64 si no hay conexión.
+    \end{enumerate}
     
-    \item Lógica del algoritmo
+    \item \textbf{Lógica del algoritmo}
     Cálculo de Precipitación Real: En addMeasurement(), determina si el pluviómetro fue vaciado y ajusta el valor de la precipitación.
     
-    \item Gestión de Conexión
+    \item \textbf{Gestión de Conexión}
     Verifica conectividad con Connectivity().checkConnectivity() para decidir cómo guardar imágenes.
-    
 \end{enumerate}
 
 Sobre los servicios de Firebase, fueron llamados en la tabla \ref{tabt2}
@@ -594,17 +622,848 @@ Sobre los servicios de Firebase, fueron llamados en la tabla \ref{tabt2}
 
 
 
+
+
+
+\subsubsection{Conexión de la base de datos y Hosting en la web en Firebase}
+
+ 
+
+Para garantizar el almacenamiento eficiente y la disponibilidad continua de los datos registrados mediante \textit{Tláloc App}, se utilizó la plataforma \textbf{Firebase} de Google como solución integral en la nube. Firebase proporciona una infraestructura escalable para aplicaciones móviles y web, permitiendo la sincronización en tiempo real de la información entre los usuarios y la base de datos central.
+
+\subsubsection*{Configuración de Firebase Firestore}
+
+Una vez completada la inicialización descrita en el método, es posible realizar operaciones sobre la base de datos Firestore, como lecturas, escrituras y suscripciones en tiempo real. Por ejemplo, se puede acceder a una colección mediante \texttt{FirebaseFirestore.instance.collection('mediciones')}, y realizar inserciones usando \texttt{add}, lecturas con \texttt{get} o suscripciones usando \texttt{snapshots()}. En este punto, la aplicación Flutter está completamente conectada con Firestore, permitiendo aprovechar la escalabilidad, sincronización en tiempo real y persistencia que ofrece este servicio de Firebase.
+
+
+
+La conexión con la base de datos se estableció mediante el servicio \textbf{Cloud Firestore}, el cual ofrece una base de datos NoSQL orientada a documentos. Esta elección permitió estructurar la información de forma flexible, utilizando colecciones y documentos que representan cada uno de los registros de lluvia capturados por los usuarios.
+
+La integración con Firestore se llevó a cabo en el entorno de desarrollo de Flutter, utilizando el paquete oficial \texttt{cloud\_firestore}. La configuración inicial incluyó:
+
+\begin{itemize}
+    \item Creación del proyecto en la consola de Firebase.
+    \item Registro de las plataformas (Android/iOS/Web) vinculadas a la app.
+    \item Generación del archivo \texttt{google-services.json} e inclusión en el proyecto Flutter.
+    \item Inicialización de Firebase dentro del archivo \texttt{main.dart} mediante la función:
+    
+    \texttt{Firebase.initializeApp()}.
+\end{itemize}
+
+Los datos almacenados incluyen fecha, valor de precipitación, ubicación geográfica, estado del pluviómetro y metadatos del usuario que realiza la captura mostrados en la figura \ref{m5}.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=1\textwidth]{m5.png}
+  \caption{Base de datos en Firebase Firestore}
+  \label{m5}
+\end{figure}
+
+\newpage
+\subsubsection*{Reglas de seguridad}
+
+Para proteger el acceso a la base de datos, se definieron reglas de seguridad personalizadas en Firebase Security Rules. Estas reglas restringen las operaciones de lectura y escritura únicamente a usuarios autenticados con ciertos roles, como se muestra en el fragmento del anexo \ref{anexo:alg2}.
+
+
+El sistema de reglas presentado combina tres modelos de control de acceso:
+
+\begin{itemize}
+\item Acceso basado en roles jerárquicos (ADMIN, EDITOR, VIEWER, OWNER)
+\item Propiedad del dato (\textit{user ownership})
+\item Permisos contextuales vinculados a la estructura organizacional
+\end{itemize}
+
+
+
+Sobre la autenticación, se establece el requisito mínimo para cualquier operación:
+
+\begin{minted}{javascript}
+match /{allPaths=**} {
+allow read, write: if request.auth.token.roles.size() > 0;
+}
+\end{minted}
+
+Las reglas específicas para Rowy, son que gestionan el acceso a la configuración administrativa:
+
+\begin{minted}{javascript}
+match /{collectionId}/{docId} {
+allow read, create, update, delete: if colRule(["roles"],
+["ADMIN","EDITOR","VIEWER","OWNER"]);
+
+function colRule(collections, roles) {
+return collectionId in collections && hasAnyRole(roles);
+}
+}
+\end{minted}
+
+
+Para controlar el acceso, edición o eliminación de los datos pluviométricos, se establece lo siguiente:
+
+\begin{minted}{javascript}
+match /roles/{rol}/parajes/{paraje}/measurements/{docId} {
+allow read: if request.auth != null;
+allow create: if request.auth != null;
+allow update, delete: if
+hasAnyRole(["ADMIN", "OWNER"]) ||
+request.auth.uid == resource.data.uploader_id;
+}
+\end{minted}
+
+
+
+El esquema implementado demuestra:
+
+\begin{itemize}
+\item Control granular mediante combinación de modelos RBAC y ABAC
+\item Flexibilidad para administradores y autonomía para usuarios
+\item Seguridad contra accesos no autorizados
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+% El sistema implementa un esquema de cuatro capas de seguridad. La primera capa establece un permiso genérico que restringe todas las operaciones a usuarios autenticados con al menos un rol asignado (request.auth.token.roles.size() > 0), cumpliendo así con el requisito básico de autenticación.
+
+% La segunda capa, demarcada como "Rowy rules", introduce funciones reutilizables (colRule, hasAnyRole) que validan accesos a colecciones específicas mediante verificaciones de roles. Por ejemplo, la regla colRule(["roles"], ["ADMIN","EDITOR","VIEWER","OWNER"]) permite operaciones CRUD solo si el usuario posee alguno de los roles especificados y la colección objetivo está en la lista blanca definida. Este enfoque sigue el patrón de listas de control de acceso (ACLs) adaptativo descrito por Ferraiolo y Kuhn (2001).
+
+% En la tercera capa, se implementan reglas personalizadas para el dominio de mediciones pluviométricas. Estas incorporan condiciones híbridas que combinan roles privilegiados (ADMIN/OWNER) con propiedad del dato (request.auth.uid == resource.data.uploader_id). Para las colecciones measurements y real_measurements, se permite lectura pública autenticada, mientras que la modificación requiere ser propietario del registro o tener privilegios administrativos. Esta estrategia refleja el modelo RBAC-A (Role-Based Access Control with Attributes) propuesto por Jin et al. (2012).
+
+% La cuarta capa gestiona configuraciones del sistema mediante reglas especializadas. El segmento _rowy_/schema utiliza funciones dinámicas (canModify) que consultan metadatos almacenados en Firestore para determinar permisos, demostrando un enfoque de seguridad basado en políticas (Policy-Based Access Control). Las reglas en _rowy_/publicSettings, por contraste, ilustran una excepción deliberada al permitir lectura anónima (allow get: if true), necesaria para funcionalidades públicas.
+
+% Funciones de Utilidad
+% Tres funciones centralizan la lógica de autorización:
+
+% hasAnyRole(roles) verifica membresía en conjuntos de roles, siguiendo el estándar NIST RBAC (Sandhu et al., 2000).
+
+% isDocOwner(docId) implementa el patrón de ownership mediante comparación de UIDs, crítico para el principio de autogestión de datos.
+
+% canModify(tableId, tableType) demuestra autorización contextual al consultar configuraciones almacenadas, técnica recomendada por Google Cloud para sistemas multiinquilino.
+
+% De este modo, se garantiza la privacidad de los datos y se previene la modificación no autorizada.
+
+\subsection{Implementación del Hosting Web}
+
+
+
+El sitio web resultante está vinculado al mismo entorno de base de datos que la aplicación móvil, permitiendo la visualización en tiempo real de los datos recolectados en el Monte Tláloc.
+
+
+Para habilitar la sincronización con la plataforma Firebase y desplegar la aplicación web en línea, se siguió el siguiente procedimiento, ejecutado desde la terminal del sistema:
+
+\subsubsection{1. Instalación de Firebase CLI}
+
+Primero, se instaló la interfaz de línea de comandos de Firebase mediante el siguiente comando de \texttt{npm} (Node Package Manager):
+
+\begin{verbatim}
+npm install -g firebase-tools
+\end{verbatim}
+
+\subsubsection{2. Inicio de sesión con la cuenta de Google}
+
+Para autenticar el entorno de desarrollo con Firebase, se ejecutó:
+
+\begin{verbatim}
+firebase login
+\end{verbatim}
+
+Este comando abre una ventana en el navegador para iniciar sesión con una cuenta de Google autorizada.
+
+\subsubsection{3. Inicialización del proyecto}
+
+Dentro del directorio del proyecto Flutter web compilado (por ejemplo, \texttt{build/web}), se corrió el siguiente comando para vincular el proyecto local con Firebase:
+
+\begin{verbatim}
+firebase init
+\end{verbatim}
+
+Durante este proceso interactivo, se seleccionaron las siguientes opciones:
+
+\begin{itemize}
+    \item \texttt{Hosting: Configure files for Firebase Hosting and (optionally) set up GitHub Action deploys}
+    \item Proyecto de Firebase previamente creado en la consola.
+    \item Directorio público: \texttt{build/web}
+    \item Configuración como aplicación de una sola página (SPA): \texttt{Yes}
+    \item Sobrescribir \texttt{index.html}: \texttt{No}
+\end{itemize}
+
+\subsubsection{4. Compilación de la app Flutter para la web}
+
+Para generar la versión web de la aplicación, se utilizó el siguiente comando:
+
+\begin{verbatim}
+flutter build web
+\end{verbatim}
+
+Este comando crea los archivos estáticos de la aplicación en la carpeta \texttt{build/web}, listos para ser desplegados.
+
+\subsubsection{5. Despliegue del sitio en Firebase Hosting}
+
+Una vez compilado el proyecto, se procedió al despliegue con el comando:
+
+\begin{verbatim}
+firebase deploy
+\end{verbatim}
+
+Firebase genera una URL pública en el dominio \texttt{.web.app} o \texttt{.firebaseapp.com} donde la app queda disponible instantáneamente.
+
+\subsubsection{6. Configuración de dominio personalizado (opcional)}
+
+Para vincular un dominio propio (para este caso, \texttt{www.tlalocapp.web.app}), se utilizaron los siguientes pasos en la consola web de Firebase:
+
+\begin{enumerate}
+    \item Ir a la sección \textbf{Hosting} del proyecto.
+    \item Seleccionar \textbf{Agregar dominio personalizado}.
+    \item Ingresar el dominio comprado y verificar la propiedad agregando un registro \texttt{TXT} en la configuración DNS del proveedor.
+    \item Una vez verificado, Firebase proporciona los registros \texttt{A} necesarios para redirigir el tráfico.
+    \item Actualizar la configuración DNS del dominio apuntando a las direcciones IP que Firebase indica.
+\end{enumerate}
+
+En pocos minutos, el sitio se encuentra accesible desde un dominio personalizado con HTTPS habilitado automáticamente por Firebase Hosting, pudiéndose administrar sus versiones en el panel representado por la figura \ref{m8}.
+
+\begin{figure}[ht]
+\centering
+  \includegraphics[width=1\textwidth]{m8.png}
+  \caption{Panel de control del Hosting en Firebase}
+  \label{m8}
+\end{figure}
+
+Nótese que en la configuración de almacenamiento de actualizaciones, se puso 1, para que solamente guarde una versión anterior en caso de un desastre.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
 \subsection{User Interface (UI)}
 
 
 
+La interfaz de usuario de \textit{Tláloc App} fue diseñada para facilitar una navegación intuitiva y accesible, organizada en las siguientes secciones funcionales.
+
+
+
+
+
+
+
+
+\subsubsection{Registro de usuario}
+
+Cuando la aplicación es iniciada por primera vez, la función main (Anexo \ref{anexo:alg3}) llama al StatelessWidget \texttt{MyApp} (Anexo \ref{anexo:alg4}), que a su vez invoca el StatelessWidget \texttt{ConditionalOnboardingPage} (Anexo \ref{anexo:alg5}). Este ultimo widget es un condicional que determina si la pantalla inicial es el Onboarding (Anexo \ref{anexo:alg6}) o el HomePage (Anexo \ref{anexo:alg7}).
+
+El Onboarding es importante porque da la bienvenida al usuario y es la carátula del proyecto. Una vez completada esta sección, se navega a la pantalla de iniciar sesión con cuenta Google, la cual se le llamó \texttt{SignUpWidget} (Anexo \ref{anexo:alg8}). Esta pantalla permite al usuario registrarse o iniciar sesión con su cuenta de Google, utilizando el paquete \texttt{google\_sign\_in} para la autenticación.
+
+El algoritmo del anexo \ref{anexo:alg8}, utiliza dos herramientas clave para lograr un diseño responsivo:
+
+\begin{enumerate}
+    \item \textbf{MediaQuery:} Permite obtener el tamaño total de la pantalla.
+    \item \textbf{LayoutBuilder:} Permite construir diferentes disposiciones visuales dependiendo del ancho máximo disponible en el contenedor.
+\end{enumerate}
+
+A continuación, se muestra el fragmento relevante del código:
+
+\begin{minted}{dart}
+
+final size = MediaQuery.of(context).size;
+
+LayoutBuilder(
+  builder: (context, constraints) {
+    final isWide = constraints.maxWidth > 800;
+
+    return isWide
+      ? Row( ... )   // Para pantallas grandes (modo escritorio)
+      : Column( ... ); // Para pantallas pequeñas (modo móvil)
+  },
+),
+\end{minted}
+
+
+
+\begin{itemize}
+    \item \texttt{MediaQuery.of(context).size} obtiene el tamaño físico de la pantalla.
+    \item \texttt{LayoutBuilder} evalúa el espacio disponible (\texttt{constraints.maxWidth}).
+    \item Se define una condición lógica: \texttt{isWide}, que evalúa si el ancho disponible es mayor a 800 píxeles. Esta cifra es un umbral común para distinguir entre pantallas móviles y de escritorio.
+    \item Si \texttt{isWide} es \texttt{true}, se muestra una interfaz en forma de \texttt{Row}, donde la imagen y el formulario aparecen lado a lado.
+    \item Si \texttt{false}, se muestra en forma de \texttt{Column}, uno debajo del otro.
+\end{itemize}
+
+
+Finalmente, el modelo de esta pantalla, se muestra en el anexo \ref{anexo:alg9}, donde se observa que el usuario puede registrarse o iniciar sesión con su cuenta de Google, y una vez autenticado, se guarda su información en la base de datos de Firebase.
+
+
+La clase \texttt{GoogleSignInProvider} que extiende de \texttt{ChangeNotifier}, permitiendo su uso con el patrón de arquitectura Provider para gestionar el estado de autenticación del usuario mediante Google y Firebase
+
+\begin{itemize}
+    \item Se importa \texttt{firebase\_auth}, \texttt{google\_sign\_in} y \texttt{foundation} para funcionalidades básicas, autenticación y estado reactivo.
+    \item Se crean dos instancias privadas:
+    \begin{itemize}
+        \item \texttt{\_auth} para acceder a los métodos de Firebase Authentication.
+        \item \texttt{\_googleSignIn} configurado con el \texttt{clientId} si la aplicación se ejecuta en entorno web (\texttt{kIsWeb}).
+    \end{itemize}
+\end{itemize}
+
+
+Resumen del Flujo:
+
+\begin{enumerate}
+    \item El usuario inicia sesión con Google.
+    \item Se obtienen los tokens y se genera la credencial de Firebase.
+    \item Se autentica al usuario en Firebase.
+    \item Se maneja el estado de carga para notificar a la interfaz.
+    \item Si hay errores, se muestran mensajes específicos.
+    \item El usuario puede cerrar sesión limpiamente.
+\end{enumerate}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.6\textwidth]{assets/pantallas/1.pdf}
+  \caption{Pantalla de bienvenida}
+  \label{pantallas1}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.6\textwidth]{assets/pantallas/2.pdf}
+  \caption{Pantalla de registro mediante Google}
+  \label{pantallas2}
+\end{figure}
+\newpage
+\subsubsection{Elección de paraje}
+
+
+En la página CommonSelectPage() (Anexo \ref{anexo:alg10}), se permite al usuario seleccionar el paraje donde se encuentra el pluviómetro. Esta pantalla es accesible desde el menú principal y muestra una lista de los parajes disponibles, permitiendo al usuario elegir uno para registrar sus mediciones.
+
+
+\subsubsection*{Lógica del Código QR:}
+
+En la página \texttt{QrCodePage} (Anexo \ref{anexo:alg11}), se implementa la funcionalidad de escaneo de códigos QR para identificar el pluviómetro asociado al paraje seleccionado. Esta pantalla utiliza el paquete \texttt{qr\_code\_scanner} para capturar el código QR y extraer la información del pluviómetro.
+
+
+
+El widget QrSelectWidget, encapsula el flujo completo desde la activación del escáner hasta la validación del contenido del código y la actualización del estado global de la aplicación. A continuación se desglosa el proceso y se explica detalladamente cada etapa relevante.
+
+\begin{minted}{dart}
+Future<void> _handleQrResult(BuildContext context, String? qrResult) async
+\end{minted}
+
+Esta función central se encarga de procesar el resultado del escaneo del código QR. Recibe como parámetro una cadena \texttt{qrResult}, la cual puede ser nula si el escaneo fue fallido o cancelado. La lógica se descompone en los siguientes pasos:
+
+\begin{enumerate}
+\item \textbf{Validación de nulo}: Si el valor del QR es nulo, se muestra un cuadro de diálogo de error notificando al usuario que el escaneo falló, sugiriéndole intentar nuevamente o seleccionar manualmente el paraje.
+
+\begin{minted}{dart}
+if (qrResult == null) {
+await _showErrorDialog(context, title: 'Escaneo fallido', ...);
+return;
+}
+\end{minted}
+
+\item \textbf{Extracción del nombre del paraje}: Si el QR no es nulo, se invoca la función \texttt{\_parseQrResult}, la cual intenta extraer el nombre del paraje desde la URL contenida en el código QR.
+
+\begin{minted}{dart}
+final paraje = _parseQrResult(qrResult);
+\end{minted}
+
+Esta extracción ocurre únicamente si la cadena contiene el dominio \texttt{tlaloc.web.app}, evitando procesar códigos arbitrarios. Luego, se toma el último segmento del path y se decodifican espacios representados por guiones bajos (\_) o \texttt{\%20}, eliminando posibles espacios innecesarios:
+
+\begin{minted}{dart}
+String parseQrResult(String qrResult) {
+if (!qrResult.contains('tlaloc.web.app')) return '';
+return qrResult.split('/').last.replaceAll(RegExp(r'|%20'), ' ').trim();
+}
+\end{minted}
+
+\item \textbf{Verificación del paraje}: Una vez extraído el nombre del paraje, se verifica si este existe en el diccionario global \texttt{parajes}. Si no existe, se notifica al usuario que el código no es válido o no corresponde a un paraje habilitado.
+
+\begin{minted}{dart}
+if (!parajes.containsKey(paraje)) {
+await _showErrorDialog(context, title: 'Código inválido', ...);
+return;
+}
+\end{minted}
+
+\item \textbf{Asignación del nuevo paraje}: Si el paraje es válido, se procede a navegar a la pantalla principal de la aplicación (función \texttt{\_goHome}) y se actualiza el estado global con el nuevo paraje utilizando el patrón de proveedor (\texttt{Provider}) para sincronizarlo con toda la aplicación.
+
+\begin{minted}{dart}
+_goHome(context);
+Provider.of<AppState>(context, listen: false).changeParaje(paraje);
+\end{minted}
+\end{enumerate}
+
+El escaneo del QR se desencadena cuando el usuario pulsa sobre el componente visual que representa esta funcionalidad. Se utiliza una ventana emergente tipo diálogo que contiene el escáner mediante el paquete \texttt{mobile\_scanner}:
+
+\begin{minted}{dart}
+final qrResult = await showDialog<String>(
+context: context,
+builder: (context) => _QrScannerDialog(context),
+);
+\end{minted}
+
+La clase \texttt{\_QrScannerDialog} encapsula el comportamiento del escáner. Este se configura para usar la cámara trasera, con una velocidad de detección normal y sin linterna activada:
+
+\begin{minted}{dart}
+MobileScanner(
+controller: MobileScannerController(
+detectionSpeed: DetectionSpeed.normal,
+facing: CameraFacing.back,
+torchEnabled: false,
+),
+onDetect: (barcode) {
+if (barcode.barcodes.isNotEmpty) {
+Navigator.pop(context, barcode.barcodes.first.rawValue ?? '');
+}
+},
+);
+\end{minted}
+
+Cuando se detecta exitosamente un código, se extrae su valor en texto (\texttt{rawValue}) y se cierra el diálogo, devolviendo el resultado a la función principal de manejo, \texttt{\_handleQrResult}.
+
+Esta estructura permite una interacción robusta, ágil y segura para seleccionar automáticamente el paraje correspondiente a un pluviómetro artesanal mediante un código QR, mejorando significativamente la experiencia del usuario y reduciendo errores de selección manual. Además, garantiza que solo se acepten códigos autorizados que correspondan a parajes reconocidos por la aplicación.
+
+Finalmente, para generar los códigos Qr, se hace un mapa llamado ``parajes'', conteniendo el nombre y el ejido:
+
+\begin{minted}{dart}
+Map<String, String> parajes = {
+  'El Venturero': 'Nativitas',
+  'El Jardín': 'Nativitas',
+  'Cabaña': 'San Pablo Ixayoc',
+  'Cruz de Atenco': 'San Dieguito',
+  'Canoas altas': 'San Dieguito',
+  'Los Manantiales': 'Tequexquinahuac',
+  'Tlaltlatlately': 'Santa Catarina del Monte',
+  'Agua de Chiqueros': 'Santa Catarina del Monte',
+  'Camino a las Trancas': 'Nativitas',
+  'El Cedral': 'San Pablo Ixayoc',
+  'Tlachichilpa': 'San Dieguito',
+};
+\end{minted}
+
+Se pueden utilizar generadores de Qr en línea por ejemplo \url{https://es.qr-code-generator.com/}.
+
+% \begin{example}
+  Sea ``El Venturero'', el paraje que se pretende crear el código Qr. El link será:
+  \url{https://tlaloc.web.app/El_Venturero}
+  El resultado de usar el generador está mostrado en la figura \ref{m4}:
+  \begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.5\textwidth]{m4.png}
+    \caption{Código Qr para el paraje ``El Venturero''}
+    \label{m4}
+  \end{figure}
+% \end{example}
+
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.6\textwidth]{assets/pantallas/3.pdf}
+  \caption{Pantalla de elección de paraje}
+  \label{pantallas3}
+\end{figure}
+\newpage
+
+
+
+
+\newpage
+\subsubsection{Navegación de pantallas principales}
+
+HomePage es un StatefulWidget, lo que permite mantener un estado dinámico, crucial para la navegación. Dentro de su estado (\_HomePageState), se define el índice \_selectedIndex, que controla cuál pantalla debe mostrarse en todo momento. La lista \_screens contiene cinco widgets que representan las diferentes secciones de la app: 
+\begin{enumerate}
+  \item Pantalla principal (HomeScreen),
+  \item Pantalla para agregar datos (AddScreen),
+  \item Pantalla de datos (DataScreen), 
+  \item Pantalla de gráficas (BarGraph) y
+  \item Pantalla de configuración/perfil (ConfigureScreen).
+\end{enumerate}
+
+En el método ``initState'', se configura un listener en tiempo real a la colección notifications de Firebase Firestore. Se observa específicamente el documento globalCounter, y si éste existe y tiene un campo count, su valor se asigna a la variable globalNotificationCount mediante setState(). Esto permite reflejar en la interfaz cuántas notificaciones nuevas han llegado. También se define una bandera booleana hasSeenNotifications que se activa cuando el usuario abre la pestaña correspondiente.
+
+En el método build, se construye una interfaz compuesta por dos partes principales: el cuerpo (body) y la barra de navegación inferior (bottomNavigationBar). El cuerpo utiliza un IndexedStack, que muestra solamente el widget cuyo índice coincide con \_selectedIndex, pero mantiene los demás en memoria para preservar su estado (ideal para rendimiento y persistencia de datos en pestañas).
+
+La barra de navegación inferior se implementa con el paquete curved\_navigation\_bar.
+
+Cuando el usuario toca un ítem de la barra, se dispara el método onTap, que actualiza \_selectedIndex y, si se accede a la pantalla de datos (índice 2), también marca que el usuario ya ha visto las notificaciones.
+
+Finalmente, el último ítem de la barra es un CircleAvatar que muestra la foto de perfil del usuario autenticado, si está disponible mediante 
+\begin{center}
+  FirebaseAuth.instance.currentUser?.photoURL
+\end{center}
+Si no hay foto, se carga una imagen de respaldo desde internet.
+
+\newpage
+\subsubsection{Menú Principal} 
+
+En la pantalla principal representada por el widget HomeScreen (figura \ref{pantallas16}), se integran diversos componentes visuales modulares cuyo propósito es organizar, presentar e incentivar la participación del usuario dentro de la aplicación Tláloc App. La estructura general de la interfaz se encuentra envuelta en un Scaffold, dentro de un SafeArea que protege los elementos de las zonas inseguras de la pantalla. Se utiliza LayoutBuilder en combinación con un Wrap y SingleChildScrollView para construir una disposición adaptable y desplazable, adecuada tanto para dispositivos móviles como para pantallas anchas.
+
+La barra superior (AppBar) incluye el logotipo de la aplicación, su nombre estilizado mediante AutoSizeText, y dos botones: InfoButton2, que despliega información relevante del sistema, y FluidDialogWidget, que ofrece ventanas emergentes con contenido contextual. En la parte inferior se coloca un botón flotante (Fab) cuya visibilidad se ajusta dinámicamente dependiendo del desplazamiento del usuario, sirviendo como acceso rápido a funciones clave.
+
+En cuanto a la participación activa del usuario, se incluye el widget OneTimeGoogleButton, diseñado para invitar al llenado de un formulario de retroalimentación mediante una cuenta de Google, así como QuickAddWidget, que permite agregar registros de precipitación de forma inmediata desde la pantalla de inicio.
+
+Respecto a la visualización meteorológica, el widget TodayWeatherStyleCard muestra el clima del día, mientras que WeekRainMarker ofrece una representación gráfica del pronóstico de lluvia semanal. Ambas tarjetas permiten al usuario mantenerse informado sobre las condiciones actuales y futuras del tiempo en su región.
+
+La sección educativa e informativa se refuerza con el widget TutorialWidget, el cual se presenta dentro de un GlassContainer, otorgándole una estética translúcida. Esta sección se complementa con un bloque que contiene la tabla de mediciones personales (PersonalMeasures) y generales (GeneralMeasures), también alojadas en un contenedor con estilo de vidrio, permitiendo al usuario consultar sus datos y compararlos con los de la comunidad.
+
+Asimismo, se incorpora el componente TlalocMapData, que muestra las rutas disponibles mediante mapas, permitiendo la visualización de parajes o estaciones registrados. 
+
+La dimensión social y participativa se fomenta a través del widget PhraseCard, que ofrece frases motivacionales o educativas;
+
+TableButton, que dirige a la tabla completa de datos; 
+
+CommunityButton, que enlaza con funciones colaborativas; 
+
+y SocialLinksWidget, el cual facilita el acceso a las redes sociales del proyecto. Todos estos elementos están organizados de forma modular, responsiva y jerárquicamente clara, para favorecer una experiencia de usuario intuitiva y didáctica mostradas en la figura \ref{pantallas16}.
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.6\textwidth]{assets/pantallas/16.pdf}
+  \caption{Pantalla inicial}
+  \label{pantallas16}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\subsubsection{Envío de mediciones}
+
+
+La clase \texttt{AddScreen} (anexo \ref{anexo:alg13}) representa la interfaz principal para el registro de una nueva medición de lluvia. Esta pantalla está diseñada como un formulario dinámico que permite a los usuarios capturar, modificar y enviar datos de precipitación, integrando funcionalidades de autenticación, selección de imágenes, validación de entradas, y almacenamiento en la nube.
+
+Cuando se carga la pantalla, se inicializan los valores por defecto o, en caso de que se edite una medición existente, se precargan los datos previamente registrados. El formulario permite especificar el nombre del responsable de la medición, el valor de precipitación en milímetros, la fecha y hora del registro, así como el estado del pluviómetro (si fue vaciado o no). También se permite el envío opcional de una imagen como evidencia, tomada desde la cámara o seleccionada desde la galería, compatible tanto en entorno web como móvil.
+
+La lógica del botón de guardado evalúa si se trata de una nueva medición o una edición. En el primer caso, llama a \texttt{addMeasurement()} desde el estado global (\texttt{AppState}), mientras que en el segundo ejecuta \texttt{updateMeasurement()} actualizando los campos correspondientes en Firestore y Storage. En ambos casos, se reproduce un sonido de confirmación al finalizar y se redirige al usuario a la pantalla principal.
+
+El diseño de la interfaz emplea componentes personalizados como \texttt{MyTextFormField}, \texttt{RainInputWidget} y \texttt{Datetime}, con una estructura modular y responsiva. Adicionalmente, se incluye una tarjeta que facilita el envío de datos por WhatsApp, y una sección de reinicio que marca si el pluviómetro fue vaciado, funcionalidad crítica para el cálculo de datos reales. Esta pantalla está mostrada en la figura \ref{pantallas5}.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.6\textwidth]{assets/pantallas/5.pdf}
+  \caption{Pantalla envío de datos}
+  \label{pantallas5}
+\end{figure}
+
+A continuación, se muestran los dos casos posibles al usar la app:
+\begin{itemize}
+  \item Cuando la medición anterior es menor a la actual
+  \item Cuando la medición anterior es mayor a la actual
+\end{itemize}
+En el primer caso, la medición real será la resta del anterior y en el segundo caso, indica que se vació indirectamente, por lo que se conserva tal cuál en el volumen real.
+
+
+\newpage
+\subsubsection{Bitácora}
+
+La clase \texttt{DataScreen}  (anexo \ref{anexo:alg14}) constituye la interfaz central de la bitácora de mediciones dentro de Tláloc App, permitiendo al usuario consultar registros históricos de precipitación. Esta pantalla combina un diseño adaptable con navegación mediante pestañas y una experiencia optimizada tanto para dispositivos móviles como para pantallas anchas (escritorio o tabletas). Utiliza un \texttt{TabController} con dos secciones principales: ``Acumulados'' y ``Reales'', representando, respectivamente, los valores brutos de precipitación y los datos corregidos mediante un algoritmo basado en el vaciado del pluviómetro.
+
+La interfaz está construida sobre un \texttt{NestedScrollView} con una \texttt{SliverAppBar} que incluye el logotipo de la aplicación, un título destacado, botones de información y una opción para exportar los registros en formato Excel (figura \ref{pantallas15}). El contenido de cada pestaña es renderizado mediante un \texttt{TabBarView}, que carga condicionalmente componentes diferentes según el ancho de la pantalla: una vista tipo lista detallada para escritorios (estilo Master-Detail), o bien listas verticales desplazables con controladores independientes en entornos móviles.
+
+Cada lista accede a los datos a través del estado global (\texttt{AppState}) y se sincroniza con Firestore en tiempo real, permitiendo al usuario desplazarse fluidamente entre los registros disponibles. Además, la lógica de exportación se integra en el botón superior, ofreciendo retroalimentación visual tras completar o fallar la operación. La pantalla garantiza una navegación intuitiva, claridad visual y escalabilidad, consolidándose como el núcleo de consulta y análisis dentro de la plataforma. 
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=1\textwidth]{assets/pantallas/15.pdf}
+  \caption{Exportación de datos a Excel}
+  \label{pantallas15}
+\end{figure}
+
+
+\subsubsection*{Caso I}
+Véase la figura \ref{pantallas7}, se sube una medición menor a la anterior, implicando que permanezca igual, mostrado en la ecuación \refeq{eq1}:
+\begin{equation}
+\text{Volumen Real, Caso I: } V_{a}<V_{b}\implies  V_{real} = V_{a}
+\label{eq1}
+\end{equation}
+Donde $V_{a}$ es la medición actual y $V_{b}$ es la medición anterior
+
+Esto da como resultado la pantalla de la figura \ref{pantallas8}.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.6\textwidth]{assets/pantallas/7.pdf}
+  \caption{Pantalla de bitácora en volúmenes acumulados (Caso I)}
+  \label{pantallas7}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.6\textwidth]{assets/pantallas/8.pdf}
+  \caption{Pantalla de bitácora en volúmenes reales (resultados del caso I)}
+  \label{pantallas8}
+\end{figure}
+
+\subsubsection*{Caso II}
+La figura \ref{pantallas10}, muestra que la medición actual es mayor que la anterior, esto acciona el algoritmo de la ecuación \refeq{eq2}:
+\begin{equation}
+\text{Volumen Real, Caso II: } V_{a}>V_{b}\implies V_{real} = V_{a} - V_{b}
+\label{eq2}
+\end{equation}
+Donde $V_{a}$ es la medición actual y $V_{b}$ es la medición anterior.
+
+En la figura \ref{pantallas11}, se muestra que la medición es diferente a la ingresada, esto porque se restó la medición actual de 119 con la medición anterior de 79 dando como resultado 40.
+
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.6\textwidth]{assets/pantallas/10.pdf}
+  \caption{Pantalla de bitácora en volúmenes acumulados caso ii}
+  \label{pantallas10}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.6\textwidth]{assets/pantallas/12.pdf}
+  \caption{Pantalla de bitácora en volúmenes reales caso ii}
+  \label{pantallas11}
+\end{figure}
+
+
+
+
+
+
+\newpage
+\subsubsection{Estadísticas} 
+
+El widget \texttt{BarGraph} constituye el módulo principal de visualización estadística, proporcionando una gráfica de barras interactiva para analizar datos de precipitación registrados en distintos parajes. Esta pantalla permite comparar de forma clara y dinámica los volúmenes de lluvia registrados en un intervalo de fechas configurable por el usuario. La funcionalidad se adapta a dos modalidades principales: \texttt{acumulado}, donde se visualiza la precipitación total registrada por día sin corrección; y \texttt{real}, que muestra únicamente las mediciones corregidas mediante el procedimiento de reinicio del pluviómetro. 
+
+Estas opciones están integradas mediante un interruptor interactivo que actualiza el origen de los datos en tiempo real, empleando \texttt{StreamBuilder} para obtener flujos de datos directamente desde Firestore.
+
+El diseño visual emplea el paquete \texttt{fl\_chart} para representar las mediciones mediante barras verticales, con etiquetas rotadas para las fechas en el eje horizontal y valores en milímetros en el eje vertical. La gráfica se ajusta dinámicamente en tamaño y escala de acuerdo al número de datos disponibles, con colores adaptativos según el tema de la interfaz. Además, se incluyen herramientas de selección temporal, con opciones predefinidas como ``Esta semana'', ``Este mes'', ``Este año'' y ``Siempre'', o bien un modo \texttt{personalizado} que permite elegir manualmente un rango de fechas utilizando componentes tipo calendario.
+
+Una funcionalidad destacada del componente es la capacidad de exportar la gráfica y sus datos en formato PDF. Para ello, se encapsula la gráfica en un widget \texttt{RepaintBoundary} que permite capturar su representación visual como imagen, la cual se inserta en el documento generado junto con una tabla de datos. Este proceso se complementa con el uso de la librería \texttt{pdf} para el diseño del informe y la librería \texttt{printing} o \texttt{file\_saver} para el guardado o impresión, dependiendo de la plataforma. En entornos web, la descarga se realiza automáticamente mediante un enlace temporal, mientras que en dispositivos móviles se ofrece la opción de previsualizar o guardar el archivo.
+
+Desde una perspectiva funcional, este módulo constituye una herramienta de análisis elemental para el monitoreo participativo, ya que permite comparar de forma gráfica y temporal los registros recopilados en campo. A través del uso de \texttt{Provider}, la lógica se mantiene desacoplada del estado global de la aplicación, permitiendo una experiencia fluida, escalable y visualmente clara. La inclusión de esta herramienta fortalece el uso de la aplicación no solo como medio de recolección, sino también como instrumento de análisis y comunicación de resultados.
+
+
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.6\textwidth]{assets/pantallas/13.pdf}
+  \caption{Pantalla de estadísticas: Gráfica de volúmenes reales }
+  \label{pantallas13}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.6\textwidth]{assets/pantallas/14.pdf}
+  \caption{Pantalla de estadísticas: Gráfica de volúmenes reales }
+  \label{pantallas14}
+\end{figure}
+
+\newpage
+\subsubsection{Perfil} 
+
+La pantalla de \texttt{ConfigureScreen} cumple la función de centro de control del usuario, integrando aspectos visuales, estadísticos y funcionales en una sola interfaz. Esta vista permite al usuario autenticado acceder a su información básica (nombre, correo electrónico y foto de perfil), consultar estadísticas clave sobre su participación en el monitoreo (mediciones propias, contribuciones globales y parajes monitoreados), así como modificar aspectos de configuración de la aplicación, compartirla o colaborar en su desarrollo.
+
+La interfaz inicia con un encabezado visual tipo retrato, que integra la imagen de perfil del usuario obtenida mediante \texttt{FirebaseAuth}. En caso de no contar con una imagen, se muestra un ícono genérico de cuenta. Debajo de este encabezado, se despliega el nombre y correo electrónico del usuario en estilos personalizados para mantener coherencia visual con el resto de la aplicación. La obtención de estadísticas personalizadas se realiza mediante un \texttt{FutureBuilder}, el cual consulta a \texttt{AppState} para recuperar los totales de mediciones locales (realizadas por el usuario), contribuciones globales (registradas en la base de datos) y la cantidad de parajes distintos visitados en comparación con el total disponible. Estos valores se presentan mediante tarjetas visuales con diseño limpio y centrado.
+
+La sección inferior se organiza en forma de lista categorizada bajo el título ``Configuración'', y agrupa una serie de acciones relevantes. Entre ellas se incluye la opción de compartir la aplicación mediante \texttt{share\_plus}, enviar retroalimentación por correo electrónico, consultar los términos legales y políticas de privacidad, así como acceder a un cuadro de diálogo “Acerca de” que enlaza con los créditos del equipo de desarrollo, preguntas frecuentes, redes sociales oficiales (Facebook, YouTube), contacto por correo electrónico y el repositorio público en GitHub. Esta modularidad permite tanto al usuario final como a los colaboradores potenciales interactuar con el ecosistema del proyecto.
+
+Finalmente, la pantalla incluye un botón para cerrar sesión de forma segura. Al presionarlo, se ejecuta el método \texttt{logout()} del proveedor de autenticación con Google (\texttt{GoogleSignInProvider}), redirigiendo al usuario nuevamente a la pantalla de introducción \texttt{Onboarding}. Esta navegación se implementa utilizando \texttt{Navigator.pushReplacement} para asegurar que no se pueda volver atrás en la pila de navegación.
+
+En conjunto, esta pantalla fortalece la experiencia del usuario al ofrecer un espacio personalizado, amigable y funcional. A nivel técnico, promueve buenas prácticas como la separación de responsabilidades, el uso eficiente del estado global a través de \texttt{Provider} y la integración fluida de servicios externos como Firebase, correo, redes sociales y repositorios comunitarios. Su diseño también mantiene coherencia estética con el resto de la aplicación mediante el uso consistente de estilos, colores y tipografías.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% todo: Sobre la firma de aplicaciones
+% https://developer.android.com/studio/publish/app-signing?hl=es-419
+
 
 \subsection{User Experience (UX)}
+Se 
+
+\subsubsection{Material Design}
+
+
+\subsubsection*{Tema del dispositivo}
+
+Para permitir al usuario alternar entre tema claro y tema oscuro, se implementa una gestión de estado centralizada con AppState, que expone el tema activo como una propiedad observable mediante ChangeNotifier. El cambio de tema afecta globalmente toda la aplicación y se guarda de forma persistente.
+
+1. Definir los temas claro y oscuro
+En el archivo constants.dart (o uno dedicado a temas), se define la apariencia visual para cada modo:
+
+
+\begin{minted}{dart}
+final ThemeData lightTheme = ThemeData(
+  brightness: Brightness.light,
+  colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+  fontFamily: 'FredokaOne',
+);
+
+final ThemeData darkTheme = ThemeData(
+  brightness: Brightness.dark,
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: Colors.blue,
+    brightness: Brightness.dark,
+  ),
+  fontFamily: 'FredokaOne',
+);
+\end{minted}
+2. Agregar la propiedad isDarkMode a AppState
+El estado global AppState debe incluir una propiedad booleana que indique si el modo oscuro está activo, así como un método para alternarlo:
+
+\begin{minted}{dart}
+class AppState extends ChangeNotifier {
+  bool _isDarkMode = false;
+
+  bool get isDarkMode => _isDarkMode;
+
+  void toggleTheme() {
+    _isDarkMode = !_isDarkMode;
+    notifyListeners();
+  }
+}
+\end{minted}
+Se guarda esta preferencia en SharedPreferences si quieres mantenerla al reiniciar la app.
+
+3. Aplicar el tema dinámicamente desde MaterialApp
+En el archivo app.dart, se consume el AppState con Provider para asignar el tema actual según isDarkMode:
+
+\begin{minted}{dart}
+return ChangeNotifierProvider(
+  create: (_) => AppState(),
+  child: Consumer<AppState>(
+    builder: (context, appState, _) {
+      return MaterialApp(
+        title: 'Tláloc App',
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        themeMode: appState.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+        home: const HomeScreen(),
+      );
+    },
+  ),
+);
+\end{minted}
+4. Añadir un Switch en la interfaz para cambiar el tema
+En alguna pantalla de configuración (como ConfigureScreen), se puede incluir un interruptor que permita al usuario alternar el modo:
+
+\begin{minted}{dart}
+SwitchListTile(
+  title: const Text('Modo oscuro'),
+  value: appState.isDarkMode,
+  onChanged: (_) => appState.toggleTheme(),
+),
+\end{minted}
+Como resultado con esta estructura, el cambio entre modo claro y oscuro se aplica inmediatamente en toda la interfaz, utilizando el sistema de temas de Flutter y el patrón Provider para gestión reactiva del estado. Esta implementación es limpia, escalable y fácilmente extensible para incluir preferencias adicionales (como tamaño de texto, idioma o color personalizado), esto puede ser comparada en la figura \ref{pantallas14} para su modo claro y \ref{pantallas13} para el modo oscuro.
+
+
+
+\subsubsection{Tienda de aplicaciones}
+
+
+% \subsubsection{Diseño visual y coherencia (Material Design)}
+% Describe cómo los componentes visuales siguen las guías de Material Design para ofrecer una interfaz intuitiva, predecible y estética.
+
+% \subsubsection{Accesibilidad}
+% Explica si se consideró el contraste de colores, uso de íconos comprensibles, textos legibles y compatibilidad con lectores de pantalla.
+
+% \subsubsection{Flujo de navegación}
+% Detalla cómo fue diseñado el flujo lógico entre pantallas: qué tan fácil es registrar una medición desde que el usuario abre la app, cómo vuelve al menú, etc.
+
+% \subsubsection{Retroalimentación del sistema}
+% Indica si la app ofrece mensajes claros cuando el usuario guarda una medición, comete un error o no hay conexión.
+
+% \subsubsection{Distribución y acceso (Tienda de aplicaciones)}
+% Describe cómo se facilita la instalación de la app desde Play Store o web, incluyendo aspectos como actualizaciones automáticas y peso ligero del archivo.
+
+% \subsubsection{Motivación y compromiso del usuario}
+% Incluye si hay elementos que motivan el uso continuo (por ejemplo, contador de mediciones, mensajes de agradecimiento, inclusión de grupos de monitoreo, etc.)
 
 
 
 
- 
+
+
+
+
 
 
 
@@ -622,6 +1481,21 @@ Sobre los servicios de Firebase, fueron llamados en la tabla \ref{tabt2}
 
 
 \section{Evaluación del nivel de maduración tecnológica}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
