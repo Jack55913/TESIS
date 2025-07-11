@@ -30,7 +30,7 @@
 \end{itemize}
 
 \section{Método}
-La presente sección describe los pasos empleados esquematizadas en la figura \ref{t2}, para abordar el problema central del proyecto, el cual se profundiza en el diseño y desarrollo de un algoritmo capaz de calcular valores de precipitación reales a partir de registros acumulados. Para ello, se parte de una lista de datos de entrada proporcionada por los usuarios, y se genera como salida una lista de valores corregidos que representan las mediciones reales, obtenidas mediante la resta entre cada nuevo dato y el inmediatamente anterior.
+La presente sección describe los pasos empleados, para abordar el problema central del proyecto, el cual se profundiza en el diseño y desarrollo de un algoritmo capaz de calcular valores de precipitación reales a partir de registros acumulados. Para ello, se parte de una lista de datos de entrada proporcionada por los usuarios, y se genera como salida una lista de valores corregidos que representan las mediciones reales, obtenidas mediante la resta entre cada nuevo dato y el inmediatamente anterior.
 
 Este proceso requiere, como paso previo, el diseño de un protocolo de monitoreo participativo que motive e instruya a los usuarios en el envío constante y preciso de datos. Posteriormente, se detalla el desarrollo del algoritmo dentro del entorno de la aplicación móvil, seguido de un análisis del estado actual del proyecto con base en el nivel de maduración tecnológica.
 
@@ -78,7 +78,7 @@ El protocolo consiste en llevar a cabo un monitoreo de lluvia que involucró tre
   \item Diseño técnico de monitoreo
   \item Campaña de difusión con público en general
 \end{enumerate}
-
+Las cuales están desglosadas en la figura \ref{t2}
 
 
 \subsubsection{1. Procesos Participativos con Ejidatarios} 
@@ -89,19 +89,12 @@ El primer paso consiste en establecer contacto con los miembros de la Unión Eji
 \end{itemize}
 
 
-\subsubsection*{Criterio de selección de sitios de monitoreo}
-Luego de visitar los lugares propuestos por las autoridades, registrar los datos de coordenadas, altitud, pendiente, tipo de vegetación, superficie desprovista de árboles y tamaño de los árboles circundantes. Esta información permite identificar los sitios más adecuados para instalar los sitios de monitoreo, siguiendo las recomendaciones de la Organización Meteorológica Mundial (OMM, 2014). En una etapa posterior se realiza un proceso de capacitación con los Ejidatarios y público en general para el monitoreo de la lluvia. Asimismo, crear un protocolo para facilitar a los Ejidatarios el uso de la información generada en sus actividades de manejo de los bosques.
+\subsubsection*{Contexto Geográfico}
+La determinación del \textbf{criterio de selección de sitios de monitoreo}, se hará después de visitar los lugares propuestos por las autoridades, se debe registrar los datos de coordenadas, altitud, pendiente, tipo de vegetación, superficie desprovista de árboles y tamaño de los árboles circundantes. 
 
+Esta información permite identificar los sitios más adecuados para instalar los sitios de monitoreo, siguiendo las recomendaciones de la Organización Meteorológica Mundial (OMM, 2014). 
 
-% Los sitios de monitoreo se seleccionan a partir de las características siguientes:
-% \begin{itemize}
-%   \item Pendiente
-%   \item Distancia a obstáculos
-%   \item Homogeneidad de barrera
-%   \item Criterios de accesibilidad
-%   \item Altitud
-%   \item Tipo de vegetación
-% \end{itemize}
+En una etapa posterior se realiza un proceso de capacitación con los Ejidatarios y público en general para el monitoreo de la lluvia. Asimismo, crear un protocolo para facilitar a los Ejidatarios el uso de la información generada en sus actividades de manejo de los bosques.
 
 \subsubsection*{Descripción de la población de estudio}
 
@@ -232,9 +225,9 @@ Se plantea utilizar diversos medios y plataformas de divulgación enfocados en c
         \item Esquema del pluviómetro y la equivalencia de un mm de lluvia (1 mm = a vaciar un litro de agua en cada metro cuadrado de terreno).
         \item Saber cuándo, dónde y cuánto llueve en la montaña ayuda a entender cómo conservar el bosque y el agua que viene de ella. Cada 30 días se premiará a los 3 participantes con más registros. Además, al registrarte en Tláloc App podrás tener acceso a la información que generemos entre todos. Descarga Tláloc App en (poner sitio de descarga). Consultar más información en Facebook o mándanos un WhatsApp para asesorarte. ¡Ayúdanos a cuidar este pluviómetro! Por favor reporta si encuentras dañado este sitio de monitoreo.
     \end{enumerate}
-    \item Tríptico
-    \item Página de Facebook
-    \item Pláticas informativas
+    \item \textbf{Tríptico}
+    \item \textbf{Página de Facebook}
+    \item \textbf{Pláticas informativas}
 \end{enumerate}
 
 
@@ -306,44 +299,47 @@ Se plantea utilizar diversos medios y plataformas de divulgación enfocados en c
 
 
 \subsection{Desarrollo del código}
-
-
-
 En este sistema de monitoreo participan tres elementos principales: el usuario, el pluviómetro y la aplicación multiplataforma. El usuario es la persona encargada de registrar las mediciones realizadas por el pluviómetro artesanal, instalado en un paraje específico. Esta interacción ocurre a través de un código QR asignado a cada pluviómetro, el cual permite vincularlo con su ubicación y sus datos de monitoreo.
 
 La aplicación multiplataforma facilita esta interacción al estar disponible en diferentes dispositivos como teléfonos inteligentes, tabletas, laptops o computadoras de escritorio, y puede ejecutarse en sistemas operativos como Android, iOS, Huawei OS, Windows y navegadores web. De este modo, el usuario puede elegir el dispositivo de su preferencia para capturar y enviar los datos registrados por el pluviómetro al sistema.
 
 La Figura \ref{t3}, muestra el diagrama de flujo que representa el comportamiento operativo del sistema y cómo se realiza el intercambio de información entre estos tres actores.
-
-Finalmente, la metodología para el desarrollo del código, consiste en programar en lenguaje Dart, una aplicación multiplataforma, alojada en un sitio web y en Play Store, con el fin de enviar las mediciones a una base de datos pública.
-
-\begin{enumerate}
-  \item \textbf{Backend}
-   \begin{enumerate}
-    \item Alojamiento del código en GitHub
-    \item Base de datos
-    \item Hosting en la web en Firebase
-  \end{enumerate}
-  \item \textbf{User Interface (UI)}: En Flutter, la UI se construye a partir de widgets, que son unidades reutilizables de interfaz. Estos widgets permiten definir pantallas de forma declarativa, promoviendo una organización jerárquica clara y facilitando el mantenimiento del código. Un diseño de UI eficiente no solo debe ser estéticamente agradable, sino también funcional, accesible y coherente con los principios de diseño establecidos (como Material Design).
-\begin{enumerate}
-    \item \textbf{Registro de usuario}: Los usuarios podrán crear una cuenta y elegir el pluviómetro mediante el escaneo de códigos Qr o manualmente del sitio de monitoreo 
-    \item \textbf{Menú Principal}: Dispondrá de tutoriales, contador de mediciones, acerca de, tabulador de mediciones, mapas de las dos rutas, grupos para subir a la montaña y contacto
-    \item \textbf{Envío de mediciones}: Campo de texto, pluviómetro interactivo, booleano de vaciado, cambio de paraje
-    \item \textbf{Bitácora}: Disponibilidad de consulta, edición, difusión o eliminación de las mediciones propias y no de otros usuarios; y exportación en excel.
-    \item \textbf{Estadísticas}: Mostrará un gráfico interactivo en diferentes tiempo de interés, por ejemplo por semana, mes y año; entre volúmenes acumulados y reales.
-\end{enumerate}
-  \item \textbf{User Experience (UX)} \begin{enumerate}
-    \item Material Design
-    \item Acceso en tienda de aplicaciones (PlayStore)
-  \end{enumerate}
-\end{enumerate}
-
 \begin{figure}[h!]
 \centering
   \includegraphics[width=1\textwidth]{t3.pdf}
   \caption{Diagrama de flujo de trabajo del sistema de Pluviómetros con Tláloc App}
   \label{t3}
 \end{figure}
+
+La metodología para el desarrollo del código, consiste en programar en lenguaje Dart, una aplicación multiplataforma, alojada en un sitio web y en Play Store, con el fin de enviar las mediciones a una base de datos pública.
+
+
+\begin{enumerate}
+  \item \textbf{Backend}
+   \begin{enumerate}
+    \item Alojamiento del código: Exportar y guardar en GitHub
+    \item Base de datos: Lógica del código y conexión en Firebase
+    \item Hosting en la web: Publicar un dominio en Firebase
+  \end{enumerate}
+  \item \textbf{Frontend}
+  \begin{enumerate}
+    \item User Interface (UI): se construye a partir de widgets, que son unidades reutilizables de interfaz. Estos widgets permiten definir pantallas de forma declarativa, promoviendo una organización jerárquica clara y facilitando el mantenimiento del código. Un diseño de UI eficiente no solo debe ser estéticamente agradable, sino también funcional, accesible y coherente con los principios de diseño establecidos (como Material Design). 
+    \begin{enumerate}
+    \item Registro de usuario: Los usuarios podrán crear una cuenta y elegir el pluviómetro mediante el escaneo de códigos Qr o manualmente del sitio de monitoreo 
+    \item Menú Principal: Dispondrá de tutoriales, contador de mediciones, acerca de, tabulador de mediciones, mapas de las dos rutas, grupos para subir a la montaña y contacto
+    \item Envío de mediciones: Campo de texto, pluviómetro interactivo, booleano de vaciado, cambio de paraje
+    \item Bitácora: Disponibilidad de consulta, edición, difusión o eliminación de las mediciones propias y no de otros usuarios; y exportación en excel.
+    \item Estadísticas: Mostrará un gráfico interactivo en diferentes tiempo de interés, por ejemplo por semana, mes y año; entre volúmenes acumulados y reales.
+\end{enumerate}
+    \item User Experience (UX)
+     \begin{enumerate}
+      \item Material Design
+      \item Acceso en tienda de aplicaciones (PlayStore)
+     \end{enumerate}
+  \end{enumerate}
+
+\end{enumerate}
+
 
 
 
@@ -412,7 +408,7 @@ Este flujo se puede repetir cada vez que se realicen avances importantes en el c
 
 \subsubsection*{Clonar el repositorio desde GitHub}
 
-Si se desea obtener una copia exacta del proyecto alojado en GitHub en otra computadora, es posible usar el comando \texttt{git clone}. Este comando descarga todo el historial y los archivos del proyecto:
+Si se necesita obtener una copia exacta del proyecto alojado en GitHub en otra computadora, es posible usar el comando \texttt{git clone}. Este comando descarga todo el historial y los archivos del proyecto:
 
 \begin{minted}{bash}
 git clone https://github.com/Jack55913/TlalocApp.git
@@ -503,7 +499,7 @@ La implementación del hosting se realizó con los siguientes pasos:
     \item Despliegue del sitio mediante el comando \texttt{firebase deploy}.
 \end{enumerate}
 
-\subsubsection{2. User Interface}
+\subsubsection{2a. User Interface}
 
 El desarrollo de una aplicación móvil requiere no solo la implementación funcional del código, sino también una organización arquitectónica sólida basada en principios de programación orientada a objetos (POO). Esta metodología permite estructurar el proyecto en módulos bien definidos, reutilizables y escalables, facilitando la colaboración, el mantenimiento y la evolución del software a largo plazo.
 
@@ -520,15 +516,23 @@ Un proyecto de programación orientada a objetos bien estructurado debe cumplir 
 
 
 
-\subsubsection{3. User Experience}
+\subsubsection{2b. User Experience}
 
 Para diseñar una experiencia de usuario (UX) sólida y centrada en las necesidades reales de las personas usuarias, es fundamental comprender y aplicar la estructura (\cite{garrett2011elements}), quien descompone la experiencia del usuario en cinco planos jerárquicos e interdependientes. 
 
 Estos planos permiten están esquematizados en la figura \ref{m7}, y abordan el diseño desde la abstracción estratégica hasta su implementación visual concreta. 
 
-En primer lugar, el plano de la \textbf{estrategia} define los objetivos tanto del usuario como del negocio, estableciendo el ``por qué'' detrás del sistema. A continuación, el plano del \textbf{alcance} transforma estos objetivos en requerimientos funcionales (como las características del sistema) y requerimientos de contenido (como textos, imágenes o formularios).
+\begin{enumerate}
+  \item En primer lugar, el plano de la \textbf{estrategia} define los objetivos tanto del usuario como del negocio, estableciendo el ``por qué'' detrás del sistema. 
+  
+   \item A continuación, el plano del \textbf{alcance} transforma estos objetivos en requerimientos funcionales (como las características del sistema) y requerimientos de contenido (como textos, imágenes o formularios).
 
-El tercer plano corresponde a la \textbf{estructura}, que se refiere a cómo se organizan las funciones y el contenido dentro del sistema, abarcando tanto la arquitectura de la información como el diseño de la interacción. Posteriormente, el plano del \textbf{esqueleto} define el diseño de la interfaz, la navegación y la disposición de los elementos para asegurar la usabilidad. Finalmente, el plano de la \textbf{superficie} es la capa visual con la que el usuario interactúa directamente, incluyendo la elección de colores, tipografía, iconografía y estilo gráfico. Este modelo secuencial permite una toma de decisiones coherente y una alineación efectiva entre las necesidades del usuario y los objetivos del proyecto. La aplicación rigurosa de esta metodología facilita la creación de interfaces intuitivas, funcionales y significativas (Garrett, 2011).
+ \item El tercer plano corresponde a la \textbf{estructura}, que se refiere a cómo se organizan las funciones y el contenido dentro del sistema, abarcando tanto la arquitectura de la información como el diseño de la interacción. 
+ 
+  \item Posteriormente, el plano del \textbf{esqueleto} define el diseño de la interfaz, la navegación y la disposición de los elementos para asegurar la usabilidad. 
+  
+   \item Finalmente, el plano de la \textbf{superficie} es la capa visual con la que el usuario interactúa directamente, incluyendo la elección de colores, tipografía, iconografía y estilo gráfico. Este modelo secuencial permite una toma de decisiones coherente y una alineación efectiva entre las necesidades del usuario y los objetivos del proyecto. La aplicación rigurosa de esta metodología facilita la creación de interfaces intuitivas, funcionales y significativas (Garrett, 2011).
+\end{enumerate}
 
 
 \begin{figure}[h!]
@@ -538,6 +542,106 @@ El tercer plano corresponde a la \textbf{estructura}, que se refiere a cómo se 
   \label{m7}
 \end{figure}
 
+\newpage
+\subsubsection*{Tiendas de aplicaciones}
+Para publicar una aplicación Flutter en la Google Play Store requiere seguir una serie de pasos técnicos y administrativos que garantizan la calidad, seguridad y compatibilidad del producto final. A continuación se describe el proceso completo para llevar la app desde el entorno de desarrollo hasta su disponibilidad pública en la tienda.
+
+\paragraph{1. Crear una cuenta de desarrollador en Google Play}
+
+Antes de iniciar el proceso técnico, se debe crear una cuenta en la Play Console (\url{https://play.google.com/console}) como desarrollador. Esto requiere:
+
+\begin{itemize}
+    \item Una cuenta de Google personal o institucional.
+    \item El pago único de una tarifa de registro (25 USD al momento de la redacción).
+    \item Aceptar los términos y condiciones de Google Play.
+\end{itemize}
+
+\paragraph{2. Preparar la aplicación Flutter}
+
+Para distribuir una app Flutter en Android se deben cumplir los siguientes pasos:
+
+\begin{enumerate}
+    \item Establecer nombre del paquete de forma única en el archivo \texttt{android/app/build.gradle}, por ejemplo:
+\begin{minted}{yaml}
+applicationId "com.TlalocApps.tlaloc"
+\end{minted}
+
+    \item Modificar el archivo \texttt{android\/app\/src\/main\/AndroidManifest.xml} para establecer permisos, íconos y orientaciones.
+
+    \item Establecer versión y código de versión en \texttt{pubspec.yaml}:
+\begin{minted}{yaml}
+version: 1.0.0+1
+\end{minted}
+
+    \item Configurar el ícono de la app usando el paquete \texttt{flutter\_launcher\_icons}:
+\begin{minted}{bash}
+flutter pub add flutter\_launcher_icons
+flutter pub run flutter\_launcher_icons:main
+\end{minted}
+
+    \item Habilitar los modos de firma para release en \texttt{android\/key.properties} y \texttt{build.gradle}. Crear una clave de firma con:
+\begin{minted}{bash}
+keytool -genkey -v -keystore ~/key.jks \
+  -keyalg RSA -keysize 2048 -validity 10000 \
+  -alias tlaloc_key
+\end{minted}
+
+    \item Asegurar que se usa la variante \texttt{release} al compilar:
+\begin{minted}{bash}
+flutter build appbundle
+\end{minted}
+
+    Este comando genera un archivo \texttt{.aab} (Android App Bundle) necesario para subir la app a la Play Store.
+\end{enumerate}
+
+\paragraph{3. Crear la ficha de Play Store}
+
+Desde Google Play Console:
+
+\begin{itemize}
+    \item Seleccionar \textbf{Crear aplicación}.
+    \item Ingresar nombre, idioma, tipo (App o Juego) y categoría (Educación, Estilo de vida, etc.).
+    \item Completar la \textbf{ficha de Play Store}: título, descripción corta y larga, íconos (512x512 px), capturas de pantalla (mínimo 2), gráfico promocional opcional, política de privacidad (vínculo web).
+\end{itemize}
+
+\paragraph{4. Subir el archivo .AAB y configurar la versión}
+
+\begin{itemize}
+    \item Ir a \textbf{Release > Producción > Crear nueva versión}.
+    \item Cargar el archivo \texttt{.aab} generado.
+    \item Agregar notas de la versión.
+    \item Establecer políticas de uso, permisos solicitados y nivel mínimo de API.
+\end{itemize}
+
+\paragraph{5. Clasificación de contenido y verificación}
+
+Se debe:
+
+\begin{itemize}
+    \item Responder el cuestionario de clasificación por edades.
+    \item Completar la sección de seguridad de datos y uso de bibliotecas externas (Firebase, Google Sign-In, etc.).
+    \item En algunos casos, aceptar la revisión previa de funciones sensibles.
+\end{itemize}
+
+\paragraph{6. Publicar la aplicación}
+
+Una vez completado todo el proceso anterior:
+
+\begin{itemize}
+    \item Se envía la aplicación para revisión.
+    \item El proceso puede tardar entre 24 a 72 horas.
+    \item Si es aprobada, aparecerá públicamente en la Play Store en cuestión de horas.
+\end{itemize}
+
+\paragraph{7. Actualizaciones posteriores}
+
+Cada vez que se realiza una actualización, se debe:
+
+\begin{enumerate}
+    \item Incrementar el código de versión en \texttt{pubspec.yaml}.
+    \item Generar un nuevo archivo \texttt{.aab}.
+    \item Subir la nueva versión en \textbf{Play Console}.
+\end{enumerate}
 
 
 
