@@ -173,7 +173,7 @@ Se plantea utilizar diversos medios y plataformas de divulgación enfocados en c
       \begin{tabular}[c]{@{}c@{}}Ejidatarios de la Unión\\ de Ejidos de la Montaña\\ y sus cuadrillas de trabajo\\ Miembros de la academia\end{tabular} \\ \bottomrule
     \end{tabular}%
     }
-    \caption{Medios y plataformas de divulgación del proyecto ``Ciencia ciudadana para el monitoreo participativo de la lluvia en un gradiente altitudinal del Monte Tláloc, Texcoco, Estado de México''}
+    \caption{Medios y plataformas de divulgación del proyecto ``Ciencia ciudadana para el monitoreo participativo de la lluvia en un gradiente altitudinal del Monte Tláloc, Texcoco, estado de México''}
     \label{tab1}
     \end{table}
 
@@ -184,7 +184,7 @@ Se plantea utilizar diversos medios y plataformas de divulgación enfocados en c
     \item \textbf{Lonas impresas:}
     \begin{enumerate}
         \item Título del proyecto:
-        Proyecto ``Ciencia ciudadana para el monitoreo de la lluvia en un gradiente altitudinal del Monte Tláloc, Texcoco, Estado de México”
+        Proyecto ``Ciencia ciudadana para el monitoreo de la lluvia en un gradiente altitudinal del Monte Tláloc, Texcoco, estado de México”
         \item	Slogan: 
         ``Ciencia para ti y para todos''
         \item Logo del proyecto
@@ -218,7 +218,7 @@ Se plantea utilizar diversos medios y plataformas de divulgación enfocados en c
         \end{enumerate}
     \end{enumerate}
     \item \textbf{Cartel posterior} \begin{enumerate}
-        \item Título del proyecto: Proyecto “Ciencia ciudadana para el monitoreo de la lluvia en un gradiente altitudinal del Monte Tláloc, Texcoco, Estado de México”
+        \item Título del proyecto: Proyecto “Ciencia ciudadana para el monitoreo de la lluvia en un gradiente altitudinal del Monte Tláloc, Texcoco, estado de México”
         \item Logo del COLPOS y Postgrado en Ciencias Forestales
         \item Frase: Unión de Ejidos de la Montaña
         \item Texto principal: Este es un pluviómetro. Tiene una escala de medición en milímetros que indica la cantidad de lluvia que cae por metro cuadrado de terreno.
@@ -311,33 +311,34 @@ La Figura \ref{t3}, muestra el diagrama de flujo que representa el comportamient
   \label{t3}
 \end{figure}
 
-La metodología para el desarrollo del código, consiste en programar en lenguaje Dart, una aplicación multiplataforma, alojada en un sitio web y en Play Store, con el fin de enviar las mediciones a una base de datos pública.
+La metodología para el desarrollo del código, consiste en programar en lenguaje Dart, una aplicación multiplataforma, alojada en un sitio web y en Play Store, con el fin de enviar las mediciones a una base de datos pública bajo la siguiente organización:
 
 
 \begin{enumerate}
   \item \textbf{Backend}
-   \begin{enumerate}
+  \begin{enumerate}
     \item Alojamiento del código: Exportar y guardar en GitHub
     \item Base de datos: Lógica del código y conexión en Firebase
     \item Hosting en la web: Publicar un dominio en Firebase
   \end{enumerate}
   \item \textbf{Frontend}
   \begin{enumerate}
-    \item User Interface (UI): se construye a partir de widgets, que son unidades reutilizables de interfaz. Estos widgets permiten definir pantallas de forma declarativa, promoviendo una organización jerárquica clara y facilitando el mantenimiento del código. Un diseño de UI eficiente no solo debe ser estéticamente agradable, sino también funcional, accesible y coherente con los principios de diseño establecidos (como Material Design). 
-    \begin{enumerate}
-    \item Registro de usuario: Los usuarios podrán crear una cuenta y elegir el pluviómetro mediante el escaneo de códigos Qr o manualmente del sitio de monitoreo 
-    \item Menú Principal: Dispondrá de tutoriales, contador de mediciones, acerca de, tabulador de mediciones, mapas de las dos rutas, grupos para subir a la montaña y contacto
-    \item Envío de mediciones: Campo de texto, pluviómetro interactivo, booleano de vaciado, cambio de paraje
-    \item Bitácora: Disponibilidad de consulta, edición, difusión o eliminación de las mediciones propias y no de otros usuarios; y exportación en excel.
-    \item Estadísticas: Mostrará un gráfico interactivo en diferentes tiempo de interés, por ejemplo por semana, mes y año; entre volúmenes acumulados y reales.
-\end{enumerate}
     \item User Experience (UX)
      \begin{enumerate}
       \item Material Design
       \item Acceso en tienda de aplicaciones (PlayStore)
      \end{enumerate}
+    \item User Interface (UI)
+    % : se construye a partir de widgets, que son unidades reutilizables de interfaz. Estos widgets permiten definir pantallas de forma declarativa, promoviendo una organización jerárquica clara y facilitando el mantenimiento del código. Un diseño de UI eficiente no solo debe ser estéticamente agradable, sino también funcional, accesible y coherente con los principios de diseño establecidos (como Material Design). Las pantallas a mostrar son las siguientes:
+    \begin{enumerate}
+    \item Onboarding: Pagina de bienvenida 
+    \item Login: Los usuarios podrán crear una cuenta y elegir el pluviómetro mediante el escaneo de códigos Qr o manualmente del sitio de monitoreo 
+    \item Menú Principal: Dispondrá de tutoriales, contador de mediciones, acerca de, tabulador de mediciones, mapas de las dos rutas, grupos para subir a la montaña y contacto
+    \item Envío de mediciones: Incluye campo de texto, pluviómetro interactivo, booleano de vaciado, cambio de paraje
+    \item Bitácora: Disponibilidad de consulta, edición, difusión o eliminación de las mediciones propias y no de otros usuarios; y exportación en excel.
+    \item Estadísticas: Mostrará un gráfico interactivo en diferentes tiempo de interés, por ejemplo por semana, mes y año; entre volúmenes acumulados y reales.
+\end{enumerate}
   \end{enumerate}
-
 \end{enumerate}
 
 
@@ -357,9 +358,9 @@ La metodología para el desarrollo del código, consiste en programar en lenguaj
 
 El desarrollo de aplicaciones requiere no solo un diseño estructurado del código, sino también un control riguroso de versiones y respaldos. GitHub es una plataforma ampliamente usada en el ámbito académico y profesional para alojar proyectos de software, permitiendo la colaboración, el seguimiento de cambios y el resguardo del historial del código fuente. 
 
-Para este proyecto, el repositorio está disponible públicamente en:
+Para este proyecto, el repositorio deberá publicarse en GitHub:
 \begin{center}
-\url{https://github.com/Jack55913/TlalocApp.git}
+\url{https://github.com}
 \end{center}
 
 \subsubsection*{Proceso para guardar código localmente en GitHub con Git}
@@ -471,21 +472,100 @@ Este comando fusiona los cambios realizados en GitHub con la copia local del pro
 
 
 
-\subsubsection{1b. Configuración en Firebase}
+\subsubsection{1b. Configuración en Firebase} 
+Para establecer una conexión efectiva entre una aplicación desarrollada en \textit{Flutter} y el servicio de base de datos en tiempo real \textit{Firestore}, proporcionado por \textit{Firebase}, es necesario llevar a cabo una serie de configuraciones tanto en la plataforma web de Firebase como dentro del propio entorno del proyecto Flutter.
 
-Para establecer la conexión entre una aplicación desarrollada en Flutter y el servicio de base de datos en tiempo real Firestore, proporcionado por Firebase, es necesario seguir una serie de pasos que combinan configuraciones en la plataforma web de Firebase y ajustes específicos dentro del proyecto de Flutter. El proceso inicia accediendo al sitio oficial de Firebase en \url{https://console.firebase.google.com/}, donde se debe crear un nuevo proyecto. Para ello, el usuario debe seleccionar “Agregar proyecto”, asignarle un nombre distintivo, desactivar opcionalmente Google Analytics para el proyecto (según los requerimientos de privacidad) y confirmar la creación. Una vez creado el proyecto, es necesario agregar una nueva aplicación al proyecto Firebase, lo cual se realiza seleccionando el ícono correspondiente al sistema operativo de destino; en el caso de Flutter se deben agregar las variantes necesarias, como Android y Web.
+El primer paso consiste en acceder al panel de control oficial de Firebase, disponible en:
 
-En el caso de Android, se solicita un nombre de paquete único (en este caso, \texttt{com.TlalocApps.tlaloc}), que debe coincidir exactamente con el definido en el archivo \texttt{android/app/build.gradle}. Posteriormente, Firebase genera un archivo \texttt{google-services.json} que debe descargarse y colocarse dentro del directorio \texttt{android/app/} del proyecto Flutter. Para plataformas web, es necesario registrar también un nombre de dominio o ID de aplicación, tras lo cual se generará un bloque de configuración en JavaScript, aunque en Flutter basta con copiar el contenido necesario en el archivo de inicialización.
+\begin{center}
+  \url{https://console.firebase.google.com/}
+\end{center}
 
-Luego, se deben realizar varias modificaciones al proyecto Flutter para habilitar Firebase. En primer lugar, se deben añadir las dependencias necesarias en el archivo \texttt{pubspec.yaml}, incluyendo paquetes como \texttt{firebase\_core}, \texttt{cloud\_firestore}, y otras según las funcionalidades deseadas (por ejemplo, \texttt{firebase\_auth}, \texttt{firebase\_storage}, etc.). Una vez agregadas, es necesario ejecutar el comando \texttt{flutter pub get} para instalar las dependencias. Posteriormente, en el archivo \texttt{main.dart}, se debe asegurar que la aplicación inicialice Firebase antes de ejecutarse, mediante una llamada asíncrona a \texttt{Firebase.initializeApp()} dentro de la función principal.
+Desde esta consola, se debe crear un nuevo proyecto seleccionando la opción \texttt{Agregar proyecto}, asignándole un nombre distintivo y, de forma opcional, desactivando Google Analytics según los requerimientos de privacidad. Una vez creado el proyecto, se procede a registrar las plataformas de destino, por ejemplo, \textit{Android} y \textit{Web}, haciendo clic en los íconos correspondientes.
 
-Para dispositivos Android, es indispensable modificar el archivo \texttt{android/build.gradle} incluyendo el classpath de los servicios de Google en la sección \texttt{dependencies} (específicamente: \texttt{com.google.gms:google-services}), así como aplicar el plugin de Google Services al final del archivo \texttt{android/app/build.gradle} mediante la línea \texttt{apply plugin: 'com.google.gms.google-services'}. También es recomendable establecer la versión mínima de SDK en 21 o superior, y utilizar la versión de Kotlin y Gradle compatibles con Firebase.
+\vspace{1em}
 
-  En el caso de aplicaciones web, se debe inicializar Firebase con el bloque de configuración proporcionado por Firebase (que contiene el apiKey, projectId, messagingSenderId, etc.), y asegurarse de usar:
-  \begin{center}
-    \texttt{Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)}
-  \end{center}
-Utilizando el paquete adicional \texttt{firebase\_options.dart} generado automáticamente por el comando \texttt{flutterfire configure} (si se utiliza la herramienta oficial de CLI de Firebase para Flutter). Esta herramienta simplifica la configuración multiplataforma y garantiza que los datos de conexión estén correctamente definidos.
+\paragraph{Configuración en Android.}  
+Para Android, se solicita un identificador de paquete único, por ejemplo:
+
+\begin{center}
+  \texttt{com.TlalocApps.tlaloc}
+\end{center}
+
+Este identificador debe coincidir exactamente con el declarado en el archivo \texttt{android/app/build.gradle}. Al registrar la app, Firebase generará un archivo de configuración llamado \texttt{google-services.json}, el cual debe descargarse y colocarse dentro del directorio \texttt{android/app/} del proyecto Flutter.
+
+\vspace{1em}
+
+\paragraph{Configuración en Web.}  
+En el caso de aplicaciones web, se debe registrar un nombre de dominio o ID de aplicación. Al finalizar, Firebase genera un bloque de código JavaScript con claves como \texttt{apiKey}, \texttt{projectId} y \texttt{messagingSenderId}. En Flutter, basta con integrar estas claves a través de un archivo generado automáticamente, como se explica más adelante.
+
+\vspace{1em}
+
+\paragraph{Instalación de dependencias.}  
+Dentro del archivo \texttt{pubspec.yaml}, se deben agregar los paquetes necesarios para la conexión con Firebase, por ejemplo:
+
+\begin{center}
+  \texttt{firebase\_core}, \quad
+  \texttt{cloud\_firestore}, \quad
+  \texttt{firebase\_auth}, \quad
+  \texttt{firebase\_storage}
+\end{center}
+
+Posteriormente, se deben instalar con el comando:
+
+\begin{center}
+  \texttt{flutter pub get}
+\end{center}
+
+\vspace{1em}
+
+\paragraph{Inicialización de Firebase.}  
+En el archivo principal \texttt{main.dart}, es indispensable inicializar Firebase antes de correr la aplicación, utilizando:
+
+\begin{center}
+  \texttt{await Firebase.initializeApp();}
+\end{center}
+
+Esto se hace dentro de la función \texttt{main()} usando \texttt{WidgetsFlutterBinding.ensureInitialized()} para evitar errores de ejecución asíncrona.
+
+\vspace{1em}
+
+\paragraph{Ajustes específicos en Android.}  
+Se requiere modificar el archivo \texttt{android/build.gradle} para añadir el siguiente classpath dentro de la sección \texttt{dependencies}:
+
+\begin{center}
+  \texttt{classpath 'com.google.gms:google-services:4.3.15'}
+\end{center}
+
+Asimismo, en \texttt{android/app/build.gradle} se debe aplicar el plugin:
+
+\begin{center}
+  \texttt{apply plugin: 'com.google.gms.google-services'}
+\end{center}
+
+También es recomendable asegurar que la versión mínima de SDK sea \texttt{minSdkVersion 21} o superior, y que las versiones de \texttt{Kotlin} y \texttt{Gradle} sean compatibles con Firebase.
+
+\vspace{1em}
+
+\paragraph{Configuración multiplataforma con FlutterFire CLI.}  
+Para simplificar la configuración de Firebase en todas las plataformas, se recomienda utilizar la herramienta oficial de línea de comandos para Flutter, mediante el siguiente comando:
+
+\begin{center}
+  \texttt{flutterfire configure}
+\end{center}
+
+Este comando genera automáticamente el archivo \texttt{firebase\_options.dart}, el cual contiene la configuración centralizada para \texttt{Android}, \texttt{iOS}, \texttt{macOS} y \texttt{Web}. En el código, se debe inicializar Firebase con:
+
+\begin{center}
+  \texttt{Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);}
+\end{center}
+
+Esto garantiza una inicialización adecuada en cualquier dispositivo desde el que se ejecute la aplicación.
+
+\vspace{1em}
+
+Con esta configuración correctamente establecida, la aplicación Flutter puede acceder de forma segura y eficiente a Firestore, lo cual permite implementar funcionalidades como autenticación, almacenamiento, y sincronización de datos en tiempo real entre usuarios y dispositivos.
+
 
 \subsubsection{1c. Web Hosting}
 Además del almacenamiento de datos, se habilitó el servicio de \textbf{Firebase Hosting} para desplegar una versión web de la aplicación. Este entorno permite servir contenido estático y dinámico mediante HTTPS, ofreciendo una plataforma confiable y segura para la visualización pública de estadísticas y reportes.
@@ -499,46 +579,40 @@ La implementación del hosting se realizó con los siguientes pasos:
     \item Despliegue del sitio mediante el comando \texttt{firebase deploy}.
 \end{enumerate}
 
-\subsubsection{2a. User Interface}
-
-El desarrollo de una aplicación móvil requiere no solo la implementación funcional del código, sino también una organización arquitectónica sólida basada en principios de programación orientada a objetos (POO). Esta metodología permite estructurar el proyecto en módulos bien definidos, reutilizables y escalables, facilitando la colaboración, el mantenimiento y la evolución del software a largo plazo.
-
-En el contexto de Flutter, un framework multiplataforma basado en el lenguaje Dart, la programación orientada a objetos se refleja en la creación de clases, componentes y funciones que encapsulan el comportamiento y la lógica de la interfaz, el manejo de datos y la interacción con servicios externos. Cada parte de la aplicación se define como un widget o clase independiente, lo que promueve una arquitectura limpia y modular.
-
-Un proyecto de programación orientada a objetos bien estructurado debe cumplir con los siguientes principios fundamentales:
-
-\begin{enumerate}
-    \item \textbf{Encapsulamiento}: Separar la lógica interna de los objetos del acceso externo mediante funciones o métodos bien definidos.
-    \item \textbf{Abstracción}: Definir estructuras lógicas que representen entidades clave del sistema (usuarios, mediciones, parajes, etc.).
-    \item \textbf{Herencia}: Reutilizar comportamientos comunes a través de clases base o mixins cuando sea necesario.
-    \item \textbf{Polimorfismo}: Permitir la utilización de interfaces genéricas que se comportan de forma diferente según el contexto.
-\end{enumerate}
 
 
 
-\subsubsection{2b. User Experience}
+
+
+\subsubsection{2a. User Experience}
 
 Para diseñar una experiencia de usuario (UX) sólida y centrada en las necesidades reales de las personas usuarias, es fundamental comprender y aplicar la estructura (\cite{garrett2011elements}), quien descompone la experiencia del usuario en cinco planos jerárquicos e interdependientes. 
 
 Estos planos permiten están esquematizados en la figura \ref{m7}, y abordan el diseño desde la abstracción estratégica hasta su implementación visual concreta. 
 
 \begin{enumerate}
-  \item En primer lugar, el plano de la \textbf{estrategia} define los objetivos tanto del usuario como del negocio, estableciendo el ``por qué'' detrás del sistema. 
+  \item En primer lugar, el plano de la \textbf{estrategia} define los objetivos tanto del usuario como del proyecto, estableciendo el ``por qué'' detrás del sistema. 
   
    \item A continuación, el plano del \textbf{alcance} transforma estos objetivos en requerimientos funcionales (como las características del sistema) y requerimientos de contenido (como textos, imágenes o formularios).
 
  \item El tercer plano corresponde a la \textbf{estructura}, que se refiere a cómo se organizan las funciones y el contenido dentro del sistema, abarcando tanto la arquitectura de la información como el diseño de la interacción. 
  
-  \item Posteriormente, el plano del \textbf{esqueleto} define el diseño de la interfaz, la navegación y la disposición de los elementos para asegurar la usabilidad. 
+  \item Posteriormente, el plano del \textbf{esqueleto} define el diseño de la interfaz, la navegación y la disposición de los elementos para asegurar la usabilidad, que para este caso se usó el programa Figma para elaborar diseñar. 
+  \begin{center}
+    \url{https://www.figma.com/}
+  \end{center}
   
-   \item Finalmente, el plano de la \textbf{superficie} es la capa visual con la que el usuario interactúa directamente, incluyendo la elección de colores, tipografía, iconografía y estilo gráfico. Este modelo secuencial permite una toma de decisiones coherente y una alineación efectiva entre las necesidades del usuario y los objetivos del proyecto. La aplicación rigurosa de esta metodología facilita la creación de interfaces intuitivas, funcionales y significativas (Garrett, 2011).
+   \item El último plano llamado \textbf{superficie}, es la capa visual con la que el usuario interactúa directamente, incluyendo la elección de colores, tipografía, iconografía y estilo gráfico. Este modelo secuencial permite una toma de decisiones coherente y una alineación efectiva entre las necesidades del usuario y los objetivos del proyecto. Para el presente proyecto se usó Material Design 3:
+   \begin{center}
+    \url{https://m3.material.io/}
+   \end{center}
 \end{enumerate}
 
 
 \begin{figure}[h!]
 \centering
   \includegraphics[width=0.9\textwidth]{m7.jpg}
-  \caption{ El modelo delineado aquí no incluye consideraciones secundarias (como aquellas que surgen durante el desarrollo técnico y de contenido) que pueden influir en las decisiones durante el desarrollo de la experiencia de usuario. Además, este modelo no describe un modelo del proceso de desarrollo, ni define roles dentro del equipo de desarrollo de la experiencia de usuario. Lo que busca definir son las consideraciones clave que forman el desarrollo de la experiencia de usuario en el Web actualmente. \cite{garrett2011elements}}
+  \caption{El modelo delineado busca definir las consideraciones clave que forman el desarrollo de la experiencia de usuario. \cite{garrett2011elements}}
   \label{m7}
 \end{figure}
 
@@ -647,13 +721,23 @@ Cada vez que se realiza una actualización, se debe:
 
 
 
+\subsubsection{2b. User Interface}
+
+El desarrollo de una aplicación móvil requiere no solo la implementación funcional del código, sino también una organización arquitectónica sólida basada en principios de programación orientada a objetos (POO). Esta metodología permite estructurar el proyecto en módulos bien definidos, reutilizables y escalables, facilitando la colaboración, el mantenimiento y la evolución del software a largo plazo.
+
+En el contexto de Flutter, un framework multiplataforma basado en el lenguaje Dart, la programación orientada a objetos se refleja en la creación de clases, componentes y funciones que encapsulan el comportamiento y la lógica de la interfaz, el manejo de datos y la interacción con servicios externos. Cada parte de la aplicación se define como un widget o clase independiente, lo que promueve una arquitectura limpia y modular.
+
+Un proyecto de programación orientada a objetos bien estructurado debe cumplir con los siguientes principios fundamentales:
+
+\begin{enumerate}
+    \item \textbf{Encapsulamiento}: Separar la lógica interna de los objetos del acceso externo mediante funciones o métodos bien definidos.
+    \item \textbf{Abstracción}: Definir estructuras lógicas que representen entidades clave del sistema (usuarios, mediciones, parajes, etc.).
+    \item \textbf{Herencia}: Reutilizar comportamientos comunes a través de clases base o mixins cuando sea necesario.
+    \item \textbf{Polimorfismo}: Permitir la utilización de interfaces genéricas que se comportan de forma diferente según el contexto.
+\end{enumerate}
 
 
 
-
-
-
-\newpage
 \subsection{Evaluación del nivel de maduración tecnológica}
 
 El modelo del CONACyT, ahora SECIHTI, ha derivado la Norma Oficial Mexicana NMX-GT-004-IMNC-2012, identifica cada nivel de TRL por medio de una lista de verificación con preguntas dicotómicas con respuestas de ``si'' o ``no'', lo que permite que la herramienta sea eficiente.
@@ -665,21 +749,31 @@ tecnología particular. Cada proyecto es evaluado frente a los parámetros de ca
 nivel tecnológico y es asignado a una clasificación basada en el progreso del
 proyecto.
 
-Para la presente investigación, apoyándose de la figura \ref{m1} y \ref{m2}, se hará la evaluación del nivel de maduración tecnológica de Tlaloc App.
+Para la presente investigación, apoyándose de la figura \ref{m19}, se hará la evaluación del nivel de maduración tecnológica de Tlaloc App.
+% TODO: MEJORAR CALIDAD DE LAS TABLAS O PASARLAS A LATEX
+% \begin{figure}[h!]
+% \centering
+%   \includegraphics[width=1\textwidth]{m1.png}
+%   \caption{Guía para el Diagnóstico del Nivel de Madurez Tecnológica (NMT o TRL, por sus siglas en inglés) Parte 1, Fuente: Secretaría de Ciencia, Humanidades, Tecnología e Innovación (Secihti),}
+%   \label{m1}
+% \end{figure}
+% % TODO; CITA
+% % https://secihti.mx/tecnologias-e-innovacion/convocatorias-desarrollo-tecnologico-vinculacion-e-innovacion/
+% % https://secihti.mx/sistema-nacional-de-investigadores/marco-legal/
+% \begin{figure}[h!]
+% \centering
+%   \includegraphics[width=1\textwidth]{m2.png}
+%   \caption{Guía para el Diagnóstico del Nivel de Madurez Tecnológica (NMT o TRL, por sus siglas en inglés) Parte 2}
+%   \label{m2}
+% \end{figure}
+
+
+
+
 
 \begin{figure}[h!]
 \centering
-  \includegraphics[width=1\textwidth]{m1.png}
-  \caption{Guía para el Diagnóstico del Nivel de Madurez Tecnológica (NMT o TRL, por sus siglas en inglés) Parte 1, Fuente: Secretaría de Ciencia, Humanidades, Tecnología e Innovación (Secihti),}
-  \label{m1}
+  \includegraphics[width=1\textwidth]{m19.png}
+  \caption{Guía para el Diagnóstico del Nivel de Madurez Tecnológica (NMT o TRL, por sus siglas en inglés)}
+  \label{m19}
 \end{figure}
-% TODO; CITA
-% https://secihti.mx/tecnologias-e-innovacion/convocatorias-desarrollo-tecnologico-vinculacion-e-innovacion/
-% https://secihti.mx/sistema-nacional-de-investigadores/marco-legal/
-\begin{figure}[h!]
-\centering
-  \includegraphics[width=1\textwidth]{m2.png}
-  \caption{Guía para el Diagnóstico del Nivel de Madurez Tecnológica (NMT o TRL, por sus siglas en inglés) Parte 2}
-  \label{m2}
-\end{figure}
-

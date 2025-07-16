@@ -5,12 +5,21 @@
 
 Las montañas actúan como barreras orográficas que obligan a las nubes a elevarse y enfriarse, lo que genera precipitaciones más abundantes en comparación con los valles circundantes. Sin embargo, la medición de estas lluvias en zonas montañosas suele ser limitada debido a su difícil acceso y a la falta de vigilancia para el mantenimiento de instrumentos de medición (\cite{aparicio1992}). Esta situación es crítica en ecosistemas como los bosques, donde la información sobre precipitación resulta fundamental para su conservación y manejo. Los bosques templados de montaña, como los del Monte Tláloc en México, enfrentan múltiples desafíos, entre ellos la deforestación, la fragmentación del hábitat y los efectos del cambio climático. Este último ha generado alteraciones en los patrones de precipitación y temperatura, impactando negativamente la biodiversidad, los ciclos hidrológicos y los servicios ecosistémicos que estos bosques proporcionan (\cite{gonzalez2016}).
 
-% TODO: AGREGAR LAS REFERENCIAS BIBLIO
-Actualmente el ejido tiene participación en los programas forestales con 1628 hectáreas de superficie forestal en Monte Tláloc y ante la CONAFOR se tienen registradas 248 hectáreas para aprovechamiento forestal (Nava, G. 2014). Según (López, L. 2023), en el Monte Tláloc, las extracciones por nivel altitudinal parecen estar relacionadas con la elevada mortalidad de árboles en las categorías más pequeñas, sin embargo, la intensidad y nivel de extracción de madera no parecen representar una amenaza que ponga en riesgo la viabilidad poblacional de Abies religiosa; la categoría diamétrica más pequeña parece beneficiarse de las aperturas debidas a las extracciones. El cambio climático repercute de diferente manera en el crecimiento de los bosques de montaña en los extremos altitudinales de su distribución; así cómo su relación con el proceso de migración de fauna, y finalmente los ecosistemas terminan siendo amenazados (González, T. 2021). 
-
-
+Actualmente el ejido tiene participación en los programas forestales con 1628 hectáreas de superficie forestal en Monte Tláloc y ante la CONAFOR se tienen registradas 248 hectáreas para aprovechamiento forestal (\cite{nava2014}). Según (\cite{lopez2023}), en el Monte Tláloc, las extracciones por nivel altitudinal parecen estar relacionadas con la elevada mortalidad de árboles en las categorías más pequeñas, sin embargo, la intensidad y nivel de extracción de madera no parecen representar una amenaza que ponga en riesgo la viabilidad poblacional de Abies religiosa; la categoría diamétrica más pequeña parece beneficiarse de las aperturas debidas a las extracciones. El cambio climático repercute de diferente manera en el crecimiento de los bosques de montaña en los extremos altitudinales de su distribución; así como su relación con el proceso de migración de fauna, y finalmente los ecosistemas terminan siendo amenazados \cite{hernandez2021}.
 
 El objetivo principal de este estudio es desarrollar una aplicación móvil y web que facilite el monitoreo de la precipitación en el Monte Tláloc mediante la participación activa de ejidatarios y otros grupos de interés. A través de esta herramienta tecnológica, se busca implementar una estrategia de ciencia ciudadana que permita registrar, analizar y visualizar datos de lluvia, contribuyendo así a la gestión sostenible de los recursos naturales y la conservación de los bosques de montaña.
+
+\section{Planteamiento del problema}
+
+Ante la falta de datos sobre precipitación en estas zonas, se requiere el desarrollo de estrategias innovadoras que permitan superar las limitaciones técnicas y logísticas, involucrando a las comunidades locales en la generación y uso de información. Es necesario recurrir a estrategias que incorporen a la población en la generación de información y en su utilización para el manejo de los ecosistemas \cite{hubp1990}.
+
+En México, las redes oficiales de monitoreo hidrometeorológico, como las operadas por la Comisión Nacional del Agua (CONAGUA), presentan una cobertura limitada en muchas regiones de montaña, donde los microclimas pueden variar significativamente en distancias cortas.
+
+El Monte Tláloc, ubicado en la zona montañosa del oriente del Valle de México, es un ejemplo de ello: su importancia ambiental, histórica y cultural contrasta con la escasa información climática precisa y en tiempo real disponible para la comunidad local, investigadores y tomadores de decisiones. Esta falta de datos puntuales dificulta la \textbf{gestión sustentable del agua}, la prevención de riesgos y el análisis del cambio climático a escala local.
+
+Las aplicaciones disponibles para la recolección de datos meteorológicos suelen ser de uso profesional, poco accesibles o no están diseñadas para fomentar la participación ciudadana en contextos rurales o de baja conectividad. Esto genera una brecha entre el potencial de colaboración ciudadana y las herramientas disponibles para lograrlo.
+
+Ante este panorama, surge la necesidad de desarrollar una aplicación multiplataforma intuitiva, accesible y robusta, que aproveche el poder de la ciencia ciudadana para llenar los vacíos de información sobre la precipitación en el Monte Tláloc. Dicha aplicación debe facilitar la recolección, visualización y validación de datos por parte de usuarios no expertos, promoviendo la generación de conocimiento colectivo, la educación ambiental y la participación activa de la comunidad en temas de gestión hídrica y climática.
 
 
 \section{Planteamiento del problema}
@@ -18,11 +27,10 @@ El objetivo principal de este estudio es desarrollar una aplicación móvil y we
 Ante la falta de datos sobre precipitación en estas zonas, se requiere el desarrollo de estrategias innovadoras que permitan superar las limitaciones técnicas y logísticas, involucrando a las comunidades locales en la generación y uso de información. Es necesario recurrir a estrategias que incorporen a la población en la generación de información y en su utilización para el manejo de los ecosistemas (\cite{hubp1990}).
 
 
-En México, las redes oficiales de monitoreo hidrometeorológico, como las operadas por la Comisión Nacional del Agua (CONAGUA), presentan una cobertura limitada en muchas regiones de montaña, donde los microclimas pueden variar significativamente en distancias cortas. % TODO: CITA BIBLIO
+En México, las redes oficiales de monitoreo hidrometeorológico, como las operadas por la Comisión Nacional del Agua (CONAGUA), presentan una cobertura limitada en muchas regiones de montaña, donde los microclimas pueden variar significativamente en distancias cortas \cite{rosas2021}. 
 
 
 El Monte Tláloc, ubicado en la zona montañosa del oriente del Valle de México, es un ejemplo de ello: su importancia ambiental, histórica y cultural contrasta con la escasa información climática precisa y en tiempo real disponible para la comunidad local, investigadores y tomadores de decisiones. Esta falta de datos puntuales dificulta la \textbf{gestión sustentable del agua}, la prevención de riesgos y el análisis del cambio climático a escala local.
-% TODO AGREGAR MÁS PROBLEMÁTICAS
 
 Las aplicaciones disponibles para la recolección de datos meteorológicos suelen ser de uso profesional, poco accesibles o no están diseñadas para fomentar la participación ciudadana en contextos rurales o de baja conectividad. Esto genera una brecha entre el potencial de colaboración ciudadana y las herramientas disponibles para lograrlo.
 
@@ -35,17 +43,34 @@ Ante este panorama, surge la necesidad de desarrollar una aplicación multiplata
 
 La ciencia ciudadana surge como una alternativa viable para enfrentar esta problemática, al involucrar a la población en la recopilación de datos y en la búsqueda de soluciones. A través de herramientas tecnológicas, como aplicaciones móviles y plataformas digitales, se facilita la recolección de información de manera accesible, eficiente y en tiempo real, promoviendo a su vez la educación ambiental y la colaboración social. Esta metodología no solo proporciona datos científicos valiosos, sino que también fortalece el vínculo entre la sociedad y la conservación de los ecosistemas.
 
-Se identifica la necesidad de un instrumento accesible y participativo para la captura y envío de datos pluviales, que garantice la disponibilidad de la información obtenida para su análisis y toma de decisiones. Este instrumento debe ser sencillo de usar y estar diseñado específicamente para el público objetivo: los ejidatarios. Gracias a su conocimiento del territorio y su participación activa, los ejidatarios pueden convertirse en aliados estratégicos para la recolección continua y precisa de datos.
+Se identifica la necesidad de crear un instrumento para la captura y envío de datos pluviales que sea accesible, participativo y que garantice la disponibilidad de la información obtenida para su análisis y toma de decisiones. Este instrumento debe ser sencillo de usar y estar diseñado específicamente para el público objetivo: los ejidatarios. Ellos, a través de su conocimiento del territorio y participación activa, pueden convertirse en aliados estratégicos para la recolección continua y precisa de datos.
 
-La aplicación desarrollada responde a esta necesidad mediante un diseño intuitivo que permite a usuarios con conocimientos tecnológicos básicos capturar y enviar información sobre precipitaciones de forma rápida y eficiente. Además, al integrar principios de ciencia ciudadana, se fomenta la colaboración activa de las comunidades locales, fortaleciendo su empoderamiento y compromiso con la conservación de los recursos hídricos.
+La aplicación desarrollada se plantea como una solución innovadora que responde a esta necesidad. Su diseño intuitivo permite que usuarios con conocimientos tecnológicos básicos puedan capturar y enviar información sobre las precipitaciones de manera rápida y eficiente. Además, al integrar elementos de ciencia ciudadana, se fomenta la colaboración activa de las comunidades locales, fortaleciendo su empoderamiento y compromiso con la conservación de los recursos hídricos.
 
-Desde un enfoque técnico, el proyecto destaca por su carácter práctico y adaptable. La aplicación aprovecha tecnologías modernas para registrar datos de lluvia, optimizando la recopilación de información en tiempo real y reduciendo los costos asociados a los equipos de medición tradicionales. Al centralizar y analizar estos datos en una plataforma digital, se genera un repositorio confiable que puede ser utilizado por investigadores, autoridades locales y ejidatarios para la toma de decisiones fundamentadas.
+Desde un enfoque técnico, el proyecto destaca por su carácter práctico y adaptable. La app aprovecha tecnologías modernas para registrar datos de lluvia, optimizando la recopilación de información en tiempo real, y reduciendo costos asociados a equipos de medición tradicionales. Al centralizar y analizar estos datos en una plataforma digital, se genera un repositorio de información confiable que puede ser utilizado por investigadores, autoridades locales y los mismos ejidatarios para tomar decisiones fundamentadas. 
 
-Finalmente, la disponibilidad de esta información en un formato accesible y visualmente comprensible contribuye a sensibilizar a los usuarios sobre la importancia de monitorear los patrones de lluvia. Esto facilita su aplicación en estrategias de manejo hídrico, planificación agrícola y mitigación de riesgos climáticos. De este modo, el proyecto no solo ofrece una solución técnica, sino que también genera un impacto social y ambiental significativo.
+Por último, la disponibilidad de esta información en un formato accesible y visualmente comprensible contribuye a sensibilizar a los usuarios sobre la importancia de monitorear los patrones de lluvia, facilitando su uso en estrategias de manejo hídrico, planificación agrícola y mitigación de riesgos climáticos. De esta forma, el proyecto no solo soluciona un problema técnico, sino que también tiene un impacto social y ambiental significativo.
+
 
 \section{Hipótesis}
+\subsection{Hipótesis general (H)}
 
-La implementación de una aplicación multiplataforma, basada en principios de ciencia ciudadana, mejora significativamente la precisión y frecuencia de los reportes de lluvia en la región del Monte Tláloc, al facilitar la participación activa de los habitantes locales mediante herramientas digitales accesibles e intuitivas; lo cual contribuye a la generación de datos meteorológicos complementarios a los obtenidos por estaciones profesionales, permitiendo una caracterización más detallada de los eventos de precipitación en zonas de difícil acceso.
+La implementación de una aplicación multiplataforma basada en ciencia ciudadana incrementa significativamente la frecuencia y precisión de los reportes de lluvia en la región del Monte Tláloc, al promover la participación activa de los habitantes locales mediante herramientas digitales accesibles. Esto permite generar información meteorológica complementaria a la de las estaciones profesionales, mejorando la caracterización espacial y temporal de los eventos de precipitación.
+
+
+\subsection{Hipótesis nula (H0)}
+La implementación de una aplicación multiplataforma basada en ciencia ciudadana \textbf{no tiene un efecto significativo} en la frecuencia ni en la precisión de los reportes de lluvia en la región del Monte Tláloc, ni contribuye sustancialmente a la caracterización de los eventos de precipitación.
+
+\subsection{Hipótesis alternativa (H1)}
+La implementación de una aplicación multiplataforma basada en ciencia ciudadana \textbf{sí mejora significativamente} la frecuencia y precisión de los reportes de lluvia en la región del Monte Tláloc, y contribuye a una mejor caracterización de los eventos de precipitación respecto a los datos generados únicamente por estaciones profesionales.
+
+
+
+
+
+
+
+
 
 
 
@@ -58,9 +83,23 @@ Desde el punto de vista técnico, la tesis presenta una arquitectura modular des
 Además, este trabajo representa un esfuerzo por brindar el acceso a las tecnologías de monitoreo ambiental, empoderando a las comunidades rurales al integrarlas como agentes activos en la recolección de datos climáticos, al tiempo que fortalece los vínculos entre el conocimiento científico y la sabiduría local. Finalmente, se generan aportes a futuras investigaciones en temas relacionados con aplicaciones móviles para monitoreo ambiental, ciencia abierta y educación en contextos rurales, abriendo camino a iniciativas de colaboración interdisciplinaria entre desarrolladores, científicos, comunidades y tomadores de decisiones.
 
 
+
+
+
+
+
+
+
+
+
+
 \section{Esquema de la tesis}
 
 Este trabajo está estructurado de acuerdo con el proceso de investigación, desarrollo y validación de una aplicación multiplataforma basada en ciencia ciudadana para el monitoreo de lluvia en el Monte Tláloc. La introducción presenta el contexto y motivaciones del estudio, seguida de cinco capítulos que describen el planteamiento del problema, la metodología empleada, los resultados obtenidos y las conclusiones alcanzadas. La notación es consistente a lo largo del documento, y cualquier excepción está claramente indicada. La bibliografía acumulativa se presenta al final. A continuación, se ofrece una breve descripción de los capítulos.
+
+
+
+
 
 \begin{itemize}
     \item \textbf{Capítulo 1: Introducción} Presenta el planteamiento del problema, el contexto geográfico del Monte Tláloc, la justificación del proyecto, la hipótesis de trabajo, las principales contribuciones de la tesis, el esquema general del documento y las limitaciones del estudio.

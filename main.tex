@@ -1,6 +1,7 @@
 \documentclass[twoside]{mitthesis}
 % \usepackage{listings}
 % \usepackage{hyperref}
+\usepackage{subfigure}
 \usepackage{xcolor} % Para colores
 \usepackage{minted}
 \usepackage[spanish]{babel}
@@ -9,13 +10,15 @@
 \usepackage{array}
 \usepackage{pdfpages}
 \usepackage{graphicx}
-\usepackage{subfigure}
-\usepackage{forest}
-% \usepackage{caption}
-% \usepackage{subcaption}
+\usepackage{forest} 
 \usepackage{longtable}
 \usepackage{lscape}
-\usepackage{tikz}
+\usepackage{tikz} 
+\usepackage{geometry} 
+\usepackage{multicol} 
+\usepackage{tabularx}
+\usepackage{adjustbox}
+
 \usetikzlibrary{shapes.geometric, arrows.meta, positioning}
 
 \tikzstyle{etapa} = [rectangle, rounded corners, minimum width=8cm, minimum height=1cm,text centered, draw=black, font=\small, text=black]
@@ -67,7 +70,9 @@
 \addbibresource{bibliography.bib}
 
 \hypersetup{
-	pdfsubject={Ingeniería en Irrigación},
+    pdftitle={Tesis}
+    pdfauthor={Luis Emilio Álvarez Herrera},
+	pdfsubject={Ingeniería en Irrigación}, 
 	pdfkeywords={Universidad Autónoma Chapingo, UACh},
 	pdfurl={},
 	pdfcontactemail={emilioah02@gmail.com},

@@ -13,6 +13,11 @@
     ]
   }
 ],
+"latex-workshop.bibtex-format.sort.enabled": true,
+"latex-workshop.formatting.latex": "latexindent",
+"latex-workshop.mathpreviewpanel.cursor.enabled": true,
+"latex-workshop.view.autoFocus.enabled": true,
+"latex-workshop.synctex.afterBuild.enabled": true,
 // "latex-workshop.latex.recipes": [
 //   {
 //     "name": "latexmk (shell-escape)",
