@@ -1,57 +1,53 @@
 \chapter{CONCLUSIONES FINALES Y TRABAJO FUTURO}
+La Hipótesis de trabajo planteada en esta tesis fue: \textbf{Hipótesis general (H)}. Se presentan las conclusiones para cada objetivo específico:
+\section{Protocolo de monitoreo participativo}
+El desarrollo e implementación del protocolo de monitoreo participativo, estructurado en tres componentes fundamentales:
+
+\begin{enumerate}
+  \item El proceso participativo con ejidatarios,
+  \item El diseño técnico del sistema de monitoreo con pluviómetros artesanales, y
+  \item La campaña de difusión dirigida al público general,
+\end{enumerate}
+
+concluyó en ser una estrategia efectiva para la consolidación del proyecto en campo. Esta metodología permitió integrar a las comunidades locales en la generación de datos, y facilitó significativamente la recolección de información meteorológica en zonas de difícil acceso. La articulación entre la participación social, la adecuación técnica y la comunicación pública demostró ser clave para garantizar la sostenibilidad operativa del sistema de monitoreo y su apropiación por parte de los usuarios finales. Se concluye que esta tesis aportó un procedimiento replicable para el monitoreo participativo de fenómenos meteorológicos en regiones montañosas que sean concurridas por la actividad humana.
 
 
+\section{Desarrollo del código}
 
-\section{Aportes de la tesis al monitoreo ambiental}
-\subsection{Monitoreo ambiental}
+Como parte central de esta tesis, se desarrolló una herramienta tecnológica en forma de aplicación multiplataforma utilizando el lenguaje de programación Dart y el framework Flutter. La aplicación permite la captura, procesamiento, almacenamiento y visualización de datos de lluvia de manera eficiente y accesible; mediante la implementación de un algoritmo específico para la eliminación de volúmenes acumulados, los registros de lluvia son depurados para simplificar cálculos, donde quedan disponibles para consulta o exportación.
 
-El principal aporte es una aplicación que puede servir de plantilla para el monitoreo de precipitación pluvial en otras montañas del mundo.
+Desde su puesta en operación en julio de 2022, la plataforma ha registrado exitosamente más de 350 usuarios activos que han contribuido con datos en distintos puntos de monitoreo, validando así su funcionalidad en condiciones reales. 
 
+El desarrollo de esta aplicación no solo representa un aporte tecnológico, sino también una contribución metodológica al proporcionar una guía integral para diseñar e implementar sistemas digitales centrados en el usuario. Se aplicaron principios fundamentales de interfaz (UI) y experiencia de usuario (UX), asegurando una interacción intuitiva, amigable y coherente con las capacidades tecnológicas de los usuarios. Este código sirve de plantilla para replicarse o adaptarse en otros proyectos de monitoreo ambiental con enfoque participativo.
 
-\subsection{Desarrollo de apps}
+% Se concluye que la aplicación es una herramienta que facilitó la recolección de datos y , para el monitoreo participativo de lluvia.
+
+\section{Evaluación del nivel de maduración tecnológica}
+
+En conclusión, Tláloc App ha alcanzado un nivel de madurez tecnológica \textbf{TRL 8 - Producto comercializable y certificado}, con potencial real de consolidarse como una solución comercial para el monitoreo participativo de lluvia en zonas rurales y de montaña.
+
+Además, se destaca que:
 
 \begin{itemize}
-  \item La implementación del principio de diseño responsivo en Flutter, mediante el uso de \texttt{MediaQuery} y \texttt{LayoutBuilder}, que permite desarrollar interfaces flexibles y adaptativas. En el ejemplo analizado, esta lógica es fundamental para ofrecer una experiencia visual adecuada tanto en celulares como en computadoras. Esto demuestra cómo es posible construir aplicaciones universales a partir de una sola base de código.
-  \item 
+  \item La validación en campo ha sido continua durante más de tres años, con un funcionamiento estable, evidencia empírica y datos recolectados que confirman su eficacia técnica y social.
 
+  \item El enfoque metodológico basado en ciencia ciudadana, mediante el protocolo de monitoreo participativo, permitió integrar a comunidades rurales en la recolección de datos hidrometeorológicos, fortaleciendo el vínculo entre tecnología y conocimiento local.
+
+  \item La aplicación ha demostrado capacidad de adaptabilidad y escalabilidad, con una arquitectura técnica multiplataforma, un diseño modular del código, y posibilidad de réplica en otras regiones montañosas o rurales.
+
+  \item Se logró un diseño centrado en el usuario bajo principios de UI/UX, que facilitó la adopción de la herramienta digital por parte de usuarios con diversos niveles de escolaridad y acceso tecnológico.
+
+  \item Tláloc App complementa y amplía los vacíos existentes en las redes meteorológicas tradicionales, al generar datos desde sitios con escasa cobertura institucional, mejorando la resolución espacial de la información climática disponible.
+
+  \item La documentación técnica y la disponibilidad del código fuente contribuyen a su reproducibilidad y transparencia, abriendo la posibilidad de futuras colaboraciones, mejoras y auditorías abiertas del sistema.
+
+  \item El respaldo institucional del Colegio de Postgraduados y la validación social por parte de ejidatarios y organizaciones regionales consolidan su credibilidad y utilidad práctica.
+
+  \item Finalmente, Tláloc App representa un ejemplo viable de innovación tecnológica con propósito social, al responder a un problema ambiental real con una solución accesible, replicable y sostenible en el tiempo.
 \end{itemize}
-\section{Limitaciones encontradas}
 
-En México, la instalación de (tecnología avanzada) no es viable por vandalismo (véase figura \ref{publicidad5}), ni incendios, ni económico.
+\section{Trabajo futuro}
 
-% https://informativonacional.com.mx/ciencia_ciudadana_registra_lluvias_en_monte_tlaloc_piden_respeto_y_cuidado_de_los_equipos_en_area_forestal-e3Tcye3DY5e3A.html
+Aunque Tláloc App ha demostrado su viabilidad técnica y operativa en el Monte Tláloc, uno de los principales retos para su consolidación es la expansión geográfica hacia regiones con características climáticas y sociales distintas. En este sentido, se plantea llevar a cabo estudios piloto en otras zonas montañosas del país, adaptando el diseño de los pluviómetros y los flujos de interfaz de usuario a las particularidades locales (por ejemplo, diferentes rangos de precipitación, condiciones de acceso y alfabetización digital). 
 
-\begin{figure}[h!]
-\centering
-  \includegraphics[width=0.8\textwidth]{publicidad/5.jpg}
-  \caption{CIENCIA CIUDADANA REGISTRA LLUVIAS EN MONTE TLALOC, PIDEN RESPETO Y
-  CUIDADO DE LOS EQUIPOS EN AREA FORESTAL, Fuente: Noticiero}
-  \label{publicidad5}
-\end{figure}
-
-\section{Posibilidades de expansión a otras zonas}
-\section{Trabajo futuro:}
-
-\subsection{App offline}
-\subsection{IA para detección de anomalías}
-\subsection{Predicción climática}
-\subsection{Comunidad activa de usuarios:} 
-
-
-
-
-
-
-
-
-CÓMO MANTENER A LARGO PLAZO EL USO DE LA APP
-
-
-
-
-
-
-
-
-
-
+Finalmente, para ascender al nivel TRL-9 de madurez tecnológica, será necesario formalizar acuerdos de transferencia tecnológica con instituciones públicas y privadas, así como definir un plan de sostenibilidad financiera. Este plan incluirá esquemas de licenciamiento para terceros interesados (por ejemplo, instituciones educativas, organizaciones ambientales y empresas de servicios meteorológicos) y un modelo de autofinanciamiento basado en servicios de valor agregado, tales como la entrega periódica de reportes especializados. Aunque el número actual de usuarios no genera ingresos significativos, los costos operativos (almacenamiento en la nube, licencias de servicios) siguen siendo manejables. No obstante, el fortalecimiento de alianzas estratégicas y la diversificación de fuentes de financiamiento serán cruciales para garantizar la continuidad y escalamiento de Tláloc App más allá del entorno académico.

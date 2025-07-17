@@ -737,7 +737,7 @@ Se hizo una compilación de los principales widgets utilizados en la aplicación
 Es importante mencionar que el nombre correcto no es logo, mas bien es ``Isotipo'' ya que es la parte simbólica de una marca y no contiene texto. Los principales resultados obtenidos fueron:
 
 \begin{itemize}
-  \item \textbf{Diseño del Isotipo:} La figura \ref{fig:logo}, representa un glifo minimalista inspirado en el Dios de la lluvia Tláloc, con una estructura que remite a un rostro estilizado de Tláloc y gotas de agua descendentes. El diseño utiliza formas geométricas simétricas y colores que evocan tecnología (azul oscuro), agua (turquesa) y contraste visual (negro y blanco).
+  \item \textbf{Diseño del Isotipo:} La figura \ref{m15}, representa un glifo minimalista inspirado en el Dios de la lluvia Tláloc, con una estructura que remite a un rostro estilizado de Tláloc y gotas de agua descendentes. El diseño utiliza formas geométricas simétricas y colores que evocan tecnología (azul oscuro), agua (turquesa) y contraste visual (negro y blanco).
   
   \item \textbf{Paleta cromática:} Se consolidó una paleta visual efectiva para los modos claro y oscuro, con colores como:
   \begin{itemize}
@@ -1038,7 +1038,7 @@ showDialog(
 
 
 
-\newpage
+% \newpage
 \subsubsection*{Tienda de aplicaciones} 
 
 Como resultado tangible del desarrollo completo de la aplicación, se logró su publicación oficial en la tienda de aplicaciones de Google. Este hito representa la culminación técnica y administrativa del proyecto, permitiendo que cualquier usuario con un dispositivo Android pueda descargar e instalar la aplicación de manera gratuita. La disponibilidad pública también facilita la validación social y científica del sistema de monitoreo participativo, al abrirlo a un público más amplio y permitir la recolección continua de datos por parte de la ciudadanía. La aplicación puede consultarse y descargarse en la siguiente dirección electrónica:
@@ -1072,6 +1072,49 @@ La Interfaz de Usuario (UI) fue diseñada con un enfoque centrado en el usuario,
   \caption{Estructura del UI: división del Backend y UI; Login está dentro de UI. autoría propia}
   \label{m10}
 \end{figure}
+
+% \begin{figure}[h!]
+% \centering
+% \begin{tikzpicture}[
+%   node distance=1.2cm and 2.5cm,
+%   startstop/.style    = {rectangle, rounded corners, draw=black!80, thick, fill=blue!20, text width=4cm, align=center, minimum height=1cm},
+%   process/.style      = {rectangle, draw=black!80, thick, fill=green!20, text width=4cm, align=center, minimum height=1cm},
+%   decision/.style     = {diamond, draw=black!80, thick, fill=orange!20, text width=3cm, align=center, inner sep=0pt},
+%   arrow/.style        = {->, >=latex, thick},
+%   every label/.append style={font=\small}
+% ]
+
+% % Nodes
+% \node (main)        [startstop]            {main()};
+% \node (init)        [process, below=of main] {Firebase.initializeApp()};
+% \node (app)         [process, below=of init] {MyApp / MaterialApp};
+% \node (providers)   [process, below=of app]  {MultiProvider:\\GoogleSignInProvider(), AppState};
+% \node (auth)        [decision, below=of providers, yshift=-0.3cm] {FirebaseAuth.instance.currentUser \\ $\neq$\,null?};
+% \node (onboard)     [process, left=of auth, xshift=-1cm] {ConditionalOnboardingPage};
+% \node (login)       [process, below=of onboard] {Log In / SignUpWidget};
+% \node (home)        [process, right=of auth, xshift=1cm] {HomePage};
+% \node (screens)     [process, below=of home] {Navegación a:\\AddScreen, HomeScreen, DataScreen, BarGraph, ConfigureScreen};
+% \node (end)         [startstop, below=of screens] {Fin};
+
+% % Arrows
+% \draw[arrow] (main) -- (init);
+% \draw[arrow] (init) -- (app);
+% \draw[arrow] (app) -- (providers);
+% \draw[arrow] (providers) -- (auth);
+
+% \draw[arrow] (auth.west) -- node[above] {No} (onboard);
+% \draw[arrow] (onboard) -- (login);
+% \draw[arrow] (login) |- (end.west);
+
+% \draw[arrow] (auth.east) -- node[above] {Sí} (home);
+% \draw[arrow] (home) -- (screens);
+% \draw[arrow] (screens) -- (end);
+
+% \end{tikzpicture}
+% \caption{Diagrama de flujo de inicialización y navegación en Tláloc App}
+% \label{fig:flow_t4}
+% \end{figure}
+
 
 \subsubsection*{Onboarding}
 
@@ -1247,10 +1290,7 @@ torchEnabled: false,
 ),
 onDetect: (barcode) {
 if (barcode.barcodes.isNotEmpty) {
-Navigator.pop(context, barcode.barcodes.first.rawValue ?? '');
-}
-},
-);
+Navigator.pop(context, barcode.barcodes.first.rawValue ?? ''); } },);
 \end{minted}
 
 Cuando se detecta exitosamente un código, se extrae su valor en texto (\texttt{rawValue}) y se cierra el diálogo, devolviendo el resultado a la función principal de manejo, \texttt{\_handleQrResult}.
@@ -1371,12 +1411,6 @@ El diseño de la interfaz emplea componentes personalizados como \texttt{MyTextF
   \label{pantallas5}
 \end{figure}
 
-A continuación, se muestran los dos casos posibles al usar la app:
-\begin{itemize}
-  \item Cuando la medición anterior es menor a la actual
-  \item Cuando la medición anterior es mayor a la actual
-\end{itemize}
-En el primer caso, la medición real será la resta del anterior y en el segundo caso, indica que se vació indirectamente, por lo que se conserva tal cuál en el volumen real.
 
 
 \newpage
@@ -1389,66 +1423,181 @@ La interfaz está construida sobre un \texttt{NestedScrollView} con una \texttt{
 Cada lista accede a los datos a través del estado global (\texttt{AppState}) y se sincroniza con Firestore en tiempo real, permitiendo al usuario desplazarse fluidamente entre los registros disponibles. Además, la lógica de exportación se integra en el botón superior, ofreciendo retroalimentación visual tras completar o fallar la operación. La pantalla garantiza una navegación intuitiva, claridad visual y escalabilidad, consolidándose como el núcleo de consulta y análisis dentro de la plataforma. 
 
 \begin{figure}[h!]
-\centering
-  % \includegraphics[width=1\textwidth]{assets/pantallas/15.pdf}
+\centering 
   \includegraphics[width=1\textwidth]{assets/m16.png}
   \caption{Exportación de datos a Excel}
   \label{pantallas15}
 \end{figure}
 
 
-\paragraph{Caso I}
-
-Véase la figura \ref{pantallas7}, se sube una medición menor a la anterior, implicando que permanezca igual, mostrado en la ecuación \refeq{eq1}:
-\begin{equation}
-\text{Volumen Real, Caso I: } V_{a}<V_{b}\implies  V_{real} = V_{a}
-\label{eq1}
-\end{equation}
-Donde $V_{a}$ es la medición actual y $V_{b}$ es la medición anterior
-
-Esto da como resultado la pantalla de la figura \ref{pantallas8}.
-
 \begin{figure}[h!]
 \centering
-  \includegraphics[width=0.67\textwidth]{assets/pantallas/7.pdf}
-  \caption{Pantalla de bitácora en volúmenes acumulados (Caso I)}
-  \label{pantallas7}
+\begin{tikzpicture}[node distance=1.8cm]
+
+% Nodes
+\node (start) [startstop] {Inicio: Nueva medición $V_a$};
+\node (checkEmpty) [decision, below=2.2cm of start] {¿Pluviómetro fue vaciado?};
+\node (saveAsReal) [process, right=3.5cm of checkEmpty] {Guardar $V_a$ como valor real};
+\node (getPrevious) [process, below=1.8cm of checkEmpty] {Obtener última medición $V_b$};
+\node (compare) [decision, below=1.8cm of getPrevious] {$V_a > V_b$?};
+\node (subtract) [process, right=3.8cm of compare] {Calcular $V_{real} = V_a - V_b$};
+\node (sameValue) [process, below=1.8cm of compare] {Guardar $V_a$ como $V_{real}$};
+\node (end) [startstop, below=1.8cm of sameValue] {Fin};
+
+% Arrows
+\draw [arrow] (start) -- (checkEmpty);
+
+\draw [arrow] (checkEmpty) -- node[above] {Sí} (saveAsReal);
+\draw [arrow] (checkEmpty) -- node[left] {No} (getPrevious);
+
+\draw [arrow] (getPrevious) -- (compare);
+\draw [arrow] (compare) -- node[above] {Sí} (subtract);
+\draw [arrow] (compare) -- node[left] {No} (sameValue);
+\draw [arrow] (saveAsReal.east) -- ++(1.5,0) -- ++(0,-6.5) -- ++(-1.5,0) -- (end.east);
+\draw [arrow] (subtract) |- (end);
+\draw [arrow] (sameValue) -- (end);
+
+\end{tikzpicture}
+\caption{Diagrama de flujo del cálculo de volúmenes reales}
+\label{fig:diagramavolumenes}
 \end{figure}
 
+\newpage
+\subsubsection*{Algoritmo para guardar mediciones reales}
+
+En el diagrama de flujo para el cálculo de volúmenes reales (Figura \ref{fig:diagramavolumenes}),se resume el algoritmo para guardar información. Actualmente se cuentan con evaporímetros que dependiendo su valor aumentaría los mm al valor registrado $V_a$, pero que no se contempló para este momento.
+
+\paragraph{Caso I}
+
+En la figura \ref{pantallas7} se observa una medición actual menor que la anterior, por lo que no se considera un nuevo evento de precipitación. Según la ecuación \ref{eq1}, el valor real se mantiene igual a la medición actual:
+
+\begin{equation}
+\text{Volumen Real, Caso I: } V_{a} < V_{b} \implies V_{\text{real}} = V_{a}
+\label{eq1}
+\end{equation}
+
+Donde $V_{a}$ representa la medición actual y $V_{b}$ la anterior. El resultado se refleja en la pantalla mostrada en la figura \ref{pantallas8}.
 
 \begin{figure}[h!]
 \centering
-  \includegraphics[width=0.67\textwidth]{assets/pantallas/8.pdf}
-  \caption{Pantalla de bitácora en volúmenes reales (resultados del caso I)}
-  \label{pantallas8}
+\includegraphics[width=0.67\textwidth]{assets/pantallas/7.pdf}
+\caption{Pantalla de bitácora en volúmenes acumulados (Caso I)}
+\label{pantallas7}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.67\textwidth]{assets/pantallas/8.pdf}
+\caption{Pantalla de bitácora en volúmenes reales (resultado del Caso I)}
+\label{pantallas8}
 \end{figure}
 
 \paragraph{Caso II}
 
-La figura \ref{pantallas10}, muestra que la medición actual es mayor que la anterior, esto acciona el algoritmo de la ecuación \refeq{eq2}:
+En la figura \ref{pantallas10} se presenta una medición actual mayor que la anterior, lo que activa el cálculo del volumen real mediante la ecuación \ref{eq2}:
+
 \begin{equation}
-\text{Volumen Real, Caso II: } V_{a}>V_{b}\implies V_{real} = V_{a} - V_{b}
+\text{Volumen Real, Caso II: } V_{a} > V_{b} \implies V_{\text{real}} = V_{a} - V_{b}
 \label{eq2}
 \end{equation}
-Donde $V_{a}$ es la medición actual y $V_{b}$ es la medición anterior.
 
-En la figura \ref{pantallas11}, se muestra que la medición es diferente a la ingresada, esto porque se restó la medición actual de 119 con la medición anterior de 79 dando como resultado 40.
-
+Donde $V_{a}$ es la nueva medición y $V_{b}$ la anterior. En este ejemplo, $119 - 79 = 40$. El resultado procesado por la aplicación se muestra en la figura \ref{pantallas12}.
 
 \begin{figure}[h!]
 \centering
-  \includegraphics[width=0.67\textwidth]{assets/pantallas/10.pdf}
-  \caption{Pantalla de bitácora en volúmenes acumulados caso ii}
-  \label{pantallas10}
+\includegraphics[width=0.67\textwidth]{assets/pantallas/10.pdf}
+\caption{Pantalla de bitácora en volúmenes acumulados (Caso II)}
+\label{pantallas10}
 \end{figure}
-
 
 \begin{figure}[h!]
 \centering
-  \includegraphics[width=0.67\textwidth]{assets/pantallas/12.pdf}
-  \caption{Pantalla de bitácora en volúmenes reales caso ii}
-  \label{pantallas11}
+\includegraphics[width=0.67\textwidth]{assets/pantallas/12.pdf}
+\caption{Pantalla de bitácora en volúmenes reales (resultado del Caso II)}
+\label{pantallas12}
 \end{figure}
+
+
+\paragraph{Caso III}
+
+En ciertos escenarios, el usuario reporta explícitamente el vaciado del pluviómetro. Esto se marca en la aplicación mediante un interruptor (reinicio manual). En tales casos, la lógica ignora el valor anterior y asume que el total registrado proviene de un nuevo evento completo. Este valor se registra directamente como volumen real, de acuerdo con la ecuación \ref{eq3}:
+
+\begin{equation}
+\text{Volumen Real, Caso III: Reinicio} \implies V_{\text{real}} = V_{a}
+\label{eq3}
+\end{equation}
+
+Donde $V_{a}$ es la medición actual, interpretada como un nuevo evento total, al haberse reiniciado manualmente el instrumento. .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \paragraph{Caso I}
+
+% Véase la figura \ref{pantallas7}, se sube una medición menor a la anterior, implicando que permanezca igual, mostrado en la ecuación \refeq{eq1}:
+% \begin{equation}
+% \text{Volumen Real, Caso I: } V_{a}<V_{b}\implies  V_{real} = V_{a}
+% \label{eq1}
+% \end{equation}
+% Donde $V_{a}$ es la medición actual y $V_{b}$ es la medición anterior
+
+% Esto da como resultado la pantalla de la figura \ref{pantallas8}.
+
+% \begin{figure}[h!]
+% \centering
+%   \includegraphics[width=0.67\textwidth]{assets/pantallas/7.pdf}
+%   \caption{Pantalla de bitácora en volúmenes acumulados (Caso I)}
+%   \label{pantallas7}
+% \end{figure}
+
+
+% \begin{figure}[h!]
+% \centering
+%   \includegraphics[width=0.67\textwidth]{assets/pantallas/8.pdf}
+%   \caption{Pantalla de bitácora en volúmenes reales (resultados del caso I)}
+%   \label{pantallas8}
+% \end{figure}
+
+% \paragraph{Caso II}
+
+% La figura \ref{pantallas10}, muestra que la medición actual es mayor que la anterior, esto acciona el algoritmo de la ecuación \refeq{eq2}:
+% \begin{equation}
+% \text{Volumen Real, Caso II: } V_{a}>V_{b}\implies V_{real} = V_{a} - V_{b}
+% \label{eq2}
+% \end{equation}
+% Donde $V_{a}$ es la medición actual y $V_{b}$ es la medición anterior.
+
+% En la figura \ref{pantallas11}, se muestra que la medición es diferente a la ingresada, esto porque se restó la medición actual de 119 con la medición anterior de 79 dando como resultado 40.
+
+
+
+
+
+
+% \begin{figure}[h!]
+% \centering
+%   \includegraphics[width=0.67\textwidth]{assets/pantallas/10.pdf}
+%   \caption{Pantalla de bitácora en volúmenes acumulados caso ii}
+%   \label{pantallas10}
+% \end{figure}
+
+
+% \begin{figure}[h!]
+% \centering
+%   \includegraphics[width=0.67\textwidth]{assets/pantallas/12.pdf}
+%   \caption{Pantalla de bitácora en volúmenes reales caso ii}
+%   \label{pantallas11}
+% \end{figure}
 
 
 
@@ -1510,233 +1659,254 @@ En conjunto, esta pantalla fortalece la experiencia del usuario al ofrecer un es
  
 \newpage
 \section{Evaluación del nivel de maduración tecnológica}
+Se presenta un análisis del avance tecnológico alcanzado en este proyecto, conforme al modelo de Niveles de Madurez Tecnológica (TRL por sus siglas en inglés), agrupado por etapa de desarrollo. Los resultados están organizados (Tabla \ref{m20}):
 
-A continuación, se presenta un análisis del avance tecnológico alcanzado en este proyecto, conforme al modelo de Niveles de Madurez Tecnológica (TRL por sus siglas en inglés), agrupado por etapa de desarrollo. Se indican los criterios cumplidos con su respectiva justificación:
+% \begin{figure}[h!]
+% \centering
+%   \includegraphics[width=1\textwidth]{m20.png}
+%   \caption{Resultados de la evaluación de nivel de maduración tecnológica}
+%   \label{m20}
+% \end{figure}
 
-\subsubsection*{Nivel de madurez tecnológica alcanzado: Argumentos detallados}
+\begin{longtable}{|p{2.5cm}|p{0.5cm}|p{4cm}|p{4cm}|p{1cm}|}
+\hline
+% \rowcolor{blue!20}
+\textbf{Nivel de Madurez de Tecnológica} & 
+\textbf{N} & 
+\textbf{Elementos clave} & 
+\textbf{Parámetros esperados al final de la etapa.} & 
+\textbf{¿Sí / No?} \\
+\hline
+\endfirsthead
 
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Desarrollo de la invención & 1 &
+Investigación básica. Principios básicos observados y reportados. Artículos científicos publicados sobre los principios de la nueva tecnología. &
+¿Finalizó con la investigación básica de su idea? \newline
+¿Identificó principios de investigación básica que pudieran trasladarse a nuevos principios aplicables en tecnologías? & 
+Sí \newline Sí \\
+\hline
+
+& 2 &
+Investigación de laboratorio. Concepto y/o aplicación tecnológica formulada. Investigación aplicada. Inicio de la invención. &
+¿Analizó artículos científicos, modelos o teorías que respaldan su aplicación? \newline
+¿Realizó análisis de patentes nacionales e internacionales? \newline
+¿Exploró principios de manufacturabilidad? \newline
+¿Identificó usuarios potenciales? \newline
+¿Cuenta con grupo de investigación para evaluar la factibilidad? \newline
+¿Tiene plan de licenciamiento a terceros? & 
+Sí \newline Sí \newline Sí \newline Sí \newline Sí \newline No \\
+\hline
+
+Validación de concepto & 3 &
+Prueba experimental del concepto. Primera evaluación de factibilidad de la tecnología. &
+¿Identificó los componentes de la invención? \newline
+¿Validación de mercado preliminar? \newline
+¿Estudios de patentes actualizados? \newline
+¿La invención es protegible? \newline
+¿Revisión de aspectos regulatorios? \newline
+¿Plan de licenciamiento? &
+Sí \newline Sí \newline Sí \newline Sí \newline Sí \newline No \\
+\hline
+
+& 4 &
+Validación tecnológica a nivel laboratorio. Integración de prototipo inicial con baja confiabilidad. &
+¿Integró componentes principales? \newline
+¿Pruebas de efectividad en laboratorio? \newline
+¿Revisión de manufacturabilidad? \newline
+¿Entrevistas con usuarios? \newline
+¿Funciona en laboratorio? \newline
+¿Identificación de riesgos y mitigación? \newline
+¿Estrategia de propiedad intelectual actualizada? \newline
+¿Plan de licenciamiento? &
+Sí \newline Sí \newline Sí \newline Sí \newline Sí \newline Sí \newline Sí \newline No \\
+\hline
+
+Desarrollo de prototipo & 5 &
+Tecnología validada en condiciones relevantes (similares a reales). Proceso de planeación del negocio. &
+¿Probó el prototipo en ambiente real simulado? \newline
+¿Aspectos de manufacturabilidad definidos? \newline
+¿Cumple con normas del sector? \newline
+¿Estrategia de propiedad intelectual definida? &
+Sí \newline Sí \newline Sí \newline Sí \\
+\hline
+
+Producción piloto y demostración & 6 &
+Tecnología demostrada en ambiente relevante. Pre-producción en entorno real. &
+¿Tecnologías integradas en planta piloto? \newline
+¿Alineación con producción? \newline
+¿Usuarios prueban producción a baja escala? \newline
+¿Organización operativa alineada? \newline
+¿Inició proceso de certificación oficial? &
+Sí \newline Sí \newline Sí \newline Sí \newline Sí \\
+\hline
+
+& 7 &
+Demostración de prototipo en entorno operativo real. Producción a baja escala. &
+¿Cuenta con manufactura a baja escala? \newline
+¿Usuarios prueban versión final? \newline
+¿Estructura organizacional adecuada? \newline
+¿Producto terminado disponible? &
+Sí \newline Sí \newline Sí \newline Sí \\
+\hline
+
+Introducción inicial al mercado & 8 &
+Sistema completo y certificado. Manufacturabilidad probada. Producto comercializable. &
+¿Manufactura de producto final? \newline
+¿Producto listo para comercialización? \newline
+¿Organización operativa al 100\%? \newline
+¿Cumple estándares industriales? \newline
+¿Documentación técnica y de usuario desarrollada? &
+Sí \newline Sí \newline Sí \newline Sí \newline Sí \\
+\hline
+
+Expansión de mercado & 9 &
+Producto terminado. Pruebas exitosas. Tecnología disponible en el mercado. &
+¿Producción sostenida? \newline
+¿Crecimiento del mercado? \newline
+¿Cambios incrementales para nuevas versiones? \newline
+¿Optimización de procesos mediante innovación incremental? &
+Sí \newline Sí \newline Sí \newline Sí \\
+\hline
+\caption{Resultados de la evaluación de nivel de maduración tecnológica}
+\label{m20}
+\end{longtable}
+
+% \newpage
+\subsubsection*{TRL 1 - Investigación básica}
 \begin{enumerate}
+    \item \textbf{¿Finalizó con la investigación básica de su idea?} \\ \textbf{Sí.} El proyecto ha culminado su fase de investigación básica con el desarrollo de una aplicación funcional (Tláloc App) y su implementación en campo, demostrando su operatividad mediante su distribución, instalación y uso continuo.
+    
+    \item \textbf{¿Identificó principios de investigación básica que pudieran trasladarse en principios nuevos que puedan ser utilizados en nuevas tecnologías?} \\ \textbf{Sí.} En la sección de Revisión de Literatura se recuperan principios científicos relacionados con monitoreo participativo, sensores de bajo costo y desarrollo tecnológico rural, los cuales se traducen en herramientas prácticas dentro de Tláloc App.
+\end{enumerate}
 
-\item \textbf{¿Finalizó con la investigación básica de su idea?} \\
-\textbf{Sí.} El proyecto ha culminado su fase de investigación básica con el desarrollo de una aplicación funcional (Tláloc App) y su implementación en campo, demostrando su operatividad mediante su distribución, instalación y uso continuo.
+\subsubsection*{TRL 2 - Investigación de laboratorio}
+\begin{enumerate}
+    \setcounter{enumi}{2}
+    \item \textbf{¿Realizó un análisis de los artículos científicos, modelos o teorías científicas que respaldan la aplicación de la idea en algún área tecnológica?} \\ \textbf{Sí.} La sección de Revisión de Literatura incluye un análisis riguroso de teorías y estudios previos que sustentan tanto el enfoque comunitario como el uso de software móvil para el monitoreo ambiental.
+    
+    \item \textbf{¿Realizó estudios de búsqueda y análisis de patentes a nivel nacional e internacional, y los resultados indicaron que no existe un desarrollo igual a su idea? (benchmark tecnológico)} \\ \textbf{Sí.} Se utilizó el Sistema de Información de Gestión de la Actividad Inventiva (SIGA) en México y la base de datos de la OMPI a nivel internacional para confirmar la originalidad del enfoque de Tláloc App.
+    
+    \item \textbf{¿Ha explorado principios básicos de manufacturabilidad?} \\ \textbf{Sí.} Se consideró la viabilidad técnica y económica del uso de materiales accesibles para la fabricación de pluviómetros, y se utilizó programación multiplataforma con Flutter para reducir costos.
+    
+    \item \textbf{¿Ha explorado posibles usuarios de la invención?} \\ \textbf{Sí.} En la sección de Metodología se incluye un protocolo de monitoreo que identifica actores clave como ejidatarios, senderistas y académicos.
+    
+    \item \textbf{¿Cuenta con un grupo de investigación que pueda facilitar la evaluación inicial de factibilidad de la tecnología?} \\ \textbf{Sí.} El Colegio de Postgraduados (COLPOS), bajo la dirección de la Dra. Teresa Rojas, ha participado como institución técnica de respaldo para el proyecto.
+    
+    \item \textbf{¿Tiene contemplado un plan de licenciamiento de tecnología a terceros?} \\ \textbf{No.} Actualmente no se ha establecido un plan de licenciamiento formal a terceros.
+\end{enumerate}
 
-\item \textbf{¿Identificó principios de investigación básica que pudieran trasladarse en principios nuevos que puedan ser utilizados en nuevas tecnologías?} \\
-\textbf{Sí.} En la sección de Revisión de Literatura se recuperan principios científicos relacionados con monitoreo participativo, sensores de bajo costo y desarrollo tecnológico rural, los cuales se traducen en herramientas prácticas dentro de Tláloc App.
+\subsubsection*{TRL 3 - Validación de concepto}
+\begin{enumerate}
+    \setcounter{enumi}{8}
+    \item \textbf{¿Tiene identificados los componentes de su invención tecnológica?} \\ \textbf{Sí.} La sección de Metodología describe detalladamente los componentes del protocolo de monitoreo y los módulos funcionales de la app.
+    
+    \item \textbf{¿Ha llevado a cabo algún proceso de validación de mercado sobre su invención?} \\ \textbf{Sí.} Se han recopilado estadísticas mediante Google Play Console, Firebase y encuestas locales, las cuales respaldan el interés y uso del producto.
+    
+    \item \textbf{¿Realizó/actualizó estudios de búsqueda y análisis de patentes?} \\ \textbf{Sí.} Se cuenta con dos documentos detallados que muestran la inexistencia de una aplicación con las características de valor agregado presentes en Tláloc App.
+    
+    \item \textbf{¿Los resultados de la búsqueda indicaron que la invención puede ser protegida?} \\ \textbf{Sí.} Los análisis concluyen que no existe una app igual, lo cual abre la posibilidad para aplicar mecanismos de protección de propiedad intelectual.
+    
+    \item \textbf{¿Ha realizado un estudio sobre los aspectos regulatorios?} \\ \textbf{Sí.} Aunque no es una app sujeta a certificaciones oficiales, se han cumplido las políticas y lineamientos de Google Play Store.
+    
+    \item \textbf{¿Tiene contemplado un plan de licenciamiento de tecnología a terceros?} \\ \textbf{No.} Aún no se ha formalizado ningún acuerdo de licenciamiento.
+\end{enumerate}
 
-\item \textbf{¿Realizó un análisis de los artículos científicos, modelos o teorías científicas que respaldan la aplicación de la idea en algún área tecnológica?} \\
-\textbf{Sí.} La sección de Revisión de Literatura incluye un análisis riguroso de teorías y estudios previos que sustentan tanto el enfoque comunitario como el uso de software móvil para el monitoreo ambiental.
+\subsubsection*{TRL 4 - Validación en laboratorio}
+\begin{enumerate}
+    \setcounter{enumi}{14}
+    \item \textbf{¿Ha integrado los componentes principales de su invención tecnológica?} \\ \textbf{Sí.} La aplicación móvil ya ha sido publicada y los dispositivos han sido instalados exitosamente en campo.
+    
+    \item \textbf{¿Ha realizado pruebas de validación de efectividad?} \\ \textbf{Sí.} Se cuenta con tres años de datos validados que confirman la funcionalidad de la app y los pluviómetros.
+    
+    \item \textbf{¿Ha explorado aspectos de manufacturabilidad?} \\ \textbf{Sí.} Se ha verificado que no se requieren certificaciones formales al tratarse de software de libre uso.
+    
+    \item \textbf{¿Ha continuado la validación de mercado?} \\ \textbf{Sí.} Se ha mantenido comunicación activa con usuarios mediante entrevistas y retroalimentación constante.
+    
+    \item \textbf{¿Funciona su invención tecnológica en laboratorio?} \\ \textbf{Sí.} El código ha sido probado en múltiples dispositivos confirmando su estabilidad.
+    
+    \item \textbf{¿Identificó riesgos con un plan de mitigación?} \\ \textbf{Sí.} Se identificó una debilidad relacionada con verificación de datos, considerada en la mejora continua.
+    
+    \item \textbf{¿Actualizó el estudio de patentes y estrategia de PI?} \\ \textbf{Sí.} El proceso de protección está en trámite, respaldado por estudios de benchmarking.
+    
+    \item \textbf{¿Tiene contemplado un plan de licenciamiento de tecnología a terceros?} \\ \textbf{Sí.} Se contempla una alianza con el COLPOS, aún sin implementar formalmente.
+\end{enumerate}
 
-\item \textbf{¿Realizó estudios de búsqueda y análisis de patentes a nivel nacional e internacional, y los resultados indicaron que no existe un desarrollo igual a su idea? (benchmark tecnológico)} \\
-\textbf{Sí.} Se utilizó el Sistema de Información de Gestión de la Actividad Inventiva (SIGA) en México y la base de datos de la OMPI a nivel internacional para confirmar la originalidad del enfoque de Tláloc App.
+\subsubsection*{TRL 5 - Desarrollo de prototipo}
+\begin{enumerate}
+    \setcounter{enumi}{22}
+    \item \textbf{¿Ha probado su prototipo en condiciones reales?} \\ \textbf{Sí.} Ha sido probado en nueve sitios distintos en el Monte Tláloc, un entorno operativo exigente.
+    
+    \item \textbf{¿Tiene considerados aspectos de manufacturabilidad?} \\ \textbf{Sí.} Se han incluido planes para automatización futura mediante inteligencia artificial.
+    
+    \item \textbf{¿El prototipo cumple con normas del sector?} \\ \textbf{Sí.} Fue aprobado formalmente por la Unión de Ejidos de la Montaña en 2022.
+    
+    \item \textbf{¿Actualizó el estudio de patentes y estrategia de PI?} \\ \textbf{Sí.} El trámite está en curso y será complementado conforme avance la distribución del producto.
+\end{enumerate}
 
-\item \textbf{¿Ha explorado principios básicos de manufacturabilidad?} \\
-\textbf{Sí.} Se consideró la viabilidad técnica y económica del uso de materiales accesibles para la fabricación de pluviómetros, y se utilizó programación multiplataforma con Flutter para reducir costos.
+\subsubsection*{TRL 6 - Producción piloto y demostración}
+\begin{enumerate}
+    \setcounter{enumi}{26}
+    \item \textbf{¿Tiene integradas tecnologías en una planta piloto?} \\ \textbf{Sí.} El conjunto de tecnologías funciona de forma integrada y operativa, aunque no en una planta física.
+    
+    \item \textbf{¿Está alineado con tecnologías de producción?} \\ \textbf{Sí.} La app opera sobre plataformas robustas como Firebase y Google Cloud.
+    
+    \item \textbf{¿Usuarios potenciales prueban la producción a baja escala?} \\ \textbf{Sí.} Con 433 instalaciones activas al 1 de julio de 2025.
+    
+    \item \textbf{¿Cuenta con una organización operativa acorde a la producción?} \\ \textbf{Sí.} Respaldada por el COLPOS, quien facilita la implementación técnica.
+    
+    \item \textbf{¿Inició el proceso de certificaciones gubernamentales?} \\ \textbf{Sí.} No requiere certificaciones formales, pero cumple con requisitos de Google Play.
+\end{enumerate}
 
-\item \textbf{¿Ha explorado posibles usuarios de la invención?} \\
-\textbf{Sí.} En la sección de Metodología se incluye un protocolo de monitoreo que identifica actores clave como ejidatarios, senderistas y académicos.
+\subsubsection*{TRL 7 - Desarrollo de producto}
+\begin{enumerate}
+    \setcounter{enumi}{31}
+    \item \textbf{¿Cuenta con proceso de manufactura en baja escala?} \\ \textbf{Sí.} El equipo técnico mantiene operativa la app.
+    
+    \item \textbf{¿Usuarios prueban la versión final del producto?} \\ \textbf{Sí.} La app es usada por usuarios capacitados y externos.
+    
+    \item \textbf{¿Estructura organizacional adecuada?} \\ \textbf{Sí.} El equipo de investigación tiene experiencia multidisciplinaria y respaldo institucional.
+    
+    \item \textbf{¿Producto terminado para prueba de clientes?} \\ \textbf{Sí.} Disponible públicamente en \texttt{tlalocapp.web.app}.
+\end{enumerate}
 
-\item \textbf{¿Cuenta con un grupo de investigación que pueda facilitar la evaluación inicial de factibilidad de la tecnología?} \\
-\textbf{Sí.} El Colegio de Postgraduados (COLPOS), bajo la dirección de la Dra. Teresa Rojas, ha participado como institución técnica de respaldo para el proyecto.
-
-\item \textbf{¿Tiene contemplado un plan de licenciamiento de tecnología a terceros?} \\
-\textbf{No.} Actualmente no se ha establecido un plan de licenciamiento formal a terceros.
-
-\item \textbf{¿Tiene identificados los componentes de su invención tecnológica?} \\
-\textbf{Sí.} La sección de Metodología describe detalladamente los componentes del protocolo de monitoreo y los módulos funcionales de la app.
-
-\item \textbf{¿Ha llevado a cabo algún proceso de validación de mercado sobre su invención? (I+D en laboratorio más primeras pláticas con posibles usuarios)} \\
-\textbf{Sí.} Se han recopilado estadísticas mediante Google Play Console, Firebase y encuestas locales, las cuales respaldan el interés y uso del producto.
-
-
-\item \textbf{¿Realizó/actualizó estudios de búsqueda y análisis de patentes a nivel nacional e internacional, y los resultados indicaron que no existe un desarrollo igual a su idea? (benchmark tecnológico)} \\
-\textbf{Sí.} Se cuenta con dos documentos detallados que muestran la inexistencia de una aplicación con las características de valor agregado presentes en Tláloc App, como el enfoque participativo, la exportación en PDF y la integración con pluviómetros artesanales.
-
-\item \textbf{¿Los resultados de la búsqueda y análisis de patentes indicaron que la invención puede ser protegida mediante algún mecanismo de protección?} \\
-\textbf{Sí.} Los análisis concluyen que no existe una app igual, lo cual abre la posibilidad para aplicar mecanismos de protección de propiedad intelectual en el futuro.
-
-\item \textbf{¿Ha realizado un estudio sobre los aspectos regulatorios (comités de ética, normas, ISO´s, y certificaciones) que son requeridos para su invención tecnológica?} \\
-\textbf{Sí.} Aunque no es una app sujeta a certificaciones oficiales, se han cumplido las políticas y lineamientos de Google Play Store, que incluyen revisiones técnicas y de privacidad.
-
-\item \textbf{¿Tiene contemplado un plan de licenciamiento de tecnología a terceros?} \\
-\textbf{No.} A pesar de que existe la posibilidad de colaboración con el COLPOS, aún no se ha formalizado ningún acuerdo de licenciamiento.
-
-\item \textbf{¿Ha integrado los componentes principales de su invención tecnológica?} \\
-\textbf{Sí.} La aplicación móvil ya ha sido publicada y los dispositivos de medición han sido instalados exitosamente en campo.
-
-\item \textbf{¿Ha realizado pruebas de validación de efectividad de dicha invención en laboratorio?} \\
-\textbf{Sí.} Se cuenta con tres años de datos validados que han confirmado la funcionalidad de la app y de los pluviómetros en distintos contextos operativos.
-
-\item \textbf{¿Ha explorado con mayor profundidad aspectos / certificaciones de manufacturabilidad relacionados con el desarrollo de su invención tecnológica?} \\
-\textbf{Sí.} Se ha verificado que no se requieren certificaciones formales para la distribución de la app, al tratarse de software de código abierto y libre uso.
-
-\item \textbf{¿Ha continuado la validación de mercado de su invención con más entrevistas con usuarios potenciales y estudios de mercado?} \\
-\textbf{Sí.} Se ha mantenido comunicación activa con usuarios mediante entrevistas, retroalimentación presencial y digital, lo cual ha fortalecido el desarrollo iterativo de la aplicación.
-
-\item \textbf{¿Su invención tecnológica funciona a nivel laboratorio?} \\
-\textbf{Sí.} El código fuente ha sido probado en múltiples dispositivos durante las fases de desarrollo y pruebas de laboratorio, confirmando su funcionalidad y estabilidad.
-
-\item \textbf{¿Identificó los riesgos tecnológicos de mercado y financieros con un plan de mitigación de los mismos?} \\
-\textbf{Sí.} Se identificó una debilidad específica relacionada con la verificación de datos por parte de los usuarios, lo cual ha sido considerado dentro de las estrategias de mejora continua.
-
-\item \textbf{¿Actualizó el estudio de patentes nacionales e internacionales, y tiene definida una estrategia de gestión de la propiedad intelectual?} \\
-\textbf{Sí.} El proceso de formalización de la protección de la propiedad intelectual ya se encuentra en trámite, respaldado por los estudios de benchmarking anteriores.
-
-\item \textbf{¿Tiene contemplado un plan de licenciamiento de tecnología a terceros?} \\
-\textbf{Sí.} Se contempla como posibilidad futura una alianza con el Colegio de Postgraduados, aunque aún no ha sido implementada formalmente.
-
-\item \textbf{¿Ha probado su prototipo en laboratorio en condiciones de un ambiente real?} \\
-\textbf{Sí.} La tecnología ha sido probada en condiciones reales en nueve sitios distintos ubicados en el Monte Tláloc, lo que representa un entorno operativo exigente.
-
-\item \textbf{¿Tiene plenamente identificadas y considerados aspectos de manufacturabilidad del futuro producto?} \\
-\textbf{Sí.} Se han considerado aspectos de automatización mediante inteligencia artificial para facilitar el escalamiento del monitoreo y el soporte a usuarios, como parte de los planes futuros de manufacturabilidad.
-
-\item \textbf{¿El prototipo a escala real cumple con las normas y/o previsiones legales o del medio ambiente del sector?} \\
-\textbf{Sí.} La implementación fue aprobada formalmente por la Unión de Ejidos de la Montaña en 2022, cumpliendo así con los requerimientos ambientales y sociales del territorio.
-
-\item \textbf{¿Actualizó el estudio de patentes nacionales e internacional, y tiene definida una estrategia de gestión de la propiedad intelectual?} \\
-\textbf{Sí.} El trámite se encuentra en curso y será complementado con documentación de respaldo conforme avance la distribución del producto.
-
-\item \textbf{¿Tiene integradas las tecnologías de producto y manufactura en una planta piloto?} \\
-\textbf{Sí.} Aunque no se trata de una planta física, el conjunto de tecnologías de monitoreo y desarrollo de software ya funciona de forma integrada y operativa.
-
-\item \textbf{¿Tiene alineado el nuevo producto con las tecnologías de producción?} \\
-\textbf{Sí.} La aplicación se sostiene sobre plataformas robustas como Firebase, Google Cloud y Flutter, garantizando escalabilidad y compatibilidad.
-
-\item \textbf{¿Cuenta con usuarios potenciales que prueben la producción a baja escala?} \\
-\textbf{Sí.} Al 1 de julio de 2025, se cuenta con 433 instalaciones activas de la app, lo que demuestra un nivel de adopción relevante.
-
-\item \textbf{¿Cuenta con una organización operativa acorde a las necesidades de operación de la producción?} \\
-\textbf{Sí.} Aunque no se cuenta con una estructura empresarial formal, el equipo está respaldado por el Colegio de Postgraduados, quien ha financiado el proyecto y facilitado su implementación técnica.
- 
-
-\item \textbf{¿Inició el proceso sobre el registro de las certificaciones requeridas por instancias gubernamentales para la producción y despliegue del prototipo?} \\
-\textbf{Sí.} Se concluyó que, al tratarse de una aplicación de monitoreo ambiental sin fines comerciales directos, no se requiere certificación gubernamental formal. No obstante, se cumple con los requisitos establecidos por Google para su distribución.
-
-\item \textbf{¿Cuenta con un proceso de manufactura operacional en baja escala? (produciendo productos comerciales)} \\
-\textbf{Sí.} La programación y el mantenimiento de la app se encuentran actualmente operados por un equipo técnico especializado, lo que garantiza su disponibilidad funcional para los usuarios activos.
-
-\item \textbf{¿Cuenta con usuarios potenciales que prueben la versión final del producto?} \\
-\textbf{Sí.} Se han capacitado usuarios internos y externos, incluidos miembros de la Unión de Ejidos y colaboradores del equipo de investigación, quienes utilizan la app para registrar datos reales.
-
-\item \textbf{¿Cuenta con una estructura organizacional adecuada para la implementación?} \\
-\textbf{Sí.} Aunque no se trata de una empresa, el equipo de investigación cuenta con apoyo interinstitucional y experiencia multidisciplinaria que ha permitido la implementación exitosa del sistema.
-
-\item \textbf{¿Cuenta con un producto terminado para prueba de primeros clientes?} \\
-\textbf{Sí.} La aplicación está disponible públicamente en la dirección \texttt{tlalocapp.web.app} y ha sido utilizada por usuarios finales desde su lanzamiento.
-
-\item \textbf{¿Se encuentra manufacturando el producto en su versión final?} \\
-\textbf{Sí.} La versión final de la aplicación se encuentra publicada, con funcionalidades estables y soporte activo, lo que la hace apta para su uso en condiciones reales.
-
-\item \textbf{¿Tiene un producto comercializable?} \\
-\textbf{Sí.} La aplicación es potencialmente comercializable a través de modelos de sostenibilidad basados en anuncios internos o suscripciones voluntarias, aunque actualmente opera con financiamiento académico.
-
-\item \textbf{¿Su organización es operativa al 100\%?} \\
-\textbf{Sí.} Si bien la estructura es académica, la operación del proyecto es continua y estable, con mantenimiento técnico, recolección de datos y mejoras activas desde 2022.
-
-\item \textbf{¿Su prototipo cumple con estándares de la industria en cuestión?} \\
-\textbf{Sí.} El desarrollo se rige por los estándares y políticas de Google Play Store y Firebase, garantizando seguridad, privacidad y compatibilidad con múltiples dispositivos.
-
-\item \textbf{¿Elaboró los documentos para la utilización y mantenimiento del producto (manual del usuario, soporte técnico)?} \\
-\textbf{Sí.} Se elaboró un documento público con instrucciones detalladas, disponible en el siguiente enlace: \url{https://docs.google.com/document/d/e/2PACX-1vQUHU9lWprwB9LkkHMx1tzJNxXEprUnSKm0mrhKPxoqtK5FWF-Rg_XAn1-IYZtl3BHp2gTn6r6IVo9N/pub}.
-
-\item \textbf{¿Cuenta con producción sostenida?} \\
-\textbf{Sí.} Actualmente el proyecto se mantiene con el respaldo económico del Colegio de Postgraduados. Además, se ha considerado la posibilidad de incorporar anuncios para asegurar su sostenibilidad futura.
-
-\item \textbf{¿Cuenta con un producto que cuenta con un crecimiento de mercado?} \\
-\textbf{Sí.} El modelo ha despertado el interés de replicarlo en otras zonas montañosas del país, lo cual evidencia un potencial de expansión.
-
-\item \textbf{¿Cuenta con cambios incrementales de producto que le lleven a crear nuevas versiones?} \\
-\textbf{Sí.} De manera constante se desarrollan nuevas funcionalidades, como exportación en PDF, filtros de datos y mejoras en la interfaz, basadas en la retroalimentación de los usuarios.
-
-\item \textbf{¿Los procesos de manufactura y producción son optimizados a través de innovaciones incrementales?} \\
-\textbf{Sí.} La aplicación se encuentra en un proceso continuo de optimización, incorporando herramientas de inteligencia artificial para automatizar consultas y mejorar la experiencia del usuario.
+\subsubsection*{TRL 8 - Introducción inicial al mercado}
+\begin{enumerate}
+    \setcounter{enumi}{35}
+    \item \textbf{¿Se encuentra manufacturando el producto final?} \\ \textbf{Sí.} La app está publicada con soporte activo y funcionalidades estables.
+    
+    \item \textbf{¿Tiene un producto comercializable?} \\ \textbf{Sí.} Potencialmente comercializable bajo modelos sostenibles, aunque con financiamiento académico actual.
+    
+    \item \textbf{¿Organización operativa al 100\%?} \\ \textbf{Sí.} La operación es continua desde 2022, con mejoras y mantenimiento constante.
+    
+    \item \textbf{¿Cumple con estándares de la industria?} \\ \textbf{Sí.} Se rige por políticas de Google Play Store y Firebase.
+    
+    \item \textbf{¿Elaboró manual de uso y soporte técnico?} \\ \textbf{Sí.} Se elaboró un documento público con instrucciones detalladas, disponible en el siguiente enlace: \url{https://docs.google.com/document/d/e/2PACX-1vQUHU9lWprwB9LkkHMx1tzJNxXEprUnSKm0mrhKPxoqtK5FWF-Rg_XAn1-IYZtl3BHp2gTn6r6IVo9N/pub}.
 
 \end{enumerate}
 
-% \subsubsection*{TRL 1: Principios Básicos Observados y Reportados}
+\subsubsection*{TRL 9 - Expansión de mercado}
+\begin{enumerate}
+    \setcounter{enumi}{40}
+    \item \textbf{¿Cuenta con producción sostenida?} \\ \textbf{Sí.} Financiada por el COLPOS, con alternativas como anuncios para su sostenibilidad futura.
+    
+    \item \textbf{¿Producto con crecimiento de mercado?} \\ \textbf{Sí.} Interés en replicarlo en otras zonas montañosas del país.
+    
+    \item \textbf{¿Cambios incrementales hacia nuevas versiones?} \\ \textbf{Sí.} Se agregan nuevas funciones como exportación en PDF y mejoras de interfaz.
+    
+    \item \textbf{¿Innovaciones incrementales en manufactura y producción?} \\ \textbf{Sí.} Uso creciente de IA para automatizar consultas y mejorar experiencia de usuario.
+\end{enumerate}
 
-% \begin{enumerate}
-%   \item \textbf{¿Finalizó con la investigación básica de su idea?} \\
-%   \textbf{Sí.} Se realizó una revisión teórica del problema del monitoreo comunitario y sus posibles soluciones digitales aplicadas en contextos rurales, incluyendo técnicas participativas y modelos de monitoreo, detalladas en el capítulo \ref{cap:3}.
+\subsection{Análisis de resultados}
 
-%   \item \textbf{¿Identificó principios de investigación básica que pudieran trasladarse en principios nuevos que puedan ser utilizados en nuevas tecnologías?} \\
-%   \textbf{Sí.} Se adaptaron conceptos de ciencia ciudadana, gobernanza forestal y manejo integral del agua hacia el desarrollo de una aplicación móvil comunitaria.
+Con base en los resultados del diagnóstico de madurez tecnológica, se concluye que Tláloc App cumple de manera satisfactoria con la mayoría de los requisitos establecidos para el nivel ``\textbf{TRL 9 - Expansión de mercado}''. Sin embargo, se identifica como aspecto pendiente el establecimiento de un plan formal de licenciamiento de la tecnología a terceros, lo cual impide declarar con certeza que la tecnología ha alcanzado su máxima madurez comercial.
 
-%   \item \textbf{¿Realizó un análisis de los artículos científicos, modelos o teorías científicas que respaldan la aplicación de la idea en algún área tecnológica?} \\
-%   \textbf{Sí.} Se citaron y analizaron más de 30 fuentes científicas sobre sensores de lluvia, ciencia participativa, software de monitoreo ambiental, y tecnologías libres para comunidades.
-
-% \end{enumerate}
-
-% \subsubsection*{TRL 2-3: Formulación del Concepto Tecnológico y Validación Experimental Inicial}
-
-% \begin{enumerate}
-%   \item \textbf{¿Ha explorado principios básicos de manufacturabilidad?} \\
-%   \textbf{Sí.} Se desarrolló un prototipo de pluviómetro artesanal, y se consideraron alternativas de fabricación económica en contextos rurales.
-
-%   \item \textbf{¿Ha explorado posibles usuarios de la invención?} \\
-%   \textbf{Sí.} Se identificaron actores clave como ejidatarios, técnicos forestales, senderistas y brigadistas, mediante entrevistas y talleres.
-
-%   \item \textbf{¿Cuenta con un grupo de investigación que pueda facilitar la evaluación inicial de factibilidad de la tecnología?} \\
-%   \textbf{Sí.} Se contó con el respaldo técnico de instituciones como la Universidad Autónoma Chapingo y la comunidad científica del proyecto Miyotl.
-
-%   \item \textbf{¿Tiene identificados los componentes de su invención tecnológica?} \\
-%   \textbf{Sí.} Se definieron módulos principales: sensores, aplicación móvil, sistema de almacenamiento y visualización de datos.
-
-%   \item \textbf{¿Ha llevado a cabo algún proceso de validación de mercado sobre su invención?} \\
-%   \textbf{Sí.} Se realizaron pruebas con usuarios reales en campañas de monitoreo durante 2023-2024 en comunidades del estado de México.
-
-% \end{enumerate}
-
-% \subsubsection*{TRL 4-5: Validación de Componentes Tecnológicos en Laboratorio}
-
-% \begin{enumerate}
-%   \item \textbf{¿Ha integrado los componentes principales de su invención tecnológica?} \\
-%   \textbf{Sí.} Se desarrolló un sistema funcional que incluye captura de datos, análisis, exportación, autenticación de usuarios y visualización de gráficos.
-
-%   \item \textbf{¿Ha realizado pruebas de validación de efectividad de dicha invención en laboratorio?} \\
-%   \textbf{Sí.} Se probó el sistema con mediciones simuladas y reales, comparando valores, identificando errores y mejorando la interfaz.
-
-%   \item \textbf{¿Ha continuado la validación de mercado con más entrevistas con usuarios potenciales y estudios de mercado?} \\
-%   \textbf{Sí.} Durante múltiples campañas de difusión y talleres, se evaluó la aceptación del sistema, obteniendo retroalimentación valiosa.
-
-%   \item \textbf{¿Su invención tecnológica funciona a nivel laboratorio?} \\
-%   \textbf{Sí.} El prototipo está completamente funcional a nivel digital y técnico, demostrando precisión y confiabilidad en pruebas internas.
-
-% \end{enumerate}
-
-% \subsubsection*{TRL 6: Demostración del Sistema en Entorno Relevante}
-
-% \begin{enumerate}
-%   \item \textbf{¿Ha probado su prototipo en laboratorio en condiciones de un ambiente real?} \\
-%   \textbf{Sí.} El sistema fue desplegado en zonas rurales con acceso limitado a internet, mostrando buen desempeño y adaptabilidad.
-
-%   \item \textbf{¿Tiene plenamente identificadas y considerados aspectos de manufacturabilidad del futuro producto?} \\
-%   \textbf{Sí.} Se documentó un modelo técnico de instalación del pluviómetro y los requerimientos mínimos de hardware/software para el sistema.
-
-%   \item \textbf{¿Cuenta con usuarios potenciales que prueben la versión final del producto?} \\
-%   \textbf{Sí.} Ejidatarios y técnicos han usado la aplicación en campañas reales, generando reportes útiles para la comunidad.
-
-% \end{enumerate}
-
-% \subsubsection*{TRL 7 en adelante: Producción Piloto y Comercialización}
-
-% \begin{enumerate}
-%   \item \textbf{¿Cuenta con un producto terminado para prueba de primeros clientes?} \\
-%   \textbf{Sí.} La aplicación está disponible en GitHub y ha sido instalada por usuarios reales, quienes han reportado mediciones verificadas.
-
-%   \item \textbf{¿Se encuentra manufacturando el producto en su versión final?} \\
-%   \textbf{No.} Aún no se ha iniciado una manufactura a gran escala de sensores físicos o una distribución formal.
-
-%   \item \textbf{¿Tiene un producto comercializable?} \\
-%   \textbf{No.} El enfoque es de libre acceso y sin fines comerciales, aunque puede derivarse en servicios o asesorías.
-
-%   \item \textbf{¿Su organización es operativa al 100\%?} \\
-%   \textbf{No.} El equipo es limitado y depende de colaboración voluntaria y recursos institucionales o de investigación.
-
-% \end{enumerate}
-
-
-
+Por esta razón, se determina que actualmente Tláloc App se encuentra en el nivel ``\textbf{TRL 8 - Producto comercializable y certificado}``, al contar con una herramienta funcional, estable y públicamente disponible, que ha sido validada por usuarios reales en contextos operativos relevantes, y que cuenta con documentación, mantenimiento y actualizaciones continuas.
 
 
 
@@ -1791,13 +1961,21 @@ El alcance principal de este estudio consiste en demostrar la viabilidad técnic
 \end{itemize}
 
 \subsection{Limitaciones}
+Por otro lado pese los logros alcanzados, el proyecto presenta las siguientes limitaciones en general:
 
-A pesar de los avances, el estudio afronta varias restricciones que condicionan la generalización de los hallazgos:
+\begin{itemize}
+  \item \textbf{Vulnerabilidad física de los dispositivos}: Los pluviómetros artesanales instalados en campo han sido objeto de actos de vandalismo y expuestos a incendios forestales, lo que compromete la continuidad de la recolección de datos (Figura \ref{publicidad5}).  
+  \item \textbf{Restricciones presupuestarias}: La adquisición y mantenimiento de hardware (almacenamiento y hosting) depende actualmente de fondos del COLPOS; no existe aún un modelo de ingresos recurrentes que garantice la sostenibilidad económica a largo plazo.  
+  \item \textbf{Conectividad limitada}: En muchas de las zonas de monitoreo la cobertura celular es intermitente o nula, obligando al sistema a funcionar en modo desconectado y a sincronizar datos de forma diferida, lo que retrasa la disponibilidad en tiempo real.  
+  \item \textbf{Capacitación y alfabetización digital}: Algunos usuarios locales requieren asistencia continua para operar la aplicación y comprender los procesos de validación de datos, lo que limita la independencia operativa de las comunidades participantes.  
+  \item \textbf{Validación de calidad de datos}: La verificación de mediciones reportadas depende de que los usuarios sigan el protocolo (por ejemplo, enviar fotografías del pluviómetro), pero no existe un mecanismo automático de control de calidad, lo que puede introducir ruido en la base de datos.  
+  \item \textbf{Falta de plan de licenciamiento o modelo de negocio formal}: Aunque se contempla en el futuro una alianza con el COLPOS, aún no se ha definido un acuerdo de licenciamiento de la tecnología ni un esquema de comercialización estable.  
+  \item \textbf{Alcance geográfico acotado}: Hasta la fecha, el sistema está validado únicamente en nueve sitios del Monte Tláloc; la replicabilidad en otras regiones requiere ajustes técnicos (por ejemplo, calibración y mantenimiento de pluviómetros).  
+\end{itemize}
 
-\begin{enumerate}
-  \item \textbf{Validación de datos limitada.} La verificación de la exactitud de las mediciones depende de evidencias fotográficas enviadas manualmente a través de enviar una foto en WhatsApp. No se desarrolló aún un algoritmo automático de comprobación de imágenes.
-  \item \textbf{Muestra de usuarios acotada.} Durante la fase piloto, la comunidad participante (aunque capacitada) fue restringida en número, lo que limita la representatividad estadística de los datos y la adquisición de usuarios es aún pequeño.
-  \item \textbf{Ausencia de algoritmos predictivos.} Funcionalidades avanzadas de detección de anomalías o predicción meteorológica basadas en inteligencia artificial quedaron fuera del alcance de esta primera iteración y se contemplan como tareas de investigación futura por falta de datos necesarios (según la literatura, de miles o hasta millones).
-  \item \textbf{Dependencia de conectividad.} En zonas con cobertura de red intermitente, la sincronización de imágenes y mediciones puede verse afectada; si bien se implementó almacenamiento en caché y codificación base64 como medida de contingencia, la experiencia de usuario sufre retrasos.
-  \item \textbf{Escalabilidad operativa.} El uso de Firebase en su configuración actual implica costos crecientes conforme aumente el volumen de datos y usuarios, por lo que se requiere planificar estrategias de optimización o migración a servicios más económicos en futuras versiones.
-\end{enumerate}
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.8\textwidth]{publicidad/5.jpg}
+  \caption{Actos de vandalismo en pluviómetros instalados en Monte Tláloc. Fuente: (\cite{Informativonacional2025})}
+  \label{publicidad5}
+\end{figure}
