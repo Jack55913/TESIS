@@ -248,7 +248,7 @@ En la figura \ref{fig:cartel1} se muestra la versión final de uno de los cartel
   \label{fig:cartel1}
 \end{figure}
 
-Estos carteles fueron colocados en sitios estratégicos como casas ejidales, escuelas, tiendas locales y paraderos de transporte comunitario.
+Estos carteles fueron colocados en sitios estratégicos dentro del monte.
 
 \vspace{1em}
 
@@ -637,12 +637,6 @@ En la configuración de almacenamiento de actualizaciones, se puso 1 para que gu
 
 \newpage
 \subsection{Frontend}
-
-
-
-% todo: Sobre la firma de aplicaciones
-% https://developer.android.com/studio/publish/app-signing?hl=es-419
- 
 \subsubsection{User Experience (UX)}
 Los resultados de los cinco planos de la experiencia de usuario se describen a continuación:
 
@@ -748,7 +742,7 @@ Es importante mencionar que el nombre correcto no es logo, mas bien es ``Isotipo
 \begin{figure}[h!]
 \centering
   \includegraphics[width=0.5\textwidth]{m15.png}
-  \caption{Logo diseñado para Tláloc App, autoría propia}
+  \caption{Logo diseñado para Tláloc App}
   \label{m15}
 \end{figure}
 
@@ -1055,6 +1049,21 @@ Como resultado tangible del desarrollo completo de la aplicación, se logró su 
 
 
 
+A fecha de corte del 1° de julio de 2025, Tláloc App acumula una tendencia sostenida de descargas en Android (Figura~\ref{m17}) y registra 433 usuarios activos en su plataforma web, según Google Analytics (Figura~\ref{m18}). Estos indicadores muestran una adopción inicial relevante y confirman el interés de la comunidad por la medición ciudadana de la precipitación pluvial.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.9\textwidth]{m17.png}
+  \caption{Evolución de descargas en Android (Google Play Console).}
+  \label{m17}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.9\textwidth]{m18.png}
+  \caption{Usuarios activos en web (Google Analytics).}
+  \label{m18}
+\end{figure}
 
 
 
@@ -1425,7 +1434,7 @@ Cada lista accede a los datos a través del estado global (\texttt{AppState}) y 
 \begin{figure}[h!]
 \centering 
   \includegraphics[width=1\textwidth]{assets/m16.png}
-  \caption{Exportación de datos a Excel}
+  \caption{Captura de pantalla de la función de exportación de datos en Excel, autoría propia}
   \label{pantallas15}
 \end{figure}
 
@@ -1902,80 +1911,10 @@ Sí \newline Sí \newline Sí \newline Sí \\
     \item \textbf{¿Innovaciones incrementales en manufactura y producción?} \\ \textbf{Sí.} Uso creciente de IA para automatizar consultas y mejorar experiencia de usuario.
 \end{enumerate}
 
-\subsection{Análisis de resultados}
 
-Con base en los resultados del diagnóstico de madurez tecnológica, se concluye que Tláloc App cumple de manera satisfactoria con la mayoría de los requisitos establecidos para el nivel ``\textbf{TRL 9 - Expansión de mercado}''. Sin embargo, se identifica como aspecto pendiente el establecimiento de un plan formal de licenciamiento de la tecnología a terceros, lo cual impide declarar con certeza que la tecnología ha alcanzado su máxima madurez comercial.
+Realizando un análisis de resultados sobre el diagnóstico de madurez tecnológica, se encuentra que la app cumple de manera satisfactoria con la mayoría de los requisitos establecidos para el nivel ``\textbf{TRL 9 - Expansión de mercado}''. Sin embargo, se identifica como aspecto pendiente el establecimiento de un plan formal de licenciamiento de la tecnología a terceros, lo cual impide declarar con certeza que la tecnología ha alcanzado su máxima madurez comercial.
 
-Por esta razón, se determina que actualmente Tláloc App se encuentra en el nivel ``\textbf{TRL 8 - Producto comercializable y certificado}``, al contar con una herramienta funcional, estable y públicamente disponible, que ha sido validada por usuarios reales en contextos operativos relevantes, y que cuenta con documentación, mantenimiento y actualizaciones continuas.
-
+Por esta razón, se determina que el proyecto se encuentra en el nivel ``\textbf{TRL 8 - Producto comercializable y certificado}``, al contar con una herramienta funcional, estable y públicamente disponible, que ha sido validada por usuarios reales en contextos operativos relevantes, y que cuenta con documentación, mantenimiento y actualizaciones continuas.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\newpage
-\section{Alcance y limitaciones del estudio}
-
-A fecha de corte del 1° de julio de 2025, Tláloc App acumula una tendencia sostenida de descargas en Android (Figura~\ref{m17}) y registra 433 usuarios activos en su plataforma web, según Google Analytics (Figura~\ref{m18}). Estos indicadores muestran una adopción inicial relevante y confirman el interés de la comunidad por la medición ciudadana de la precipitación pluvial.
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{m17.png}
-  \caption{Evolución de descargas en Android (Google Play Console).}
-  \label{m17}
-\end{figure}
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.9\textwidth]{m18.png}
-  \caption{Usuarios activos en web (Google Analytics).}
-  \label{m18}
-\end{figure}
-
-\subsection{Alcance}
-
-El alcance principal de este estudio consiste en demostrar la viabilidad técnica y social de una plataforma móvil multiplataforma para la recolección sistemática de datos de lluvia en zonas montañosas de difícil monitoreo tradicional. En particular:
-
-\begin{itemize}
-  \item \textbf{Integración de ciencia ciudadana y tecnología móvil.} Se valida que usuarios sin experiencia previa pueden registrar mediciones meteorológicas usando únicamente un dispositivo móvil y un pluviómetro artesanal.
-  \item \textbf{Arquitectura modular y escalable.} La aplicación, desarrollada en Flutter, soporta múltiples plataformas (Android, Web) y emplea Firebase para sincronización en tiempo real, almacenamiento de imágenes en la nube y autenticación segura.
-  \item \textbf{Geo-referenciación y trazabilidad.} Cada medición queda asociada a coordenadas GPS y marca temporal, facilitando análisis posteriores de distribución espacial y temporal.
-  \item \textbf{Visualización y exportación de datos.} Se implementaron gráficas interactivas con filtros temporales ajustables y la posibilidad de exportar resultados en formatos Excel y PDF para su integración en estudios científicos o gubernamentales.
-  \item \textbf{Evaluación de madurez tecnológica (TRL).} Se estimó un nivel TRL 5-6, correspondiente a pruebas de prototipo en un entorno representativo (comunidad de Monte Tláloc), sentando las bases para un despliegue más amplio.
-\end{itemize}
-
-\subsection{Limitaciones}
-Por otro lado pese los logros alcanzados, el proyecto presenta las siguientes limitaciones en general:
-
-\begin{itemize}
-  \item \textbf{Vulnerabilidad física de los dispositivos}: Los pluviómetros artesanales instalados en campo han sido objeto de actos de vandalismo y expuestos a incendios forestales, lo que compromete la continuidad de la recolección de datos (Figura \ref{publicidad5}).  
-  \item \textbf{Restricciones presupuestarias}: La adquisición y mantenimiento de hardware (almacenamiento y hosting) depende actualmente de fondos del COLPOS; no existe aún un modelo de ingresos recurrentes que garantice la sostenibilidad económica a largo plazo.  
-  \item \textbf{Conectividad limitada}: En muchas de las zonas de monitoreo la cobertura celular es intermitente o nula, obligando al sistema a funcionar en modo desconectado y a sincronizar datos de forma diferida, lo que retrasa la disponibilidad en tiempo real.  
-  \item \textbf{Capacitación y alfabetización digital}: Algunos usuarios locales requieren asistencia continua para operar la aplicación y comprender los procesos de validación de datos, lo que limita la independencia operativa de las comunidades participantes.  
-  \item \textbf{Validación de calidad de datos}: La verificación de mediciones reportadas depende de que los usuarios sigan el protocolo (por ejemplo, enviar fotografías del pluviómetro), pero no existe un mecanismo automático de control de calidad, lo que puede introducir ruido en la base de datos.  
-  \item \textbf{Falta de plan de licenciamiento o modelo de negocio formal}: Aunque se contempla en el futuro una alianza con el COLPOS, aún no se ha definido un acuerdo de licenciamiento de la tecnología ni un esquema de comercialización estable.  
-  \item \textbf{Alcance geográfico acotado}: Hasta la fecha, el sistema está validado únicamente en nueve sitios del Monte Tláloc; la replicabilidad en otras regiones requiere ajustes técnicos (por ejemplo, calibración y mantenimiento de pluviómetros).  
-\end{itemize}
-
-\begin{figure}[h!]
-\centering
-  \includegraphics[width=0.8\textwidth]{publicidad/5.jpg}
-  \caption{Actos de vandalismo en pluviómetros instalados en Monte Tláloc. Fuente: (\cite{Informativonacional2025})}
-  \label{publicidad5}
-\end{figure}

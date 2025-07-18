@@ -1,0 +1,93 @@
+\usepackage[utf8]{inputenc}
+\DeclareUnicodeCharacter{0301}{\'{e}}
+\usepackage{subfigure}
+\usepackage{xcolor}
+\usepackage{minted}
+\usepackage[spanish]{babel}
+\usepackage{amsmath,amssymb,amsfonts}		
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{forest} 
+\usepackage{longtable}
+\usepackage{lscape}
+\usepackage{tikz} 
+\usepackage{geometry} 
+\usepackage{multicol} 
+\usepackage{tabularx}
+\usepackage{adjustbox}
+
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+
+\renewcommand{\arraystretch}{1.3} % Espaciado entre filas
+
+
+
+
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+\tikzstyle{etapa} = [rectangle, rounded corners, minimum width=8cm, minimum height=1cm,text centered, draw=black, font=\small, text=black]
+\tikzstyle{orangebox} = [etapa, fill=orange!70]
+\tikzstyle{yellowbox} = [etapa, fill=yellow!70]
+\tikzstyle{cyanbox} = [etapa, fill=cyan!40]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=gray!20]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!15]
+\tikzstyle{decision} = [diamond, aspect=2, minimum width=3.5cm, minimum height=1cm, text centered, draw=black, fill=orange!20]
+
+
+
+\usemintedstyle{vs} 
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{notation}{Notación}[chapter]
+\newtheorem{theorem}{Teorema}[chapter]
+\newtheorem{definition}{Definición}[chapter]
+\newtheorem{lemma}{Lema}[chapter]
+\graphicspath{{assets/}}
+\usepackage{csquotes} 
+
+\usepackage[
+    style=apa,
+    sortcites=true,
+    sorting=nyt,
+    backend=biber,
+    language=spanish,
+    hyperref=true,
+    backref=true,
+]{biblatex}
+
+\addbibresource{bibliography.bib}
+
+\hypersetup{
+    pdftitle={Tesis}
+    pdfauthor={Luis Emilio Álvarez Herrera},
+	pdfsubject={Ingeniería en Irrigación}, 
+	pdfkeywords={Universidad Autónoma Chapingo, UACh},
+	pdfurl={https://repositorio.chapingo.edu.mx/handle/20.500.12098/8},
+	pdfcontactemail={emilioah02@gmail.com},
+	pdfauthortitle={Ing.}
+}
+
+\pagestyle{plain}
+
+\def\all{all}
+\ifx\files\all \typeout{Including all files.} \else %\typeout{Including only \files.} \includeonly{\files} \fi
+
+% Márgenes
+\geometry{left=4cm, right=2.5cm, top=5cm, bottom=2.5cm}
+
+
+\title{APLICACIÓN MULTIPLATAFORMA BASADA EN CIENCIA CIUDADANA PARA EL MONITOREO DE LLUVIA EN EL MONTE TLÁLOC}
+\Author{LUIS EMILIO ÁLVAREZ HERRERA}{Departamento de Irrigación}
+\Degree{INGENIERO EN IRRIGACIÓN}{DEPARTAMENTO DE IRRIGACIÓN}
+\Supervisor{Dra. Teresa Margarita Gonzalez Martínez}{Profesora del COLPOS}
+\Supervisor{Luis Tonatiuh Castellanos Serrano}{Profesor del DIMA}
+\Supervisor{Francisco García Herrera}{Profesor de Irrigación}
+\Supervisor{Ramón Arteaga Ramírez}{Profesor de Irrigación}
+\Supervisor{Bernardino Cruz}{Profesor de Irrigación}
+\DegreeDate{June}{2025}
+\ThesisDate{June 15, 2025}
+\CClicense{CC BY-NC-ND 4.0}{https://creativecommons.org/licenses/by-nc-nd/4.0/}

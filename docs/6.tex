@@ -1,6 +1,7 @@
 \chapter{CONCLUSIONES FINALES Y TRABAJO FUTURO}
-La Hipótesis de trabajo planteada en esta tesis fue: \textbf{Hipótesis general (H)}. Se presentan las conclusiones para cada objetivo específico:
-\section{Protocolo de monitoreo participativo}
+\section{Contribuciones de la tesis}
+La Hipótesis de trabajo planteada en esta tesis fue: \textbf{Hipótesis general (H)}. Se presentan las conclusiones para cada objetivo específico, las contribuciones de esta tesis son en su totalidad técnicas. En cuanto las aportaciones científicas se esperaría que una vez contando con los suficientes datos de precipitación, puedan desarrollarse modelos para estudiar los temas de interés. 
+\subsection{Protocolo de monitoreo participativo}
 El desarrollo e implementación del protocolo de monitoreo participativo, estructurado en tres componentes fundamentales:
 
 \begin{enumerate}
@@ -12,7 +13,7 @@ El desarrollo e implementación del protocolo de monitoreo participativo, estruc
 concluyó en ser una estrategia efectiva para la consolidación del proyecto en campo. Esta metodología permitió integrar a las comunidades locales en la generación de datos, y facilitó significativamente la recolección de información meteorológica en zonas de difícil acceso. La articulación entre la participación social, la adecuación técnica y la comunicación pública demostró ser clave para garantizar la sostenibilidad operativa del sistema de monitoreo y su apropiación por parte de los usuarios finales. Se concluye que esta tesis aportó un procedimiento replicable para el monitoreo participativo de fenómenos meteorológicos en regiones montañosas que sean concurridas por la actividad humana.
 
 
-\section{Desarrollo del código}
+\subsection{Desarrollo del código}
 
 Como parte central de esta tesis, se desarrolló una herramienta tecnológica en forma de aplicación multiplataforma utilizando el lenguaje de programación Dart y el framework Flutter. La aplicación permite la captura, procesamiento, almacenamiento y visualización de datos de lluvia de manera eficiente y accesible; mediante la implementación de un algoritmo específico para la eliminación de volúmenes acumulados, los registros de lluvia son depurados para simplificar cálculos, donde quedan disponibles para consulta o exportación.
 
@@ -22,7 +23,7 @@ El desarrollo de esta aplicación no solo representa un aporte tecnológico, sin
 
 % Se concluye que la aplicación es una herramienta que facilitó la recolección de datos y , para el monitoreo participativo de lluvia.
 
-\section{Evaluación del nivel de maduración tecnológica}
+\subsection{Evaluación del nivel de maduración tecnológica}
 
 En conclusión, Tláloc App ha alcanzado un nivel de madurez tecnológica \textbf{TRL 8 - Producto comercializable y certificado}, con potencial real de consolidarse como una solución comercial para el monitoreo participativo de lluvia en zonas rurales y de montaña.
 
@@ -45,6 +46,29 @@ Además, se destaca que:
 
   \item Finalmente, Tláloc App representa un ejemplo viable de innovación tecnológica con propósito social, al responder a un problema ambiental real con una solución accesible, replicable y sostenible en el tiempo.
 \end{itemize}
+
+
+\subsection{Limitaciones}
+Por otro lado pese los logros alcanzados, el proyecto presenta las siguientes limitaciones en general:
+
+\begin{itemize}
+  \item \textbf{Vulnerabilidad física de los dispositivos}: Los pluviómetros artesanales instalados en campo han sido objeto de actos de vandalismo y expuestos a incendios forestales, lo que compromete la continuidad de la recolección de datos (Figura \ref{publicidad5}).  
+  \item \textbf{Restricciones presupuestarias}: La adquisición y mantenimiento de hardware (almacenamiento y hosting) depende actualmente de fondos del COLPOS; no existe aún un modelo de ingresos recurrentes que garantice la sostenibilidad económica a largo plazo.  
+  \item \textbf{Conectividad limitada}: En muchas de las zonas de monitoreo la cobertura celular es intermitente o nula, obligando al sistema a funcionar en modo desconectado y a sincronizar datos de forma diferida, lo que retrasa la disponibilidad en tiempo real.  
+  \item \textbf{Capacitación y alfabetización digital}: Algunos usuarios locales requieren asistencia continua para operar la aplicación y comprender los procesos de validación de datos, lo que limita la independencia operativa de las comunidades participantes.  
+  \item \textbf{Validación de calidad de datos}: La verificación de mediciones reportadas depende de que los usuarios sigan el protocolo (por ejemplo, enviar fotografías del pluviómetro), pero no existe un mecanismo automático de control de calidad, lo que puede introducir ruido en la base de datos.  
+  \item \textbf{Falta de plan de licenciamiento o modelo de negocio formal}: Aunque se contempla en el futuro una alianza con el COLPOS, aún no se ha definido un acuerdo de licenciamiento de la tecnología ni un esquema de comercialización estable.  
+  \item \textbf{Alcance geográfico acotado}: Hasta la fecha, el sistema está validado únicamente en nueve sitios del Monte Tláloc; la replicabilidad en otras regiones requiere ajustes técnicos (por ejemplo, calibración y mantenimiento de pluviómetros).  
+\end{itemize}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.8\textwidth]{publicidad/5.jpg}
+  \caption{Actos de vandalismo en pluviómetros instalados en Monte Tláloc. Fuente: (\cite{Informativonacional2025})}
+  \label{publicidad5}
+\end{figure}
+
+
 
 \section{Trabajo futuro}
 
