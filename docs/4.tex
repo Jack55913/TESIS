@@ -125,7 +125,7 @@ Institucional/laboral & Tipo de relación con la zona (trabajo, recreación, sup
 
 \begin{figure}[h!]
 \centering
-  \includegraphics[width=0.5\textwidth]{m21.png}
+  \includegraphics[width=1\textwidth]{m21.png}
   \caption{Diseño de pluviómetro de pet}
   \label{m21}
 \end{figure}
@@ -491,7 +491,7 @@ Desde esta consola, se debe crear un nuevo proyecto seleccionando la opción \te
 \vspace{1em}
 
 \paragraph{Configuración en Android.}  
-Para Android, se solicita un identificador de paquete único, por ejemplo:
+Para Android, se solicita un identificador de paquete único, en este caso:
 
 \begin{center}
   \texttt{com.TlalocApps.tlaloc}
@@ -507,7 +507,7 @@ En el caso de aplicaciones web, se debe registrar un nombre de dominio o ID de a
 \vspace{1em}
 
 \paragraph{Instalación de dependencias.}  
-Dentro del archivo \texttt{pubspec.yaml}, se deben agregar los paquetes necesarios para la conexión con Firebase, por ejemplo:
+Dentro del archivo \texttt{pubspec.yaml}, se deben agregar los paquetes necesarios para la conexión con Firebase, en este caso:
 
 \begin{center}
   \texttt{firebase\_core}, \quad
@@ -531,7 +531,10 @@ En el archivo principal \texttt{main.dart}, es indispensable inicializar Firebas
   \texttt{await Firebase.initializeApp();}
 \end{center}
 
-Esto se hace dentro de la función \texttt{main()} usando \texttt{WidgetsFlutterBinding.ensureInitialized()} para evitar errores de ejecución asíncrona.
+Esto se hace dentro de la función \texttt{main()} para evitar errores de ejecución asíncrona, usando:
+\begin{center}
+  \texttt{WidgetsFlutterBinding.ensureInitialized()}
+\end{center}
 
 \vspace{1em}
 
@@ -548,7 +551,7 @@ Asimismo, en \texttt{android/app/build.gradle} se debe aplicar el plugin:
   \texttt{apply plugin: 'com.google.gms.google-services'}
 \end{center}
 
-También es recomendable asegurar que la versión mínima de SDK sea \texttt{minSdkVersion 21} o superior, y que las versiones de \texttt{Kotlin} y \texttt{Gradle} sean compatibles con Firebase.
+También es recomendable asegurar que la versión mínima de SDK sea \texttt{minSdkVersion 23} o superior, y que las versiones de \texttt{Kotlin} y \texttt{Gradle} sean compatibles con Firebase.
 
 \vspace{1em}
 
@@ -617,7 +620,7 @@ Estos planos permiten están esquematizados en la figura \ref{m7}, y abordan el 
 \begin{figure}[h!]
 \centering
   \includegraphics[width=0.9\textwidth]{m7.jpg}
-  \caption{El modelo delineado busca definir las consideraciones clave que forman el desarrollo de la experiencia de usuario. \cite{garrett2011elements}}
+  \caption{El modelo delineado busca definir las consideraciones clave que forman el desarrollo de la experiencia de usuario (\cite{garrett2011elements}).}
   \label{m7}
 \end{figure}
 
@@ -670,7 +673,7 @@ keytool -genkey -v -keystore ~/key.jks \
 flutter build appbundle
 \end{minted}
 
-    Este comando genera un archivo \texttt{.aab} (Android App Bundle) necesario para subir la app a la Play Store.\cite{AndroidSigning}
+    Este comando genera un archivo \texttt{.aab} (Android App Bundle) necesario para subir la app a la Play Store.(\cite{AndroidSigning})
 \end{enumerate}
 
 \paragraph{3. Crear la ficha de Play Store}
@@ -759,6 +762,6 @@ Para la presente investigación, apoyándose de la figura \ref{m19}, se hará la
 \begin{figure}[h!]
 \centering
   \includegraphics[width=1\textwidth]{m19.png}
-  \caption{Guía para el Diagnóstico del Nivel de Madurez Tecnológica (NMT o TRL, por sus siglas en inglés), recuperado de: \cite{SECIHTIConvocatorias}}
+  \caption{Guía para el Diagnóstico del Nivel de Madurez Tecnológica (NMT o TRL, por sus siglas en inglés) (\cite{SECIHTIConvocatorias}).}
   \label{m19}
 \end{figure}

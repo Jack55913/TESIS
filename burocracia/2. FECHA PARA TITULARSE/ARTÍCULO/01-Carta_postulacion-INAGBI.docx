@@ -1,0 +1,4 @@
+<br />
+<b>Warning</b>:  filesize(): stat failed for ../archivos/01_Carta_postulacion-INAGBI.docx in <b>/home/revistas/public_html/inagbi/phpscript/download.php</b> on line <b>177</b><br />
+<br />
+<b>Warning</b>:  readfile(../archivos/01_Carta_postulacion-INAGBI.docx): failed to open stream: No such file or directory in <b>/home/revistas/public_html/inagbi/phpscript/download.php</b> on line <b>179</b><br />

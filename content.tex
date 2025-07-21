@@ -1,10 +1,6 @@
 %%%%%%% 1. PORTADA Y FIRMAS %%%%%%%
-
-
 \includepdf[pages=1]{0cover.pdf}
 \includepdf[pages=1]{01sign.pdf}
-
-
 %%%%%%% INICIA NÚMEROS ROMANOS %%%%%%%
 \pagenumbering{roman}
 \input{1acknowledgment.tex}
@@ -12,34 +8,24 @@
 
 \renewcommand{\contentsname}{CONTENIDO}
 \tableofcontents
-
 \renewcommand{\listtablename}{LISTA DE CUADROS}
 \listoftables
-
 \renewcommand{\listfigurename}{LISTA DE FIGURAS}
 \listoffigures
-
 \renewcommand{\abstractname}{RESUMEN}
 \input{3abstract.tex}
 
 
-%%%%%% CAMBIAR A NÚMEROS ARÁBIGOS DESPUÉS DE FRONTAL %%%%%%%
-
 \clearpage
 \pagenumbering{arabic}
-
 \include{docs/1}
 \include{docs/2}
 \include{docs/3}
 \include{docs/4}
 \include{docs/5}
 \include{docs/6}
-
-
 %%% Bibliografía
-
 \printbibliography[title={LITERATURA CONSULTADA},heading=bibintoc]
-
 %%% Apéndices
 \appendix
 \include{appendixa}
