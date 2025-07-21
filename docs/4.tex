@@ -1,13 +1,5 @@
 \chapter{MATERIALES Y MÉTODOS}
-%  metodología estadística usada para probar las hipótesis
 
-% diseño experimental, modelo estadístico y procedimiento de análisis
-
-
-% IR ORDENANDO LOS MÉTODOS EN FUNCIÓN DE LOS OBJETIVOS. SIEMPRE LOS MÉTODOS SUELEN INICIAR CON LA DESCRIPCIÓN DEL SITIO O POBLACIÓN DE ESTUDIO. EL SITIO DE ESTUDIO ES EL MONTE TLÁLOC Y LA POBLACIÓN DE ESTUDIO SON  LAS PERSONAS QUÉ PARTICIPAN EN EL MONITOREO.
-
-% MÉTODOS PARA CUBRIR TODOS LOS OBJETIVOS
-% VER SI LA ENCUESTA ENTRA CÓMO OBJETIVO ADICIONAL O DENTRO DE EVALUACIÓN DEL NIVEL TEC.
 
 \section{Materiales}
 \subsection{Instrumentación y equipos}
@@ -72,15 +64,12 @@ Este proceso requiere, como paso previo, el diseño de un protocolo de monitoreo
 
 \subsection{Protocolo de monitoreo participativo:}
 
-El protocolo consiste en llevar a cabo un monitoreo de lluvia que involucró tres principales etapas las cuales son: 
+El protocolo consiste en llevar a cabo un monitoreo de lluvia que involucró tres principales etapas (Figura \ref{t2}): 
 \begin{enumerate}
   \item Proceso participativo de ejidatarios
   \item Diseño técnico de monitoreo
   \item Campaña de difusión con público en general
 \end{enumerate}
-Las cuales están desglosadas en la figura \ref{t2}
-
-
 \subsubsection{1. Procesos Participativos con Ejidatarios} 
 El primer paso consiste en establecer contacto con los miembros de la Unión Ejidal del Monte (UEM) para presentarles el proyecto y generar alianzas para su desarrollo. Posteriormente llevar a cabo talleres participativos con cada grupo ejidal (Nativitas, San Pablo Ixayoc, San Dieguito, Tequexquinahuac, Santa Catarina del Monte) para identificar a las personas que potencialmente podrían participar en el monitoreo y los lugares para instalar sitios de monitoreo. Este paso se resume en estas dos actividades:
 \begin{itemize}
@@ -117,16 +106,16 @@ Institucional/laboral & Tipo de relación con la zona (trabajo, recreación, sup
 \subsubsection{2. Diseño Técnico de Monitoreo}
 
 \begin{enumerate}
-    \item Construcción de los pluviómetros: con botellas de PET, y siguiendo los lineamientos de la Norma Mexicana NMX-AA-166/1-SCFI-2013 (\cite{se2013}) o de la Organización Meteorológica Mundial. La máxima capacidad de almacenamiento es de 153 mm y la escala tiene resolución de un milímetro, excepto por los primeros 5 mm que tienen resolución de 0.25 mm. Los pluviómetros se colocaron sobre bases de madera a un metro sobre el nivel del suelo cavando un hoyo de 50 centímetros de profundidad. Para evitar pérdidas de agua por evaporación se utilizan 5 mm de aceite comestible vegetal por pluviómetro, (Figura \ref{m21}).
+    \item Construcción de los pluviómetros: investigar qué lineamientos de la Norma Mexicana o de la Organización Meteorológica Mundial son adecuados para crear un pluviómetro. investigar su máxima capacidad de almacenamiento y la resolución de la escala. Indagar sobre los materiales para colocarlos en los sitios y a qué altura deben instalarse. Así mismo, encontrar una forma de correcciones por pérdidas de agua por evaporación. Sea de ejemplo un pluviómetro típico y sus componentes (Figura \ref{m21}).
 
-    \item Los pluviómetros se vacían y registran por el equipo técnico con una frecuencia de un mes (más menos dos días), a menos que sea necesario vaciar con mayor frecuencia. Los participantes envían sus registros sin una frecuencia específica, por lo que sus observaciones son adicionales a las que realiza el equipo técnico. Cada estación de monitoreo cuenta con letreros que poseen la información necesaria para que las personas puedan participar aunque no se les haya dado una capacitación personal. Se cuenta con siete estaciones de monitoreo en un gradiente altitudinal que va de 2683 a 3870 m. 
+    \item Definir la frecuencia de toma de mediciones. Estructurar letreros que tengan la información necesaria para que las personas puedan participar aunque no se les haya dado una capacitación personal. Finalmente, concentrar el resultado del número de sitios a colocar y a qué alturas. 
 \end{enumerate}
 
 
 \begin{figure}[h!]
 \centering
   \includegraphics[width=1\textwidth]{m21.png}
-  \caption{Diseño de pluviómetro de pet}
+  \caption{Diseño de un pluviómetro}
   \label{m21}
 \end{figure}
 
@@ -234,73 +223,7 @@ Se plantea utilizar diversos medios y plataformas de divulgación enfocados en c
     % \item \textbf{Página de Facebook}
     % \item \textbf{Pláticas informativas}
 \end{enumerate}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 
 
 \subsection{Desarrollo del código}
@@ -308,10 +231,10 @@ En este sistema de monitoreo participan tres elementos principales: el usuario, 
 
 La aplicación multiplataforma facilita esta interacción al estar disponible en diferentes dispositivos como teléfonos inteligentes, tabletas, laptops o computadoras de escritorio, y puede ejecutarse en sistemas operativos como Android, iOS, Huawei OS, Windows y navegadores web. De este modo, el usuario puede elegir el dispositivo de su preferencia para capturar y enviar los datos registrados por el pluviómetro al sistema.
 
-La Figura \ref{t3}, muestra el diagrama de flujo que representa el comportamiento operativo del sistema y cómo se realiza el intercambio de información entre estos tres actores.
+Se muestra el diagrama de flujo que representa el comportamiento operativo del sistema y cómo se realiza el intercambio de información entre estos tres actores (Figura \ref{t3}).
 \begin{figure}[h!]
 \centering
-  \includegraphics[width=1\textwidth]{t3.pdf}
+  \includegraphics[width=1\textwidth]{t3.png}
   \caption{Diagrama de flujo de trabajo del sistema de Pluviómetros con Tláloc App}
   \label{t3}
 \end{figure}
@@ -334,8 +257,7 @@ La metodología para el desarrollo del código, consiste en programar en lenguaj
       \item Acceso en tienda de aplicaciones (PlayStore)
      \end{enumerate}
     \item User Interface (UI)
-    % : se construye a partir de widgets, que son unidades reutilizables de interfaz. Estos widgets permiten definir pantallas de forma declarativa, promoviendo una organización jerárquica clara y facilitando el mantenimiento del código. Un diseño de UI eficiente no solo debe ser estéticamente agradable, sino también funcional, accesible y coherente con los principios de diseño establecidos (como Material Design). Las pantallas a mostrar son las siguientes:
-    \begin{enumerate}
+     \begin{enumerate}
     \item Onboarding: Pagina de bienvenida 
     \item Login: Los usuarios podrán crear una cuenta y elegir el pluviómetro mediante el escaneo de códigos Qr o manualmente del sitio de monitoreo 
     \item Menú Principal: Dispondrá de tutoriales, contador de mediciones, acerca de, tabulador de mediciones, mapas de las dos rutas, grupos para subir a la montaña y contacto
@@ -596,7 +518,7 @@ La implementación del hosting se realizó con los siguientes pasos:
 
 Para diseñar una experiencia de usuario (UX) sólida y centrada en las necesidades reales de las personas usuarias, es fundamental comprender y aplicar la estructura (\cite{garrett2011elements}), quien descompone la experiencia del usuario en cinco planos jerárquicos e interdependientes. 
 
-Estos planos permiten están esquematizados en la figura \ref{m7}, y abordan el diseño desde la abstracción estratégica hasta su implementación visual concreta. 
+Estos planos permiten están esquematizados (Figura \ref{m7}), y abordan el diseño desde la abstracción estratégica hasta su implementación visual concreta. 
 
 \begin{enumerate}
   \item En primer lugar, el plano de la \textbf{estrategia} define los objetivos tanto del usuario como del proyecto, estableciendo el ``por qué'' detrás del sistema. 
@@ -757,7 +679,7 @@ tecnología particular. Cada proyecto es evaluado frente a los parámetros de ca
 nivel tecnológico y es asignado a una clasificación basada en el progreso del
 proyecto.
 
-Para la presente investigación, apoyándose de la figura \ref{m19}, se hará la evaluación del nivel de maduración tecnológica de Tlaloc App.
+Se hará la evaluación del nivel de maduración tecnológica (Figura \ref{m19}).
 
 \begin{figure}[h!]
 \centering

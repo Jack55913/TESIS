@@ -935,15 +935,22 @@
 	% \cleardoublepage
 }
 
+%%%%%%%%%%  End title page module  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% TODO: ajustar abstract
 
+%%%%%%%%%%  Abstract page Module  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% to change abstract name, follow either of these approaches in your preamble:
+	\RenewExpandableDocumentCommand\abstractname{}{Summary}
+	\renewcommand\abstractname{Summary}
 
 \RenewDocumentEnvironment{abstract}{+b}{
 	\newpage
     \begin{center}
         {
-			
-		% \large{\textbf{\g_mitthesis_title_tl}}
+		% TODO: Quitar
+		\large{\textbf{\g_mitthesis_title_tl}}
 		
 		\phantomsection\addcontentsline{toc}{chapter}{\abstractname}\par
 		
