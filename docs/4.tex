@@ -33,44 +33,92 @@ Este proceso requiere, como paso previo, el diseño de un protocolo de monitoreo
 \end{enumerate}
 
 
-
-
-
-
 \begin{figure}[h!]
     \centering
     \begin{tikzpicture}[node distance=0.8cm]
     \node (p0) [draw=orange!50, rounded corners, minimum width=8cm, minimum height=0.7cm, dashed] {Inicio};
-    \node (p1) [orangebox, below=of p0] {\textbf{1. Proceso participativo con ejidatarios}};
-    \node (p2) [orangebox, below=of p1] {Presentación del proyecto a las autoridades ejidales};
-    \node (p3) [orangebox, below=of p2] {Talleres participativos para la identificación de \textbf{actores} y \textbf{sitios} de monitoreo};
     
-    \node (p4) [yellowbox, below=of p3] {\textbf{2. Diseño técnico de monitoreo}};
-    \node (p5) [yellowbox, below=of p4] {Recorridos para la caracterización de los parajes};
-    \node (p6) [yellowbox, below=of p5] {Elaboración de pluviómetros y programación de la app móvil};
-    \node (p7) [yellowbox, below=of p6] {Instalación de pluviómetros};
-    
-    \node (p8) [cyanbox, below=of p7] {\textbf{3. Campaña de difusión con público en general}};
-    \node (p9) [cyanbox, below=of p8] {Campañas de mediciones};
-    \node (p10) [cyanbox, below=of p9] {Publicación de resultados y premiación};
-    \node (p11) [draw=cyan!50, rounded corners, minimum width=8cm, minimum height=0.7cm, dashed, below=of p10] {Final};
-    
-    \foreach \i/\j in {p0/p1, p1/p2, p2/p3, p3/p4, p4/p5, p5/p6, p6/p7, p7/p8, p8/p9, p9/p10, p10/p11}
+    \node (p1) [yellowbox, below=of p0] {\textbf{1. Diseño técnico de monitoreo}};
+    \node (p2) [yellowbox, below=of p1] {Recorridos para la caracterización de los parajes};
+    \node (p3) [yellowbox, below=of p2] {Elaboración de pluviómetros y programación de la app móvil};
+    \node (p4) [yellowbox, below=of p3] {Instalación de pluviómetros};
+
+    \node (p5) [orangebox, below=of p4] {\textbf{2. Proceso participativo con ejidatarios}};
+    \node (p6) [orangebox, below=of p5] {Presentación del proyecto a las autoridades ejidales};
+    \node (p7) [orangebox, below=of p6] {Talleres participativos para la identificación de \textbf{actores} y \textbf{sitios} de monitoreo};
+ 
+    \node (p8) [draw=cyan!50, rounded corners, minimum width=8cm, minimum height=0.7cm, dashed, below=of p7] {Final};
+
+    \foreach \i/\j in {p0/p1, p1/p2, p2/p3, p3/p4, p4/p5, p5/p6, p6/p7, p7/p8}
       \draw [arrow] (\i) -- (\j);
     \end{tikzpicture}
     \caption{Diagrama de flujo del Protocolo de monitoreo participativo. Autoría Propia, 2025.}
-      \label{t2}
-\end{figure}
+    \label{t2}
+\end{figure} 
 
+
+% \begin{figure}[h!]
+%     \centering
+%     \begin{tikzpicture}[node distance=0.8cm]
+%     \node (p0) [draw=orange!50, rounded corners, minimum width=8cm, minimum height=0.7cm, dashed] {Inicio};
+%     \node (p1) [orangebox, below=of p0] {\textbf{1. Proceso participativo con ejidatarios}};
+%     \node (p2) [orangebox, below=of p1] {Presentación del proyecto a las autoridades ejidales};
+%     \node (p3) [orangebox, below=of p2] {Talleres participativos para la identificación de \textbf{actores} y \textbf{sitios} de monitoreo};
+    
+%     \node (p4) [yellowbox, below=of p3] {\textbf{2. Diseño técnico de monitoreo}};
+%     \node (p5) [yellowbox, below=of p4] {Recorridos para la caracterización de los parajes};
+%     \node (p6) [yellowbox, below=of p5] {Elaboración de pluviómetros y programación de la app móvil};
+%     \node (p7) [yellowbox, below=of p6] {Instalación de pluviómetros};
+    
+%     % \node (p8) [cyanbox, below=of p7] {\textbf{3. Campaña de difusión con público en general}};
+%     % \node (p9) [cyanbox, below=of p8] {Campañas de mediciones};
+%     % \node (p10) [cyanbox, below=of p9] {Publicación de resultados y premiación};
+%     \node (p8) [draw=cyan!50, rounded corners, minimum width=8cm, minimum height=0.7cm, dashed, below=of p7] {Final};
+    
+%     \foreach \i/\j in {p0/p1, p1/p2, p2/p3, p3/p4, p4/p5, p5/p6, p6/p7, p7/p8}
+%     % , p8/p9, p9/p10, p10/p11}
+%       \draw [arrow] (\i) -- (\j);
+%     \end{tikzpicture}
+%     \caption{Diagrama de flujo del Protocolo de monitoreo participativo. Autoría Propia, 2025.}
+%       \label{t2}
+% \end{figure}
+% \newpage
 \subsection{Protocolo de monitoreo participativo:}
 
 El protocolo consiste en llevar a cabo un monitoreo de lluvia que involucró tres principales etapas (Figura \ref{t2}): 
 \begin{enumerate}
-  \item Proceso participativo de ejidatarios
   \item Diseño técnico de monitoreo
-  \item Campaña de difusión con público en general
+  \item Proceso participativo de ejidatarios
+  % \item Campaña de difusión con público en general
 \end{enumerate}
-\subsubsection{1. Procesos Participativos con Ejidatarios} 
+
+\subsubsection{1. Diseño Técnico de Monitoreo}
+
+\begin{enumerate}
+    \item \textbf{Recorridos para la caracterización de los parajes}: Los criterios para seleccionar los sitios de monitoreo son las coordenadas, altitud, pendiente menor al 5\%, tipo de vegetación, superficie desprovista de árboles y tamaño de los árboles circundantes. Esta información permite identificar los sitios más adecuados para instalar los sitios de monitoreo, siguiendo las recomendaciones de la Organización Meteorológica Mundial (\cite{WMO2014}). 
+ 
+    \item \textbf{Elaboración de pluviómetros y programación de la app móvil}: investigar qué lineamientos de la Norma Mexicana o de la Organización Meteorológica Mundial son adecuados para crear un pluviómetro. investigar su máxima capacidad de almacenamiento y la resolución de la escala. Indagar sobre los materiales para colocarlos en los sitios y a qué altura deben instalarse. Así mismo, encontrar una forma de correcciones por pérdidas de agua por evaporación. Sea de ejemplo un pluviómetro típico y sus componentes (Figura \ref{m21}). Diseñar y programar una aplicación donde los usuarios puedan enviar, modificar, compartir y visualizar los datos obtenidos.
+
+    \item \textbf{Instalación de pluviómetros:} Estructurar letreros que tengan la información necesaria para que las personas puedan participar aunque no se les haya dado una capacitación sobre el uso de la aplicación. Finalmente, concentrar el resultado del número de sitios a colocar y a qué altitud sobre el nivel del mar. 
+\end{enumerate}
+
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=1\textwidth]{m21.png}
+  \caption{Diseño de un pluviómetro}
+  \label{m21}
+\end{figure}
+
+
+
+
+
+
+\newpage
+
+
+\subsubsection{2. Procesos Participativos con Ejidatarios} 
 El primer paso consiste en establecer contacto con los miembros de la Unión Ejidal del Monte (UEM) para presentarles el proyecto y generar alianzas para su desarrollo. Posteriormente llevar a cabo talleres participativos con cada grupo ejidal (Nativitas, San Pablo Ixayoc, San Dieguito, Tequexquinahuac, Santa Catarina del Monte) para identificar a las personas que potencialmente podrían participar en el monitoreo y los lugares para instalar sitios de monitoreo. Este paso se resume en estas dos actividades:
 \begin{itemize}
   \item Contexto Geográfico
@@ -79,11 +127,10 @@ El primer paso consiste en establecer contacto con los miembros de la Unión Eji
 
 
 \subsubsection*{Contexto Geográfico}
-La determinación del \textbf{criterio de selección de sitios de monitoreo}, se hará después de visitar los lugares propuestos por las autoridades, se debe registrar los datos de coordenadas, altitud, pendiente, tipo de vegetación, superficie desprovista de árboles y tamaño de los árboles circundantes. 
 
-Esta información permite identificar los sitios más adecuados para instalar los sitios de monitoreo, siguiendo las recomendaciones de la Organización Meteorológica Mundial (OMM, 2014). 
 
-En una etapa posterior se realiza un proceso de capacitación con los Ejidatarios y público en general para el monitoreo de la lluvia. Asimismo, crear un protocolo para facilitar a los Ejidatarios el uso de la información generada en sus actividades de manejo de los bosques.
+
+En una etapa posterior se realiza un proceso de capacitación con los ejidatarios y público en general para el monitoreo de la lluvia. Asimismo, facilitar a los ejidatarios el uso de la información generada en sus actividades de manejo de los bosques.
 
 \subsubsection*{Descripción de la población de estudio}
 
@@ -103,126 +150,107 @@ Institucional/laboral & Tipo de relación con la zona (trabajo, recreación, sup
 \label{tabt3}
 \end{table}
 \newpage
-\subsubsection{2. Diseño Técnico de Monitoreo}
-
-\begin{enumerate}
-    \item Construcción de los pluviómetros: investigar qué lineamientos de la Norma Mexicana o de la Organización Meteorológica Mundial son adecuados para crear un pluviómetro. investigar su máxima capacidad de almacenamiento y la resolución de la escala. Indagar sobre los materiales para colocarlos en los sitios y a qué altura deben instalarse. Así mismo, encontrar una forma de correcciones por pérdidas de agua por evaporación. Sea de ejemplo un pluviómetro típico y sus componentes (Figura \ref{m21}).
-
-    \item Definir la frecuencia de toma de mediciones. Estructurar letreros que tengan la información necesaria para que las personas puedan participar aunque no se les haya dado una capacitación personal. Finalmente, concentrar el resultado del número de sitios a colocar y a qué alturas. 
-\end{enumerate}
-
-
-\begin{figure}[h!]
-\centering
-  \includegraphics[width=1\textwidth]{m21.png}
-  \caption{Diseño de un pluviómetro}
-  \label{m21}
-\end{figure}
 
 
 
+% \subsubsection{3. Campaña de difusión con público en general}
+
+% Este último paso, consiste en crear una campaña permanente de difusión entre la gente que sube a la montaña. Implica generar material gráfico instalado en campo que invite a la población a participar, trípticos y carteles que se colocan en lugares estratégicos;  utilizar las redes sociales para dar a conocer el proyecto y mecanismos para premiar a los participantes activos con regalos. 
 
 
+% Se plantea utilizar diversos medios y plataformas de divulgación enfocados en cada audiencia objetivo, que incluye lonas impresas, carteles, trípticos, Facebook, correos institucional y pláticas informativas. En el cuadro \ref{tab1} se muestra la descripción de medios y plataformas.
 
-\newpage
-\subsubsection{3. Campaña de difusión con público en general}
-
-Este último paso, consiste en crear una campaña permanente de difusión entre la gente que sube a la montaña. Implica generar material gráfico instalado en campo que invite a la población a participar, trípticos y carteles que se colocan en lugares estratégicos;  utilizar las redes sociales para dar a conocer el proyecto y mecanismos para premiar a los participantes activos con regalos. 
-
-
-Se plantea utilizar diversos medios y plataformas de divulgación enfocados en cada audiencia objetivo, que incluye lonas impresas, carteles, trípticos, Facebook, correos institucional y pláticas informativas. En el cuadro \ref{tab1} se muestra la descripción de medios y plataformas.
-
-\begin{table}[h!]
-    \centering
-    \resizebox{\columnwidth}{!}{%
-    \begin{tabular}{@{}cccc@{}}
-    \toprule
-    Medios y plataformas &
-      Objetivo &
-      Distribución &
-      Audiencia objetivo \\ \midrule
-    Lonas impresas &
-      \begin{tabular}[c]{@{}c@{}}Difundir información\\ en sitios estratégicos\\ para incentivar la\\ participación y dar a\\ conocer el procedimiento\\ de participación.\end{tabular} &
-      \begin{tabular}[c]{@{}c@{}}Se van a colocar en la\\ entrada principal a la\\ montaña (pluma de\\ acceso ubicada en el\\ sitio conocido como el\\ venturero), así como en\\ las 6 oficinas ejidales de\\ los Ejidos de la Montaña.\end{tabular} &
-      Todas las audiencias \\
-    Carteles &
-      \begin{tabular}[c]{@{}c@{}}Dar a conocer el\\ procedimiento para\\ realizar las\\ mediciones en cada\\ sitio de monitoreo\\ de la lluvia.\end{tabular} &
-      \begin{tabular}[c]{@{}c@{}}Se van a colocar en cada\\ sitio de monitoreo.\end{tabular} &
-      Todas las audiencias \\
-    Trípticos &
-      \begin{tabular}[c]{@{}c@{}}Dar a conocer el\\ proyecto y el procedimiento de\\ participación a las\\ personas que\\ ingresan a la\\ montaña.\end{tabular} &
-      \begin{tabular}[c]{@{}c@{}}Se van a repartir en la\\ entrada principal a la\\ montaña.\end{tabular} &
-      \begin{tabular}[c]{@{}c@{}}Visitantes externos\\ Visitantes internos\\ Miembros de\\ instituciones gubernamentales y\\ técnicos forestales\\ Miembros de la academia\end{tabular} \\
-    Página de Facebook &
-      \begin{tabular}[c]{@{}c@{}}Difundir de manera\\ masiva el proyecto.\end{tabular} &
-      Red social Facebook &
-      Todas las audiencias \\
-    Correo institucional &
-      \begin{tabular}[c]{@{}c@{}}Difundir el proyecto\\ en la comunidad\\ COLPOS.\end{tabular} &
-      Correo Colpos &
-      Miembros de la academia \\
-    Pláticas informativas &
-      \begin{tabular}[c]{@{}c@{}}Dar a conocer e\\  proyecto y el\\ procedimiento de\\ participación con\\ determinadas\\ audiencias objetivo.\end{tabular} &
-      \begin{tabular}[c]{@{}c@{}}Se realizó en etapas\\ previas de preparación\\ del proyecto con cada\\ Comité Ejidal. También\\ se va a llevar a cabo una\\ reunión con académicos\\ que realizan trabajo en\\ el Monte Tláloc.\end{tabular} &
-      \begin{tabular}[c]{@{}c@{}}Ejidatarios de la Unión\\ de Ejidos de la Montaña\\ y sus cuadrillas de trabajo\\ Miembros de la academia\end{tabular} \\ \bottomrule
-    \end{tabular}%
-    }
-    \caption{Medios y plataformas de divulgación del proyecto ``Ciencia ciudadana para el monitoreo participativo de la lluvia en un gradiente altitudinal del Monte Tláloc, Texcoco, estado de México''}
-    \label{tab1}
-    \end{table}
+% \begin{table}[h!]
+%     \centering
+%     \resizebox{\columnwidth}{!}{%
+%     \begin{tabular}{@{}cccc@{}}
+%     \toprule
+%     Medios y plataformas &
+%       Objetivo &
+%       Distribución &
+%       Audiencia objetivo \\ \midrule
+%     Lonas impresas &
+%       \begin{tabular}[c]{@{}c@{}}Difundir información\\ en sitios estratégicos\\ para incentivar la\\ participación y dar a\\ conocer el procedimiento\\ de participación.\end{tabular} &
+%       \begin{tabular}[c]{@{}c@{}}Se van a colocar en la\\ entrada principal a la\\ montaña (pluma de\\ acceso ubicada en el\\ sitio conocido como el\\ venturero), así como en\\ las 6 oficinas ejidales de\\ los Ejidos de la Montaña.\end{tabular} &
+%       Todas las audiencias \\
+%     Carteles &
+%       \begin{tabular}[c]{@{}c@{}}Dar a conocer el\\ procedimiento para\\ realizar las\\ mediciones en cada\\ sitio de monitoreo\\ de la lluvia.\end{tabular} &
+%       \begin{tabular}[c]{@{}c@{}}Se van a colocar en cada\\ sitio de monitoreo.\end{tabular} &
+%       Todas las audiencias \\
+%     Trípticos &
+%       \begin{tabular}[c]{@{}c@{}}Dar a conocer el\\ proyecto y el procedimiento de\\ participación a las\\ personas que\\ ingresan a la\\ montaña.\end{tabular} &
+%       \begin{tabular}[c]{@{}c@{}}Se van a repartir en la\\ entrada principal a la\\ montaña.\end{tabular} &
+%       \begin{tabular}[c]{@{}c@{}}Visitantes externos\\ Visitantes internos\\ Miembros de\\ instituciones gubernamentales y\\ técnicos forestales\\ Miembros de la academia\end{tabular} \\
+%     Página de Facebook &
+%       \begin{tabular}[c]{@{}c@{}}Difundir de manera\\ masiva el proyecto.\end{tabular} &
+%       Red social Facebook &
+%       Todas las audiencias \\
+%     Correo institucional &
+%       \begin{tabular}[c]{@{}c@{}}Difundir el proyecto\\ en la comunidad\\ COLPOS.\end{tabular} &
+%       Correo Colpos &
+%       Miembros de la academia \\
+%     Pláticas informativas &
+%       \begin{tabular}[c]{@{}c@{}}Dar a conocer e\\  proyecto y el\\ procedimiento de\\ participación con\\ determinadas\\ audiencias objetivo.\end{tabular} &
+%       \begin{tabular}[c]{@{}c@{}}Se realizó en etapas\\ previas de preparación\\ del proyecto con cada\\ Comité Ejidal. También\\ se va a llevar a cabo una\\ reunión con académicos\\ que realizan trabajo en\\ el Monte Tláloc.\end{tabular} &
+%       \begin{tabular}[c]{@{}c@{}}Ejidatarios de la Unión\\ de Ejidos de la Montaña\\ y sus cuadrillas de trabajo\\ Miembros de la academia\end{tabular} \\ \bottomrule
+%     \end{tabular}%
+%     }
+%     \caption{Medios y plataformas de divulgación del proyecto ``Ciencia ciudadana para el monitoreo participativo de la lluvia en un gradiente altitudinal del Monte Tláloc, Texcoco, estado de México''}
+%     \label{tab1}
+%     \end{table}
 
 
-\subsubsection*{Descripción de información para los medios y plataformas de divulgación}
+% \subsubsection*{Descripción de información para los medios y plataformas de divulgación}
 
-\begin{enumerate}
-    \item \textbf{Lonas impresas:}
-    \begin{enumerate}
-        \item Título del proyecto:
-        Proyecto ``Ciencia ciudadana para el monitoreo de la lluvia en un gradiente altitudinal del Monte Tláloc, Texcoco, estado de México”
-        \item	Slogan: 
-        ``Ciencia para ti y para todos''
-        \item Logo del proyecto
-        \item Logo del COLPOS y Postgrado en Ciencias Forestales
-        \item Frase: Unión de Ejidos de la Montaña (junto a los logos del COLPOS y PCF)
-        \item Texto principal: ¡Te invitamos a colaborar en el monitoreo de la lluvia en el Monte Tláloc, es muy sencillo!
-        \item Diagrama de flujo con imágenes: \begin{enumerate}
-            \item Ubica un sitio de monitoreo.
-            \item Observa cuánta lluvia está almacenada en el pluviómetro.
-            \item Envíanos la información (nivel del agua, fecha y hora del día) y una fotografía, con la aplicación móvil Tláloc app o por WhatsApp.
-            \item Croquis del monitoreo
-            \item Información complementaria: Cada 30 días se premiará con un obsequio muy especial a los 3 participantes con más registros. Además, al            registrarte en Tláloc App podrás tener acceso a la información que            generemos entre todos. Descarga Tláloc App en (poner sitio de descarga). Consulta más información en (poner la página de Facebook) o mándanos un WhatsApp para asesorarte (poner número telefónico). ¡Ayúdanos a mantener en condiciones adecuadas los instrumentos de
-            medición!
-        \end{enumerate}
-    \end{enumerate}
-    \item \textbf{Cartel frontal} \begin{enumerate}
-        \item Slogan: 
-        Ciencia para ti y para todos (quizás rodeando el logo del proyecto, en letra pequeña)
-        \item Logo del proyecto (que destaque más que los otros logos)
-        \item Logo del COLPOS y Postgrado en Ciencias Forestales
-        \item Frase: Unión de Ejidos de la Montaña (junto a los logos del COLPOS y PCF)
-        \item Texto principal: ¡Te invitamos a colaborar en el monitoreo de la lluvia en el Monte Tláloc!
-        \item Tutorial \begin{enumerate}
-            \item Observa el pluviómetro agachándote hasta que el nivel del agua esté frente a tus ojos. 
-            \item Ubica la línea más cercana al nivel del agua y registra tu medición. 
-            Poner esquema de cómo observar y una ampliación a cómo se ve el nivel de agua y la escala de medición.
-            \item Registra tu medición con Tláloc App:
+% \begin{enumerate}
+%     \item \textbf{Lonas impresas:}
+%     \begin{enumerate}
+%         \item Título del proyecto:
+%         Proyecto ``Ciencia ciudadana para el monitoreo de la lluvia en un gradiente altitudinal del Monte Tláloc, Texcoco, estado de México”
+%         \item	Slogan: 
+%         ``Ciencia para ti y para todos''
+%         \item Logo del proyecto
+%         \item Logo del COLPOS y Postgrado en Ciencias Forestales
+%         \item Frase: Unión de Ejidos de la Montaña (junto a los logos del COLPOS y PCF)
+%         \item Texto principal: ¡Te invitamos a colaborar en el monitoreo de la lluvia en el Monte Tláloc, es muy sencillo!
+%         \item Diagrama de flujo con imágenes: \begin{enumerate}
+%             \item Ubica un sitio de monitoreo.
+%             \item Observa cuánta lluvia está almacenada en el pluviómetro.
+%             \item Envíanos la información (nivel del agua, fecha y hora del día) y una fotografía, con la aplicación móvil Tláloc app o por WhatsApp.
+%             \item Croquis del monitoreo
+%             \item Información complementaria: Cada 30 días se premiará con un obsequio muy especial a los 3 participantes con más registros. Además, al            registrarte en Tláloc App podrás tener acceso a la información que            generemos entre todos. Descarga Tláloc App en (poner sitio de descarga). Consulta más información en (poner la página de Facebook) o mándanos un WhatsApp para asesorarte (poner número telefónico). ¡Ayúdanos a mantener en condiciones adecuadas los instrumentos de
+%             medición!
+%         \end{enumerate}
+%     \end{enumerate}
+%     \item \textbf{Cartel frontal} \begin{enumerate}
+%         \item Slogan: 
+%         Ciencia para ti y para todos (quizás rodeando el logo del proyecto, en letra pequeña)
+%         \item Logo del proyecto (que destaque más que los otros logos)
+%         \item Logo del COLPOS y Postgrado en Ciencias Forestales
+%         \item Frase: Unión de Ejidos de la Montaña (junto a los logos del COLPOS y PCF)
+%         \item Texto principal: ¡Te invitamos a colaborar en el monitoreo de la lluvia en el Monte Tláloc!
+%         \item Tutorial \begin{enumerate}
+%             \item Observa el pluviómetro agachándote hasta que el nivel del agua esté frente a tus ojos. 
+%             \item Ubica la línea más cercana al nivel del agua y registra tu medición. 
+%             Poner esquema de cómo observar y una ampliación a cómo se ve el nivel de agua y la escala de medición.
+%             \item Registra tu medición con Tláloc App:
             
-            Abre la aplicación e inicia sesión (colaborador externo o monitor); Escanea el código QR ubicado en la base del Pluviómetro; Registra tu medición en el espacio “Precipitación en mm”; Verifica que la fecha  y hora de la aplicación son correctas o edítalas si es necesario (poner los íconos de fecha y hora);Toma una foto del pluviómetro en la que se vea el nivel del agua como una línea. (poner una foto correcta y una incorrecta)            
-            \item 	Si no cuentas con Tláloc App, anota los siguientes datos y mándalos con Whats App: Clave del pluviómetro ubicada en la base del Pluviómetro; Resultado de tu medición (Precipitación en mm); Fecha y hora; Foto del pluviómetro en la que se vea el nivel del agua como una línea. (ver las indicaciones arriba); Nunca vacíes el pluviómetro, sólo personal autorizado puede hacerlo. ¡Muchas gracias por tu contribución!            
-        \end{enumerate}
-    \end{enumerate}
-    \item \textbf{Cartel posterior} \begin{enumerate}
-        \item Título del proyecto: Proyecto “Ciencia ciudadana para el monitoreo de la lluvia en un gradiente altitudinal del Monte Tláloc, Texcoco, estado de México”
-        \item Logo del COLPOS y Postgrado en Ciencias Forestales
-        \item Frase: Unión de Ejidos de la Montaña
-        \item Texto principal: Este es un pluviómetro. Tiene una escala de medición en milímetros que indica la cantidad de lluvia que cae por metro cuadrado de terreno.
-        \item Esquema del pluviómetro y la equivalencia de un mm de lluvia (1 mm = a vaciar un litro de agua en cada metro cuadrado de terreno).
-        \item Saber cuándo, dónde y cuánto llueve en la montaña ayuda a entender cómo conservar el bosque y el agua que viene de ella. Cada 30 días se premiará a los 3 participantes con más registros. Además, al registrarte en Tláloc App podrás tener acceso a la información que generemos entre todos. Descarga Tláloc App en (poner sitio de descarga). Consultar más información en Facebook o mándanos un WhatsApp para asesorarte. ¡Ayúdanos a cuidar este pluviómetro! Por favor reporta si encuentras dañado este sitio de monitoreo.
-    \end{enumerate}
-    % \item \textbf{Tríptico}
-    % \item \textbf{Página de Facebook}
-    % \item \textbf{Pláticas informativas}
-\end{enumerate}
+%             Abre la aplicación e inicia sesión (colaborador externo o monitor); Escanea el código QR ubicado en la base del Pluviómetro; Registra tu medición en el espacio “Precipitación en mm”; Verifica que la fecha  y hora de la aplicación son correctas o edítalas si es necesario (poner los íconos de fecha y hora);Toma una foto del pluviómetro en la que se vea el nivel del agua como una línea. (poner una foto correcta y una incorrecta)            
+%             \item 	Si no cuentas con Tláloc App, anota los siguientes datos y mándalos con Whats App: Clave del pluviómetro ubicada en la base del Pluviómetro; Resultado de tu medición (Precipitación en mm); Fecha y hora; Foto del pluviómetro en la que se vea el nivel del agua como una línea. (ver las indicaciones arriba); Nunca vacíes el pluviómetro, sólo personal autorizado puede hacerlo. ¡Muchas gracias por tu contribución!            
+%         \end{enumerate}
+%     \end{enumerate}
+%     \item \textbf{Cartel posterior} \begin{enumerate}
+%         \item Título del proyecto: Proyecto “Ciencia ciudadana para el monitoreo de la lluvia en un gradiente altitudinal del Monte Tláloc, Texcoco, estado de México”
+%         \item Logo del COLPOS y Postgrado en Ciencias Forestales
+%         \item Frase: Unión de Ejidos de la Montaña
+%         \item Texto principal: Este es un pluviómetro. Tiene una escala de medición en milímetros que indica la cantidad de lluvia que cae por metro cuadrado de terreno.
+%         \item Esquema del pluviómetro y la equivalencia de un mm de lluvia (1 mm = a vaciar un litro de agua en cada metro cuadrado de terreno).
+%         \item Saber cuándo, dónde y cuánto llueve en la montaña ayuda a entender cómo conservar el bosque y el agua que viene de ella. Cada 30 días se premiará a los 3 participantes con más registros. Además, al registrarte en Tláloc App podrás tener acceso a la información que generemos entre todos. Descarga Tláloc App en (poner sitio de descarga). Consultar más información en Facebook o mándanos un WhatsApp para asesorarte. ¡Ayúdanos a cuidar este pluviómetro! Por favor reporta si encuentras dañado este sitio de monitoreo.
+%     \end{enumerate}
+%     % \item \textbf{Tríptico}
+%     % \item \textbf{Página de Facebook}
+%     % \item \textbf{Pláticas informativas}
+% \end{enumerate}
   
 
 
@@ -239,7 +267,7 @@ Se muestra el diagrama de flujo que representa el comportamiento operativo del s
   \label{t3}
 \end{figure}
 
-La metodología para el desarrollo del código, consiste en programar en lenguaje Dart, una aplicación multiplataforma, alojada en un sitio web y en Play Store, con el fin de enviar las mediciones a una base de datos pública bajo la siguiente organización:
+La metodología para el desarrollo del código consiste en programar en lenguaje Dart, una aplicación multiplataforma, alojada en un sitio web y en Play Store, con el fin de enviar las mediciones a una base de datos pública bajo la siguiente organización:
 
 
 \begin{enumerate}
@@ -262,7 +290,7 @@ La metodología para el desarrollo del código, consiste en programar en lenguaj
     \item Login: Los usuarios podrán crear una cuenta y elegir el pluviómetro mediante el escaneo de códigos Qr o manualmente del sitio de monitoreo 
     \item Menú Principal: Dispondrá de tutoriales, contador de mediciones, acerca de, tabulador de mediciones, mapas de las dos rutas, grupos para subir a la montaña y contacto
     \item Envío de mediciones: Incluye campo de texto, pluviómetro interactivo, booleano de vaciado, cambio de paraje
-    \item Bitácora: Disponibilidad de consulta, edición, difusión o eliminación de las mediciones propias y no de otros usuarios; y exportación en excel.
+    \item Bitácora: Disponibilidad de consulta, edición, difusión o eliminación de las mediciones propias y no de otros usuarios; y exportación en Excel.
     \item Estadísticas: Mostrará un gráfico interactivo en diferentes tiempo de interés, por ejemplo por semana, mes y año; entre volúmenes acumulados y reales.
 \end{enumerate}
   \end{enumerate}

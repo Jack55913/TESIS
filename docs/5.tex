@@ -5,14 +5,47 @@
 % tasas de participación de usuarios, número de lluvias registradas, precisión de mediciones    
 \section{Protocolo de monitoreo participativo:}
   % \item Proceso participativo de ejidatarios
-\subsection{Proceso participativo de ejidatarios}
+\subsection{Diseño técnico de monitoreo}
+
+% Construcción de los pluviómetros
+% Imagenes del pluviómetro
+
+\begin{enumerate}
+  \item \textbf{Recorridos para la caracterización de los parajes}: En la tabla \ref{tabrsm1}, se concentraron los resultados de caracterizar, dejando únicamente los sitios seleccionados para el monitoreo. Actualmente se cuentan con nueve sitios.
+    \item \textbf{Elaboración de pluviómetros y programación de la app móvil}: con botellas de PET, y siguiendo los lineamientos de la Norma Mexicana NMX-AA-166/1-SCFI-2013 (\cite{se2013}) o de la Organización Meteorológica Mundial (\cite{WMO2014}). La máxima capacidad de almacenamiento es de 153 mm y la escala tiene resolución de un milímetro, excepto por los primeros 5 mm que tienen resolución de 0.25 mm. Los pluviómetros se colocaron sobre bases de madera a un metro sobre el nivel del suelo cavando un hoyo de 50 centímetros de profundidad (Figura \ref{publicidad2}). Para evitar pérdidas de agua por evaporación se utilizan 5 mm de aceite comestible vegetal por pluviómetro. El diseño y programación fueron abordados en el capitulo \ref{cap_desarrollodelcodigo}.
+
+    \item Los pluviómetros se vacían y registran por el equipo técnico con una frecuencia de un mes (más menos dos días), a menos que sea necesario vaciar con mayor frecuencia. Los participantes envían sus registros sin una frecuencia específica, por lo que sus observaciones son adicionales a las que realiza el equipo técnico. Cada estación de monitoreo cuenta con letreros que poseen la información necesaria para que las personas puedan participar aunque no se les haya dado una capacitación personal. Se cuenta con nueve estaciones de monitoreo en un gradiente altitudinal que va de 2683 a 3870 m (Figura \ref{m3}). 
+\end{enumerate}
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.5\textwidth]{publicidad/2.jpg}
+  \caption{Base para el pluviómetro, puede optarse por cemento envés de madera}
+  \label{publicidad2}
+\end{figure}
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.5\textwidth]{publicidad/4.jpg}
+  \caption{Escala de graduación para precipitación.}
+  % Nótese que en la parte superior se ve una línea gruesa, esta es por el aceite; además que el agua ya superó la escala de graduación, en estos casos el equipo capacitado hace el vaciado y contempla ese volumen extra, además que el aceite es rescatado en un recipiente para evitar contaminación.}
+		\label{publicidad4}
+\end{figure}
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=1\textwidth]{m3.jpg}
+  \caption{Rutas de monitoreo de lluvia, autoría propia}
+  \label{m3}
+\end{figure}
+
+
+
+  \subsection{Proceso participativo de ejidatarios}
 \subsubsection{Descripción de los sitios de monitoreo}
 
 El Monte Tláloc es un volcán ubicado en el Eje Neovolcánico, en el límite territorial de los municipios de Ixtapaluca y Texcoco, al oriente del estado de México. Forma parte de la Sierra Nevada y se encuentra dentro del Área Natural Protegida denominada \textit{Parque Nacional Iztaccíhuatl-Popocatépetl}. Su localización hidrológica corresponde a la región oriental de la cuenca de México.
 
 Geológicamente, se trata de una estructura volcánica conformada por capas de sucesivas erupciones basálticas de carácter fluido. Su altitud alcanza los 4,120 metros sobre el nivel del mar, lo que lo posiciona como la novena cima más alta del país. El clima predominante es de tipo montaña, clasificado oficialmente como semifrío subhúmedo con lluvias en verano y humedad media (\cite{inegi_texcoco}).
 
-Los sitios de monitoreo seleccionados para esta investigación fueron definidos conforme a los criterios establecidos en la metodología, tales como coordenadas, altitud, pendiente, tipo de vegetación, superficie desprovista de árboles y tamaño de los árboles circundantes. La validación de dichos sitios se documenta en la Tabla~\ref{tabrsm1}, correspondiente a la bitácora de campo. Además, el proceso de selección queda evidenciado a través de las Figuras~\ref{m12} y~\ref{m13}.
+Los sitios de monitoreo seleccionados para esta investigación fueron definidos conforme a los criterios establecidos en la metodología, tales como coordenadas, altitud, pendiente, tipo de vegetación, superficie desprovista de árboles y tamaño de los árboles circundantes. La validación de dichos sitios se documenta en la Tabla \ref{tabrsm1}, correspondiente a la bitácora de campo. Además, el proceso de selección queda evidenciado a través de las Figuras \ref{m12} y \ref{m13}.
 
 
 \begin{figure}[ht]
@@ -174,145 +207,118 @@ La población de estudio para este trabajo se define como toda persona que parti
 
 
 \newpage
-\subsection{Diseño técnico de monitoreo}
-
-% Construcción de los pluviómetros
-% Imagenes del pluviómetro
-
-\begin{enumerate}
-    \item Construcción de los pluviómetros: con botellas de PET, y siguiendo los lineamientos de la Norma Mexicana NMX-AA-166/1-SCFI-2013 (\cite{se2013}) o de la Organización Meteorológica Mundial. La máxima capacidad de almacenamiento es de 153 mm y la escala tiene resolución de un milímetro, excepto por los primeros 5 mm que tienen resolución de 0.25 mm. Los pluviómetros se colocaron sobre bases de madera a un metro sobre el nivel del suelo cavando un hoyo de 50 centímetros de profundidad (Figura \ref{publicidad2}). Para evitar pérdidas de agua por evaporación se utilizan 5 mm de aceite comestible vegetal por pluviómetro.
-
-    \item Los pluviómetros se vacían y registran por el equipo técnico con una frecuencia de un mes (más menos dos días), a menos que sea necesario vaciar con mayor frecuencia. Los participantes envían sus registros sin una frecuencia específica, por lo que sus observaciones son adicionales a las que realiza el equipo técnico. Cada estación de monitoreo cuenta con letreros que poseen la información necesaria para que las personas puedan participar aunque no se les haya dado una capacitación personal. Se cuenta con nueve estaciones de monitoreo en un gradiente altitudinal que va de 2683 a 3870 m (Figura \ref{m3}). 
-\end{enumerate}
-\begin{figure}[h!]
-\centering
-  \includegraphics[width=0.5\textwidth]{publicidad/2.jpg}
-  \caption{Base para el pluviómetro, puede optarse por cemento envés de madera}
-  \label{publicidad2}
-\end{figure}
-\begin{figure}[h!]
-\centering
-  \includegraphics[width=0.5\textwidth]{publicidad/4.jpg}
-  \caption{Escala de graduación para precipitación.}
-  % Nótese que en la parte superior se ve una línea gruesa, esta es por el aceite; además que el agua ya superó la escala de graduación, en estos casos el equipo capacitado hace el vaciado y contempla ese volumen extra, además que el aceite es rescatado en un recipiente para evitar contaminación.}
-		\label{publicidad4}
-\end{figure}
-\begin{figure}[h!]
-\centering
-  \includegraphics[width=1\textwidth]{m3.jpg}
-  \caption{Rutas de monitoreo de lluvia, autoría propia}
-  \label{m3}
-\end{figure}
 
 
 
 
-\subsection{Campaña de difusión con público en general}
-Como resultado, se diseñaron y publicaron los recursos ilustrados a continuación.
 
-\subsubsection{Carteles}
+% \subsection{Campaña de difusión con público en general}
+% Como resultado, se diseñaron y publicaron los recursos ilustrados a continuación.
 
-Como parte de la estrategia de difusión para fomentar la participación comunitaria en el monitoreo de lluvia en el Monte Tláloc, se elaboraron distintos materiales gráficos, incluyendo carteles informativos. Estos elementos visuales fueron diseñados para captar la atención de los pobladores locales mediante una estética colorida, lenguaje claro y conciso, así como íconos representativos de la temática pluvial. 
+% \subsubsection{Carteles}
 
-Se muestra la versión final de uno de los carteles utilizados (Figura \ref{fig:cartel1}). Este incluye información básica sobre la aplicación, la invitación a participar en el monitoreo ciudadano y un código QR para descargar la app desde la tienda de aplicaciones. Estos carteles fueron colocados en sitios estratégicos dentro del monte.
+% Como parte de la estrategia de difusión para fomentar la participación comunitaria en el monitoreo de lluvia en el Monte Tláloc, se elaboraron distintos materiales gráficos, incluyendo carteles informativos. Estos elementos visuales fueron diseñados para captar la atención de los pobladores locales mediante una estética colorida, lenguaje claro y conciso, así como íconos representativos de la temática pluvial. 
 
-\begin{figure}[h!]
-\centering
-  \includegraphics[width=0.6\textwidth]{publicidad/1.jpg}
-  \caption{Versión final del cartel de difusión comunitaria.}
-  \label{fig:cartel1}
-\end{figure}
+% Se muestra la versión final de uno de los carteles utilizados (Figura \ref{fig:cartel1}). Este incluye información básica sobre la aplicación, la invitación a participar en el monitoreo ciudadano y un código QR para descargar la app desde la tienda de aplicaciones. Estos carteles fueron colocados en sitios estratégicos dentro del monte.
+
+% \begin{figure}[h!]
+% \centering
+%   \includegraphics[width=0.6\textwidth]{publicidad/1.jpg}
+%   \caption{Versión final del cartel de difusión comunitaria.}
+%   \label{fig:cartel1}
+% \end{figure}
 
 
+
+% % \vspace{1em}
+% \newpage
+% \subsubsection{Lonas}
+
+% Además de los carteles impresos en tamaño carta, se diseñaron lonas de mayor formato para eventos presenciales y asambleas ejidales. Estas lonas sirvieron tanto para informar sobre el proyecto como para generar identidad visual y confianza entre los participantes.
+
+% Se muestra una de las lonas utilizadas en las reuniones comunitarias (Figura \ref{fig:lona}). El diseño mantiene la línea gráfica del proyecto, pero con un mayor nivel de detalle y adaptaciones para la visibilidad a distancia.
+
+% \begin{figure}[H]
+% \centering
+%   \includegraphics[width=1\textwidth]{publicidad/8.pdf}
+%   \caption{Lona impresa utilizada en eventos y asambleas ejidales.}
+%   \label{fig:lona}
+% \end{figure}
 
 % \vspace{1em}
-\newpage
-\subsubsection{Lonas}
 
-Además de los carteles impresos en tamaño carta, se diseñaron lonas de mayor formato para eventos presenciales y asambleas ejidales. Estas lonas sirvieron tanto para informar sobre el proyecto como para generar identidad visual y confianza entre los participantes.
+% \subsubsection{Trípticos}
 
-Se muestra una de las lonas utilizadas en las reuniones comunitarias (Figura \ref{fig:lona}). El diseño mantiene la línea gráfica del proyecto, pero con un mayor nivel de detalle y adaptaciones para la visibilidad a distancia.
+% Con el objetivo de brindar información más detallada de manera portátil, se elaboraron trípticos que fueron entregados mano a mano durante visitas de campo. Estos materiales contenían instrucciones sobre cómo utilizar la aplicación, la importancia del monitoreo de lluvia y los beneficios esperados para la comunidad.
 
-\begin{figure}[H]
-\centering
-  \includegraphics[width=1\textwidth]{publicidad/8.pdf}
-  \caption{Lona impresa utilizada en eventos y asambleas ejidales.}
-  \label{fig:lona}
-\end{figure}
+% Se visualiza uno de los diseños impresos del tríptico (Figura \ref{fig:triptico}). Se empleó un lenguaje accesible, diagramas explicativos y un diseño adaptable a impresión económica a color o blanco y negro.
 
-\vspace{1em}
+% \begin{figure}[H]
+% \centering
+%   \includegraphics[width=0.67\textwidth]{publicidad/9.pdf}
+%   \caption{Diseño de tríptico informativo entregado a los participantes.}
+%   \label{fig:triptico}
+% \end{figure}
 
-\subsubsection{Trípticos}
+% \vspace{1em}
 
-Con el objetivo de brindar información más detallada de manera portátil, se elaboraron trípticos que fueron entregados mano a mano durante visitas de campo. Estos materiales contenían instrucciones sobre cómo utilizar la aplicación, la importancia del monitoreo de lluvia y los beneficios esperados para la comunidad.
+% \subsubsection{Redes sociales}
 
-Se visualiza uno de los diseños impresos del tríptico (Figura \ref{fig:triptico}). Se empleó un lenguaje accesible, diagramas explicativos y un diseño adaptable a impresión económica a color o blanco y negro.
+% La estrategia de difusión digital se centró en la página de Facebook titulada \textit{“Ciencia Ciudadana para el Monitoreo de Lluvia”}, la cual funcionó como canal oficial de comunicación. A través de esta plataforma se publicaron actualizaciones, invitaciones a eventos, imágenes de participación, así como enlaces de descarga de la aplicación.
 
-\begin{figure}[H]
-\centering
-  \includegraphics[width=0.67\textwidth]{publicidad/9.pdf}
-  \caption{Diseño de tríptico informativo entregado a los participantes.}
-  \label{fig:triptico}
-\end{figure}
+% \begin{center}
+%   \url{https://www.facebook.com/tlalocapp/}
+% \end{center}
 
-\vspace{1em}
+% Esta red permitió ampliar el alcance del proyecto hacia sectores urbanos interesados en el medio ambiente y la tecnología, fomentando la apropiación social de la ciencia.
 
-\subsubsection{Redes sociales}
+% \vspace{1em}
 
-La estrategia de difusión digital se centró en la página de Facebook titulada \textit{“Ciencia Ciudadana para el Monitoreo de Lluvia”}, la cual funcionó como canal oficial de comunicación. A través de esta plataforma se publicaron actualizaciones, invitaciones a eventos, imágenes de participación, así como enlaces de descarga de la aplicación.
+% \subsubsection{Pláticas informativas}
 
-\begin{center}
-  \url{https://www.facebook.com/tlalocapp/}
-\end{center}
+% Se llevaron a cabo múltiples sesiones informativas en los núcleos agrarios involucrados, con el objetivo de explicar de manera directa los objetivos del proyecto, el uso de la aplicación móvil y el procedimiento de medición. Estas sesiones permitieron establecer un diálogo horizontal con las y los ejidatarios, resolver dudas, y fortalecer el vínculo entre la ciencia y la comunidad. Algunas de estas reuniones, quedan evidenciadas con fotográfica en las figuras \ref{fig:ejido1}, \ref{fig:ejido2} y \ref{fig:ejido3}:
 
-Esta red permitió ampliar el alcance del proyecto hacia sectores urbanos interesados en el medio ambiente y la tecnología, fomentando la apropiación social de la ciencia.
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[width=0.5\textwidth]{ejidatarios/1.jpg}
+%   \caption{Reunión con el ejido de San Dieguito.}
+%   \label{fig:ejido1}
+% \end{figure}
 
-\vspace{1em}
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[width=0.5\textwidth]{ejidatarios/2.jpg}
+%   \caption{Reunión con el ejido de Santa Catarina del Monte.}
+%   \label{fig:ejido2}
+% \end{figure}
 
-\subsubsection{Pláticas informativas}
-
-Se llevaron a cabo múltiples sesiones informativas en los núcleos agrarios involucrados, con el objetivo de explicar de manera directa los objetivos del proyecto, el uso de la aplicación móvil y el procedimiento de medición. Estas sesiones permitieron establecer un diálogo horizontal con las y los ejidatarios, resolver dudas, y fortalecer el vínculo entre la ciencia y la comunidad. Algunas de estas reuniones, quedan evidenciadas con fotográfica en las figuras \ref{fig:ejido1}, \ref{fig:ejido2} y \ref{fig:ejido3}:
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.5\textwidth]{ejidatarios/1.jpg}
-  \caption{Reunión con el ejido de San Dieguito.}
-  \label{fig:ejido1}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.5\textwidth]{ejidatarios/2.jpg}
-  \caption{Reunión con el ejido de Santa Catarina del Monte.}
-  \label{fig:ejido2}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.5\textwidth]{ejidatarios/3.jpg}
-  \caption{Reunión con el ejido de Nativitas.}
-  \label{fig:ejido3}
-\end{figure}
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[width=0.5\textwidth]{ejidatarios/3.jpg}
+%   \caption{Reunión con el ejido de Nativitas.}
+%   \label{fig:ejido3}
+% \end{figure}
 
 
-\subsubsection{Entrega de obsequios}
+% \subsubsection{Entrega de obsequios}
 
-Como parte del agradecimiento y para incentivar la participación continua, se entregaron pequeños obsequios simbólicos a quienes realizaron múltiples mediciones o participaron activamente. Esta estrategia buscó reforzar el sentido de pertenencia y motivar la constancia en el monitoreo.
+% Como parte del agradecimiento y para incentivar la participación continua, se entregaron pequeños obsequios simbólicos a quienes realizaron múltiples mediciones o participaron activamente. Esta estrategia buscó reforzar el sentido de pertenencia y motivar la constancia en el monitoreo.
 
-Se enseña el cartel utilizado para anunciar la entrega de obsequios, acompañado de una pequeña ceremonia comunitaria (Figura \ref{fig:obsequios}).
+% Se enseña el cartel utilizado para anunciar la entrega de obsequios, acompañado de una pequeña ceremonia comunitaria (Figura \ref{fig:obsequios}).
 
-\begin{figure}[H]
-\centering
-  \includegraphics[width=1\textwidth]{publicidad/6.jpg}
-  \caption{Cartel de convocatoria para entrega de obsequios comunitarios.}
-  \label{fig:obsequios}
-\end{figure}
+% \begin{figure}[H]
+% \centering
+%   \includegraphics[width=1\textwidth]{publicidad/6.jpg}
+%   \caption{Cartel de convocatoria para entrega de obsequios comunitarios.}
+%   \label{fig:obsequios}
+% \end{figure}
 
 
 
 
 \newpage
 \section{Desarrollo del código}
+\label{cap_desarrollodelcodigo}
 La presente sección documenta los resultados obtenidos durante el desarrollo del sistema, detallando tanto la arquitectura del código como las funciones principales implementadas. A través de diagramas, tablas y fragmentos del código fuente, se presenta de manera estructurada cómo se integraron los principios de la Ingeniería en Software y sus fundamentos de la Programación Orientada a Objetos (POO) con las herramientas de Flutter y Firebase para construir una aplicación funcional, robusta y mantenible.
 \subsection{Backend}
 
@@ -818,7 +824,7 @@ En particular, se diseñó la vista de bitácora de datos (\texttt{DataScreen}) 
 bool isWideLayout = MediaQuery.of(context).size.width > 800;
 \end{minted}
 
-Con esta condición, se distingue si el usuario está utilizando un dispositivo con pantalla amplia (mayor a 800 píxeles de ancho), como una computadora de escritorio o una tablet en modo horizontal. En caso afirmativo, la interfaz presenta una estructura de tipo \textit{Master-Detail}, donde la lista de mediciones aparece al lado izquierdo de la pantalla y el detalle correspondiente se muestra simultáneamente en el panel derecho, como se aprecia en la Figura~\ref{pantallas17} en contraste con la pantalla amplia (Figura \ref{pantallas7}).
+Con esta condición, se distingue si el usuario está utilizando un dispositivo con pantalla amplia (mayor a 800 píxeles de ancho), como una computadora de escritorio o una tablet en modo horizontal. En caso afirmativo, la interfaz presenta una estructura de tipo \textit{Master-Detail}, donde la lista de mediciones aparece al lado izquierdo de la pantalla y el detalle correspondiente se muestra simultáneamente en el panel derecho, como se aprecia en la Figura \ref{pantallas17} en contraste con la pantalla amplia (Figura \ref{pantallas7}).
 
 \begin{figure}[h!]
     \centering
@@ -1024,7 +1030,7 @@ Como resultado tangible del desarrollo completo de la aplicación, se logró su 
 
 
 
-A fecha de corte del 1° de julio de 2025, Tláloc App acumula una tendencia sostenida de descargas en Android (Figura~\ref{m17}) y registra 433 usuarios activos en su plataforma web, según Google Analytics (Figura~\ref{m18}). Estos indicadores muestran una adopción inicial relevante y confirman el interés de la comunidad por la medición ciudadana de la precipitación pluvial.
+A fecha de corte del primero de julio de 2025, Tláloc App acumula una tendencia sostenida de descargas en Android (Figura \ref{m17}) y registra 433 usuarios activos en su plataforma web, según Google Analytics (Figura \ref{m18}). Estos indicadores muestran una adopción inicial relevante y confirman el interés de la comunidad por la medición ciudadana de la precipitación pluvial.
 
 \begin{figure}[h!]
   \centering
@@ -1358,7 +1364,7 @@ Está representada por el widget HomeScreen (Figura \ref{pantallas16}), se integ
 
 La barra superior (AppBar) incluye el logotipo de la aplicación, su nombre estilizado mediante AutoSizeText, y dos botones: InfoButton2, que despliega información relevante del sistema, y FluidDialogWidget, que ofrece ventanas emergentes con contenido contextual. En la parte inferior se coloca un botón flotante (Fab) cuya visibilidad se ajusta dinámicamente dependiendo del desplazamiento del usuario, sirviendo como acceso rápido a funciones clave.
 
-En cuanto a la participación activa del usuario, se incluye el widget OneTimeGoogleButton, diseñado para invitar al llenado de un formulario de retroalimentación mediante una cuenta de Google, así como QuickAddWidget, que permite agregar registros de precipitación de forma inmediata desde la pantalla de inicio.
+En cuanto a la participacióndel usuario, se incluye el widget OneTimeGoogleButton, diseñado para invitar al llenado de un formulario de retroalimentación mediante una cuenta de Google, así como QuickAddWidget, que permite agregar registros de precipitación de forma inmediata desde la pantalla de inicio.
 
 Respecto a la visualización meteorológica, el widget TodayWeatherStyleCard muestra el clima del día, mientras que WeekRainMarker ofrece una representación gráfica del pronóstico de lluvia semanal. Ambas tarjetas permiten al usuario mantenerse informado sobre las condiciones actuales y futuras del tiempo en su región.
 
