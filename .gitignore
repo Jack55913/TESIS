@@ -1,4 +1,8 @@
 assets/
+*.pdf
+*.docx
+
+
 build/
 ## Core latex/pdflatex auxiliary files:
 *.aux

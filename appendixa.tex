@@ -449,7 +449,7 @@ class AppState extends ChangeNotifier {
 
 
 \newpage
-\section{Reglas de CLoud FireStore}
+\section{Reglas de Cloud FireStore}
 \label{anexo:alg2}
 
 \begin{minted}{javascript}
@@ -621,723 +621,723 @@ void _registerLicenses() {
 \newpage
 
 
-\section{Algoritmo de MyApp}
-\label{anexo:alg4}
-
-\begin{minted}{dart}
-
-import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:provider/provider.dart';
-import 'package:tlaloc/src/core/app_router.dart';
-import 'package:tlaloc/src/core/providers/app_providers.dart';
-import 'package:tlaloc/src/models/constants.dart';  
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: appProviders,
-      child: Builder(
-        builder:
-            (context) => MaterialApp(
-              title: appName,
-              debugShowCheckedModeBanner: false,
-              theme: appLightTheme,
-              darkTheme: appDarkTheme,
-              themeMode: ThemeMode.system,
-              initialRoute: '/',
-              onGenerateRoute: generateRoute,
-              localizationsDelegates: const [
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-              ],
-            ),
-      ),
-    );
-  }
-}
-
-\end{minted}
-
-
-
-\newpage
-
-\section{Algoritmo de ConditionalOnboardingPage}
-\label{anexo:alg5}
-
-\begin{minted}{dart}
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tlaloc/src/models/google_sign_in.dart';
-import 'package:tlaloc/src/models/kernel.dart';
-import 'package:tlaloc/src/resources/onboarding/onbording.dart'; 
-import 'package:tlaloc/src/ui/widgets/backgrounds/empty_state.dart';
-import 'package:tlaloc/src/ui/widgets/backgrounds/splash.dart'; 
-
-class ConditionalOnboardingPage extends StatelessWidget {
-  const ConditionalOnboardingPage({super.key});
-
-  Future<Widget> _decideNextScreen(BuildContext context) async {
-    final prefs = await SharedPreferences.getInstance();
-    final hasFinishedOnboarding = prefs.getBool('hasFinishedOnboarding') ?? false;
-
-    final authProvider = Provider.of<GoogleSignInProvider>(context, listen: false);
-    final isLoggedIn = authProvider.currentUser != null;
-
-    if (hasFinishedOnboarding && isLoggedIn) {
-      return const HomePage();
-    } else {
-      return Onboarding();
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<Widget>(
-      future: _decideNextScreen(context),
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return const _ErrorScreen();
-        } else if (snapshot.connectionState != ConnectionState.done) {
-          // Evita pantalla en blanco, mientras resuelve
-          return const SplashScreen(nextScreen: Scaffold());
-        } else {
-          return SplashScreen(nextScreen: snapshot.data!);
-        }
-      },
-    );
-  }
-}
-
-class _ErrorScreen extends StatelessWidget {
-  const _ErrorScreen();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Error de inicio')),
-      body: const EmptyState(
-        'No pudimos cargar la configuración inicial. '
-        'Por favor revisa tu conexión a internet o reinstala la aplicación.',
-      ),
-    );
-  }
-}
-\end{minted}
-
-
-
-
-
-
-\newpage
-\section{Pantalla Onboarding}
-\label{anexo:alg6}
-\begin{minted}{dart}
-import 'package:flutter/material.dart';
-import 'package:concentric_transition/concentric_transition.dart';
-import 'package:lottie/lottie.dart';
-import 'package:tlaloc/src/models/constants.dart';
-import 'package:tlaloc/src/ui/widgets/cards/onbording_cards.dart';
-import 'package:tlaloc/src/resources/onboarding/sign_in.dart';
-
-class Onboarding extends StatelessWidget {
-  Onboarding({super.key});
-
-  final List<CardPlanetData> data = [
-    CardPlanetData(
-      title: appName,
-      subtitle: "Ciencia para tí y para todos",
-      image: const AssetImage("assets/images/img-1.png"),
-      backgroundColor: AppColors.blue1,
-      titleColor: Colors.white,
-      subtitleColor: Colors.white,
-      background: LottieBuilder.asset("assets/animation/bg-1.json"),
-    ),
-    CardPlanetData(
-      title: "Te damos la bienvenida",
-      subtitle:
-          "Ya eres parte del proyecto ''Ciencia ciudadana para el monitoreo de la lluvia en el monte Tláloc'' ",
-      image: const AssetImage("assets/images/img-2.png"),
-      backgroundColor: Colors.white,
-      titleColor: AppColors.green1,
-      subtitleColor: const Color.fromRGBO(0, 10, 56, 1),
-      background: LottieBuilder.asset("assets/animation/bg-2.json"),
-    ),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: ConcentricPageView(
-        direction: Axis.horizontal,
-        pageSnapping: true,
-
-        onFinish: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const SignUpWidget()),
-          );
-        },
-        colors: data.map((e) => e.backgroundColor).toList(),
-        itemCount: data.length,
-        itemBuilder: (int index) {
-          return CardPlanet(data: data[index]);
-        },
-      ),
-    );
-  }
-}
-
-\end{minted}
-
-
-
-
-
-
-\newpage
-\section{Pantalla HomePage}
-\label{anexo:alg7}
-\begin{minted}{dart}
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:tlaloc/src/models/constants.dart';
-import 'package:tlaloc/src/resources/statics/graphs/graph2.dart';
-import 'package:tlaloc/src/ui/screens/dir/add.dart';
-import 'package:tlaloc/src/ui/screens/dir/data.dart';
-import 'package:tlaloc/src/ui/screens/dir/home.dart';
-import 'package:tlaloc/src/ui/screens/home/profile_page.dart';
-import 'package:cloud_firestore/cloud_firestore.dart'; 
-
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
-  final GlobalKey<CurvedNavigationBarState> _navKey = GlobalKey();
-
-  int globalNotificationCount = 0;
-  bool hasSeenNotifications = false;
-
-  late final List<Widget> _screens = const [
-    HomeScreen(),
-    AddScreen(),
-    DataScreen(),
-    BarGraph(),
-    ConfigureScreen(),
-  ];
-  @override
-  void initState() {
-    super.initState();
-
-    FirebaseFirestore.instance
-        .collection('notifications')
-        .doc('globalCounter')
-        .snapshots()
-        .listen((snapshot) {
-          if (snapshot.exists) {
-            setState(() {
-              globalNotificationCount = snapshot.data()?['count'] ?? 0;
-            });
-          }
-        });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      body: IndexedStack(index: _selectedIndex, children: _screens),
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(iconTheme: const IconThemeData()),
-        child: CurvedNavigationBar(
-          key: _navKey,
-          height: 60.0,
-          color: AppColors.blue1,
-          buttonBackgroundColor: AppColors.blue1,
-          backgroundColor: Colors.transparent,
-          animationCurve: Curves.easeInOut,
-          animationDuration: const Duration(milliseconds: 800),
-          items: _buildNavItems(),
-          index: _selectedIndex,
-          onTap: (index) {
-            setState(() {
-              _selectedIndex = index;
-              if (index == 2) hasSeenNotifications = true;
-            });
-          },
-        ),
-      ),
-    );
-  }
-
-  List<Widget> _buildNavItems() {
-    return [
-      const Icon(Icons.home, size: 30, color: Colors.white),
-      const Icon(Icons.add, size: 30, color: Colors.white), 
-      Stack(
-        children: [
-          const Icon(Icons.menu_book_rounded, size: 30, color: Colors.white),
-          if (globalNotificationCount > 0 && !hasSeenNotifications)
-            Positioned(
-              right: 0,
-              top: 0,
-              child: Container(
-                padding: const EdgeInsets.all(2),
-                decoration: const BoxDecoration(
-                  color: Colors.red,
-                  shape: BoxShape.circle,
-                ),
-                constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
-                child: Text(
-                  '$globalNotificationCount',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-        ],
-      ),
-
-      const Icon(Icons.line_axis, size: 30, color: Colors.white),
-      CircleAvatar(
-        foregroundImage:
-            FirebaseAuth.instance.currentUser?.photoURL != null
-                ? NetworkImage(FirebaseAuth.instance.currentUser!.photoURL!)
-                : const NetworkImage(
-                  'https://s1.elespanol.com/2019/11/01/elandroidelibre/el_androide_libre_441218515_179632866_1024x576.jpg',
-                ),
-      ),
-    ];
-  }
-}
-\end{minted}
-
-
-
-\newpage
-\section{Pantalla SignUpWidget}
-\label{anexo:alg8}
-
-\begin{minted}{dart}
-
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lottie/lottie.dart';
-import 'package:provider/provider.dart';
-import 'package:tlaloc/src/models/constants.dart';
-import 'package:tlaloc/src/models/google_sign_in.dart';
-import 'package:tlaloc/src/resources/onboarding/common_select.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'dart:ui';
-
-class SignUpWidget extends StatefulWidget {
-  const SignUpWidget({super.key});
-
-  @override
-  State<SignUpWidget> createState() => _SignUpWidgetState();
-}
-
-class _SignUpWidgetState extends State<SignUpWidget>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  bool _isLoading = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2),
-    )..repeat(reverse: true);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  Future<void> _handleGoogleSignIn(BuildContext context) async {
-    setState(() => _isLoading = true);
-    final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
-
-    try {
-      await provider.googleLogin();
-      if (provider.currentUser != null) {
-        Navigator.pushReplacement(
-          context,
-          PageRouteBuilder(
-            transitionDuration: const Duration(milliseconds: 1000),
-            pageBuilder: (_, __, ___) => const CommonSelectPage(),
-            transitionsBuilder:
-                (_, a, __, c) => FadeTransition(opacity: a, child: c),
-          ),
-        );
-      }
-    } catch (e) {
-      _showErrorDialog(context, e.toString());
-    } finally {
-      if (mounted) setState(() => _isLoading = false);
-    }
-  }
-
-  void _showErrorDialog(BuildContext context, String error) {
-    showDialog(
-      context: context,
-      builder:
-          (context) => AlertDialog(
-            backgroundColor: AppColors.dark1.withOpacity(0.9),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            title: Row(
-              children: [
-                Lottie.asset('assets/animation/bg-3.json', width: 40),
-                const SizedBox(width: 10),
-                const Text('Error', style: TextStyle(color: Colors.white)),
-              ],
-            ),
-            content: Text(error, style: const TextStyle(color: Colors.white70)),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: const Text('OK', style: TextStyle(color: Colors.blue)),
-              ),
-            ],
-          ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
-    return Scaffold(
-      backgroundColor: AppColors.purple1,
-      body: Stack(
-        children: [
-          // Fondo animado
-          Positioned.fill(
-            child: Lottie.asset(
-              'assets/animation/bg-3.json',
-              fit: BoxFit.cover,
-            ),
-          ),
-
-          // Contenido principal
-          Center(
-            child: SafeArea(
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  final isWide = constraints.maxWidth > 800;
-
-                  return SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child:
-                          isWide
-                              ? Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(20),
-                                      child: AnimatedBuilder(
-                                        animation: _controller,
-                                        builder:
-                                            (context, child) =>
-                                                Transform.translate(
-                                                  offset: Offset(
-                                                    0,
-                                                    10 * _controller.value,
-                                                  ),
-                                                  child: child,
-                                                ),
-                                        child: Image.asset(
-                                          'assets/images/img-1-4.png',
-                                          width: size.width * 0.3,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(child: _buildLoginCard(size)),
-                                ],
-                              )
-                              : Column(
-                                children: [
-                                  // Logo animado
-                                  AnimatedBuilder(
-                                    animation: _controller,
-                                    builder:
-                                        (context, child) => Transform.translate(
-                                          offset: Offset(
-                                            0,
-                                            10 * _controller.value,
-                                          ),
-                                          child: child,
-                                        ),
-                                    child: Image.asset(
-                                      'assets/images/img-1-4.png',
-                                      width: size.width * 0.8,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 40),
-                                  _buildLoginCard(size),
-                                ],
-                              ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildLoginCard(Size size) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(30),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-        child: Container(
-          padding: const EdgeInsets.all(30),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.1),
-            border: Border.all(color: Colors.white24),
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Iniciar sesión',
-                style: const TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontFamily: 'FredokaOne',
-                ),
-              ),
-              const SizedBox(height: 15),
-              const Text(
-                'Conéctate para contribuir a la ciencia ciudadana',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white70,
-                  fontFamily: 'Poppins',
-                ),
-              ),
-              const SizedBox(height: 30),
-              AnimatedSwitcher(
-                duration: const Duration(milliseconds: 300),
-                child:
-                    _isLoading
-                        ? const CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            Colors.white,
-                          ),
-                        )
-                        : ElevatedButton.icon(
-                          icon: FaIcon(
-                            FontAwesomeIcons.google,
-                            color: Colors.red[400],
-                          ),
-                          label: const Text(
-                            'Continuar con Google',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white.withOpacity(0.9),
-                            foregroundColor: Colors.black87,
-                            minimumSize: Size(size.width * 0.7, 55),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            elevation: 5,
-                            shadowColor: Colors.black26,
-                          ),
-                          onPressed: () => _handleGoogleSignIn(context),
-                        ),
-              ),
-              const SizedBox(height: 30),
-              MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap:
-                      () => launchUrl(
-                        Uri.parse('https://tlaloc.web.app/privacy/'),
-                        mode: LaunchMode.inAppWebView,
-                      ),
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      style: const TextStyle(
-                        color: Colors.white70,
-                        fontSize: 13,
-                        height: 1.5,
-                      ),
-                      children: [
-                        const TextSpan(
-                          text: 'Al continuar, aceptas nuestros\n',
-                        ),
-                        TextSpan(
-                          text: 'Términos de servicio',
-                          style: TextStyle(
-                            color: Colors.blue[200],
-                            fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                        const TextSpan(text: ' y '),
-                        TextSpan(
-                          text: 'Política de privacidad',
-                          style: TextStyle(
-                            color: Colors.blue[200],
-                            fontWeight: FontWeight.bold,
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-\end{minted}
-
-
-
-
-
-
-\newpage
-\section{Modelo GoogleSignInProvider}
-\label{anexo:alg9}
-\begin{minted}{dart}
-import 'package:flutter/foundation.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-
-class GoogleSignInProvider extends ChangeNotifier {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+% \section{Algoritmo de MyApp}
+% \label{anexo:alg4}
+
+% \begin{minted}{dart}
+
+% import 'package:flutter/material.dart';
+% import 'package:flutter_localizations/flutter_localizations.dart';
+% import 'package:provider/provider.dart';
+% import 'package:tlaloc/src/core/app_router.dart';
+% import 'package:tlaloc/src/core/providers/app_providers.dart';
+% import 'package:tlaloc/src/models/constants.dart';  
+
+% class MyApp extends StatelessWidget {
+%   const MyApp({super.key});
+
+%   @override
+%   Widget build(BuildContext context) {
+%     return MultiProvider(
+%       providers: appProviders,
+%       child: Builder(
+%         builder:
+%             (context) => MaterialApp(
+%               title: appName,
+%               debugShowCheckedModeBanner: false,
+%               theme: appLightTheme,
+%               darkTheme: appDarkTheme,
+%               themeMode: ThemeMode.system,
+%               initialRoute: '/',
+%               onGenerateRoute: generateRoute,
+%               localizationsDelegates: const [
+%                 GlobalMaterialLocalizations.delegate,
+%                 GlobalWidgetsLocalizations.delegate,
+%                 GlobalCupertinoLocalizations.delegate,
+%               ],
+%             ),
+%       ),
+%     );
+%   }
+% }
+
+% \end{minted}
+
+
+
+% \newpage
+
+% \section{Algoritmo de ConditionalOnboardingPage}
+% \label{anexo:alg5}
+
+% \begin{minted}{dart}
+% import 'package:flutter/material.dart';
+% import 'package:provider/provider.dart';
+% import 'package:shared_preferences/shared_preferences.dart';
+% import 'package:tlaloc/src/models/google_sign_in.dart';
+% import 'package:tlaloc/src/models/kernel.dart';
+% import 'package:tlaloc/src/resources/onboarding/onbording.dart'; 
+% import 'package:tlaloc/src/ui/widgets/backgrounds/empty_state.dart';
+% import 'package:tlaloc/src/ui/widgets/backgrounds/splash.dart'; 
+
+% class ConditionalOnboardingPage extends StatelessWidget {
+%   const ConditionalOnboardingPage({super.key});
+
+%   Future<Widget> _decideNextScreen(BuildContext context) async {
+%     final prefs = await SharedPreferences.getInstance();
+%     final hasFinishedOnboarding = prefs.getBool('hasFinishedOnboarding') ?? false;
+
+%     final authProvider = Provider.of<GoogleSignInProvider>(context, listen: false);
+%     final isLoggedIn = authProvider.currentUser != null;
+
+%     if (hasFinishedOnboarding && isLoggedIn) {
+%       return const HomePage();
+%     } else {
+%       return Onboarding();
+%     }
+%   }
+
+%   @override
+%   Widget build(BuildContext context) {
+%     return FutureBuilder<Widget>(
+%       future: _decideNextScreen(context),
+%       builder: (context, snapshot) {
+%         if (snapshot.hasError) {
+%           return const _ErrorScreen();
+%         } else if (snapshot.connectionState != ConnectionState.done) {
+%           // Evita pantalla en blanco, mientras resuelve
+%           return const SplashScreen(nextScreen: Scaffold());
+%         } else {
+%           return SplashScreen(nextScreen: snapshot.data!);
+%         }
+%       },
+%     );
+%   }
+% }
+
+% class _ErrorScreen extends StatelessWidget {
+%   const _ErrorScreen();
+
+%   @override
+%   Widget build(BuildContext context) {
+%     return Scaffold(
+%       appBar: AppBar(title: const Text('Error de inicio')),
+%       body: const EmptyState(
+%         'No pudimos cargar la configuración inicial. '
+%         'Por favor revisa tu conexión a internet o reinstala la aplicación.',
+%       ),
+%     );
+%   }
+% }
+% \end{minted}
+
+
+
+
+
+
+% \newpage
+% \section{Pantalla Onboarding}
+% \label{anexo:alg6}
+% \begin{minted}{dart}
+% import 'package:flutter/material.dart';
+% import 'package:concentric_transition/concentric_transition.dart';
+% import 'package:lottie/lottie.dart';
+% import 'package:tlaloc/src/models/constants.dart';
+% import 'package:tlaloc/src/ui/widgets/cards/onbording_cards.dart';
+% import 'package:tlaloc/src/resources/onboarding/sign_in.dart';
+
+% class Onboarding extends StatelessWidget {
+%   Onboarding({super.key});
+
+%   final List<CardPlanetData> data = [
+%     CardPlanetData(
+%       title: appName,
+%       subtitle: "Ciencia para tí y para todos",
+%       image: const AssetImage("assets/images/img-1.png"),
+%       backgroundColor: AppColors.blue1,
+%       titleColor: Colors.white,
+%       subtitleColor: Colors.white,
+%       background: LottieBuilder.asset("assets/animation/bg-1.json"),
+%     ),
+%     CardPlanetData(
+%       title: "Te damos la bienvenida",
+%       subtitle:
+%           "Ya eres parte del proyecto ''Ciencia ciudadana para el monitoreo de la lluvia en el monte Tláloc'' ",
+%       image: const AssetImage("assets/images/img-2.png"),
+%       backgroundColor: Colors.white,
+%       titleColor: AppColors.green1,
+%       subtitleColor: const Color.fromRGBO(0, 10, 56, 1),
+%       background: LottieBuilder.asset("assets/animation/bg-2.json"),
+%     ),
+%   ];
+
+%   @override
+%   Widget build(BuildContext context) {
+%     return Scaffold(
+%       body: ConcentricPageView(
+%         direction: Axis.horizontal,
+%         pageSnapping: true,
+
+%         onFinish: () {
+%           Navigator.push(
+%             context,
+%             MaterialPageRoute(builder: (context) => const SignUpWidget()),
+%           );
+%         },
+%         colors: data.map((e) => e.backgroundColor).toList(),
+%         itemCount: data.length,
+%         itemBuilder: (int index) {
+%           return CardPlanet(data: data[index]);
+%         },
+%       ),
+%     );
+%   }
+% }
+
+% \end{minted}
+
+
+
+
+
+
+% \newpage
+% \section{Pantalla HomePage}
+% \label{anexo:alg7}
+% \begin{minted}{dart}
+% import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+% import 'package:firebase_auth/firebase_auth.dart';
+% import 'package:flutter/material.dart';
+% import 'package:tlaloc/src/models/constants.dart';
+% import 'package:tlaloc/src/resources/statics/graphs/graph2.dart';
+% import 'package:tlaloc/src/ui/screens/dir/add.dart';
+% import 'package:tlaloc/src/ui/screens/dir/data.dart';
+% import 'package:tlaloc/src/ui/screens/dir/home.dart';
+% import 'package:tlaloc/src/ui/screens/home/profile_page.dart';
+% import 'package:cloud_firestore/cloud_firestore.dart'; 
+
+% class HomePage extends StatefulWidget {
+%   const HomePage({super.key});
+
+%   @override
+%   State<HomePage> createState() => _HomePageState();
+% }
+
+% class _HomePageState extends State<HomePage> {
+%   int _selectedIndex = 0;
+%   final GlobalKey<CurvedNavigationBarState> _navKey = GlobalKey();
+
+%   int globalNotificationCount = 0;
+%   bool hasSeenNotifications = false;
+
+%   late final List<Widget> _screens = const [
+%     HomeScreen(),
+%     AddScreen(),
+%     DataScreen(),
+%     BarGraph(),
+%     ConfigureScreen(),
+%   ];
+%   @override
+%   void initState() {
+%     super.initState();
+
+%     FirebaseFirestore.instance
+%         .collection('notifications')
+%         .doc('globalCounter')
+%         .snapshots()
+%         .listen((snapshot) {
+%           if (snapshot.exists) {
+%             setState(() {
+%               globalNotificationCount = snapshot.data()?['count'] ?? 0;
+%             });
+%           }
+%         });
+%   }
+
+%   @override
+%   Widget build(BuildContext context) {
+%     return Scaffold(
+%       extendBody: true,
+%       body: IndexedStack(index: _selectedIndex, children: _screens),
+%       bottomNavigationBar: Theme(
+%         data: Theme.of(context).copyWith(iconTheme: const IconThemeData()),
+%         child: CurvedNavigationBar(
+%           key: _navKey,
+%           height: 60.0,
+%           color: AppColors.blue1,
+%           buttonBackgroundColor: AppColors.blue1,
+%           backgroundColor: Colors.transparent,
+%           animationCurve: Curves.easeInOut,
+%           animationDuration: const Duration(milliseconds: 800),
+%           items: _buildNavItems(),
+%           index: _selectedIndex,
+%           onTap: (index) {
+%             setState(() {
+%               _selectedIndex = index;
+%               if (index == 2) hasSeenNotifications = true;
+%             });
+%           },
+%         ),
+%       ),
+%     );
+%   }
+
+%   List<Widget> _buildNavItems() {
+%     return [
+%       const Icon(Icons.home, size: 30, color: Colors.white),
+%       const Icon(Icons.add, size: 30, color: Colors.white), 
+%       Stack(
+%         children: [
+%           const Icon(Icons.menu_book_rounded, size: 30, color: Colors.white),
+%           if (globalNotificationCount > 0 && !hasSeenNotifications)
+%             Positioned(
+%               right: 0,
+%               top: 0,
+%               child: Container(
+%                 padding: const EdgeInsets.all(2),
+%                 decoration: const BoxDecoration(
+%                   color: Colors.red,
+%                   shape: BoxShape.circle,
+%                 ),
+%                 constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
+%                 child: Text(
+%                   '$globalNotificationCount',
+%                   style: const TextStyle(
+%                     color: Colors.white,
+%                     fontSize: 10,
+%                     fontWeight: FontWeight.bold,
+%                   ),
+%                   textAlign: TextAlign.center,
+%                 ),
+%               ),
+%             ),
+%         ],
+%       ),
+
+%       const Icon(Icons.line_axis, size: 30, color: Colors.white),
+%       CircleAvatar(
+%         foregroundImage:
+%             FirebaseAuth.instance.currentUser?.photoURL != null
+%                 ? NetworkImage(FirebaseAuth.instance.currentUser!.photoURL!)
+%                 : const NetworkImage(
+%                   'https://s1.elespanol.com/2019/11/01/elandroidelibre/el_androide_libre_441218515_179632866_1024x576.jpg',
+%                 ),
+%       ),
+%     ];
+%   }
+% }
+% \end{minted}
+
+
+
+% \newpage
+% \section{Pantalla SignUpWidget}
+% \label{anexo:alg8}
+
+% \begin{minted}{dart}
+
+% import 'package:flutter/material.dart';
+% import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+% import 'package:lottie/lottie.dart';
+% import 'package:provider/provider.dart';
+% import 'package:tlaloc/src/models/constants.dart';
+% import 'package:tlaloc/src/models/google_sign_in.dart';
+% import 'package:tlaloc/src/resources/onboarding/common_select.dart';
+% import 'package:url_launcher/url_launcher.dart';
+% import 'dart:ui';
+
+% class SignUpWidget extends StatefulWidget {
+%   const SignUpWidget({super.key});
+
+%   @override
+%   State<SignUpWidget> createState() => _SignUpWidgetState();
+% }
+
+% class _SignUpWidgetState extends State<SignUpWidget>
+%     with SingleTickerProviderStateMixin {
+%   late AnimationController _controller;
+%   bool _isLoading = false;
+
+%   @override
+%   void initState() {
+%     super.initState();
+%     _controller = AnimationController(
+%       vsync: this,
+%       duration: const Duration(seconds: 2),
+%     )..repeat(reverse: true);
+%   }
+
+%   @override
+%   void dispose() {
+%     _controller.dispose();
+%     super.dispose();
+%   }
+
+%   Future<void> _handleGoogleSignIn(BuildContext context) async {
+%     setState(() => _isLoading = true);
+%     final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+
+%     try {
+%       await provider.googleLogin();
+%       if (provider.currentUser != null) {
+%         Navigator.pushReplacement(
+%           context,
+%           PageRouteBuilder(
+%             transitionDuration: const Duration(milliseconds: 1000),
+%             pageBuilder: (_, __, ___) => const CommonSelectPage(),
+%             transitionsBuilder:
+%                 (_, a, __, c) => FadeTransition(opacity: a, child: c),
+%           ),
+%         );
+%       }
+%     } catch (e) {
+%       _showErrorDialog(context, e.toString());
+%     } finally {
+%       if (mounted) setState(() => _isLoading = false);
+%     }
+%   }
+
+%   void _showErrorDialog(BuildContext context, String error) {
+%     showDialog(
+%       context: context,
+%       builder:
+%           (context) => AlertDialog(
+%             backgroundColor: AppColors.dark1.withOpacity(0.9),
+%             shape: RoundedRectangleBorder(
+%               borderRadius: BorderRadius.circular(20),
+%             ),
+%             title: Row(
+%               children: [
+%                 Lottie.asset('assets/animation/bg-3.json', width: 40),
+%                 const SizedBox(width: 10),
+%                 const Text('Error', style: TextStyle(color: Colors.white)),
+%               ],
+%             ),
+%             content: Text(error, style: const TextStyle(color: Colors.white70)),
+%             actions: [
+%               TextButton(
+%                 onPressed: () => Navigator.pop(context),
+%                 child: const Text('OK', style: TextStyle(color: Colors.blue)),
+%               ),
+%             ],
+%           ),
+%     );
+%   }
+
+%   @override
+%   Widget build(BuildContext context) {
+%     final size = MediaQuery.of(context).size;
+
+%     return Scaffold(
+%       backgroundColor: AppColors.purple1,
+%       body: Stack(
+%         children: [
+%           // Fondo animado
+%           Positioned.fill(
+%             child: Lottie.asset(
+%               'assets/animation/bg-3.json',
+%               fit: BoxFit.cover,
+%             ),
+%           ),
+
+%           // Contenido principal
+%           Center(
+%             child: SafeArea(
+%               child: LayoutBuilder(
+%                 builder: (context, constraints) {
+%                   final isWide = constraints.maxWidth > 800;
+
+%                   return SingleChildScrollView(
+%                     physics: const BouncingScrollPhysics(),
+%                     child: Padding(
+%                       padding: const EdgeInsets.all(20),
+%                       child:
+%                           isWide
+%                               ? Row(
+%                                 mainAxisAlignment: MainAxisAlignment.center,
+%                                 children: [
+%                                   Expanded(
+%                                     child: Padding(
+%                                       padding: const EdgeInsets.all(20),
+%                                       child: AnimatedBuilder(
+%                                         animation: _controller,
+%                                         builder:
+%                                             (context, child) =>
+%                                                 Transform.translate(
+%                                                   offset: Offset(
+%                                                     0,
+%                                                     10 * _controller.value,
+%                                                   ),
+%                                                   child: child,
+%                                                 ),
+%                                         child: Image.asset(
+%                                           'assets/images/img-1-4.png',
+%                                           width: size.width * 0.3,
+%                                         ),
+%                                       ),
+%                                     ),
+%                                   ),
+%                                   Expanded(child: _buildLoginCard(size)),
+%                                 ],
+%                               )
+%                               : Column(
+%                                 children: [
+%                                   // Logo animado
+%                                   AnimatedBuilder(
+%                                     animation: _controller,
+%                                     builder:
+%                                         (context, child) => Transform.translate(
+%                                           offset: Offset(
+%                                             0,
+%                                             10 * _controller.value,
+%                                           ),
+%                                           child: child,
+%                                         ),
+%                                     child: Image.asset(
+%                                       'assets/images/img-1-4.png',
+%                                       width: size.width * 0.8,
+%                                     ),
+%                                   ),
+%                                   const SizedBox(height: 40),
+%                                   _buildLoginCard(size),
+%                                 ],
+%                               ),
+%                     ),
+%                   );
+%                 },
+%               ),
+%             ),
+%           ),
+%         ],
+%       ),
+%     );
+%   }
+
+%   Widget _buildLoginCard(Size size) {
+%     return ClipRRect(
+%       borderRadius: BorderRadius.circular(30),
+%       child: BackdropFilter(
+%         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+%         child: Container(
+%           padding: const EdgeInsets.all(30),
+%           decoration: BoxDecoration(
+%             color: Colors.white.withOpacity(0.1),
+%             border: Border.all(color: Colors.white24),
+%             borderRadius: BorderRadius.circular(30),
+%           ),
+%           child: Column(
+%             mainAxisSize: MainAxisSize.min,
+%             children: [
+%               Text(
+%                 'Iniciar sesión',
+%                 style: const TextStyle(
+%                   fontSize: 28,
+%                   fontWeight: FontWeight.bold,
+%                   color: Colors.white,
+%                   fontFamily: 'FredokaOne',
+%                 ),
+%               ),
+%               const SizedBox(height: 15),
+%               const Text(
+%                 'Conéctate para contribuir a la ciencia ciudadana',
+%                 textAlign: TextAlign.center,
+%                 style: TextStyle(
+%                   fontSize: 16,
+%                   color: Colors.white70,
+%                   fontFamily: 'Poppins',
+%                 ),
+%               ),
+%               const SizedBox(height: 30),
+%               AnimatedSwitcher(
+%                 duration: const Duration(milliseconds: 300),
+%                 child:
+%                     _isLoading
+%                         ? const CircularProgressIndicator(
+%                           valueColor: AlwaysStoppedAnimation<Color>(
+%                             Colors.white,
+%                           ),
+%                         )
+%                         : ElevatedButton.icon(
+%                           icon: FaIcon(
+%                             FontAwesomeIcons.google,
+%                             color: Colors.red[400],
+%                           ),
+%                           label: const Text(
+%                             'Continuar con Google',
+%                             style: TextStyle(
+%                               fontSize: 16,
+%                               fontWeight: FontWeight.bold,
+%                             ),
+%                           ),
+%                           style: ElevatedButton.styleFrom(
+%                             backgroundColor: Colors.white.withOpacity(0.9),
+%                             foregroundColor: Colors.black87,
+%                             minimumSize: Size(size.width * 0.7, 55),
+%                             shape: RoundedRectangleBorder(
+%                               borderRadius: BorderRadius.circular(15),
+%                             ),
+%                             elevation: 5,
+%                             shadowColor: Colors.black26,
+%                           ),
+%                           onPressed: () => _handleGoogleSignIn(context),
+%                         ),
+%               ),
+%               const SizedBox(height: 30),
+%               MouseRegion(
+%                 cursor: SystemMouseCursors.click,
+%                 child: GestureDetector(
+%                   onTap:
+%                       () => launchUrl(
+%                         Uri.parse('https://tlaloc.web.app/privacy/'),
+%                         mode: LaunchMode.inAppWebView,
+%                       ),
+%                   child: RichText(
+%                     textAlign: TextAlign.center,
+%                     text: TextSpan(
+%                       style: const TextStyle(
+%                         color: Colors.white70,
+%                         fontSize: 13,
+%                         height: 1.5,
+%                       ),
+%                       children: [
+%                         const TextSpan(
+%                           text: 'Al continuar, aceptas nuestros\n',
+%                         ),
+%                         TextSpan(
+%                           text: 'Términos de servicio',
+%                           style: TextStyle(
+%                             color: Colors.blue[200],
+%                             fontWeight: FontWeight.bold,
+%                             decoration: TextDecoration.underline,
+%                           ),
+%                         ),
+%                         const TextSpan(text: ' y '),
+%                         TextSpan(
+%                           text: 'Política de privacidad',
+%                           style: TextStyle(
+%                             color: Colors.blue[200],
+%                             fontWeight: FontWeight.bold,
+%                             decoration: TextDecoration.underline,
+%                           ),
+%                         ),
+%                       ],
+%                     ),
+%                   ),
+%                 ),
+%               ),
+%             ],
+%           ),
+%         ),
+%       ),
+%     );
+%   }
+% }
+
+% \end{minted}
+
+
+
+
+
+
+% \newpage
+% \section{Modelo GoogleSignInProvider}
+% \label{anexo:alg9}
+% \begin{minted}{dart}
+% import 'package:flutter/foundation.dart';
+% import 'package:firebase_auth/firebase_auth.dart';
+% import 'package:google_sign_in/google_sign_in.dart';
+
+% class GoogleSignInProvider extends ChangeNotifier {
+%   final FirebaseAuth _auth = FirebaseAuth.instance;
   
-  final GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: ['email', 'profile'],
-    clientId: kIsWeb 
-        ? '228815382617-2rtslpepg048j80iuls7ilrc8ff9sn4l.apps.googleusercontent.com'
-        : null, // Para Android/iOS, Firebase maneja automáticamente el Client ID
-  );
+%   final GoogleSignIn _googleSignIn = GoogleSignIn(
+%     scopes: ['email', 'profile'],
+%     clientId: kIsWeb 
+%         ? '228815382617-2rtslpepg048j80iuls7ilrc8ff9sn4l.apps.googleusercontent.com'
+%         : null, // Para Android/iOS, Firebase maneja automáticamente el Client ID
+%   );
 
-  User? get currentUser => _auth.currentUser;
-  bool _isLoading = false;
-  bool get isLoading => _isLoading;
+%   User? get currentUser => _auth.currentUser;
+%   bool _isLoading = false;
+%   bool get isLoading => _isLoading;
 
-  Future<void> googleLogin() async {
-    try {
-      _isLoading = true;
-      notifyListeners();
+%   Future<void> googleLogin() async {
+%     try {
+%       _isLoading = true;
+%       notifyListeners();
 
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      if (googleUser == null) return;
+%       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+%       if (googleUser == null) return;
 
-      final GoogleSignInAuthentication googleAuth = 
-          await googleUser.authentication;
+%       final GoogleSignInAuthentication googleAuth = 
+%           await googleUser.authentication;
 
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
+%       final AuthCredential credential = GoogleAuthProvider.credential(
+%         accessToken: googleAuth.accessToken,
+%         idToken: googleAuth.idToken,
+%       );
 
-      await _auth.signInWithCredential(credential);
+%       await _auth.signInWithCredential(credential);
       
-    } on FirebaseAuthException catch (e) {
-      _handleAuthError(e);
-    } catch (e) {
-      debugPrint('Error inesperado: $e');
-      rethrow;
-    } finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
+%     } on FirebaseAuthException catch (e) {
+%       _handleAuthError(e);
+%     } catch (e) {
+%       debugPrint('Error inesperado: $e');
+%       rethrow;
+%     } finally {
+%       _isLoading = false;
+%       notifyListeners();
+%     }
+%   }
 
-  Future<void> logout() async {
-    try {
-      await _googleSignIn.signOut(); // Mejor que disconnect()
-      await _auth.signOut();
-    } catch (e) {
-      debugPrint('Error al cerrar sesión: $e');
-      rethrow;
-    } finally {
-      notifyListeners();
-    }
-  }
+%   Future<void> logout() async {
+%     try {
+%       await _googleSignIn.signOut(); // Mejor que disconnect()
+%       await _auth.signOut();
+%     } catch (e) {
+%       debugPrint('Error al cerrar sesión: $e');
+%       rethrow;
+%     } finally {
+%       notifyListeners();
+%     }
+%   }
 
-  void _handleAuthError(FirebaseAuthException e) {
-    debugPrint('Código de error: ${e.code}');
-    String message = 'Error de autenticación';
+%   void _handleAuthError(FirebaseAuthException e) {
+%     debugPrint('Código de error: ${e.code}');
+%     String message = 'Error de autenticación';
 
-    switch (e.code) {
-      case 'account-exists-with-different-credential':
-        message = 'Cuenta ya existe con otro método de autenticación';
-        break;
-      case 'invalid-credential':
-        message = 'Credenciales inválidas';
-        break;
-      case 'operation-not-allowed':
-        message = 'Método de autenticación no habilitado';
-        break;
-      case 'user-disabled':
-        message = 'Cuenta deshabilitada';
-        break;
-      case 'user-not-found':
-        message = 'Usuario no encontrado';
-        break;
-    }
+%     switch (e.code) {
+%       case 'account-exists-with-different-credential':
+%         message = 'Cuenta ya existe con otro método de autenticación';
+%         break;
+%       case 'invalid-credential':
+%         message = 'Credenciales inválidas';
+%         break;
+%       case 'operation-not-allowed':
+%         message = 'Método de autenticación no habilitado';
+%         break;
+%       case 'user-disabled':
+%         message = 'Cuenta deshabilitada';
+%         break;
+%       case 'user-not-found':
+%         message = 'Usuario no encontrado';
+%         break;
+%     }
 
-    throw AuthException(message);
-  }
-}
+%     throw AuthException(message);
+%   }
+% }
 
-class AuthException implements Exception {
-  final String message;
-  AuthException(this.message);
+% class AuthException implements Exception {
+%   final String message;
+%   AuthException(this.message);
   
-  @override
-  String toString() => message;
-}
-\end{minted}
+%   @override
+%   String toString() => message;
+% }
+% \end{minted}
 
 
 
@@ -1348,63 +1348,63 @@ class AuthException implements Exception {
 
 
 
-\section{Página de elección de paraje}
-\label{anexo:alg10}
+% \section{Página de elección de paraje}
+% \label{anexo:alg10}
 
-\begin{minted}{dart}
-  import 'package:flutter/material.dart';
-import 'package:tlaloc/src/models/constants.dart';
-import 'package:tlaloc/src/ui/widgets/cards/common_card.dart';
-import 'package:tlaloc/src/ui/widgets/cards/qr.dart';
+% \begin{minted}{dart}
+%   import 'package:flutter/material.dart';
+% import 'package:tlaloc/src/models/constants.dart';
+% import 'package:tlaloc/src/ui/widgets/cards/common_card.dart';
+% import 'package:tlaloc/src/ui/widgets/cards/qr.dart';
 
-class CommonSelectPage extends StatelessWidget {
-  const CommonSelectPage({super.key});
+% class CommonSelectPage extends StatelessWidget {
+%   const CommonSelectPage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.lightBlue,
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Center(
-              child: Column(
-                children: [
-                  Text(
-                    '¿Qué pluviómetro estás observando?',
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontFamily: 'FredokaOne',
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 20),
-                  QrSelectWidget(),
-                  SizedBox(height: 20),
-                  Text(
-                    'Seleccionar manualmente',
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontFamily: 'FredokaOne',
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 20),
-                  CommonSelectWidget(),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+%   @override
+%   Widget build(BuildContext context) {
+%     return Scaffold(
+%       backgroundColor: AppColors.lightBlue,
+%       body: SingleChildScrollView(
+%         child: SafeArea(
+%           child: Padding(
+%             padding: EdgeInsets.all(16.0),
+%             child: Center(
+%               child: Column(
+%                 children: [
+%                   Text(
+%                     '¿Qué pluviómetro estás observando?',
+%                     style: TextStyle(
+%                       fontSize: 32,
+%                       fontFamily: 'FredokaOne',
+%                       color: Colors.white,
+%                     ),
+%                     textAlign: TextAlign.center,
+%                   ),
+%                   SizedBox(height: 20),
+%                   QrSelectWidget(),
+%                   SizedBox(height: 20),
+%                   Text(
+%                     'Seleccionar manualmente',
+%                     style: TextStyle(
+%                       fontSize: 32,
+%                       fontFamily: 'FredokaOne',
+%                       color: Colors.white,
+%                     ),
+%                     textAlign: TextAlign.center,
+%                   ),
+%                   SizedBox(height: 20),
+%                   CommonSelectWidget(),
+%                 ],
+%               ),
+%             ),
+%           ),
+%         ),
+%       ),
+%     );
+%   }
+% }
 
-\end{minted}
+% \end{minted}
 
 
 
@@ -1629,1644 +1629,1644 @@ class _QrScannerDialog extends StatelessWidget {
 
 
 
-\section{Pantalla de inicio}
-\label{anexo:alg12}
-\begin{minted}{dart}
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:tlaloc/src/models/constants.dart';
-import 'package:tlaloc/src/ui/widgets/appbar/infobutton2.dart';
-import 'package:tlaloc/src/ui/widgets/backgrounds/container.dart';
-import 'package:tlaloc/src/ui/widgets/buttons/fab.dart';
-import 'package:tlaloc/src/ui/widgets/buttons/notebook.dart';
-import 'package:tlaloc/src/ui/widgets/cards/communitybutton.dart';
-import 'package:tlaloc/src/ui/widgets/cards/forms.dart';
-import 'package:tlaloc/src/ui/widgets/cards/personal_measures.dart';
-import 'package:tlaloc/src/ui/widgets/cards/phrase.dart';
-import 'package:tlaloc/src/ui/widgets/cards/tlalocmap.dart';
-import 'package:tlaloc/src/ui/widgets/cards/tutorials.dart';
-import 'package:tlaloc/src/ui/widgets/info/info_page.dart';
-import 'package:tlaloc/src/ui/widgets/objects/quickadd.dart';
-import 'package:tlaloc/src/ui/widgets/pluviometer/forecast.dart';
-import 'package:tlaloc/src/ui/widgets/pluviometer/header.dart';
-import 'package:tlaloc/src/ui/widgets/social/social_media.dart';
+% \section{Pantalla de inicio}
+% \label{anexo:alg12}
+% \begin{minted}{dart}
+% import 'package:auto_size_text/auto_size_text.dart';
+% import 'package:flutter/material.dart';
+% import 'package:flutter/rendering.dart';
+% import 'package:tlaloc/src/models/constants.dart';
+% import 'package:tlaloc/src/ui/widgets/appbar/infobutton2.dart';
+% import 'package:tlaloc/src/ui/widgets/backgrounds/container.dart';
+% import 'package:tlaloc/src/ui/widgets/buttons/fab.dart';
+% import 'package:tlaloc/src/ui/widgets/buttons/notebook.dart';
+% import 'package:tlaloc/src/ui/widgets/cards/communitybutton.dart';
+% import 'package:tlaloc/src/ui/widgets/cards/forms.dart';
+% import 'package:tlaloc/src/ui/widgets/cards/personal_measures.dart';
+% import 'package:tlaloc/src/ui/widgets/cards/phrase.dart';
+% import 'package:tlaloc/src/ui/widgets/cards/tlalocmap.dart';
+% import 'package:tlaloc/src/ui/widgets/cards/tutorials.dart';
+% import 'package:tlaloc/src/ui/widgets/info/info_page.dart';
+% import 'package:tlaloc/src/ui/widgets/objects/quickadd.dart';
+% import 'package:tlaloc/src/ui/widgets/pluviometer/forecast.dart';
+% import 'package:tlaloc/src/ui/widgets/pluviometer/header.dart';
+% import 'package:tlaloc/src/ui/widgets/social/social_media.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+% class HomeScreen extends StatefulWidget {
+%   const HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
+%   @override
+%   State<HomeScreen> createState() => _HomeScreenState();
+% }
 
-class _HomeScreenState extends State<HomeScreen> {
-  bool isFabVisable = true;
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Row(
-            children: [
-              Image.asset('assets/images/tlaloc_logo.png', height: 32),
-              const SizedBox(width: 8),
-              AutoSizeText(
-                appName,
-                style: TextStyle(
-                  fontFamily: 'FredokaOne',
-                  fontSize: 24,
-                  letterSpacing: 2,
-                ),
-              ),
-            ],
-          ),
-          actions: const <Widget>[InfoButton2(), FluidDialogWidget()],
-        ),
-        // drawer: DrawerApp(),
-        body: LayoutBuilder(
-          builder: (context, constraints) {
-            final isWide = constraints.maxWidth > 800;
+% class _HomeScreenState extends State<HomeScreen> {
+%   bool isFabVisable = true;
+%   @override
+%   Widget build(BuildContext context) {
+%     return SafeArea(
+%       child: Scaffold(
+%         appBar: AppBar(
+%           title: Row(
+%             children: [
+%               Image.asset('assets/images/tlaloc_logo.png', height: 32),
+%               const SizedBox(width: 8),
+%               AutoSizeText(
+%                 appName,
+%                 style: TextStyle(
+%                   fontFamily: 'FredokaOne',
+%                   fontSize: 24,
+%                   letterSpacing: 2,
+%                 ),
+%               ),
+%             ],
+%           ),
+%           actions: const <Widget>[InfoButton2(), FluidDialogWidget()],
+%         ),
+%         // drawer: DrawerApp(),
+%         body: LayoutBuilder(
+%           builder: (context, constraints) {
+%             final isWide = constraints.maxWidth > 800;
 
-            final content = [
-              OneTimeGoogleButton(message: "Llena el formulario (1 min)"),
-              const SizedBox(height: 5),
-              QuickAddWidget(),
-              const Divider(height: 5, thickness: 4, color: Colors.black),
+%             final content = [
+%               OneTimeGoogleButton(message: "Llena el formulario (1 min)"),
+%               const SizedBox(height: 5),
+%               QuickAddWidget(),
+%               const Divider(height: 5, thickness: 4, color: Colors.black),
 
-              const TodayWeatherStyleCard(),
-              const WeekRainMarker(),
+%               const TodayWeatherStyleCard(),
+%               const WeekRainMarker(),
 
-              GlassContainer(child: TutorialWidget()),
-              GlassContainer(
-                child: Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        'Tabla de mediciones',
-                        style: TextStyle(
-                          color: AppColors.blue1,
-                          fontFamily: 'FredokaOne',
-                          fontSize: 24,
-                          letterSpacing: 2,
-                        ),
-                      ),
-                    ),
-                    PersonalMeasures(),
-                    GeneralMeasures(),
-                  ],
-                ),
-              ),
+%               GlassContainer(child: TutorialWidget()),
+%               GlassContainer(
+%                 child: Column(
+%                   children: [
+%                     const Padding(
+%                       padding: EdgeInsets.all(8.0),
+%                       child: Text(
+%                         'Tabla de mediciones',
+%                         style: TextStyle(
+%                           color: AppColors.blue1,
+%                           fontFamily: 'FredokaOne',
+%                           fontSize: 24,
+%                           letterSpacing: 2,
+%                         ),
+%                       ),
+%                     ),
+%                     PersonalMeasures(),
+%                     GeneralMeasures(),
+%                   ],
+%                 ),
+%               ),
 
-              GlassContainer(child: TlalocMapData()),
-              Column(
-                children: [
-                  Center(
-                    child: Row(
-                      children: const [
-                        PhraseCard(),
-                        Spacer(), // Espacio entre tarjetas
-                        TableButton(),
-                      ],
-                    ),
-                  ),
-                  const Divider(height: 20, thickness: 4, color: Colors.black),
-                  CommunityButton(),
-                  const Divider(height: 20, thickness: 4, color: Colors.black),
-                  SocialLinksWidget(),
-                  const Divider(height: 20, thickness: 4, color: Colors.black),
-                ],
-              ),
-            ];
+%               GlassContainer(child: TlalocMapData()),
+%               Column(
+%                 children: [
+%                   Center(
+%                     child: Row(
+%                       children: const [
+%                         PhraseCard(),
+%                         Spacer(), // Espacio entre tarjetas
+%                         TableButton(),
+%                       ],
+%                     ),
+%                   ),
+%                   const Divider(height: 20, thickness: 4, color: Colors.black),
+%                   CommunityButton(),
+%                   const Divider(height: 20, thickness: 4, color: Colors.black),
+%                   SocialLinksWidget(),
+%                   const Divider(height: 20, thickness: 4, color: Colors.black),
+%                 ],
+%               ),
+%             ];
 
-            return NotificationListener<UserScrollNotification>(
-              onNotification: (notification) {
-                if (notification.direction == ScrollDirection.forward) {
-                  if (!isFabVisable) setState(() => isFabVisable = true);
-                } else if (notification.direction == ScrollDirection.reverse) {
-                  if (isFabVisable) setState(() => isFabVisable = false);
-                }
-                return true;
-              },
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.all(16),
-                child: Wrap(
-                  runSpacing: 20,
-                  spacing: 20,
-                  alignment: WrapAlignment.center,
-                  children:
-                      content.map((widget) {
-                        return ConstrainedBox(
-                          constraints: BoxConstraints(
-                            maxWidth:
-                                isWide
-                                    ? (constraints.maxWidth / 2) - 30
-                                    : constraints.maxWidth,
-                          ),
-                          child: widget,
-                        );
-                      }).toList(),
-                ),
-              ),
-            );
-          },
-        ),
+%             return NotificationListener<UserScrollNotification>(
+%               onNotification: (notification) {
+%                 if (notification.direction == ScrollDirection.forward) {
+%                   if (!isFabVisable) setState(() => isFabVisable = true);
+%                 } else if (notification.direction == ScrollDirection.reverse) {
+%                   if (isFabVisable) setState(() => isFabVisable = false);
+%                 }
+%                 return true;
+%               },
+%               child: SingleChildScrollView(
+%                 padding: const EdgeInsets.all(16),
+%                 child: Wrap(
+%                   runSpacing: 20,
+%                   spacing: 20,
+%                   alignment: WrapAlignment.center,
+%                   children:
+%                       content.map((widget) {
+%                         return ConstrainedBox(
+%                           constraints: BoxConstraints(
+%                             maxWidth:
+%                                 isWide
+%                                     ? (constraints.maxWidth / 2) - 30
+%                                     : constraints.maxWidth,
+%                           ),
+%                           child: widget,
+%                         );
+%                       }).toList(),
+%                 ),
+%               ),
+%             );
+%           },
+%         ),
 
-        floatingActionButton: Visibility(visible: isFabVisable, child: Fab()),
-      ),
-    );
-  }
-}
+%         floatingActionButton: Visibility(visible: isFabVisable, child: Fab()),
+%       ),
+%     );
+%   }
+% }
 
-\end{minted}
-
-
+% \end{minted}
 
 
 
-\section{Pantalla de envío de mediciones}
-\label{anexo:alg13}
-\begin{minted}{dart} 
-import 'dart:io';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
-import 'package:tlaloc/src/models/constants.dart';
-import 'package:tlaloc/src/models/date.dart';
-import 'package:tlaloc/src/models/lluvia/send_rain.dart';
-import 'package:tlaloc/src/resources/onboarding/common_select.dart';
-import 'package:tlaloc/src/ui/screens/home/home_widget_classes.dart';
-import 'package:tlaloc/src/ui/widgets/measures/save_button.dart';
-import 'package:tlaloc/src/models/app_state.dart';
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:audioplayers/audioplayers.dart';
-import 'package:tlaloc/src/models/google_sign_in.dart';
-import 'package:tlaloc/src/models/home_page.dart';
-import 'package:tlaloc/src/ui/widgets/objects/text_field.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
-class AddScreen extends StatefulWidget {
-  final Measurement? measurement;
 
-  const AddScreen({super.key, this.measurement});
+% \section{Pantalla de envío de mediciones}
+% \label{anexo:alg13}
+% \begin{minted}{dart} 
+% import 'dart:io';
+% import 'package:firebase_auth/firebase_auth.dart';
+% import 'package:flutter/material.dart';
+% import 'package:flutter/services.dart';
+% import 'package:image_picker/image_picker.dart';
+% import 'package:provider/provider.dart';
+% import 'package:tlaloc/src/models/constants.dart';
+% import 'package:tlaloc/src/models/date.dart';
+% import 'package:tlaloc/src/models/lluvia/send_rain.dart';
+% import 'package:tlaloc/src/resources/onboarding/common_select.dart';
+% import 'package:tlaloc/src/ui/screens/home/home_widget_classes.dart';
+% import 'package:tlaloc/src/ui/widgets/measures/save_button.dart';
+% import 'package:tlaloc/src/models/app_state.dart';
+% import 'package:auto_size_text/auto_size_text.dart';
+% import 'package:audioplayers/audioplayers.dart';
+% import 'package:tlaloc/src/models/google_sign_in.dart';
+% import 'package:tlaloc/src/models/home_page.dart';
+% import 'package:tlaloc/src/ui/widgets/objects/text_field.dart';
+% import 'package:flutter/foundation.dart' show kIsWeb;
 
-  @override
-  State<AddScreen> createState() => _AddScreenState();
-}
+% class AddScreen extends StatefulWidget {
+%   final Measurement? measurement;
 
-class _AddScreenState extends State<AddScreen> {
-  late TextEditingController _precipitationController;
-  bool pluviometer = false;
+%   const AddScreen({super.key, this.measurement});
 
-  File? newImage;
-  Uint8List? newWebImage; // Para imagenes web
-  final ImagePicker picker = ImagePicker();
+%   @override
+%   State<AddScreen> createState() => _AddScreenState();
+% }
 
-  DateTime dateTime = DateTime.now();
-  num precipitation = 0; // Variable no-nullable
-  String? uploader = FirebaseAuth.instance.currentUser?.displayName;
-  String path = 'sounds/correcto.mp3';
-  var player = AudioPlayer();
+% class _AddScreenState extends State<AddScreen> {
+%   late TextEditingController _precipitationController;
+%   bool pluviometer = false;
 
-  @override
-  void initState() {
-    super.initState();
-    _precipitationController = TextEditingController(
-      text: widget.measurement?.precipitation?.toStringAsFixed(1) ?? '0',
-    );
+%   File? newImage;
+%   Uint8List? newWebImage; // Para imagenes web
+%   final ImagePicker picker = ImagePicker();
 
-    if (widget.measurement != null) {
-      precipitation =
-          widget.measurement!.precipitation ?? 0; // Conversión segura
-      uploader = widget.measurement!.uploader;
-      dateTime = widget.measurement!.dateTime!;
-    }
-  }
+%   DateTime dateTime = DateTime.now();
+%   num precipitation = 0; // Variable no-nullable
+%   String? uploader = FirebaseAuth.instance.currentUser?.displayName;
+%   String path = 'sounds/correcto.mp3';
+%   var player = AudioPlayer();
 
-  @override
-  void dispose() {
-    _precipitationController.dispose();
-    player.dispose();
-    super.dispose();
-  }
+%   @override
+%   void initState() {
+%     super.initState();
+%     _precipitationController = TextEditingController(
+%       text: widget.measurement?.precipitation?.toStringAsFixed(1) ?? '0',
+%     );
 
-  Future<void> pickImage() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      if (kIsWeb) {
-        final bytes = await pickedFile.readAsBytes();
-        setState(() {
-          Provider.of<AppState>(context, listen: false).newWebImage = bytes;
-          newImage = null;
-        });
-      } else {
-        setState(() {
-          newImage = File(pickedFile.path);
-          Provider.of<AppState>(context, listen: false).newWebImage = null;
-        });
-      }
-    }
-  }
+%     if (widget.measurement != null) {
+%       precipitation =
+%           widget.measurement!.precipitation ?? 0; // Conversión segura
+%       uploader = widget.measurement!.uploader;
+%       dateTime = widget.measurement!.dateTime!;
+%     }
+%   }
 
-  Future<void> pickImageC() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.camera);
-    if (pickedFile != null) {
-      if (kIsWeb) {
-        final bytes = await pickedFile.readAsBytes();
-        setState(() {
-          Provider.of<AppState>(context, listen: false).newWebImage = bytes;
-          newImage = null;
-        });
-      } else {
-        setState(() {
-          newImage = File(pickedFile.path);
-          Provider.of<AppState>(context, listen: false).newWebImage = null;
-        });
-      }
-    }
-  }
+%   @override
+%   void dispose() {
+%     _precipitationController.dispose();
+%     player.dispose();
+%     super.dispose();
+%   }
 
-  @override
-  Widget build(BuildContext context) {  
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Consumer<GoogleSignInProvider>(
-            builder: (context, signIn, child) {
-              String place = Provider.of<AppState>(context).paraje;
-              return AutoSizeText(
-                place,
-                style: const TextStyle(fontSize: 24, fontFamily: 'FredokaOne'),
-              );
-            },
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ButtonWidget(
-                onClicked: () async {
-                  try {
-                    final state = Provider.of<AppState>(context, listen: false);
-                    if (widget.measurement == null) {
-                      state.addMeasurement(
-                        uploader: uploader!,
-                        precipitation: precipitation,
-                        time: dateTime,
-                        image: newImage,
-                        pluviometer: pluviometer,
-                      );
-                      // state.newWebImage = null;
-                      await player.play(AssetSource(path));
-                      Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute<void>(
-                          builder: (BuildContext context) {
-                            return const HomePage();
-                          },
-                        ),
-                        (Route<dynamic> route) => false,
-                      );
-                    } else {
-                      state.updateMeasurement(
-                        uploaderId: widget.measurement!.uploaderId!,
-                        id: widget.measurement!.id,
-                        uploader: uploader!,
-                        precipitation: precipitation,
-                        time: dateTime,
-                        image: newImage,
-                        oldImage: widget.measurement!.imageUrl,
-                        pluviometer: pluviometer,
-                      );
-                      await player.play(AssetSource(path));
-                      Navigator.pop(context);
-                    }
-                  } catch (e) {
-                    showDialog(
-                      context: context,
-                      builder:
-                          (context) => AlertDialog(
-                            title: const Text('¡Error al guardar la medición!'),
-                            content: Text('$e'),
-                          ),
-                    );
-                  }
-                },
-              ),
-            ),
-          ],
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                Consumer<GoogleSignInProvider>(
-                  builder: (context, signIn, child) {
-                    final name =
-                        FirebaseAuth.instance.currentUser?.displayName ?? '';
-                    return MyTextFormField(
-                      initialValue: uploader ?? name,
-                      helperText: '1. Escriba nombre completo',
-                      hintText: 'Nombre',
-                      icon: const Icon(Icons.person, color: Colors.blueGrey),
-                      onChanged: (String value) {
-                        setState(() => uploader = value);
-                      },
-                      textInputType: TextInputType.name,
-                    );
-                  },
-                ),
-                const SizedBox(height: 20),
+%   Future<void> pickImage() async {
+%     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+%     if (pickedFile != null) {
+%       if (kIsWeb) {
+%         final bytes = await pickedFile.readAsBytes();
+%         setState(() {
+%           Provider.of<AppState>(context, listen: false).newWebImage = bytes;
+%           newImage = null;
+%         });
+%       } else {
+%         setState(() {
+%           newImage = File(pickedFile.path);
+%           Provider.of<AppState>(context, listen: false).newWebImage = null;
+%         });
+%       }
+%     }
+%   }
 
-                Container(
-                  decoration: BoxDecoration(
-                    color:
-                        Theme.of(context).brightness == Brightness.dark
-                            ? AppColors.dark3
-                            : Colors.transparent,
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.red[300],
-                      child: Icon(Icons.place, color: Colors.red[900]),
-                    ),
-                    title: Text(
-                      'Estás ubicado en: "${Provider.of<AppState>(context).paraje}"',
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'FredokaOne',
-                      ),
-                    ),
-                    subtitle: const Text('2. Elige el paraje correctamente'),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const CommonSelectPage(),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  decoration: BoxDecoration(
-                    color:
-                        Theme.of(context).brightness == Brightness.dark
-                            ? AppColors.dark3
-                            : Colors.transparent,
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: RainInputWidget(
-                      precipitation: precipitation,
-                      onChanged: (value) {
-                        setState(() {
-                          precipitation = value;
-                        });
-                      },
-                    ),
-                  ),
-                ), 
-                const SizedBox(height: 20),
-                Container(
-                  decoration: BoxDecoration(
-                    color:
-                        Theme.of(context).brightness == Brightness.dark
-                            ? AppColors.dark3
-                            : Colors.transparent,
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  child: Datetime(
-                    updateDateTime: (value) {
-                      dateTime = value;
-                    },
-                  ),
-                ),
+%   Future<void> pickImageC() async {
+%     final pickedFile = await picker.pickImage(source: ImageSource.camera);
+%     if (pickedFile != null) {
+%       if (kIsWeb) {
+%         final bytes = await pickedFile.readAsBytes();
+%         setState(() {
+%           Provider.of<AppState>(context, listen: false).newWebImage = bytes;
+%           newImage = null;
+%         });
+%       } else {
+%         setState(() {
+%           newImage = File(pickedFile.path);
+%           Provider.of<AppState>(context, listen: false).newWebImage = null;
+%         });
+%       }
+%     }
+%   }
+
+%   @override
+%   Widget build(BuildContext context) {  
+%     return SafeArea(
+%       child: Scaffold(
+%         appBar: AppBar(
+%           title: Consumer<GoogleSignInProvider>(
+%             builder: (context, signIn, child) {
+%               String place = Provider.of<AppState>(context).paraje;
+%               return AutoSizeText(
+%                 place,
+%                 style: const TextStyle(fontSize: 24, fontFamily: 'FredokaOne'),
+%               );
+%             },
+%           ),
+%           actions: [
+%             Padding(
+%               padding: const EdgeInsets.all(8.0),
+%               child: ButtonWidget(
+%                 onClicked: () async {
+%                   try {
+%                     final state = Provider.of<AppState>(context, listen: false);
+%                     if (widget.measurement == null) {
+%                       state.addMeasurement(
+%                         uploader: uploader!,
+%                         precipitation: precipitation,
+%                         time: dateTime,
+%                         image: newImage,
+%                         pluviometer: pluviometer,
+%                       );
+%                       // state.newWebImage = null;
+%                       await player.play(AssetSource(path));
+%                       Navigator.of(context).pushAndRemoveUntil(
+%                         MaterialPageRoute<void>(
+%                           builder: (BuildContext context) {
+%                             return const HomePage();
+%                           },
+%                         ),
+%                         (Route<dynamic> route) => false,
+%                       );
+%                     } else {
+%                       state.updateMeasurement(
+%                         uploaderId: widget.measurement!.uploaderId!,
+%                         id: widget.measurement!.id,
+%                         uploader: uploader!,
+%                         precipitation: precipitation,
+%                         time: dateTime,
+%                         image: newImage,
+%                         oldImage: widget.measurement!.imageUrl,
+%                         pluviometer: pluviometer,
+%                       );
+%                       await player.play(AssetSource(path));
+%                       Navigator.pop(context);
+%                     }
+%                   } catch (e) {
+%                     showDialog(
+%                       context: context,
+%                       builder:
+%                           (context) => AlertDialog(
+%                             title: const Text('¡Error al guardar la medición!'),
+%                             content: Text('$e'),
+%                           ),
+%                     );
+%                   }
+%                 },
+%               ),
+%             ),
+%           ],
+%         ),
+%         body: SingleChildScrollView(
+%           child: Padding(
+%             padding: const EdgeInsets.all(16.0),
+%             child: Column(
+%               children: [
+%                 Consumer<GoogleSignInProvider>(
+%                   builder: (context, signIn, child) {
+%                     final name =
+%                         FirebaseAuth.instance.currentUser?.displayName ?? '';
+%                     return MyTextFormField(
+%                       initialValue: uploader ?? name,
+%                       helperText: '1. Escriba nombre completo',
+%                       hintText: 'Nombre',
+%                       icon: const Icon(Icons.person, color: Colors.blueGrey),
+%                       onChanged: (String value) {
+%                         setState(() => uploader = value);
+%                       },
+%                       textInputType: TextInputType.name,
+%                     );
+%                   },
+%                 ),
+%                 const SizedBox(height: 20),
+
+%                 Container(
+%                   decoration: BoxDecoration(
+%                     color:
+%                         Theme.of(context).brightness == Brightness.dark
+%                             ? AppColors.dark3
+%                             : Colors.transparent,
+%                     borderRadius: BorderRadius.circular(12.0),
+%                   ),
+%                   child: ListTile(
+%                     leading: CircleAvatar(
+%                       backgroundColor: Colors.red[300],
+%                       child: Icon(Icons.place, color: Colors.red[900]),
+%                     ),
+%                     title: Text(
+%                       'Estás ubicado en: "${Provider.of<AppState>(context).paraje}"',
+%                       style: const TextStyle(
+%                         fontSize: 18,
+%                         fontFamily: 'FredokaOne',
+%                       ),
+%                     ),
+%                     subtitle: const Text('2. Elige el paraje correctamente'),
+%                     onTap: () {
+%                       Navigator.push(
+%                         context,
+%                         MaterialPageRoute(
+%                           builder: (context) => const CommonSelectPage(),
+%                         ),
+%                       );
+%                     },
+%                   ),
+%                 ),
+%                 const SizedBox(height: 20),
+%                 Container(
+%                   decoration: BoxDecoration(
+%                     color:
+%                         Theme.of(context).brightness == Brightness.dark
+%                             ? AppColors.dark3
+%                             : Colors.transparent,
+%                     borderRadius: BorderRadius.circular(12.0),
+%                   ),
+%                   child: Padding(
+%                     padding: const EdgeInsets.all(16.0),
+%                     child: RainInputWidget(
+%                       precipitation: precipitation,
+%                       onChanged: (value) {
+%                         setState(() {
+%                           precipitation = value;
+%                         });
+%                       },
+%                     ),
+%                   ),
+%                 ), 
+%                 const SizedBox(height: 20),
+%                 Container(
+%                   decoration: BoxDecoration(
+%                     color:
+%                         Theme.of(context).brightness == Brightness.dark
+%                             ? AppColors.dark3
+%                             : Colors.transparent,
+%                     borderRadius: BorderRadius.circular(12.0),
+%                   ),
+%                   child: Datetime(
+%                     updateDateTime: (value) {
+%                       dateTime = value;
+%                     },
+%                   ),
+%                 ),
  
-                const SizedBox(height: 20),
-                Container(
-                  decoration: BoxDecoration(
-                    color:
-                        Theme.of(context).brightness == Brightness.dark
-                            ? AppColors.dark3
-                            : Colors.transparent,
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  child: const ContactUsListTile(
-                    title: 'Mandar fotografía',
-                    title2:
-                        '5. Toma una foto del pluviómetro y mándala por WhatsApp',
-                    message:
-                        'https://api.whatsapp.com/send?phone=5630908507&text=%C2%A1Mira!%20en%20el%20paraje%20%22%20%22%20llovi%C3%B3%20%22%20%22mm,%20adjunto%20fotograf%C3%ADa%20del%20d%C3%ADa%20de%20hoy',
-                  ),
-                ),
-                SizedBox(height: 20),
-                Container(
-                  decoration: BoxDecoration(
-                    color:
-                        Theme.of(context).brightness == Brightness.dark
-                            ? AppColors.dark3
-                            : Colors.transparent,
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  child: SwitchListTile(
-                    title: const Text(
-                      'Reinicio de mediciones',
-                      style: TextStyle(fontSize: 18, fontFamily: 'FredokaOne'),
-                    ),
-                    value: pluviometer,
-                    secondary: CircleAvatar(
-                      backgroundColor: Colors.teal[300],
-                      child: Icon(Icons.output, color: Colors.teal[900]),
-                    ),
-                    subtitle: const Text(
-                      '6. Vaciar pluviómetro (sólo personal capacitado)',
-                    ),
-                    onChanged: (bool value) {
-                      setState(() => pluviometer = value);
-                    },
-                  ),
-                ),
-                const SizedBox(height: 20),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-\end{minted}
-
-
-
-\section{Pantalla de Bitácora}
-\label{anexo:alg14}
-\begin{minted}{dart}
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:tlaloc/src/models/app_state.dart';
-import 'package:tlaloc/src/models/constants.dart';
-import 'package:tlaloc/src/models/excel.dart';
-import 'package:tlaloc/src/ui/widgets/appbar/infobutton2.dart';
-import 'package:tlaloc/src/ui/widgets/data_screen_view.dart';
-import 'package:tlaloc/src/ui/widgets/data_widget.dart';
-import 'package:tlaloc/src/ui/widgets/info/info_page.dart';
-import 'package:tlaloc/src/ui/widgets/real_data_widget.dart';
-
-class DataScreen extends StatefulWidget {
-  const DataScreen({super.key});
-
-  @override
-  State<DataScreen> createState() => _DataScreenState();
-}
-
-class _DataScreenState extends State<DataScreen> with TickerProviderStateMixin {
-  late TabController _tabController;
-  final List<ScrollController> _scrollControllers = [
-    ScrollController(),
-    ScrollController(),
-  ];
-  bool isFabVisible = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 2, vsync: this);
-
-    // Escuchar cambios de pestaña
-    _tabController.addListener(_handleTabChange);
-  }
-
-  void _handleTabChange() {
-    // Hacer scroll al inicio cuando cambia la pestaña
-    _scrollToTop(_tabController.index);
-  }
-
-  void _scrollToTop(int index) {
-    final controller = _scrollControllers[index];
-    if (controller.hasClients) {
-      controller.animateTo(
-        0,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut,
-      );
-    }
-  }
-
-  @override
-  void dispose() {
-    _tabController.removeListener(_handleTabChange);
-    _tabController.dispose();
-    for (var controller in _scrollControllers) {
-      controller.dispose();
-    }
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final appState = context.watch<AppState>();
-    bool isWideLayout = MediaQuery.of(context).size.width > 800;
-    return SafeArea(
-      child: NestedScrollView(
-        headerSliverBuilder: (context, value) {
-          return [
-            SliverAppBar(
-              title: Row(
-                children: [
-                  Image.asset('assets/images/tlaloc_logo.png', height: 32),
-                  const SizedBox(width: 8),
-                  const Text(
-                    'Bitácora',
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      // color: AppColors.dark1,
-                      fontFamily: 'FredokaOne',
-                      fontSize: 24,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ],
-              ),
-              floating: true,
-              pinned: true,
-              snap: false,
-              expandedHeight: 150.0,
-              actions: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.file_download),
-                  onPressed: () async {
-                    try {
-                      await appState.exportMeasurements(context);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Exportación completada',
-                            style: TextStyle(color: Colors.green),
-                          ),
-                        ),
-                      );
-                    } catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Error al exportar: $e')),
-                      );
-                    }
-                  },
-                ),
-                InfoButton2(),
-                FluidDialogWidget(),
-              ],
-              bottom: TabBar(
-                controller: _tabController,
-                onTap: (index) => _scrollToTop(index),
-                labelColor: AppColors.blue1,
-                unselectedLabelColor: Colors.grey,
-                indicatorColor: AppColors.blue1,
-                labelStyle: const TextStyle(fontWeight: FontWeight.bold),
-                unselectedLabelStyle: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-                tabs: const <Widget>[
-                  Tab(text: 'Acumulados', icon: Icon(Icons.cloud_outlined)),
-                  Tab(text: 'Reales', icon: Icon(Icons.cloud_done_outlined)),
-                ],
-              ),
-            ),
-          ];
-        },
-        body: TabBarView(
-          controller: _tabController, // Asigna el mismo controlador
-          children: <Widget>[
-            // Pasa el ScrollController a cada widget hijo
-            isWideLayout
-                ? MasterDetailScreen()
-                : MyDataWidget(scrollController: _scrollControllers[0]),
-            isWideLayout
-                ? MasterDetailRealScreen()
-                : MyRealDataWidget(scrollController: _scrollControllers[0]),
-          ],
-        ),
-      ),
-    );
-  }
-}
-\end{minted}
-
-
-
-
-\section{Pantalla de estadísticas}
-\label{anexo:alg15}
-\begin{minted}{dart}
-import 'dart:typed_data';
-import 'dart:ui';
-
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
-import 'package:tlaloc/src/models/app_state.dart';
-import 'package:tlaloc/src/models/constants.dart';
-import 'package:tlaloc/src/models/datepicker.dart';
-import 'package:tlaloc/src/ui/widgets/backgrounds/empty_state.dart';
-import 'package:tlaloc/src/ui/widgets/appbar/infobutton2.dart';
-import 'package:tlaloc/src/ui/widgets/info/info_page.dart';
-import 'package:fl_chart/fl_chart.dart';
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
-import 'package:printing/printing.dart';
-import 'package:file_saver/file_saver.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
-import 'package:path_provider/path_provider.dart';
-import 'dart:io';
-
-import 'package:universal_html/html.dart' as html;
-
-class BarGraph extends StatefulWidget {
-  const BarGraph({super.key});
-
-  @override
-  State<BarGraph> createState() => _BarGraphState();
-}
-
-enum DateTimeMode { custom, week, month, year, always }
-
-enum DataMode { accumulated, real }
-
-class _BarGraphState extends State<BarGraph> {
-  DateTime initialDate = dateLongAgo;
-  DateTime finalDate = dateInALongTime;
-  DateTimeMode mode = DateTimeMode.always;
-  String? _currentParaje;
-  DataMode dataMode = DataMode.accumulated;
-  final GlobalKey chartKey = GlobalKey();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          children: [
-            Image.asset('assets/images/tlaloc_logo.png', height: 32),
-            const SizedBox(width: 8),
-            AutoSizeText(
-              dataMode == DataMode.real
-                  ? 'Volumen'
-                  : 'Acumulados',
-              style: const TextStyle(
-                fontFamily: 'FredokaOne',
-                fontSize: 18,
-                letterSpacing: 2,
-              ),
-            ),
-          ],
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.picture_as_pdf),
-            onPressed: () => _exportToPdf(context),
-            tooltip: 'Exportar a PDF',
-          ),
-          InfoButton2(),
-          FluidDialogWidget(),
-        ],
-      ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            SwitchListTile(
-              title: Text(
-                dataMode == DataMode.real
-                    ? 'Mostrar datos reales'
-                    : 'Mostrar acumulados',
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              value: dataMode == DataMode.real,
-              onChanged:
-                  (val) => setState(
-                    () => dataMode = val ? DataMode.real : DataMode.accumulated,
-                  ),
-            ),
-            const SizedBox(height: 10),
-            _buildDateControls(),
-            const SizedBox(height: 20),
-            _buildDatePickers(),
-            const SizedBox(height: 20),
-            Expanded(
-              child: _buildChartSection(isReal: dataMode == DataMode.real),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildDateControls() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: Wrap(
-        spacing: 4,
-        children: [
-          _buildChoiceChip('Esta semana', DateTimeMode.week),
-          _buildChoiceChip('Este mes', DateTimeMode.month),
-          _buildChoiceChip('Este año', DateTimeMode.year),
-          _buildChoiceChip('Siempre', DateTimeMode.always),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDatePickers() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: Row(
-        children: [
-          const Text('Inicio: '),
-          DatePickerButton(
-            dateTime: initialDate,
-            onDateChanged: (date) => _updateDates(date, isStart: true),
-          ),
-          const Expanded(child: SizedBox()),
-          const Text('Fin: '),
-          DatePickerButton(
-            dateTime: finalDate,
-            onDateChanged: (date) => _updateDates(date, isStart: false),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildChartSection({bool isReal = false}) {
-    return Consumer<AppState>(
-      builder: (context, state, _) {
-        _handleParajeChange(state);
-        return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-          key: Key('${state.rol}-${state.paraje}'),
-          stream:
-              isReal
-                  ? state.getRealMeasurementsStream()
-                  : state.getMeasurementsStream(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return _buildLoadingIndicator();
-            }
-            if (snapshot.hasError) {
-              return EmptyState('Error: ${snapshot.error}');
-            }
-            return _handleSnapshot(snapshot, state, isReal: isReal);
-          },
-        );
-      },
-    );
-  }
-
-  void _handleParajeChange(AppState state) {
-    if (_currentParaje != state.paraje) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        setState(() => _currentParaje = state.paraje);
-      });
-    }
-  }
-
-  Widget _handleSnapshot(
-    AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot,
-    AppState state, {
-    bool isReal = false,
-  }) {
-    if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-      return EmptyState('No hay datos en ${state.paraje}');
-    }
-
-    final measurements = state.getMeasurementsFromDocs(snapshot.data!.docs);
-    final filteredMeasurements = _filterMeasurements(
-      isReal ? _filterOnlyReal(measurements) : measurements,
-    );
-
-    return filteredMeasurements.isEmpty
-        ? const EmptyState('No hay datos en el rango seleccionado')
-        : _buildChart(filteredMeasurements);
-  }
-
-  List<Measurement> _filterOnlyReal(List<Measurement> realValue) {
-    return realValue
-        .where(
-          (m) =>
-              m.dateTime != null &&
-              m.dateTime!.isAfter(initialDate) &&
-              m.dateTime!.isBefore(finalDate),
-        )
-        .toList()
-      ..sort((a, b) => a.dateTime!.compareTo(b.dateTime!));
-  }
-
-  List<Measurement> _filterMeasurements(List<Measurement> measurements) {
-    return measurements
-        .where(
-          (m) =>
-              m.dateTime != null &&
-              m.dateTime!.isAfter(initialDate) &&
-              m.dateTime!.isBefore(finalDate),
-        )
-        .toList()
-      ..sort((a, b) => a.dateTime!.compareTo(b.dateTime!));
-  }
-
-  Widget _buildLoadingIndicator() {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CircularProgressIndicator(),
-          SizedBox(height: 20),
-          Text(
-            'Cargando datos...',
-            style: TextStyle(color: AppColors.blue1, fontSize: 16),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildChart(List<Measurement> measurements) {
-    final theme = Theme.of(context);
-    final primaryColor = theme.colorScheme.primary;
-    final surfaceVariant = theme.colorScheme.surfaceContainerHighest;
-    final onSurface = theme.colorScheme.onSurface;
-
-    // Definir ancho total dinámico
-    final chartWidth =
-        (measurements.length * 40).toDouble().clamp(300, 2000).toDouble();
-
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: SizedBox(
-        height: 400,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: SizedBox(
-            width: chartWidth,
-            child: RepaintBoundary(
-              key: chartKey,
-              child: BarChart(
-                BarChartData(
-                  groupsSpace: 16,
-                  alignment: BarChartAlignment.spaceBetween,
-                  barTouchData: BarTouchData(
-                    enabled: true,
-                    touchTooltipData: BarTouchTooltipData(
-                      // tooltipBgColor: primaryColor.withOpacity(0.9),
-                      getTooltipItem: (group, groupIndex, rod, rodIndex) {
-                        final date = DateFormat(
-                          'dd/MM/yy',
-                        ).format(measurements[groupIndex].dateTime!);
-                        final value = rod.toY.toStringAsFixed(1);
-                        return BarTooltipItem(
-                          '$date\n$value mm',
-                          TextStyle(
-                            color: theme.colorScheme.onPrimary,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  titlesData: FlTitlesData(
-                    leftTitles: AxisTitles(
-                      axisNameWidget: Text(
-                        'Precipitación (mm)',
-                        style: TextStyle(
-                          color: onSurface,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                        ),
-                      ),
-                      sideTitles: SideTitles(
-                        showTitles: true,
-                        reservedSize: 22,
-                        interval: _calculateYInterval(measurements),
-                        getTitlesWidget:
-                            (value, meta) => Text(
-                              '${value.toInt()}',
-                              style: TextStyle(color: onSurface, fontSize: 12),
-                            ),
-                      ),
-                    ),
-                    bottomTitles: AxisTitles(
-                      axisNameWidget: Padding(
-                        padding: const EdgeInsets.only(top: 12),
-                        child: Text(
-                          'Fecha',
-                          style: TextStyle(
-                            color: onSurface,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
-                      sideTitles: SideTitles(
-                        showTitles: true,
-                        getTitlesWidget: (value, meta) {
-                          final index = value.toInt();
-                          const maxLabels = 10;
-                          final total = measurements.length;
-                          if (total <= maxLabels ||
-                              index % (total ~/ maxLabels) == 0) {
-                            if (index >= 0 && index < total) {
-                              return _buildDateLabel(
-                                measurements[index].dateTime!,
-                              );
-                            }
-                          }
-                          return const SizedBox.shrink();
-                        },
-                      ),
-                    ),
-                    topTitles: const AxisTitles(
-                      sideTitles: SideTitles(showTitles: false),
-                    ),
-                    rightTitles: const AxisTitles(
-                      sideTitles: SideTitles(showTitles: false),
-                    ),
-                  ),
-                  borderData: FlBorderData(
-                    show: true,
-                    border: const Border(
-                      left: BorderSide(width: 1, color: Colors.grey),
-                      bottom: BorderSide(width: 1, color: Colors.grey),
-                    ),
-                  ),
-                  gridData: FlGridData(
-                    show: true,
-                    horizontalInterval: _calculateYInterval(measurements),
-                    getDrawingHorizontalLine:
-                        (value) =>
-                            FlLine(color: surfaceVariant, strokeWidth: 1),
-                  ),
-                  barGroups:
-                      measurements.asMap().entries.map((entry) {
-                        final index = entry.key;
-                        final m = entry.value;
-                        return BarChartGroupData(
-                          x: index,
-                          barRods: [
-                            BarChartRodData(
-                              toY: (m.precipitation ?? 0).toDouble(),
-                              color: primaryColor,
-                              width: 5,
-                              borderRadius: BorderRadius.circular(6),
-                              gradient: LinearGradient(
-                                colors: [
-                                  primaryColor.withOpacity(0.9),
-                                  primaryColor.withOpacity(0.5),
-                                ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                              ),
-                              backDrawRodData: BackgroundBarChartRodData(
-                                show: true,
-                                toY: (m.precipitation ?? 0) * 1.1,
-                                color: surfaceVariant.withOpacity(0.3),
-                              ),
-                            ),
-                          ],
-                        );
-                      }).toList(),
-                  minY: 0,
-                  maxY: _calculateMaxY(measurements),
-                ),
-                duration: const Duration(milliseconds: 800),
-                curve: Curves.easeOutQuart,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  double _calculateMaxY(List<Measurement> measurements) {
-    if (measurements.isEmpty) return 10;
-    final max = measurements
-        .map((m) => m.precipitation ?? 0)
-        .reduce((a, b) => a > b ? a : b);
-    return (max * 1.2).toDouble();
-  }
-
-  double _calculateYInterval(List<Measurement> measurements) {
-    if (measurements.isEmpty) return 10; // Manejo de lista vacía
-
-    final maxPrecip = measurements
-        .map((m) => m.precipitation?.toDouble() ?? 0.0)
-        .reduce((a, b) => a > b ? a : b); // Versión más eficiente
-
-    if (maxPrecip > 50) return 20;
-    if (maxPrecip > 20) return 10;
-    return 5;
-  }
-
-  Widget _buildDateLabel(DateTime date) {
-    return Transform.rotate(
-      angle: -0.4,
-      child: Text(
-        DateFormat('dd/MM').format(date),
-        style: const TextStyle(fontSize: 10),
-      ),
-    );
-  }
-
-  void _updateDates(DateTime date, {required bool isStart}) {
-    setState(() {
-      mode = DateTimeMode.custom;
-      if (isStart) {
-        initialDate = date;
-      } else {
-        finalDate = DateTime(
-          date.year,
-          date.month,
-          date.day,
-        ).add(const Duration(days: 1)).subtract(const Duration(seconds: 1));
-      }
-    });
-  }
-
-  Widget _buildChoiceChip(String label, DateTimeMode value) {
-    return ChoiceChip(
-      selectedColor: AppColors.blue1,
-      label: Text(label),
-      selected: mode == value,
-      onSelected: (val) => val ? _handleTimeModeChange(value) : null,
-    );
-  }
-
-  void _handleTimeModeChange(DateTimeMode value) {
-    final now = DateTime.now();
-    setState(() {
-      mode = value;
-      switch (value) {
-        case DateTimeMode.week:
-          final monday = now.subtract(Duration(days: now.weekday - 1));
-          initialDate = monday;
-          finalDate = monday.add(
-            const Duration(days: 6, hours: 23, minutes: 59, seconds: 59),
-          );
-          break;
-        case DateTimeMode.month:
-          initialDate = DateTime(now.year, now.month, 1);
-          finalDate = DateTime(now.year, now.month + 1, 0, 23, 59, 59);
-          break;
-        case DateTimeMode.year:
-          initialDate = DateTime(now.year, 1, 1);
-          finalDate = DateTime(now.year, 12, 31, 23, 59, 59);
-          break;
-        case DateTimeMode.always:
-          initialDate = dateLongAgo;
-          finalDate = dateInALongTime;
-          break;
-        case DateTimeMode.custom:
-          break;
-      }
-    });
-  }
-
-  Future<void> _exportToPdf(BuildContext context) async {
-    final appState = Provider.of<AppState>(context, listen: false);
-    final measurements = await _getCurrentMeasurements(appState);
-
-    if (measurements.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No hay datos para exportar')),
-      );
-      return;
-    }
-
-    final pdf = pw.Document();
-    final theme = Theme.of(context);
-    final title =
-        dataMode == DataMode.real
-            ? 'Datos Reales de Precipitación'
-            : 'Volúmenes Acumulados de Precipitación';
-    final dateRange =
-        '${DateFormat('dd/MM/yyyy').format(initialDate)} - ${DateFormat('dd/MM/yyyy').format(finalDate)}';
-    final paraje = appState.paraje;
-
-    final chartImage = await _generateChartImage(measurements, theme);
-
-    pdf.addPage(
-      pw.Page(
-        pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) {
-          return pw.Column(
-            crossAxisAlignment: pw.CrossAxisAlignment.start,
-            children: [
-              pw.Header(
-                level: 0,
-                child: pw.Text(title, style: pw.TextStyle(fontSize: 20)),
-              ),
-              pw.Text('Paraje: $paraje'),
-              pw.Text('Rango de fechas: $dateRange'),
-              pw.SizedBox(height: 20),
-              pw.Center(
-                child: pw.Container(
-                  height: 300,
-                  child: pw.FittedBox(child: pw.Image(chartImage)),
-                ),
-              ),
-              pw.SizedBox(height: 20),
-              _buildDataTable(measurements),
-            ],
-          );
-        },
-      ),
-    );
-
-    // Guardar o mostrar el PDF según la plataforma
-    final bytes = await pdf.save();
-    await _saveOrPrintPdf(context, bytes, title);
-  }
-
-  Future<void> _saveOrPrintPdf(
-    BuildContext context,
-    Uint8List bytes,
-    String title,
-  ) async {
-    if (kIsWeb) {
-      final blob = html.Blob([bytes], 'application/pdf');
-      final url = html.Url.createObjectUrlFromBlob(blob);
-      final anchor =
-          html.AnchorElement(href: url)
-            ..setAttribute('download', '$title.pdf')
-            ..click();
-      html.Url.revokeObjectUrl(url);
-    } else {
-      // Para móvil: mostrar diálogo de impresión/guardado
-      try {
-        await Printing.layoutPdf(
-          onLayout: (PdfPageFormat format) async => bytes,
-        );
-      } catch (e) {
-        // Si falla la impresión, guardar el archivo
-        final directory = await getApplicationDocumentsDirectory();
-        final file = File('${directory.path}/$title.pdf');
-        await file.writeAsBytes(bytes);
-
-        // Opcional: usar file_saver para mejor experiencia de usuario
-        try {
-          await FileSaver.instance.saveFile(
-            name: title,
-            bytes: bytes,
-            mimeType: MimeType.pdf,
-          );
-        } catch (e) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('PDF guardado en: ${file.path}')),
-          );
-        }
-      }
-    }
-  }
-
-  Future<List<Measurement>> _getCurrentMeasurements(AppState state) async {
-    final snapshot =
-        await (dataMode == DataMode.real
-            ? state.getRealMeasurementsStream().first
-            : state.getMeasurementsStream().first);
-
-    final measurements = state.getMeasurementsFromDocs(snapshot.docs);
-    return _filterMeasurements(measurements);
-  }
-
-  Future<pw.MemoryImage> _generateChartImage(
-    List<Measurement> measurements,
-    ThemeData theme,
-  ) async {
-    final boundary =
-        chartKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-    final image = await boundary.toImage(pixelRatio: 3.0);
-    final byteData = await image.toByteData(format: ImageByteFormat.png);
-    final bytes = byteData!.buffer.asUint8List();
-    return pw.MemoryImage(bytes);
-  }
-
-  pw.Widget _buildDataTable(List<Measurement> measurements) {
-    return pw.Table(
-      border: pw.TableBorder.all(),
-      children: [
-        pw.TableRow(
-          children: [
-            pw.Padding(
-              padding: const pw.EdgeInsets.all(4),
-              child: pw.Text(
-                'Fecha',
-                style: pw.TextStyle(fontWeight: pw.FontWeight.bold),
-                textAlign: pw.TextAlign.center,
-              ),
-            ),
-            pw.Padding(
-              padding: const pw.EdgeInsets.all(4),
-              child: pw.Text(
-                'Precipitación (mm)',
-                style: pw.TextStyle(fontWeight: pw.FontWeight.bold),
-                textAlign: pw.TextAlign.center,
-              ),
-            ),
-          ],
-        ),
-        ...measurements.map(
-          (m) => pw.TableRow(
-            children: [
-              pw.Padding(
-                padding: const pw.EdgeInsets.all(4),
-                child: pw.Text(
-                  DateFormat('dd/MM/yyyy').format(m.dateTime!),
-                  textAlign: pw.TextAlign.center,
-                ),
-              ),
-              pw.Padding(
-                padding: const pw.EdgeInsets.all(4),
-                child: pw.Text(
-                  (m.precipitation ?? 0).toStringAsFixed(1),
-                  textAlign: pw.TextAlign.center,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-\end{minted}
-
-
-
-
-
-\section{Pantalla del perfil}
-\label{anexo:alg16}
-\begin{minted}{dart}
-import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:provider/provider.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:ionicons/ionicons.dart';
-import 'package:tlaloc/src/models/app_state.dart'; 
-import 'package:url_launcher/url_launcher.dart';
-import 'package:tlaloc/src/models/google_sign_in.dart';
-import 'package:tlaloc/src/resources/onboarding/onbording.dart';
-import 'package:tlaloc/src/ui/screens/settings/credits.dart';
-import 'package:tlaloc/src/ui/screens/settings/faq.dart';
-
-class ConfigureScreen extends StatefulWidget {
-  const ConfigureScreen({super.key});
-
-  @override
-  State<ConfigureScreen> createState() => _ConfigureScreenState();
-}
-
-class _ConfigureScreenState extends State<ConfigureScreen> {
-  @override
-  Widget build(BuildContext context) {
-    final appState = Provider.of<AppState>(context);
-
-    final user = FirebaseAuth.instance.currentUser;
-    final theme = Theme.of(context);
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                Image.asset('assets/images/portrate.jpg', fit: BoxFit.fitWidth),
-                Container(
-                  width: 120,
-                  height: 120,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: theme.colorScheme.surfaceContainerHighest,
-                      width: 4,
-                    ),
-                  ),
-                  child: CircleAvatar(
-                    radius: 56,
-                    backgroundImage:
-                        user?.photoURL != null
-                            ? NetworkImage(user!.photoURL!)
-                            : null,
-                    child:
-                        user?.photoURL == null
-                            ? Icon(
-                              Icons.account_circle,
-                              size: 60,
-                              color: theme.colorScheme.onSurface,
-                            )
-                            : null,
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 70),
-
-            // Información del usuario
-            Text(
-              user?.displayName ?? 'Usuario Tlaloc',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: theme.colorScheme.onSurface,
-                fontFamily: 'FredokaOne',
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              user?.email ?? 'correo@tlaloc.app',
-              style: TextStyle(
-                color: theme.colorScheme.onSurfaceVariant,
-                fontSize: 16,
-              ),
-            ),
-
-            // Estadísticas clave
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: FutureBuilder<Map<String, dynamic>>(
-                future: appState.getUserStats(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return const CircularProgressIndicator();
-                  }
-
-                  final stats = snapshot.data!;
-                  final local = stats['local'];
-                  final global = stats['global'];
-                  final parajes = stats['distinctParajes'];
-                  final total = stats['totalParajes'];
-
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      _buildStatCard(context, 'Mediciones', '$local'),
-                      _buildStatCard(context, 'Contribuciones', '$global'),
-                      _buildStatCard(context, 'Parajes', '$parajes/$total'),
-                    ],
-                  );
-                },
-              ),
-            ),
+%                 const SizedBox(height: 20),
+%                 Container(
+%                   decoration: BoxDecoration(
+%                     color:
+%                         Theme.of(context).brightness == Brightness.dark
+%                             ? AppColors.dark3
+%                             : Colors.transparent,
+%                     borderRadius: BorderRadius.circular(12.0),
+%                   ),
+%                   child: const ContactUsListTile(
+%                     title: 'Mandar fotografía',
+%                     title2:
+%                         '5. Toma una foto del pluviómetro y mándala por WhatsApp',
+%                     message:
+%                         'https://api.whatsapp.com/send?phone=5630908507&text=%C2%A1Mira!%20en%20el%20paraje%20%22%20%22%20llovi%C3%B3%20%22%20%22mm,%20adjunto%20fotograf%C3%ADa%20del%20d%C3%ADa%20de%20hoy',
+%                   ),
+%                 ),
+%                 SizedBox(height: 20),
+%                 Container(
+%                   decoration: BoxDecoration(
+%                     color:
+%                         Theme.of(context).brightness == Brightness.dark
+%                             ? AppColors.dark3
+%                             : Colors.transparent,
+%                     borderRadius: BorderRadius.circular(12.0),
+%                   ),
+%                   child: SwitchListTile(
+%                     title: const Text(
+%                       'Reinicio de mediciones',
+%                       style: TextStyle(fontSize: 18, fontFamily: 'FredokaOne'),
+%                     ),
+%                     value: pluviometer,
+%                     secondary: CircleAvatar(
+%                       backgroundColor: Colors.teal[300],
+%                       child: Icon(Icons.output, color: Colors.teal[900]),
+%                     ),
+%                     subtitle: const Text(
+%                       '6. Vaciar pluviómetro (sólo personal capacitado)',
+%                     ),
+%                     onChanged: (bool value) {
+%                       setState(() => pluviometer = value);
+%                     },
+%                   ),
+%                 ),
+%                 const SizedBox(height: 20),
+%               ],
+%             ),
+%           ),
+%         ),
+%       ),
+%     );
+%   }
+% }
+% \end{minted}
+
+
+
+% \section{Pantalla de Bitácora}
+% \label{anexo:alg14}
+% \begin{minted}{dart}
+% import 'package:flutter/material.dart';
+% import 'package:provider/provider.dart';
+% import 'package:tlaloc/src/models/app_state.dart';
+% import 'package:tlaloc/src/models/constants.dart';
+% import 'package:tlaloc/src/models/excel.dart';
+% import 'package:tlaloc/src/ui/widgets/appbar/infobutton2.dart';
+% import 'package:tlaloc/src/ui/widgets/data_screen_view.dart';
+% import 'package:tlaloc/src/ui/widgets/data_widget.dart';
+% import 'package:tlaloc/src/ui/widgets/info/info_page.dart';
+% import 'package:tlaloc/src/ui/widgets/real_data_widget.dart';
+
+% class DataScreen extends StatefulWidget {
+%   const DataScreen({super.key});
+
+%   @override
+%   State<DataScreen> createState() => _DataScreenState();
+% }
+
+% class _DataScreenState extends State<DataScreen> with TickerProviderStateMixin {
+%   late TabController _tabController;
+%   final List<ScrollController> _scrollControllers = [
+%     ScrollController(),
+%     ScrollController(),
+%   ];
+%   bool isFabVisible = true;
+
+%   @override
+%   void initState() {
+%     super.initState();
+%     _tabController = TabController(length: 2, vsync: this);
+
+%     // Escuchar cambios de pestaña
+%     _tabController.addListener(_handleTabChange);
+%   }
+
+%   void _handleTabChange() {
+%     // Hacer scroll al inicio cuando cambia la pestaña
+%     _scrollToTop(_tabController.index);
+%   }
+
+%   void _scrollToTop(int index) {
+%     final controller = _scrollControllers[index];
+%     if (controller.hasClients) {
+%       controller.animateTo(
+%         0,
+%         duration: const Duration(milliseconds: 300),
+%         curve: Curves.easeOut,
+%       );
+%     }
+%   }
+
+%   @override
+%   void dispose() {
+%     _tabController.removeListener(_handleTabChange);
+%     _tabController.dispose();
+%     for (var controller in _scrollControllers) {
+%       controller.dispose();
+%     }
+%     super.dispose();
+%   }
+
+%   @override
+%   Widget build(BuildContext context) {
+%     final appState = context.watch<AppState>();
+%     bool isWideLayout = MediaQuery.of(context).size.width > 800;
+%     return SafeArea(
+%       child: NestedScrollView(
+%         headerSliverBuilder: (context, value) {
+%           return [
+%             SliverAppBar(
+%               title: Row(
+%                 children: [
+%                   Image.asset('assets/images/tlaloc_logo.png', height: 32),
+%                   const SizedBox(width: 8),
+%                   const Text(
+%                     'Bitácora',
+%                     textAlign: TextAlign.start,
+%                     style: TextStyle(
+%                       // color: AppColors.dark1,
+%                       fontFamily: 'FredokaOne',
+%                       fontSize: 24,
+%                       letterSpacing: 2,
+%                     ),
+%                   ),
+%                 ],
+%               ),
+%               floating: true,
+%               pinned: true,
+%               snap: false,
+%               expandedHeight: 150.0,
+%               actions: <Widget>[
+%                 IconButton(
+%                   icon: const Icon(Icons.file_download),
+%                   onPressed: () async {
+%                     try {
+%                       await appState.exportMeasurements(context);
+%                       ScaffoldMessenger.of(context).showSnackBar(
+%                         SnackBar(
+%                           content: Text(
+%                             'Exportación completada',
+%                             style: TextStyle(color: Colors.green),
+%                           ),
+%                         ),
+%                       );
+%                     } catch (e) {
+%                       ScaffoldMessenger.of(context).showSnackBar(
+%                         SnackBar(content: Text('Error al exportar: $e')),
+%                       );
+%                     }
+%                   },
+%                 ),
+%                 InfoButton2(),
+%                 FluidDialogWidget(),
+%               ],
+%               bottom: TabBar(
+%                 controller: _tabController,
+%                 onTap: (index) => _scrollToTop(index),
+%                 labelColor: AppColors.blue1,
+%                 unselectedLabelColor: Colors.grey,
+%                 indicatorColor: AppColors.blue1,
+%                 labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+%                 unselectedLabelStyle: const TextStyle(
+%                   fontWeight: FontWeight.bold,
+%                 ),
+%                 tabs: const <Widget>[
+%                   Tab(text: 'Acumulados', icon: Icon(Icons.cloud_outlined)),
+%                   Tab(text: 'Reales', icon: Icon(Icons.cloud_done_outlined)),
+%                 ],
+%               ),
+%             ),
+%           ];
+%         },
+%         body: TabBarView(
+%           controller: _tabController, // Asigna el mismo controlador
+%           children: <Widget>[
+%             // Pasa el ScrollController a cada widget hijo
+%             isWideLayout
+%                 ? MasterDetailScreen()
+%                 : MyDataWidget(scrollController: _scrollControllers[0]),
+%             isWideLayout
+%                 ? MasterDetailRealScreen()
+%                 : MyRealDataWidget(scrollController: _scrollControllers[0]),
+%           ],
+%         ),
+%       ),
+%     );
+%   }
+% }
+% \end{minted}
+
+
+
+
+% \section{Pantalla de estadísticas}
+% \label{anexo:alg15}
+% \begin{minted}{dart}
+% import 'dart:typed_data';
+% import 'dart:ui';
+
+% import 'package:auto_size_text/auto_size_text.dart';
+% import 'package:cloud_firestore/cloud_firestore.dart';
+% import 'package:flutter/material.dart';
+% import 'package:flutter/rendering.dart';
+% import 'package:intl/intl.dart';
+% import 'package:provider/provider.dart';
+% import 'package:tlaloc/src/models/app_state.dart';
+% import 'package:tlaloc/src/models/constants.dart';
+% import 'package:tlaloc/src/models/datepicker.dart';
+% import 'package:tlaloc/src/ui/widgets/backgrounds/empty_state.dart';
+% import 'package:tlaloc/src/ui/widgets/appbar/infobutton2.dart';
+% import 'package:tlaloc/src/ui/widgets/info/info_page.dart';
+% import 'package:fl_chart/fl_chart.dart';
+% import 'package:pdf/pdf.dart';
+% import 'package:pdf/widgets.dart' as pw;
+% import 'package:printing/printing.dart';
+% import 'package:file_saver/file_saver.dart';
+% import 'package:flutter/foundation.dart' show kIsWeb;
+% import 'package:path_provider/path_provider.dart';
+% import 'dart:io';
+
+% import 'package:universal_html/html.dart' as html;
+
+% class BarGraph extends StatefulWidget {
+%   const BarGraph({super.key});
+
+%   @override
+%   State<BarGraph> createState() => _BarGraphState();
+% }
+
+% enum DateTimeMode { custom, week, month, year, always }
+
+% enum DataMode { accumulated, real }
+
+% class _BarGraphState extends State<BarGraph> {
+%   DateTime initialDate = dateLongAgo;
+%   DateTime finalDate = dateInALongTime;
+%   DateTimeMode mode = DateTimeMode.always;
+%   String? _currentParaje;
+%   DataMode dataMode = DataMode.accumulated;
+%   final GlobalKey chartKey = GlobalKey();
+
+%   @override
+%   Widget build(BuildContext context) {
+%     return Scaffold(
+%       appBar: AppBar(
+%         title: Row(
+%           children: [
+%             Image.asset('assets/images/tlaloc_logo.png', height: 32),
+%             const SizedBox(width: 8),
+%             AutoSizeText(
+%               dataMode == DataMode.real
+%                   ? 'Volumen'
+%                   : 'Acumulados',
+%               style: const TextStyle(
+%                 fontFamily: 'FredokaOne',
+%                 fontSize: 18,
+%                 letterSpacing: 2,
+%               ),
+%             ),
+%           ],
+%         ),
+%         actions: <Widget>[
+%           IconButton(
+%             icon: const Icon(Icons.picture_as_pdf),
+%             onPressed: () => _exportToPdf(context),
+%             tooltip: 'Exportar a PDF',
+%           ),
+%           InfoButton2(),
+%           FluidDialogWidget(),
+%         ],
+%       ),
+%       body: SafeArea(
+%         child: Column(
+%           children: [
+%             const SizedBox(height: 20),
+%             SwitchListTile(
+%               title: Text(
+%                 dataMode == DataMode.real
+%                     ? 'Mostrar datos reales'
+%                     : 'Mostrar acumulados',
+%                 style: const TextStyle(fontWeight: FontWeight.bold),
+%               ),
+%               value: dataMode == DataMode.real,
+%               onChanged:
+%                   (val) => setState(
+%                     () => dataMode = val ? DataMode.real : DataMode.accumulated,
+%                   ),
+%             ),
+%             const SizedBox(height: 10),
+%             _buildDateControls(),
+%             const SizedBox(height: 20),
+%             _buildDatePickers(),
+%             const SizedBox(height: 20),
+%             Expanded(
+%               child: _buildChartSection(isReal: dataMode == DataMode.real),
+%             ),
+%           ],
+%         ),
+%       ),
+%     );
+%   }
+
+%   Widget _buildDateControls() {
+%     return Padding(
+%       padding: const EdgeInsets.symmetric(horizontal: 12),
+%       child: Wrap(
+%         spacing: 4,
+%         children: [
+%           _buildChoiceChip('Esta semana', DateTimeMode.week),
+%           _buildChoiceChip('Este mes', DateTimeMode.month),
+%           _buildChoiceChip('Este año', DateTimeMode.year),
+%           _buildChoiceChip('Siempre', DateTimeMode.always),
+%         ],
+%       ),
+%     );
+%   }
+
+%   Widget _buildDatePickers() {
+%     return Padding(
+%       padding: const EdgeInsets.symmetric(horizontal: 12),
+%       child: Row(
+%         children: [
+%           const Text('Inicio: '),
+%           DatePickerButton(
+%             dateTime: initialDate,
+%             onDateChanged: (date) => _updateDates(date, isStart: true),
+%           ),
+%           const Expanded(child: SizedBox()),
+%           const Text('Fin: '),
+%           DatePickerButton(
+%             dateTime: finalDate,
+%             onDateChanged: (date) => _updateDates(date, isStart: false),
+%           ),
+%         ],
+%       ),
+%     );
+%   }
+
+%   Widget _buildChartSection({bool isReal = false}) {
+%     return Consumer<AppState>(
+%       builder: (context, state, _) {
+%         _handleParajeChange(state);
+%         return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+%           key: Key('${state.rol}-${state.paraje}'),
+%           stream:
+%               isReal
+%                   ? state.getRealMeasurementsStream()
+%                   : state.getMeasurementsStream(),
+%           builder: (context, snapshot) {
+%             if (snapshot.connectionState == ConnectionState.waiting) {
+%               return _buildLoadingIndicator();
+%             }
+%             if (snapshot.hasError) {
+%               return EmptyState('Error: ${snapshot.error}');
+%             }
+%             return _handleSnapshot(snapshot, state, isReal: isReal);
+%           },
+%         );
+%       },
+%     );
+%   }
+
+%   void _handleParajeChange(AppState state) {
+%     if (_currentParaje != state.paraje) {
+%       WidgetsBinding.instance.addPostFrameCallback((_) {
+%         setState(() => _currentParaje = state.paraje);
+%       });
+%     }
+%   }
+
+%   Widget _handleSnapshot(
+%     AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot,
+%     AppState state, {
+%     bool isReal = false,
+%   }) {
+%     if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+%       return EmptyState('No hay datos en ${state.paraje}');
+%     }
+
+%     final measurements = state.getMeasurementsFromDocs(snapshot.data!.docs);
+%     final filteredMeasurements = _filterMeasurements(
+%       isReal ? _filterOnlyReal(measurements) : measurements,
+%     );
+
+%     return filteredMeasurements.isEmpty
+%         ? const EmptyState('No hay datos en el rango seleccionado')
+%         : _buildChart(filteredMeasurements);
+%   }
+
+%   List<Measurement> _filterOnlyReal(List<Measurement> realValue) {
+%     return realValue
+%         .where(
+%           (m) =>
+%               m.dateTime != null &&
+%               m.dateTime!.isAfter(initialDate) &&
+%               m.dateTime!.isBefore(finalDate),
+%         )
+%         .toList()
+%       ..sort((a, b) => a.dateTime!.compareTo(b.dateTime!));
+%   }
+
+%   List<Measurement> _filterMeasurements(List<Measurement> measurements) {
+%     return measurements
+%         .where(
+%           (m) =>
+%               m.dateTime != null &&
+%               m.dateTime!.isAfter(initialDate) &&
+%               m.dateTime!.isBefore(finalDate),
+%         )
+%         .toList()
+%       ..sort((a, b) => a.dateTime!.compareTo(b.dateTime!));
+%   }
+
+%   Widget _buildLoadingIndicator() {
+%     return const Center(
+%       child: Column(
+%         mainAxisAlignment: MainAxisAlignment.center,
+%         children: [
+%           CircularProgressIndicator(),
+%           SizedBox(height: 20),
+%           Text(
+%             'Cargando datos...',
+%             style: TextStyle(color: AppColors.blue1, fontSize: 16),
+%           ),
+%         ],
+%       ),
+%     );
+%   }
+
+%   Widget _buildChart(List<Measurement> measurements) {
+%     final theme = Theme.of(context);
+%     final primaryColor = theme.colorScheme.primary;
+%     final surfaceVariant = theme.colorScheme.surfaceContainerHighest;
+%     final onSurface = theme.colorScheme.onSurface;
+
+%     // Definir ancho total dinámico
+%     final chartWidth =
+%         (measurements.length * 40).toDouble().clamp(300, 2000).toDouble();
+
+%     return Padding(
+%       padding: const EdgeInsets.all(16.0),
+%       child: SizedBox(
+%         height: 400,
+%         child: SingleChildScrollView(
+%           scrollDirection: Axis.horizontal,
+%           child: SizedBox(
+%             width: chartWidth,
+%             child: RepaintBoundary(
+%               key: chartKey,
+%               child: BarChart(
+%                 BarChartData(
+%                   groupsSpace: 16,
+%                   alignment: BarChartAlignment.spaceBetween,
+%                   barTouchData: BarTouchData(
+%                     enabled: true,
+%                     touchTooltipData: BarTouchTooltipData(
+%                       // tooltipBgColor: primaryColor.withOpacity(0.9),
+%                       getTooltipItem: (group, groupIndex, rod, rodIndex) {
+%                         final date = DateFormat(
+%                           'dd/MM/yy',
+%                         ).format(measurements[groupIndex].dateTime!);
+%                         final value = rod.toY.toStringAsFixed(1);
+%                         return BarTooltipItem(
+%                           '$date\n$value mm',
+%                           TextStyle(
+%                             color: theme.colorScheme.onPrimary,
+%                             fontWeight: FontWeight.bold,
+%                             fontSize: 12,
+%                           ),
+%                         );
+%                       },
+%                     ),
+%                   ),
+%                   titlesData: FlTitlesData(
+%                     leftTitles: AxisTitles(
+%                       axisNameWidget: Text(
+%                         'Precipitación (mm)',
+%                         style: TextStyle(
+%                           color: onSurface,
+%                           fontWeight: FontWeight.bold,
+%                           fontSize: 14,
+%                         ),
+%                       ),
+%                       sideTitles: SideTitles(
+%                         showTitles: true,
+%                         reservedSize: 22,
+%                         interval: _calculateYInterval(measurements),
+%                         getTitlesWidget:
+%                             (value, meta) => Text(
+%                               '${value.toInt()}',
+%                               style: TextStyle(color: onSurface, fontSize: 12),
+%                             ),
+%                       ),
+%                     ),
+%                     bottomTitles: AxisTitles(
+%                       axisNameWidget: Padding(
+%                         padding: const EdgeInsets.only(top: 12),
+%                         child: Text(
+%                           'Fecha',
+%                           style: TextStyle(
+%                             color: onSurface,
+%                             fontWeight: FontWeight.bold,
+%                             fontSize: 14,
+%                           ),
+%                         ),
+%                       ),
+%                       sideTitles: SideTitles(
+%                         showTitles: true,
+%                         getTitlesWidget: (value, meta) {
+%                           final index = value.toInt();
+%                           const maxLabels = 10;
+%                           final total = measurements.length;
+%                           if (total <= maxLabels ||
+%                               index % (total ~/ maxLabels) == 0) {
+%                             if (index >= 0 && index < total) {
+%                               return _buildDateLabel(
+%                                 measurements[index].dateTime!,
+%                               );
+%                             }
+%                           }
+%                           return const SizedBox.shrink();
+%                         },
+%                       ),
+%                     ),
+%                     topTitles: const AxisTitles(
+%                       sideTitles: SideTitles(showTitles: false),
+%                     ),
+%                     rightTitles: const AxisTitles(
+%                       sideTitles: SideTitles(showTitles: false),
+%                     ),
+%                   ),
+%                   borderData: FlBorderData(
+%                     show: true,
+%                     border: const Border(
+%                       left: BorderSide(width: 1, color: Colors.grey),
+%                       bottom: BorderSide(width: 1, color: Colors.grey),
+%                     ),
+%                   ),
+%                   gridData: FlGridData(
+%                     show: true,
+%                     horizontalInterval: _calculateYInterval(measurements),
+%                     getDrawingHorizontalLine:
+%                         (value) =>
+%                             FlLine(color: surfaceVariant, strokeWidth: 1),
+%                   ),
+%                   barGroups:
+%                       measurements.asMap().entries.map((entry) {
+%                         final index = entry.key;
+%                         final m = entry.value;
+%                         return BarChartGroupData(
+%                           x: index,
+%                           barRods: [
+%                             BarChartRodData(
+%                               toY: (m.precipitation ?? 0).toDouble(),
+%                               color: primaryColor,
+%                               width: 5,
+%                               borderRadius: BorderRadius.circular(6),
+%                               gradient: LinearGradient(
+%                                 colors: [
+%                                   primaryColor.withOpacity(0.9),
+%                                   primaryColor.withOpacity(0.5),
+%                                 ],
+%                                 begin: Alignment.topCenter,
+%                                 end: Alignment.bottomCenter,
+%                               ),
+%                               backDrawRodData: BackgroundBarChartRodData(
+%                                 show: true,
+%                                 toY: (m.precipitation ?? 0) * 1.1,
+%                                 color: surfaceVariant.withOpacity(0.3),
+%                               ),
+%                             ),
+%                           ],
+%                         );
+%                       }).toList(),
+%                   minY: 0,
+%                   maxY: _calculateMaxY(measurements),
+%                 ),
+%                 duration: const Duration(milliseconds: 800),
+%                 curve: Curves.easeOutQuart,
+%               ),
+%             ),
+%           ),
+%         ),
+%       ),
+%     );
+%   }
+
+%   double _calculateMaxY(List<Measurement> measurements) {
+%     if (measurements.isEmpty) return 10;
+%     final max = measurements
+%         .map((m) => m.precipitation ?? 0)
+%         .reduce((a, b) => a > b ? a : b);
+%     return (max * 1.2).toDouble();
+%   }
+
+%   double _calculateYInterval(List<Measurement> measurements) {
+%     if (measurements.isEmpty) return 10; // Manejo de lista vacía
+
+%     final maxPrecip = measurements
+%         .map((m) => m.precipitation?.toDouble() ?? 0.0)
+%         .reduce((a, b) => a > b ? a : b); // Versión más eficiente
+
+%     if (maxPrecip > 50) return 20;
+%     if (maxPrecip > 20) return 10;
+%     return 5;
+%   }
+
+%   Widget _buildDateLabel(DateTime date) {
+%     return Transform.rotate(
+%       angle: -0.4,
+%       child: Text(
+%         DateFormat('dd/MM').format(date),
+%         style: const TextStyle(fontSize: 10),
+%       ),
+%     );
+%   }
+
+%   void _updateDates(DateTime date, {required bool isStart}) {
+%     setState(() {
+%       mode = DateTimeMode.custom;
+%       if (isStart) {
+%         initialDate = date;
+%       } else {
+%         finalDate = DateTime(
+%           date.year,
+%           date.month,
+%           date.day,
+%         ).add(const Duration(days: 1)).subtract(const Duration(seconds: 1));
+%       }
+%     });
+%   }
+
+%   Widget _buildChoiceChip(String label, DateTimeMode value) {
+%     return ChoiceChip(
+%       selectedColor: AppColors.blue1,
+%       label: Text(label),
+%       selected: mode == value,
+%       onSelected: (val) => val ? _handleTimeModeChange(value) : null,
+%     );
+%   }
+
+%   void _handleTimeModeChange(DateTimeMode value) {
+%     final now = DateTime.now();
+%     setState(() {
+%       mode = value;
+%       switch (value) {
+%         case DateTimeMode.week:
+%           final monday = now.subtract(Duration(days: now.weekday - 1));
+%           initialDate = monday;
+%           finalDate = monday.add(
+%             const Duration(days: 6, hours: 23, minutes: 59, seconds: 59),
+%           );
+%           break;
+%         case DateTimeMode.month:
+%           initialDate = DateTime(now.year, now.month, 1);
+%           finalDate = DateTime(now.year, now.month + 1, 0, 23, 59, 59);
+%           break;
+%         case DateTimeMode.year:
+%           initialDate = DateTime(now.year, 1, 1);
+%           finalDate = DateTime(now.year, 12, 31, 23, 59, 59);
+%           break;
+%         case DateTimeMode.always:
+%           initialDate = dateLongAgo;
+%           finalDate = dateInALongTime;
+%           break;
+%         case DateTimeMode.custom:
+%           break;
+%       }
+%     });
+%   }
+
+%   Future<void> _exportToPdf(BuildContext context) async {
+%     final appState = Provider.of<AppState>(context, listen: false);
+%     final measurements = await _getCurrentMeasurements(appState);
+
+%     if (measurements.isEmpty) {
+%       ScaffoldMessenger.of(context).showSnackBar(
+%         const SnackBar(content: Text('No hay datos para exportar')),
+%       );
+%       return;
+%     }
+
+%     final pdf = pw.Document();
+%     final theme = Theme.of(context);
+%     final title =
+%         dataMode == DataMode.real
+%             ? 'Datos Reales de Precipitación'
+%             : 'Volúmenes Acumulados de Precipitación';
+%     final dateRange =
+%         '${DateFormat('dd/MM/yyyy').format(initialDate)} - ${DateFormat('dd/MM/yyyy').format(finalDate)}';
+%     final paraje = appState.paraje;
+
+%     final chartImage = await _generateChartImage(measurements, theme);
+
+%     pdf.addPage(
+%       pw.Page(
+%         pageFormat: PdfPageFormat.a4,
+%         build: (pw.Context context) {
+%           return pw.Column(
+%             crossAxisAlignment: pw.CrossAxisAlignment.start,
+%             children: [
+%               pw.Header(
+%                 level: 0,
+%                 child: pw.Text(title, style: pw.TextStyle(fontSize: 20)),
+%               ),
+%               pw.Text('Paraje: $paraje'),
+%               pw.Text('Rango de fechas: $dateRange'),
+%               pw.SizedBox(height: 20),
+%               pw.Center(
+%                 child: pw.Container(
+%                   height: 300,
+%                   child: pw.FittedBox(child: pw.Image(chartImage)),
+%                 ),
+%               ),
+%               pw.SizedBox(height: 20),
+%               _buildDataTable(measurements),
+%             ],
+%           );
+%         },
+%       ),
+%     );
+
+%     // Guardar o mostrar el PDF según la plataforma
+%     final bytes = await pdf.save();
+%     await _saveOrPrintPdf(context, bytes, title);
+%   }
+
+%   Future<void> _saveOrPrintPdf(
+%     BuildContext context,
+%     Uint8List bytes,
+%     String title,
+%   ) async {
+%     if (kIsWeb) {
+%       final blob = html.Blob([bytes], 'application/pdf');
+%       final url = html.Url.createObjectUrlFromBlob(blob);
+%       final anchor =
+%           html.AnchorElement(href: url)
+%             ..setAttribute('download', '$title.pdf')
+%             ..click();
+%       html.Url.revokeObjectUrl(url);
+%     } else {
+%       // Para móvil: mostrar diálogo de impresión/guardado
+%       try {
+%         await Printing.layoutPdf(
+%           onLayout: (PdfPageFormat format) async => bytes,
+%         );
+%       } catch (e) {
+%         // Si falla la impresión, guardar el archivo
+%         final directory = await getApplicationDocumentsDirectory();
+%         final file = File('${directory.path}/$title.pdf');
+%         await file.writeAsBytes(bytes);
+
+%         // Opcional: usar file_saver para mejor experiencia de usuario
+%         try {
+%           await FileSaver.instance.saveFile(
+%             name: title,
+%             bytes: bytes,
+%             mimeType: MimeType.pdf,
+%           );
+%         } catch (e) {
+%           ScaffoldMessenger.of(context).showSnackBar(
+%             SnackBar(content: Text('PDF guardado en: ${file.path}')),
+%           );
+%         }
+%       }
+%     }
+%   }
+
+%   Future<List<Measurement>> _getCurrentMeasurements(AppState state) async {
+%     final snapshot =
+%         await (dataMode == DataMode.real
+%             ? state.getRealMeasurementsStream().first
+%             : state.getMeasurementsStream().first);
+
+%     final measurements = state.getMeasurementsFromDocs(snapshot.docs);
+%     return _filterMeasurements(measurements);
+%   }
+
+%   Future<pw.MemoryImage> _generateChartImage(
+%     List<Measurement> measurements,
+%     ThemeData theme,
+%   ) async {
+%     final boundary =
+%         chartKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+%     final image = await boundary.toImage(pixelRatio: 3.0);
+%     final byteData = await image.toByteData(format: ImageByteFormat.png);
+%     final bytes = byteData!.buffer.asUint8List();
+%     return pw.MemoryImage(bytes);
+%   }
+
+%   pw.Widget _buildDataTable(List<Measurement> measurements) {
+%     return pw.Table(
+%       border: pw.TableBorder.all(),
+%       children: [
+%         pw.TableRow(
+%           children: [
+%             pw.Padding(
+%               padding: const pw.EdgeInsets.all(4),
+%               child: pw.Text(
+%                 'Fecha',
+%                 style: pw.TextStyle(fontWeight: pw.FontWeight.bold),
+%                 textAlign: pw.TextAlign.center,
+%               ),
+%             ),
+%             pw.Padding(
+%               padding: const pw.EdgeInsets.all(4),
+%               child: pw.Text(
+%                 'Precipitación (mm)',
+%                 style: pw.TextStyle(fontWeight: pw.FontWeight.bold),
+%                 textAlign: pw.TextAlign.center,
+%               ),
+%             ),
+%           ],
+%         ),
+%         ...measurements.map(
+%           (m) => pw.TableRow(
+%             children: [
+%               pw.Padding(
+%                 padding: const pw.EdgeInsets.all(4),
+%                 child: pw.Text(
+%                   DateFormat('dd/MM/yyyy').format(m.dateTime!),
+%                   textAlign: pw.TextAlign.center,
+%                 ),
+%               ),
+%               pw.Padding(
+%                 padding: const pw.EdgeInsets.all(4),
+%                 child: pw.Text(
+%                   (m.precipitation ?? 0).toStringAsFixed(1),
+%                   textAlign: pw.TextAlign.center,
+%                 ),
+%               ),
+%             ],
+%           ),
+%         ),
+%       ],
+%     );
+%   }
+% }
+
+% \end{minted}
+
+
+
+
+
+% \section{Pantalla del perfil}
+% \label{anexo:alg16}
+% \begin{minted}{dart}
+% import 'package:flutter/material.dart';
+% import 'package:firebase_auth/firebase_auth.dart';
+% import 'package:provider/provider.dart';
+% import 'package:share_plus/share_plus.dart';
+% import 'package:ionicons/ionicons.dart';
+% import 'package:tlaloc/src/models/app_state.dart'; 
+% import 'package:url_launcher/url_launcher.dart';
+% import 'package:tlaloc/src/models/google_sign_in.dart';
+% import 'package:tlaloc/src/resources/onboarding/onbording.dart';
+% import 'package:tlaloc/src/ui/screens/settings/credits.dart';
+% import 'package:tlaloc/src/ui/screens/settings/faq.dart';
+
+% class ConfigureScreen extends StatefulWidget {
+%   const ConfigureScreen({super.key});
+
+%   @override
+%   State<ConfigureScreen> createState() => _ConfigureScreenState();
+% }
+
+% class _ConfigureScreenState extends State<ConfigureScreen> {
+%   @override
+%   Widget build(BuildContext context) {
+%     final appState = Provider.of<AppState>(context);
+
+%     final user = FirebaseAuth.instance.currentUser;
+%     final theme = Theme.of(context);
+%     return Scaffold(
+%       extendBodyBehindAppBar: true,
+%       body: SingleChildScrollView(
+%         child: Column(
+%           children: [
+%             Stack(
+%               alignment: Alignment.bottomCenter,
+%               children: [
+%                 Image.asset('assets/images/portrate.jpg', fit: BoxFit.fitWidth),
+%                 Container(
+%                   width: 120,
+%                   height: 120,
+%                   decoration: BoxDecoration(
+%                     shape: BoxShape.circle,
+%                     border: Border.all(
+%                       color: theme.colorScheme.surfaceContainerHighest,
+%                       width: 4,
+%                     ),
+%                   ),
+%                   child: CircleAvatar(
+%                     radius: 56,
+%                     backgroundImage:
+%                         user?.photoURL != null
+%                             ? NetworkImage(user!.photoURL!)
+%                             : null,
+%                     child:
+%                         user?.photoURL == null
+%                             ? Icon(
+%                               Icons.account_circle,
+%                               size: 60,
+%                               color: theme.colorScheme.onSurface,
+%                             )
+%                             : null,
+%                   ),
+%                 ),
+%               ],
+%             ),
+
+%             const SizedBox(height: 70),
+
+%             // Información del usuario
+%             Text(
+%               user?.displayName ?? 'Usuario Tlaloc',
+%               style: TextStyle(
+%                 fontSize: 24,
+%                 fontWeight: FontWeight.bold,
+%                 color: theme.colorScheme.onSurface,
+%                 fontFamily: 'FredokaOne',
+%               ),
+%             ),
+%             const SizedBox(height: 8),
+%             Text(
+%               user?.email ?? 'correo@tlaloc.app',
+%               style: TextStyle(
+%                 color: theme.colorScheme.onSurfaceVariant,
+%                 fontSize: 16,
+%               ),
+%             ),
+
+%             // Estadísticas clave
+%             Padding(
+%               padding: const EdgeInsets.all(20),
+%               child: FutureBuilder<Map<String, dynamic>>(
+%                 future: appState.getUserStats(),
+%                 builder: (context, snapshot) {
+%                   if (!snapshot.hasData) {
+%                     return const CircularProgressIndicator();
+%                   }
+
+%                   final stats = snapshot.data!;
+%                   final local = stats['local'];
+%                   final global = stats['global'];
+%                   final parajes = stats['distinctParajes'];
+%                   final total = stats['totalParajes'];
+
+%                   return Row(
+%                     mainAxisAlignment: MainAxisAlignment.spaceAround,
+%                     children: [
+%                       _buildStatCard(context, 'Mediciones', '$local'),
+%                       _buildStatCard(context, 'Contribuciones', '$global'),
+%                       _buildStatCard(context, 'Parajes', '$parajes/$total'),
+%                     ],
+%                   );
+%                 },
+%               ),
+%             ),
  
-            _buildProfileSection(
-              context,
-              title: 'Configuración',
-              children: [ 
-                _buildConfigItem(
-                  context,
-                  icon: Icons.share,
-                  title: 'Compartir aplicación',
-                  action: () {
-                    Share.share(
-                      '¡Próximamente podrás obtener varios datos de él!\n\nDescárgala en tlaloc.org',
-                      subject:
-                          '¿Sabías que hay una app donde puedes registrar los datos de la lluvia en el Monte Tláloc?',
-                    );
-                  },
-                ),
-                _buildConfigItem(
-                  context,
-                  icon: Icons.feedback,
-                  title: 'Enviar retroalimentación',
-                  action: () {
-                    launchUrl(
-                      Uri.parse(
-                        'mailto:tlloc-app@googlegroups.com?subject=Retroalimentación sobre Tláloc App',
-                      ),
-                    );
-                  },
-                ),
-                _buildConfigItem(
-                  context,
-                  icon: Icons.description,
-                  title: 'Términos y condiciones',
-                  action: () => Navigator.pushNamed(context, '/privacy'),
-                ),
-                _buildConfigItem(
-                  context,
-                  icon: Icons.security,
-                  title: 'Política de privacidad',
-                  action: () => Navigator.pushNamed(context, '/politics'),
-                ),
-                _buildConfigItem(
-                  context,
-                  icon: Icons.info,
-                  title: 'Acerca de',
-                  action:
-                      () => showAboutDialog(
-                        context: context,
-                        applicationIcon: CircleAvatar(
-                          backgroundImage: const AssetImage(
-                            'assets/images/img-1.png',
-                          ),
-                          backgroundColor: theme.colorScheme.surface,
-                        ),
-                        applicationLegalese: 'Con amor desde COLPOS',
-                        applicationVersion: 'versión inicial (beta)',
-                        children: [
-                          _buildDialogItem(
-                            context,
-                            icon: Icons.people,
-                            title: 'Ver créditos',
-                            action:
-                                () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const CreditsPage(),
-                                  ),
-                                ),
-                          ),
-                          _buildDialogItem(
-                            context,
-                            icon: Icons.question_mark_rounded,
-                            title: 'Preguntas Frecuentes',
-                            action:
-                                () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const FaqPage(),
-                                  ),
-                                ),
-                          ),
-                          _buildDialogItem(
-                            context,
-                            icon: Ionicons.logo_facebook,
-                            color: Colors.blue,
-                            title: 'Síguenos en Facebook',
-                            action:
-                                () => launchUrl(
-                                  Uri.parse(
-                                    'https://www.facebook.com/Ciencia-Ciudadana-para-el-Monitoreo-de-Lluvia-100358326014423',
-                                  ),
-                                  mode: LaunchMode.externalApplication,
-                                ),
-                          ),
-                          _buildDialogItem(
-                            context,
-                            icon: Ionicons.logo_youtube,
-                            color: Colors.red,
-                            title: 'Síguenos en YouTube',
-                            action:
-                                () => launchUrl(
-                                  Uri.parse(
-                                    'https://www.youtube.com/channel/UC2wNEwvGEvnQVAX1Uv3qztA',
-                                  ),
-                                  mode: LaunchMode.externalApplication,
-                                ),
-                          ),
-                          _buildDialogItem(
-                            context,
-                            icon: Icons.email,
-                            title: 'Mándanos un correo',
-                            action:
-                                () => launchUrl(
-                                  Uri.parse(
-                                    'mailto:tlloc-app@googlegroups.com',
-                                  ),
-                                ),
-                          ),
-                          _buildDialogItem(
-                            context,
-                            icon: Ionicons.logo_github,
-                            title: 'Colabora en GitHub',
-                            action:
-                                () => launchUrl(
-                                  Uri.parse(
-                                    'https://github.com/Jack55913/TlalocApp',
-                                  ),
-                                  mode: LaunchMode.externalApplication,
-                                ),
-                          ),
-                        ],
-                      ),
-                ),
-                ListTile(
-                  leading: Icon(Icons.logout, color: theme.colorScheme.error),
-                  title: Text(
-                    'Cerrar sesión',
-                    style: TextStyle(color: theme.colorScheme.onSurface),
-                  ),
-                  onTap: () {
-                    final provider = Provider.of<GoogleSignInProvider>(
-                      context,
-                      listen: false,
-                    );
-                    provider.logout();
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => Onboarding()),
-                    );
-                  },
-                ),
-                const SizedBox(height: 50),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+%             _buildProfileSection(
+%               context,
+%               title: 'Configuración',
+%               children: [ 
+%                 _buildConfigItem(
+%                   context,
+%                   icon: Icons.share,
+%                   title: 'Compartir aplicación',
+%                   action: () {
+%                     Share.share(
+%                       '¡Próximamente podrás obtener varios datos de él!\n\nDescárgala en tlaloc.org',
+%                       subject:
+%                           '¿Sabías que hay una app donde puedes registrar los datos de la lluvia en el Monte Tláloc?',
+%                     );
+%                   },
+%                 ),
+%                 _buildConfigItem(
+%                   context,
+%                   icon: Icons.feedback,
+%                   title: 'Enviar retroalimentación',
+%                   action: () {
+%                     launchUrl(
+%                       Uri.parse(
+%                         'mailto:tlloc-app@googlegroups.com?subject=Retroalimentación sobre Tláloc App',
+%                       ),
+%                     );
+%                   },
+%                 ),
+%                 _buildConfigItem(
+%                   context,
+%                   icon: Icons.description,
+%                   title: 'Términos y condiciones',
+%                   action: () => Navigator.pushNamed(context, '/privacy'),
+%                 ),
+%                 _buildConfigItem(
+%                   context,
+%                   icon: Icons.security,
+%                   title: 'Política de privacidad',
+%                   action: () => Navigator.pushNamed(context, '/politics'),
+%                 ),
+%                 _buildConfigItem(
+%                   context,
+%                   icon: Icons.info,
+%                   title: 'Acerca de',
+%                   action:
+%                       () => showAboutDialog(
+%                         context: context,
+%                         applicationIcon: CircleAvatar(
+%                           backgroundImage: const AssetImage(
+%                             'assets/images/img-1.png',
+%                           ),
+%                           backgroundColor: theme.colorScheme.surface,
+%                         ),
+%                         applicationLegalese: 'Con amor desde COLPOS',
+%                         applicationVersion: 'versión inicial (beta)',
+%                         children: [
+%                           _buildDialogItem(
+%                             context,
+%                             icon: Icons.people,
+%                             title: 'Ver créditos',
+%                             action:
+%                                 () => Navigator.push(
+%                                   context,
+%                                   MaterialPageRoute(
+%                                     builder: (context) => const CreditsPage(),
+%                                   ),
+%                                 ),
+%                           ),
+%                           _buildDialogItem(
+%                             context,
+%                             icon: Icons.question_mark_rounded,
+%                             title: 'Preguntas Frecuentes',
+%                             action:
+%                                 () => Navigator.push(
+%                                   context,
+%                                   MaterialPageRoute(
+%                                     builder: (context) => const FaqPage(),
+%                                   ),
+%                                 ),
+%                           ),
+%                           _buildDialogItem(
+%                             context,
+%                             icon: Ionicons.logo_facebook,
+%                             color: Colors.blue,
+%                             title: 'Síguenos en Facebook',
+%                             action:
+%                                 () => launchUrl(
+%                                   Uri.parse(
+%                                     'https://www.facebook.com/Ciencia-Ciudadana-para-el-Monitoreo-de-Lluvia-100358326014423',
+%                                   ),
+%                                   mode: LaunchMode.externalApplication,
+%                                 ),
+%                           ),
+%                           _buildDialogItem(
+%                             context,
+%                             icon: Ionicons.logo_youtube,
+%                             color: Colors.red,
+%                             title: 'Síguenos en YouTube',
+%                             action:
+%                                 () => launchUrl(
+%                                   Uri.parse(
+%                                     'https://www.youtube.com/channel/UC2wNEwvGEvnQVAX1Uv3qztA',
+%                                   ),
+%                                   mode: LaunchMode.externalApplication,
+%                                 ),
+%                           ),
+%                           _buildDialogItem(
+%                             context,
+%                             icon: Icons.email,
+%                             title: 'Mándanos un correo',
+%                             action:
+%                                 () => launchUrl(
+%                                   Uri.parse(
+%                                     'mailto:tlloc-app@googlegroups.com',
+%                                   ),
+%                                 ),
+%                           ),
+%                           _buildDialogItem(
+%                             context,
+%                             icon: Ionicons.logo_github,
+%                             title: 'Colabora en GitHub',
+%                             action:
+%                                 () => launchUrl(
+%                                   Uri.parse(
+%                                     'https://github.com/Jack55913/TlalocApp',
+%                                   ),
+%                                   mode: LaunchMode.externalApplication,
+%                                 ),
+%                           ),
+%                         ],
+%                       ),
+%                 ),
+%                 ListTile(
+%                   leading: Icon(Icons.logout, color: theme.colorScheme.error),
+%                   title: Text(
+%                     'Cerrar sesión',
+%                     style: TextStyle(color: theme.colorScheme.onSurface),
+%                   ),
+%                   onTap: () {
+%                     final provider = Provider.of<GoogleSignInProvider>(
+%                       context,
+%                       listen: false,
+%                     );
+%                     provider.logout();
+%                     Navigator.pushReplacement(
+%                       context,
+%                       MaterialPageRoute(builder: (context) => Onboarding()),
+%                     );
+%                   },
+%                 ),
+%                 const SizedBox(height: 50),
+%               ],
+%             ),
+%           ],
+%         ),
+%       ),
+%     );
+%   }
 
-  Widget _buildStatCard(BuildContext context, String title, String value) {
-    final theme = Theme.of(context);
-    return Column(
-      children: [
-        Text(
-          value,
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            color: theme.colorScheme.primary,
-          ),
-        ),
-        Text(
-          title,
-          style: TextStyle(color: theme.colorScheme.onSurfaceVariant),
-        ),
-      ],
-    );
-  }
+%   Widget _buildStatCard(BuildContext context, String title, String value) {
+%     final theme = Theme.of(context);
+%     return Column(
+%       children: [
+%         Text(
+%           value,
+%           style: TextStyle(
+%             fontSize: 22,
+%             fontWeight: FontWeight.bold,
+%             color: theme.colorScheme.primary,
+%           ),
+%         ),
+%         Text(
+%           title,
+%           style: TextStyle(color: theme.colorScheme.onSurfaceVariant),
+%         ),
+%       ],
+%     );
+%   }
 
-  Widget _buildProfileSection(
-    BuildContext context, {
-    required String title,
-    required List<Widget> children,
-  }) {
-    final theme = Theme.of(context);
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              color: theme.colorScheme.onSurface,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 10),
-          ...children,
-        ],
-      ),
-    );
-  }
+%   Widget _buildProfileSection(
+%     BuildContext context, {
+%     required String title,
+%     required List<Widget> children,
+%   }) {
+%     final theme = Theme.of(context);
+%     return Padding(
+%       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+%       child: Column(
+%         crossAxisAlignment: CrossAxisAlignment.start,
+%         children: [
+%           Text(
+%             title,
+%             style: TextStyle(
+%               color: theme.colorScheme.onSurface,
+%               fontSize: 18,
+%               fontWeight: FontWeight.bold,
+%             ),
+%           ),
+%           const SizedBox(height: 10),
+%           ...children,
+%         ],
+%       ),
+%     );
+%   }
 
  
 
-  Widget _buildConfigItem(
-    BuildContext context, {
-    required IconData icon,
-    required String title,
-    required Function action,
-  }) {
-    final theme = Theme.of(context);
-    return ListTile(
-      leading: Icon(icon, color: theme.colorScheme.primary),
-      title: Text(title, style: TextStyle(color: theme.colorScheme.onSurface)),
-      trailing: Icon(
-        Icons.chevron_right,
-        color: theme.colorScheme.onSurfaceVariant,
-      ),
-      onTap: () => action(),
-    );
-  }
+%   Widget _buildConfigItem(
+%     BuildContext context, {
+%     required IconData icon,
+%     required String title,
+%     required Function action,
+%   }) {
+%     final theme = Theme.of(context);
+%     return ListTile(
+%       leading: Icon(icon, color: theme.colorScheme.primary),
+%       title: Text(title, style: TextStyle(color: theme.colorScheme.onSurface)),
+%       trailing: Icon(
+%         Icons.chevron_right,
+%         color: theme.colorScheme.onSurfaceVariant,
+%       ),
+%       onTap: () => action(),
+%     );
+%   }
 
-  Widget _buildDialogItem(
-    BuildContext context, {
-    required IconData icon,
-    required String title,
-    required Function action,
-    Color? color,
-  }) {
-    final theme = Theme.of(context);
-    return ListTile(
-      leading: Icon(icon, color: color ?? theme.colorScheme.onSurface),
-      title: Text(title, style: TextStyle(color: theme.colorScheme.onSurface)),
-      onTap: () => action(),
-    );
-  }
-}
+%   Widget _buildDialogItem(
+%     BuildContext context, {
+%     required IconData icon,
+%     required String title,
+%     required Function action,
+%     Color? color,
+%   }) {
+%     final theme = Theme.of(context);
+%     return ListTile(
+%       leading: Icon(icon, color: color ?? theme.colorScheme.onSurface),
+%       title: Text(title, style: TextStyle(color: theme.colorScheme.onSurface)),
+%       onTap: () => action(),
+%     );
+%   }
+% }
 
-\end{minted}
+% \end{minted}
