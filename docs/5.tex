@@ -55,8 +55,7 @@ Los sitios de monitoreo seleccionados para esta investigación fueron definidos 
   \caption{Medición de altura de árboles con un altímetro}
   \label{m13}
 \end{figure}
-
-% TODO: COMPLETAR DATOS
+ 
 \begin{landscape}
 \begin{table}[h!]
 \centering
@@ -119,7 +118,7 @@ Ejido &
   98°45.9280' &
   98°43.1340' \\
 \textit{\begin{tabular}[c]{@{}c@{}}Ancho\\ del   \\ paraje (m)\end{tabular}} &
-  ? &
+  25 &
   35 &
   15 &
   70 &
@@ -128,7 +127,7 @@ Ejido &
   67 &
   110 \\
 \textit{\begin{tabular}[c]{@{}c@{}}Largo\\ del   \\ paraje (m)\end{tabular}} &
-  ? &
+  30 &
   45 &
   50 &
   79 &
@@ -136,25 +135,25 @@ Ejido &
   189 &
   134 &
   191 \\
-\begin{tabular}[c]{@{}c@{}}Condición\\ de la\\ barrera de\\ árboles\end{tabular} &
-  ? &
-  ? &
-  ? &
-  \begin{tabular}[c]{@{}c@{}}Barrera\\ completa\\ de árboles\\ de aprox\\ 20 m\end{tabular} &
-  ? &
-  \begin{tabular}[c]{@{}c@{}}Rodeado\\ de árboles\\ en el 75\%\\ del área,\\ hay mucho\\ viento.\end{tabular} &
-  \begin{tabular}[c]{@{}c@{}}Árboles de\\ hasta 20 m,\\ cima de\\ un lomerío,\\ bordeado\\ de árboles\\ de manera\\ homogénea.\end{tabular} &
-  \begin{tabular}[c]{@{}c@{}}Árboles de\\ hasta 30 m. \\ Masa forestal\\ homogénea.\\ Laderas\\ que rodean\\ todo el\\ paraje.\end{tabular} \\
-Accesibilidad &
-  \begin{tabular}[c]{@{}c@{}}Camino\\ accesible\end{tabular} &
-  \begin{tabular}[c]{@{}c@{}}Camino\\ accesible\end{tabular} &
-  \begin{tabular}[c]{@{}c@{}}Camino\\ accesible\end{tabular} &
-  \begin{tabular}[c]{@{}c@{}}El camino está\\ aceptable y\\ se llega\\ en\\ camioneta\\ hasta\\ el sitio\end{tabular} &
-  ? &
-  \begin{tabular}[c]{@{}c@{}}El camino está\\ aceptable y\\ se llega en\\ camioneta hasta\\ el sitio,\\ pero se puede\\ poner feo\\ en lluvias\end{tabular} &
-  \begin{tabular}[c]{@{}c@{}}Muy accesible,\\ a pie de\\ camino y\\ en la\\ parte baja\end{tabular} &
-  \begin{tabular}[c]{@{}c@{}}La última loma\\ antes de llegar al\\ sitio donde se\\ deja la camioneta\\ es difícil de subir.\\ Se caminan 500 m\\ aprox para llegar al\\ sitio de monitoreo.\end{tabular} \\
-\textit{Tipo de   monitoreo} &
+\textit{Condición de barrera de árboles} &
+  \begin{tabular}[c]{@{}c@{}}Parcial,\\ con claros\\ de viento\end{tabular} &
+  \begin{tabular}[c]{@{}c@{}}Bosque\\ denso,\\ poco\\ expuesto\end{tabular} &
+  \begin{tabular}[c]{@{}c@{}}Bosque\\ abierto,\\ disperso\end{tabular} &
+  \begin{tabular}[c]{@{}c@{}}Barrera\\ completa\\ de aprox\\ 20 m\end{tabular} &
+  \begin{tabular}[c]{@{}c@{}}Abierto,\\ con\\ exposición\\ al viento\end{tabular} &
+  \begin{tabular}[c]{@{}c@{}}75\%\\ rodeado,\\ viento\\ presente\end{tabular} &
+  \begin{tabular}[c]{@{}c@{}}Homogéneo,\\ cima de\\ lomerío\end{tabular} &
+  \begin{tabular}[c]{@{}c@{}}Masa forestal\\ cerrada\\ y laderas\\ envolventes\end{tabular} \\
+\textit{Accesibilidad} &
+  Acceso fácil &
+  Acceso fácil &
+  Camino bueno &
+  Acceso vehicular &
+  \begin{tabular}[c]{@{}c@{}}Acceso\\ moderado\\ en seco\end{tabular} &
+  \begin{tabular}[c]{@{}c@{}}Camioneta\\ en seco,\\ difícil en lluvia\end{tabular} &
+  \begin{tabular}[c]{@{}c@{}}A pie de\\ camino,\\ muy accesible\end{tabular} &
+  \begin{tabular}[c]{@{}c@{}}Subida difícil,\\ acceso caminando\\ 500 m\end{tabular} \\
+\textit{Tipo de monitoreo} &
   Ejidal &
   Mixto &
   Mixto &
@@ -163,13 +162,15 @@ Accesibilidad &
   Mixto &
   Ejidal &
   Mixto \\
-\multicolumn{9}{c}{Pendientes Menores al 19°} \\ \bottomrule
+\multicolumn{9}{c}{Pendientes Menores al 19°} \\
+\bottomrule
 \end{tabular}%
 }
 \caption{Resultados de la selección de los sitios de monitoreo}
 \label{tabrsm1}
 \end{table}
 \end{landscape}
+
 
 
 
@@ -403,7 +404,7 @@ En el anexo \ref{anexo:alg1}, se adjunta el código completo de la función del 
     Verifica conectividad con Connectivity().checkConnectivity() para decidir cómo guardar imágenes.
 \end{enumerate}
 
-Sobre los servicios de Firebase, fueron llamados en la tabla \ref{tabt2}
+Sobre los servicios de Firebase, estos fueron agregados en el código (Tabla \ref{tabt2}).
 
 
 \begin{table}[h!]
@@ -700,7 +701,7 @@ Los widgets anterior mencionados, se detallan a continuación en el material des
 
 
 \subsubsection*{Material Design}
-Se hizo una compilación de los principales widgets utilizados en la aplicación, siguiendo las pautas de Material Design para garantizar una experiencia de usuario coherente y atractiva.
+Se hizo una compilación de los principales widgets utilizados en la aplicación, siguiendo las pautas de Material Design para garantizar una experiencia de usuario coherente y atractiva; los resultados obtenidos se describen a continuación.
 
 
 \paragraph{Marca de la app}
@@ -802,14 +803,7 @@ SwitchListTile(
 Como resultado con esta estructura, el cambio entre modo claro y oscuro se aplica inmediatamente en toda la interfaz, utilizando el sistema de temas de Flutter y el patrón Provider para gestión reactiva del estado. Esta implementación es limpia, escalable y fácilmente extensible para incluir preferencias adicionales (como tamaño de texto, idioma o color personalizado), esto puede ser comparado entre el modo claro (Figura \ref{pantallas14}) y el modo oscuro (Figura \ref{pantallas13}).
 
 
-
-
-
-
-
-\newpage
 \paragraph{Diseño responsivo}
-
 
 El siguiente principio del \textit{Material Design} es la capacidad de las interfaces para adaptarse fluidamente a una variedad de dispositivos y tamaños de pantalla, garantizando una experiencia de usuario óptima tanto en entornos móviles como en pantallas de escritorio o tablets. Este principio fue implementado en la presente aplicación mediante una estrategia basada en el uso de condicionales de diseño responsivo, utilizando herramientas propias de Flutter como \texttt{MediaQuery} y estructuras de diseño condicionales.
 
@@ -851,9 +845,6 @@ Esta lógica no solo cumple con las recomendaciones de accesibilidad y escalabil
 Finalmente, cabe mencionar que esta adaptabilidad también se complementa con el uso de otros principios de \textit{Material Design}, como la jerarquía visual clara, uso coherente de iconografía y tipografía, y navegación mediante \texttt{TabBar} con retroalimentación visual. Esta atención al diseño responsivo no solo mejora la experiencia del usuario final, sino que también fortalece la arquitectura de la aplicación al hacerla escalable, mantenible y universalmente accesible.
 
 
-
-
-\newpage
 \paragraph{Tipografía y estilo de texto}
 
 Para garantizar consistencia visual, se definieron estilos específicos para distintos niveles jerárquicos de texto, tales como títulos y cuerpo. A continuación se describen los principales estilos utilizados:
@@ -1103,11 +1094,18 @@ La Interfaz de Usuario (UI) fue diseñada con un enfoque centrado en el usuario,
 
 \subsubsection*{Onboarding}
 
-Cuando la aplicación es iniciada por primera vez, la función main (Anexo \ref{anexo:alg3}) llama al StatelessWidget \texttt{MyApp} (Anexo \ref{anexo:alg4}), que a su vez invoca el StatelessWidget \texttt{ConditionalOnboardingPage} (Anexo \ref{anexo:alg5}). Este ultimo widget es un condicional que determina si la pantalla inicial es el Onboarding (Anexo \ref{anexo:alg6}) o el HomePage (Anexo \ref{anexo:alg7}).
+Cuando la aplicación es iniciada por primera vez, la función main %(Anexo \ref{anexo:alg3}) 
+el cual llama al StatelessWidget \texttt{MyApp} 
+%(Anexo \ref{anexo:alg4})
+, que a su vez invoca el StatelessWidget \texttt{ConditionalOnboardingPage} %(Anexo \ref{anexo:alg5})
+. Este ultimo widget es un condicional que determina si la pantalla inicial es el Onboarding %(Anexo \ref{anexo:alg6}) 
+o el HomePage. %(Anexo \ref{anexo:alg7}).
 
-El Onboarding (Figura \ref{pantallas1}) es importante porque da la bienvenida al usuario y es la carátula del proyecto. Una vez completada esta sección, se navega a la pantalla de iniciar sesión con cuenta Google, la cual se le llamó \texttt{SignUpWidget} (Anexo \ref{anexo:alg8}). Esta pantalla permite al usuario registrarse o iniciar sesión con su cuenta de Google, utilizando el paquete \texttt{google\_sign\_in} para la autenticación.
+El Onboarding (Figura \ref{pantallas1}) es importante porque da la bienvenida al usuario y es la carátula del proyecto. Una vez completada esta sección, se navega a la pantalla de iniciar sesión con cuenta Google, la cual se le llamó \texttt{SignUpWidget} %(Anexo \ref{anexo:alg8})
+. Esta pantalla permite al usuario registrarse o iniciar sesión con su cuenta de Google, utilizando el paquete \texttt{google\_sign\_in} para la autenticación.
 
-El algoritmo del anexo \ref{anexo:alg8}, utiliza dos herramientas clave para lograr un diseño responsivo:
+El diseño de la pantalla de inicio de sesión, %anexo \ref{anexo:alg8}, 
+utiliza dos herramientas clave para lograr un diseño responsivo:
 
 \begin{enumerate}
     \item \textbf{MediaQuery:} Permite obtener el tamaño total de la pantalla.
@@ -1150,7 +1148,8 @@ LayoutBuilder(
 
 \newpage
 \subsubsection*{Login}
-El modelo de la pantalla (Figura \ref{pantallas2}), código adjunto al anexo \ref{anexo:alg9}: El usuario puede registrarse o iniciar sesión con su cuenta de Google, y una vez autenticado, se guarda su información en la base de datos de Firebase.
+El modelo de la pantalla (Figura \ref{pantallas2})%, código adjunto al anexo \ref{anexo:alg9}
+: El usuario puede registrarse o iniciar sesión con su cuenta de Google, y una vez autenticado, se guarda su información en la base de datos de Firebase.
 
 
 La clase \texttt{GoogleSignInProvider} que extiende de \texttt{ChangeNotifier}, permitiendo su uso con el patrón de arquitectura Provider para gestionar el estado de autenticación del usuario mediante Google y Firebase
@@ -1196,7 +1195,8 @@ Resumen del Flujo:
 \subsubsection*{Elección de paraje}
 
 
-En la página CommonSelectPage() (Anexo \ref{anexo:alg10}), se permite al usuario seleccionar el paraje donde se encuentra el pluviómetro. Esta pantalla es accesible desde el menú principal y muestra una lista de los parajes disponibles, permitiendo al usuario elegir uno para registrar sus mediciones.
+En la página CommonSelectPage() %(Anexo \ref{anexo:alg10})
+, permite al usuario seleccionar el paraje donde se encuentra el pluviómetro. Esta pantalla es accesible desde el menú principal y muestra una lista de los parajes disponibles, permitiendo al usuario elegir uno para registrar sus mediciones.
 
 
 \paragraph{Lógica del Código QR:}
@@ -1381,7 +1381,8 @@ La dimensión social y participativa se fomenta a través del widget PhraseCard,
 \subsubsection*{Envío de mediciones}
 
 
-La clase \texttt{AddScreen} (anexo \ref{anexo:alg13}) representa la interfaz principal para el registro de una nueva medición de lluvia. Esta pantalla está diseñada como un formulario dinámico que permite a los usuarios capturar, modificar y enviar datos de precipitación, integrando funcionalidades de autenticación, selección de imágenes, validación de entradas, y almacenamiento en la nube.
+La clase \texttt{AddScreen} %(anexo \ref{anexo:alg13}) 
+representa la interfaz principal para el registro de una nueva medición de lluvia. Esta pantalla está diseñada como un formulario dinámico que permite a los usuarios capturar, modificar y enviar datos de precipitación, integrando funcionalidades de autenticación, selección de imágenes, validación de entradas, y almacenamiento en la nube.
 
 Cuando se carga la pantalla, se inicializan los valores por defecto o, en caso de que se edite una medición existente, se precargan los datos previamente registrados. El formulario permite especificar el nombre del responsable de la medición, el valor de precipitación en milímetros, la fecha y hora del registro, así como el estado del pluviómetro (si fue vaciado o no). También se permite el envío opcional de una imagen como evidencia, tomada desde la cámara o seleccionada desde la galería, compatible tanto en entorno web como móvil.
 
@@ -1401,7 +1402,8 @@ El diseño de la interfaz emplea componentes personalizados como \texttt{MyTextF
 \newpage
 \subsubsection*{Bitácora}
 
-La clase \texttt{DataScreen}  (anexo \ref{anexo:alg14}) constituye la interfaz central de la bitácora de mediciones dentro de Tláloc App, permitiendo al usuario consultar registros históricos de precipitación. Esta pantalla combina un diseño adaptable con navegación mediante pestañas y una experiencia optimizada tanto para dispositivos móviles como para pantallas anchas (escritorio o tabletas). Utiliza un \texttt{TabController} con dos secciones principales: ``Acumulados'' y ``Reales'', representando, respectivamente, los valores brutos de precipitación y los datos corregidos mediante un algoritmo basado en el vaciado del pluviómetro.
+La clase \texttt{DataScreen} %(anexo \ref{anexo:alg14}) 
+constituye la interfaz central de la bitácora de mediciones dentro de Tláloc App, permitiendo al usuario consultar registros históricos de precipitación. Esta pantalla combina un diseño adaptable con navegación mediante pestañas y una experiencia optimizada tanto para dispositivos móviles como para pantallas anchas (escritorio o tabletas). Utiliza un \texttt{TabController} con dos secciones principales: ``Acumulados'' y ``Reales'', representando, respectivamente, los valores brutos de precipitación y los datos corregidos mediante un algoritmo basado en el vaciado del pluviómetro.
 
 La interfaz está construida sobre un \texttt{NestedScrollView} con una \texttt{SliverAppBar} que incluye el logotipo de la aplicación, un título destacado, botones de información y una opción para exportar los registros en formato Excel (Figura \ref{pantallas15}). El contenido de cada pestaña es renderizado mediante un \texttt{TabBarView}, que carga condicionalmente componentes diferentes según el ancho de la pantalla: una vista tipo lista detallada para escritorios (estilo Master-Detail), o bien listas verticales desplazables con controladores independientes en entornos móviles.
 
@@ -1413,7 +1415,6 @@ Cada lista accede a los datos a través del estado global (\texttt{AppState}) y 
   \caption{Captura de pantalla de la función de exportación de datos en Excel, autoría propia}
   \label{pantallas15}
 \end{figure}
-
 
 \begin{figure}[H]
 \centering
@@ -1447,7 +1448,7 @@ Cada lista accede a los datos a través del estado global (\texttt{AppState}) y 
 \label{fig:diagramavolumenes}
 \end{figure}
 
-% \newpage
+\newpage
 \subsubsection*{Algoritmo para guardar mediciones reales}
 
 En el diagrama de flujo para el cálculo de volúmenes reales (Figura \ref{fig:diagramavolumenes}),se resume el algoritmo para guardar información. Actualmente se cuentan con evaporímetros que dependiendo su valor aumentaría los mm al valor registrado $V_a$, pero que no se contempló para este momento.
@@ -1514,7 +1515,6 @@ En ciertos escenarios, el usuario reporta explícitamente el vaciado del pluvió
 
 Donde $V_{a}$ es la medición actual, interpretada como un nuevo evento total, al haberse reiniciado manualmente el instrumento.
 
-
 \newpage
 \subsubsection*{Estadísticas} 
 
@@ -1528,6 +1528,8 @@ Una funcionalidad destacada del componente es la capacidad de exportar la gráfi
 
 Desde una perspectiva funcional, este módulo constituye una herramienta de análisis elemental para el monitoreo participativo, ya que permite comparar de forma gráfica y temporal los registros recopilados en campo. A través del uso de \texttt{Provider}, la lógica se mantiene desacoplada del estado global de la aplicación, permitiendo una experiencia fluida, escalable y visualmente clara. La inclusión de esta herramienta fortalece el uso de la aplicación no solo como medio de recolección, sino también como instrumento de análisis y comunicación de resultados.
 
+
+ 
 
 
 \begin{figure}[h!]

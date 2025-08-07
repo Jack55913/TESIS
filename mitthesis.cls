@@ -542,7 +542,7 @@
 	\seq_gput_right:cx  { g_supervisor_title_seq } { \tl_trim_spaces:n {#2} }
  }
 
-% TODO CAMBIAR
+
 \cs_new:Nn \__supervisor_abstractblock: {
 	\int_zero_new:N \l__supervisor_supervisorno_int
 	\int_incr:N     \l__supervisor_supervisorno_int
@@ -936,22 +936,25 @@
 }
 
 %%%%%%%%%%  End title page module  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% TODO: ajustar abstract
+ 
 
 %%%%%%%%%%  Abstract page Module  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % to change abstract name, follow either of these approaches in your preamble:
-	\RenewExpandableDocumentCommand\abstractname{}{Summary}
-	\renewcommand\abstractname{Summary}
+% Cambiar el nombre del abstract: usa esto antes de cada \begin{abstract}
+\RenewExpandableDocumentCommand\abstractname{}{Summary}
+\renewcommand\abstractname{Summary}
+
+% Define un título personalizado para el encabezado del abstract (si no quieres repetir el título completo)
+\newcommand{\abstractheader}{\g_mitthesis_title_tl} % puedes cambiarlo a lo que desees
 
 \RenewDocumentEnvironment{abstract}{+b}{
 	\newpage
     \begin{center}
-        {
-		% TODO: Quitar
-		\large{\textbf{\g_mitthesis_title_tl}}
+        { 
+        \large{\textbf{\abstractheader}} 
 		
+
 		\phantomsection\addcontentsline{toc}{chapter}{\abstractname}\par
 		
 		} % revise for tagging as LaTeX evolves further

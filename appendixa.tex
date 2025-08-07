@@ -438,11 +438,7 @@ class AppState extends ChangeNotifier {
         'global': 0,
         'distinctParajes': 0,
         'totalParajes': 0,
-        'error': e.toString(),
-      };
-    }
-  }
-}
+        'error': e.toString(),};}}}
 
 
         \end{minted}
@@ -467,7 +463,8 @@ service cloud.firestore {
     // Rowy rules start (NO MODIFICAR)
     // ----------------------------
     match /{collectionId}/{docId} {
-      allow read, create, update, delete: if colRule(["roles"], ["ADMIN","EDITOR","VIEWER","OWNER"]);
+      allow read, create, update, delete: 
+      if colRule(["roles"], ["ADMIN","EDITOR","VIEWER","OWNER"]);
       
       function colRule(collections, roles) {
         return collectionId in collections && hasAnyRole(roles);
@@ -1555,20 +1552,7 @@ class QrSelectWidget extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: colors.onSurfaceVariant,
-                          fontFamily: 'Poppins',
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
+                          fontFamily: 'Poppins',),),),],),),),),);},);}}
 
 class _QrScannerDialog extends StatelessWidget {
   final BuildContext parentContext;
@@ -1609,16 +1593,9 @@ class _QrScannerDialog extends StatelessWidget {
               ),
               onDetect: (barcode) {
                 if (barcode.barcodes.isNotEmpty) {
-                  Navigator.pop(context, barcode.barcodes.first.rawValue ?? '');
-                }
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+                  Navigator.pop(context, barcode.barcodes.first.rawValue ?? 
+                  ''
+                  ); }}, ),),],),);}}
 \end{minted}
 
 

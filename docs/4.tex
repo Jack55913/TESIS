@@ -12,7 +12,7 @@
 
 \begin{itemize}
         \item \textbf{Instalaciones:} Se requiere descargar los siguientes programas en sus versiones actuales: \begin{enumerate}
-        \item \textbf{Kit de Desarrollo de Software}: Flutter, 
+        \item \textbf{Kit de Desarrollo de Software}: Flutter 
         \item \textbf{Entorno de Desarrollo Integrado}: Visual Studio Code y Android Studio
         \item \textbf{Herramientas de desarrollo}: Git y Visual Studio 2022  
     \end{enumerate}
@@ -93,9 +93,8 @@ El protocolo consiste en llevar a cabo un monitoreo de lluvia que involucró dos
 \end{enumerate}
 
 \subsubsection{1. Diseño Técnico de Monitoreo}
-
 \begin{enumerate}
-    \item \textbf{Recorridos para la caracterización de los parajes}: Los criterios para seleccionar los sitios de monitoreo son las coordenadas, altitud, pendiente menor al 5\%, tipo de vegetación, superficie desprovista de árboles y tamaño de los árboles circundantes. Esta información permite identificar los sitios más adecuados para instalar los sitios de monitoreo, siguiendo las recomendaciones de la Organización Meteorológica Mundial (\cite{WMO2014}). 
+    \item \textbf{Recorridos para la caracterización de los parajes}: Siguiendo las recomendaciones de la Organización Meteorológica Mundial, los criterios para seleccionar los sitios de monitoreo son las coordenadas, altitud, pendiente menor al 5\%, tipo de vegetación, superficie desprovista de árboles y tamaño de los árboles circundantes. Esta información permite identificar los sitios más adecuados para instalar los sitios de monitoreo (\cite{WMO2014}). 
  
     \item \textbf{Elaboración de pluviómetros y programación de la app móvil}: investigar qué lineamientos de la Norma Mexicana o de la Organización Meteorológica Mundial son adecuados para crear un pluviómetro. investigar su máxima capacidad de almacenamiento y la resolución de la escala. Indagar sobre los materiales para colocarlos en los sitios y a qué altura deben instalarse. Así mismo, encontrar una forma de correcciones por pérdidas de agua por evaporación. Sea de ejemplo un pluviómetro típico y sus componentes (Figura \ref{m21}). Diseñar y programar una aplicación donde los usuarios puedan enviar, modificar, compartir y visualizar los datos obtenidos.
 
@@ -110,12 +109,7 @@ El protocolo consiste en llevar a cabo un monitoreo de lluvia que involucró dos
   \label{m21}
 \end{figure}
 
-
-
-
-
-
-\newpage
+ 
 
 
 \subsubsection{2. Procesos Participativos con Ejidatarios} 
@@ -134,7 +128,7 @@ En una etapa posterior se realiza un proceso de capacitación con los ejidatario
 
 \subsubsection*{Descripción de la población de estudio}
 
-Encuestar a la población que sube a la montaña en los sitios de monitoreo los parámetros descritos en la tabla \ref{tabt3}
+Encuestar a la población que sube a la montaña en los sitios de monitoreo los parámetros descritos (Tabla \ref{tabt3})
 \begin{table}[h!]
 \centering
 \begin{tabular}{@{}cc@{}}
@@ -149,7 +143,7 @@ Institucional/laboral & Tipo de relación con la zona (trabajo, recreación, sup
 \caption{parámetros a identificar de la población}
 \label{tabt3}
 \end{table}
-\newpage
+% \newpage
 
 
 
@@ -367,9 +361,11 @@ Este flujo se puede repetir cada vez que se realicen avances importantes en el c
 
 Si se necesita obtener una copia exacta del proyecto alojado en GitHub en otra computadora, es posible usar el comando \texttt{git clone}. Este comando descarga todo el historial y los archivos del proyecto:
 
-\begin{minted}{bash}
+\begin{center}
+  \begin{minted}{bash}
 git clone https://github.com/Jack55913/TlalocApp.git
 \end{minted}
+\end{center}
 
 Este comando crea automáticamente una carpeta llamada \texttt{TlalocApp} con todos los archivos y el historial del proyecto.
 
@@ -706,13 +702,104 @@ El Nivel de Madurez Tecnológica (NMT o Technology Readiness Level, TRL, en ingl
 Es una escala de medición usada para evaluar o medir el nivel de madurez de una
 tecnología particular. Cada proyecto es evaluado frente a los parámetros de cada
 nivel tecnológico y es asignado a una clasificación basada en el progreso del
-proyecto.
+proyecto. Finalmente, se resolverán las preguntas de la evaluación del nivel de maduración tecnológica (Tabla \ref{m19}).
 
-Se hará la evaluación del nivel de maduración tecnológica (Figura \ref{m19}).
+\begin{longtable}{|p{2.5cm}|p{0.5cm}|p{4cm}|p{8.5cm}|}
+\hline
+\textbf{Nivel de Madurez de Tecnológica} & 
+\textbf{N} & 
+\textbf{Elementos clave} & 
+\textbf{Parámetros esperados al final de la etapa.} \\
+\hline
+\endfirsthead
 
-\begin{figure}[h!]
-\centering
-  \includegraphics[width=1\textwidth]{m19.png}
-  \caption{Guía para el Diagnóstico del Nivel de Madurez Tecnológica (NMT o TRL, por sus siglas en inglés) (\cite{SECIHTIConvocatorias}).}
-  \label{m19}
-\end{figure}
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Desarrollo de la invención & 1 &
+Investigación básica. Principios básicos observados y reportados. Artículos científicos publicados sobre los principios de la nueva tecnología. &
+¿Finalizó con la investigación básica de su idea? \newline
+¿Identificó principios de investigación básica que pudieran trasladarse a nuevos principios aplicables en tecnologías? \\
+\hline
+
+& 2 &
+Investigación de laboratorio. Concepto y/o aplicación tecnológica formulada. Investigación aplicada. Inicio de la invención. &
+¿Analizó artículos científicos, modelos o teorías que respaldan su aplicación? \newline
+¿Realizó análisis de patentes nacionales e internacionales? \newline
+¿Exploró principios de manufacturabilidad? \newline
+¿Identificó usuarios potenciales? \newline
+¿Cuenta con grupo de investigación para evaluar la factibilidad? \newline
+¿Tiene plan de licenciamiento a terceros? \\
+\hline
+
+Validación de concepto & 3 &
+Prueba experimental del concepto. Primera evaluación de factibilidad de la tecnología. &
+¿Identificó los componentes de la invención? \newline
+¿Validación de mercado preliminar? \newline
+¿Estudios de patentes actualizados? \newline
+¿La invención es protegible? \newline
+¿Revisión de aspectos regulatorios? \newline
+¿Plan de licenciamiento? \\
+\hline
+
+& 4 &
+Validación tecnológica a nivel laboratorio. Integración de prototipo inicial con baja confiabilidad. &
+¿Integró componentes principales? \newline
+¿Pruebas de efectividad en laboratorio? \newline
+¿Revisión de manufacturabilidad? \newline
+¿Entrevistas con usuarios? \newline
+¿Funciona en laboratorio? \newline
+¿Identificación de riesgos y mitigación? \newline
+¿Estrategia de propiedad intelectual actualizada? \newline
+¿Plan de licenciamiento? \\
+\hline
+
+Desarrollo de prototipo & 5 &
+Tecnología validada en condiciones relevantes (similares a reales). Proceso de planeación del negocio. &
+¿Probó el prototipo en ambiente real simulado? \newline
+¿Aspectos de manufacturabilidad definidos? \newline
+¿Cumple con normas del sector? \newline
+¿Estrategia de propiedad intelectual definida? \\
+\hline
+
+Producción piloto y demostración & 6 &
+Tecnología demostrada en ambiente relevante. Pre-producción en entorno real. &
+¿Tecnologías integradas en planta piloto? \newline
+¿Alineación con producción? \newline
+¿Usuarios prueban producción a baja escala? \newline
+¿Organización operativa alineada? \newline
+¿Inició proceso de certificación oficial? \\
+\hline
+
+& 7 &
+Demostración de prototipo en entorno operativo real. Producción a baja escala. &
+¿Cuenta con manufactura a baja escala? \newline
+¿Usuarios prueban versión final? \newline
+¿Estructura organizacional adecuada? \newline
+¿Producto terminado disponible? \\
+\hline
+
+Introducción inicial al mercado & 8 &
+Sistema completo y certificado. Manufacturabilidad probada. Producto comercializable. &
+¿Manufactura de producto final? \newline
+¿Producto listo para comercialización? \newline
+¿Organización operativa al 100\%? \newline
+¿Cumple estándares industriales? \newline
+¿Documentación técnica y de usuario desarrollada? \\
+\hline
+
+Expansión de mercado & 9 &
+Producto terminado. Pruebas exitosas. Tecnología disponible en el mercado. &
+¿Producción sostenida? \newline
+¿Crecimiento del mercado? \newline
+¿Cambios incrementales para nuevas versiones? \newline
+¿Optimización de procesos mediante innovación incremental? \\
+\hline
+
+\caption{Guía para el Diagnóstico del Nivel de Madurez Tecnológica (NMT o TRL, por sus siglas en inglés) (\cite{SECIHTIConvocatorias}).}
+\label{m19}
+\end{longtable}
+
