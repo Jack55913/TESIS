@@ -17,6 +17,8 @@
 \usepackage{multicol} 
 \usepackage{tabularx}
 \usepackage{adjustbox}
+\usepackage{amsthm}
+
 
 \setlength{\LTpre}{0pt}
 \setlength{\LTpost}{0pt}
@@ -44,7 +46,8 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newtheorem{notation}{Notación}[chapter]
 \newtheorem{theorem}{Teorema}[chapter]
-\newtheorem{definition}{Definición}[chapter]
+% \theoremstyle{definition}
+% \newtheorem*{definition}{Definición}
 \newtheorem{lemma}{Lema}[chapter]
 \graphicspath{{assets/}}
 \usepackage{csquotes} 
@@ -73,8 +76,13 @@
 
 \pagestyle{plain}
 
-\def\all{all}
-\ifx\files\all \typeout{Including all files.} \else %\typeout{Including only \files.} \includeonly{\files} \fi
+\ifx\files\all
+  \typeout{Including all files.}
+\else
+  \typeout{Including only \files.}
+  \includeonly{\files}
+\fi
+
 
 % Márgenes
 \geometry{left=4cm, right=2.5cm, top=5cm, bottom=2.5cm}
@@ -84,7 +92,7 @@
 \Author{LUIS EMILIO ÁLVAREZ HERRERA}{Departamento de Irrigación}
 \Degree{INGENIERO EN IRRIGACIÓN}{DEPARTAMENTO DE IRRIGACIÓN}
 \Supervisor{Dra. Teresa Margarita Gonzalez Martínez}{Profesora del COLPOS}
-\Supervisor{Luis Tonatiuh Castellanos Serrano}{Profesor del DIMA}
+\Supervisor{Luis Tonatiuh Castellanos Serrano}{Profesor de Mecánica Agrícola}
 \Supervisor{Francisco García Herrera}{Profesor de Irrigación}
 \Supervisor{Ramón Arteaga Ramírez}{Profesor de Irrigación}
 \Supervisor{Bernardino Cruz}{Profesor de Irrigación}

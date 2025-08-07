@@ -12,13 +12,13 @@
 
 \begin{itemize}
         \item \textbf{Instalaciones:} Se requiere descargar los siguientes programas en sus versiones actuales: \begin{enumerate}
-        \item \textbf{Kit de Desarrollo de Software}: Flutter
+        \item \textbf{Kit de Desarrollo de Software}: Flutter, 
         \item \textbf{Entorno de Desarrollo Integrado}: Visual Studio Code y Android Studio
         \item \textbf{Herramientas de desarrollo}: Git y Visual Studio 2022  
     \end{enumerate}
-    \item \textbf{Almacenamiento del código:} Se usarán los servicios de GitHub. Esta plataforma utiliza Git para proporcionar control de versiones distribuido y, a su vez, GitHub proporciona control de acceso, seguimiento de errores, solicitudes de funciones de software, gestión de tareas, integración continua a través del programa Visual Studio Code.
-    \item \textbf{Servicio de Base de datos:} Se creará un proyecto en Firebase para el Hosting en la web.
-    \item \textbf{Google Play Console:} Se usará para publicar el archivo .bundle a Google Play Store, para su accesibilidad de descarga en los dispositivos Android.
+    \item \textbf{Almacenamiento del código:} Se usarán los servicios de GitHub, esta es una plataforma de desarrollo colaborativo que permite a los desarrolladores alojar proyectos, gestionar versiones mediante Git, colaborar en equipos, revisar código y automatizar flujos de trabajo. Su integración con Git permite el control detallado de versiones, ramas y contribuciones en proyectos de software. Además, ofrece funcionalidades como GitHub Actions, Issues, Pull Requests y GitHub Pages, lo que la convierte en un entorno completo para el desarrollo y la gestión de proyectos de código abierto y privado (\cite{githubdocs}).
+    \item \textbf{Servicio de Base de datos:} Se creará un proyecto en Firebase para el Hosting en la web; Firebase es una plataforma de desarrollo de aplicaciones creada por Google que proporciona servicios como bases de datos en tiempo real, autenticación de usuarios, hosting de archivos y funciones de backend sin servidor, facilitando el desarrollo y escalamiento de aplicaciones móviles y web (\cite{firebase}).
+    \item \textbf{Google Play Console:} Es la plataforma de gestión que permite a los desarrolladores publicar, actualizar, monitorear el rendimiento y administrar la distribución de sus aplicaciones Android en la tienda Google Play (\cite{googleplayconsole}). Se usará para publicar el archivo .bundle a Google Play Store, para su accesibilidad de descarga en los dispositivos Android.
 \end{itemize}
 
 \section{Método}
@@ -85,7 +85,7 @@ Este proceso requiere, como paso previo, el diseño de un protocolo de monitoreo
 % \newpage
 \subsection{Protocolo de monitoreo participativo:}
 
-El protocolo consiste en llevar a cabo un monitoreo de lluvia que involucró tres principales etapas (Figura \ref{t2}): 
+El protocolo consiste en llevar a cabo un monitoreo de lluvia que involucró dos principales etapas (Figura \ref{t2}): 
 \begin{enumerate}
   \item Diseño técnico de monitoreo
   \item Proceso participativo de ejidatarios
@@ -267,24 +267,26 @@ Se muestra el diagrama de flujo que representa el comportamiento operativo del s
   \label{t3}
 \end{figure}
 
-La metodología para el desarrollo del código consiste en programar en lenguaje Dart, una aplicación multiplataforma, alojada en un sitio web y en Play Store, con el fin de enviar las mediciones a una base de datos pública bajo la siguiente organización:
+La metodología para el desarrollo del código consiste en programar en lenguaje Dart el cual se define como un lenguaje de programación desarrollado por Google, diseñado para crear aplicaciones frontend rápidas y optimizadas, especialmente utilizado en conjunto con Flutter (\cite{dart}); Flutter es un framework de código abierto desarrollado por Google que permite crear aplicaciones nativas de alto rendimiento para múltiples plataformas (iOS, Android, web, escritorio) a partir de una única base de código, utilizando el lenguaje de programación Dart (\cite{flutter_multiplataforma}).
+
+Debe ser una aplicación multiplataforma, alojada en un sitio web y en Play Store, con el fin de enviar las mediciones a una base de datos pública bajo la siguiente organización:
 
 
 \begin{enumerate}
-  \item \textbf{Backend}
+  \item \textbf{Backend}: Se refiere a la parte del desarrollo de software que gestiona la lógica de negocio, bases de datos, servidores y APIs, funcionando como la estructura interna que sostiene y conecta los servicios de una aplicación (\cite{backend}).
   \begin{enumerate}
     \item Alojamiento del código: Exportar y guardar en GitHub
     \item Base de datos: Lógica del código, seguridad y conexión en Firebase
     \item Hosting en la web: Publicar un dominio en Firebase
   \end{enumerate}
-  \item \textbf{Frontend}
+  \item \textbf{Frontend}: Se define como  la capa de una aplicación que interactúa directamente con el usuario, encargándose del diseño, la estructura y la experiencia visual mediante tecnologías como HTML, CSS y JavaScript o frameworks como Flutter para móviles (\cite{frontend}).
   \begin{enumerate}
     \item User Experience (UX)
      \begin{enumerate}
-      \item Material Design
+      \item Material Design: se define como un sistema de diseño desarrollado y respaldado por diseñadores y desarrolladores de Google. Material.io incluye una guía detallada de UX e implementaciones de componentes de UI para Android, Flutter y la web. La última versión, Material 3, permite experiencias personales, adaptables y expresivas, desde colores dinámicos y accesibilidad mejorada hasta bases para diseños de pantalla grande y tokens de diseño (\cite{materialdesign2023}).
       \item Acceso en tienda de aplicaciones (PlayStore)
      \end{enumerate}
-    \item User Interface (UI)
+    \item User Interface (UI): La \textit{interfaz de usuario} (UI, por sus siglas en inglés) es la capa visual e interactiva de una aplicación o sistema digital, diseñada para facilitar la interacción del usuario con las funcionalidades internas del software. Comprende todos los elementos gráficos visibles como botones, formularios, menús, iconos, gráficos y controles que permiten a los usuarios ejecutar tareas específicas. Una UI bien diseñada se enfoca en la usabilidad, accesibilidad, estética y eficiencia, siendo un componente esencial en la experiencia del usuario (\cite{shneiderman}).
      \begin{enumerate}
     \item Onboarding: Pagina de bienvenida 
     \item Login: Los usuarios podrán crear una cuenta y elegir el pluviómetro mediante el escaneo de códigos Qr o manualmente del sitio de monitoreo 
@@ -327,7 +329,6 @@ El flujo básico para controlar versiones de un proyecto usando \texttt{git} des
     \begin{minted}{bash}
     git init
     \end{minted}
-    
     \item Configurar nombre y correo del autor (también solo una vez):
     \begin{minted}{bash}
     git config --global user.name "Luis Emilio Álvarez Herrera"
@@ -683,7 +684,7 @@ Cada vez que se realiza una actualización, se debe:
 
 El desarrollo de una aplicación móvil requiere no solo la implementación funcional del código, sino también una organización arquitectónica sólida basada en principios de programación orientada a objetos (POO). Esta metodología permite estructurar el proyecto en módulos bien definidos, reutilizables y escalables, facilitando la colaboración, el mantenimiento y la evolución del software a largo plazo.
 
-En el contexto de Flutter, un framework multiplataforma basado en el lenguaje Dart, la programación orientada a objetos se refleja en la creación de clases, componentes y funciones que encapsulan el comportamiento y la lógica de la interfaz, el manejo de datos y la interacción con servicios externos. Cada parte de la aplicación se define como un widget o clase independiente, lo que promueve una arquitectura limpia y modular.
+En el contexto de Flutter, un framework multiplataforma basado en el lenguaje Dart, la programación orientada a objetos se refleja en la creación de clases, componentes y funciones que encapsulan el comportamiento y la lógica de la interfaz, el manejo de datos y la interacción con servicios externos. Cada parte de la aplicación se define como un widget o clase independiente, lo que promueve una arquitectura limpia y modular. Los widgets son los componentes básicos de la interfaz de usuario de una aplicación de Flutter, y cada widget es una declaración inmutable de una parte de la interfaz. Los widgets se utilizan para describir todos los aspectos de una interfaz de usuario, incluyendo aspectos físicos como texto y botones para diseñar efectos como el relleno y la alineación (\cite{flutter_multiplataforma}).
 
 Un proyecto de programación orientada a objetos bien estructurado debe cumplir con los siguientes principios fundamentales:
 
